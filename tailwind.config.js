@@ -9,11 +9,6 @@ module.exports = {
   ],
   theme: {
     extend: {
-      fontFamily: {
-        sans: ["Pretendard Variable", "Pretendard"],
-        pretendard: ["Pretendard Variable", "Pretendard", "sans-serif"],
-      },
-
       fontSize: {
         "display-xl": ["15px", { lineHeight: "auto" }],
         "heading-lg": ["12px", { lineHeight: "15px" }],
