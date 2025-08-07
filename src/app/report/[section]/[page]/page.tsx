@@ -30,7 +30,7 @@ export default async function ReportPage({ params }: Props) {
     <ReportLayout section={sec} page={pg}>
       <Content />
 
-      <div className="flex justify-between mt-12">
+      {/* <div className="flex justify-between mt-12">
         <Link
           href={`/report/${prevSec}/${prevPg}`}
           className="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300"
@@ -43,7 +43,7 @@ export default async function ReportPage({ params }: Props) {
         >
           섹션 {nextSec}·페이지 {nextPg} →
         </Link>
-      </div>
+      </div> */}
     </ReportLayout>
   );
 }

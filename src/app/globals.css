@@ -13,9 +13,38 @@
   --font-hangang: "SeoulHangangM", sans-serif;
 }
 
+/* 커스텀 폰트 사이즈 유틸리티 클래스를 직접 정의 */
+@utility text-display-xl {
+  font-size: 15px;
+  line-height: auto;
+}
+
+@utility text-heading-lg {
+  font-size: 12px;
+  line-height: 15px;
+}
+
+@utility text-heading-md {
+  font-size: 11px;
+  line-height: 15px;
+}
+
+@utility text-body-base {
+  font-size: 10px;
+  line-height: 16px;
+}
+
+@utility text-caption-sm {
+  font-size: 8px;
+  line-height: 10px;
+}
+
 body {
   /* font-family: "SeoulHangangM", Pretendard, -apple-system, BlinkMacSystemFont,
     system-ui, sans-serif; */
   font-family: "Pretendard Variable", Pretendard, -apple-system,
     BlinkMacSystemFont, system-ui, sans-serif;
+
+  font-size: 10px;
+  line-height: 16px;
 }
