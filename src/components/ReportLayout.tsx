@@ -13,7 +13,7 @@ export default function ReportLayout({ section, page, children }: Props) {
     <div className="min-h-screen flex">
       {/* 메인 콘텐츠 */}
 
-      <main className="flex-1 p-8 flex flex-col">
+      <main className="flex-1 p-8 pb-[14px] flex flex-col">
         <Header />
         {/* <h1 className="text-2xl font-bold mb-6">
           섹션 {section} · 페이지 {page}
@@ -34,19 +34,24 @@ export default function ReportLayout({ section, page, children }: Props) {
           ].map((item, idx) => (
             <div
               key={idx}
-              className={`h-[113px] flex flex-col items-center gap-[9px] relative text-white ${
+              className={`py-[16px] px-[5px] flex flex-col items-center gap-[9px] relative text-white ${
                 item.num === section ? "bg-[#9AD8CA]" : "bg-[#E1E1E1]"
               } ${idx < 4 ? "border-b border-white" : ""} ${
                 idx === 0 ? "rounded-tl-[3px]" : ""
               }`}
             >
-              <div className="font-bold mt-3.5 text-heading-md">{item.num}</div>
+              <div className="font-bold text-heading-md">{item.num}</div>
 
               {/* 세로 텍스트 */}
               <div className="flex flex-col items-center text-display-xl ">
                 {item.text.split("").map((char, charIdx) => (
-                  <span key={charIdx} className="block text-caption-sm">
-                    {char}
+                  <span
+                    key={charIdx}
+                    className={`block text-caption-sm ${
+                      char === " " ? "h-[6px]" : ""
+                    }`}
+                  >
+                    {char === " " ? "" : char}
                   </span>
                 ))}
               </div>
