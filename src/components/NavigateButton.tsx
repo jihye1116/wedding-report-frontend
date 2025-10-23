@@ -17,6 +17,7 @@ export const NavigateButton = ({
 }: NavigateButtonProps) => {
   return (
     <button
+      type="button"
       onClick={onClick}
       className={cn(
         "rounded-full p-2.5 outline-none",
