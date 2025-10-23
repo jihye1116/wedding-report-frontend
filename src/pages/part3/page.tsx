@@ -5,16 +5,16 @@ import { detailedSurveyData } from "@/data/detailedSurveyData";
 import { useSurvey } from "@/hooks/useSurvey";
 import { getSurveyPart } from "@/utils/surveyUtils";
 import { PartPageTemplate } from "@/components/PartPageTemplate";
-import Part1Intro from "./intro";
+import Part3Intro from "./intro";
 
 const QUESTIONS_PER_PAGE = 5;
 
-export default function Part1Page() {
+export default function Part3Page() {
   const { answers, addAnswer } = useSurvey({
     surveyData: detailedSurveyData,
   });
 
-  const part = detailedSurveyData.parts[0]; // Part 1 직접 참조
+  const part = detailedSurveyData.parts[2]; // Part 3 직접 참조
 
   if (!part) {
     return <div>Part not found.</div>;
@@ -41,7 +41,7 @@ export default function Part1Page() {
       part={part}
       answers={answers}
       addAnswer={addAnswer}
-      introComponent={<Part1Intro />}
+      introComponent={<Part3Intro />}
       questionComponent={renderQuestion}
       questionsPerPage={QUESTIONS_PER_PAGE}
     />

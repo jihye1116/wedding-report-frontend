@@ -15,6 +15,7 @@ export interface SurveyPart {
   description: string;
   questions: SurveyQuestion[];
   totalQuestions: number;
+  totalPages: number;
 }
 
 export interface SurveyData {

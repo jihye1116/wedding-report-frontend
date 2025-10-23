@@ -8,6 +8,7 @@ export const detailedSurveyData: SurveyData = {
       description:
         "정보처리 및 의사결정, 동기 구조 및 자기조절, 외현적 행동 및 생활 방식, MMPI 기반 보조 지표",
       totalQuestions: 45,
+      totalPages: 11,
       questions: [
         // 정보처리 및 의사결정 (1-12번)
         {
@@ -353,6 +354,7 @@ export const detailedSurveyData: SurveyData = {
       description:
         "정보처리 및 의사결정, 동기 구조 및 자기조절, 외현적 행동 및 생활 방식, MMPI 기반 보조 지표 (심화)",
       totalQuestions: 45,
+      totalPages: 9,
       questions: [
         // 정보처리 및 의사결정 (46-57번) - 심화
         {
@@ -724,6 +726,7 @@ export const detailedSurveyData: SurveyData = {
       title: "Part 3: 관계 및 생활 영역",
       description: "연애 생활의 영역, 결혼 생활의 영역",
       totalQuestions: 18,
+      totalPages: 5,
       questions: [
         // 연애 생활의 영역 (91-99번)
         {
@@ -873,6 +876,7 @@ export const detailedSurveyData: SurveyData = {
       title: "Part 4: 주관식 질문",
       description: "자유롭게 답변할 수 있는 주관식 질문들",
       totalQuestions: 12,
+      totalPages: 4,
       questions: [
         {
           id: 109,
