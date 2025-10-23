@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { SurveyPart } from "@/types/survey";
-import { usePartTransition } from "./usePartTransition";
 
 interface UsePartNavigationProps {
   part: SurveyPart;
@@ -16,7 +15,6 @@ export const usePartNavigation = ({
   onBack,
 }: UsePartNavigationProps) => {
   const [currentPage, setCurrentPage] = useState(0);
-  const { goToNextPart, goToPreviousPart } = usePartTransition();
 
   const isIntroPage = currentPage === 0;
   const questionPageIndex = currentPage - 1; // 소개 페이지(0) 다음부터 문항 시작
@@ -42,8 +40,6 @@ export const usePartNavigation = ({
       console.log("Moving to next part:", part.partNumber + 1);
       if (onNext) {
         onNext();
-      } else {
-        goToNextPart(part.partNumber);
       }
     }
   };
@@ -56,8 +52,6 @@ export const usePartNavigation = ({
       console.log("Moving to previous part:", part.partNumber - 1);
       if (onBack) {
         onBack();
-      } else {
-        goToPreviousPart(part.partNumber);
       }
     }
   };
