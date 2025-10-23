@@ -147,16 +147,16 @@ export const useSurvey = ({ surveyData }: UseSurveyProps): UseSurveyReturn => {
     return JSON.stringify(answers, null, 2);
   }, [answers]);
 
-  // 로컬 스토리지에 답변 저장
+  // 세션 스토리지에 답변 저장 (탭 닫으면 자동 삭제)
   useEffect(() => {
     if (answers.length > 0) {
-      localStorage.setItem("survey-answers", JSON.stringify(answers));
+      sessionStorage.setItem("survey-answers", JSON.stringify(answers));
     }
   }, [answers]);
 
-  // 로컬 스토리지에서 답변 복원 (초기화 시에만)
+  // 세션 스토리지에서 답변 복원 (초기화 시에만)
   useEffect(() => {
-    const savedAnswers = localStorage.getItem("survey-answers");
+    const savedAnswers = sessionStorage.getItem("survey-answers");
     if (savedAnswers && answers.length === 0) {
       try {
         const parsedAnswers = JSON.parse(savedAnswers);
