@@ -19,7 +19,7 @@ export const TextAreaField = ({
 }: TextAreaFieldProps) => {
   return (
     <div onClick={onClick} className="w-full rounded-xl outline-none">
-      <div className="flex items-start rounded-md pl-4 outline-1 -outline-offset-1 outline-gray-300 has-[textarea:focus-within]:outline-2 has-[textarea:focus-within]:-outline-offset-2 has-[textarea:focus-within]:outline-[#111111]">
+      <div className="flex items-start rounded-md pl-4 outline-1 -outline-offset-1 outline-gray-300 has-[textarea:focus-within]:outline-2 has-[textarea:focus-within]:-outline-offset-2 has-[textarea:focus-within]:outline-black">
         <textarea
           name={name}
           value={value}

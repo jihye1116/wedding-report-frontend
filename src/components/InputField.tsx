@@ -17,7 +17,7 @@ export const InputField = ({
 }: InputFieldProps) => {
   return (
     <div onClick={onClick} className="w-full outline-none">
-      <div className="flex items-center rounded-sm bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-[#111111]">
+      <div className="flex items-center rounded-sm bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-black">
         <input
           type="text"
           name={name}
