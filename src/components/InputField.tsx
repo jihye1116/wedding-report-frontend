@@ -1,6 +1,9 @@
 "use client";
 
-interface InputFieldProps {
+import { forwardRef, InputHTMLAttributes } from "react";
+
+interface InputFieldProps
+  extends Omit<InputHTMLAttributes<HTMLInputElement>, "onChange"> {
   name: string; // 폼 데이터의 키로 사용
   value: string; // 현재 입력 값
   onChange: (name: string, value: string) => void; // 값 변경 핸들러
@@ -27,6 +30,8 @@ export const InputField = ({
           className="block grow py-1.5 pr-3 pl-1 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6"
         />
       </div>
-    </div>
-  );
-};
+    );
+  },
+);
+
+InputField.displayName = "InputField";

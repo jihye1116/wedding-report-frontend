@@ -20,7 +20,7 @@ export const NavigateButton = ({
       type="button"
       onClick={onClick}
       className={cn(
-        "rounded-full p-2.5 outline-none",
+        "cursor-pointer rounded-full p-2.5 outline-black",
         (color ?? direction === "left")
           ? "outline- bg-[#6DD4BD]"
           : "bg-[#DCDCDC]",

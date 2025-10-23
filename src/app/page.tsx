@@ -3,6 +3,8 @@
 import Part1Page from "@/pages/part1/page";
 import { useState } from "react";
 
+import { IntroductionPage } from "@/pages/IntroductionPage";
+
 type PageStep =
   | "intro"
   | "question1"
@@ -46,17 +48,7 @@ export default function Home() {
 
   return (
     <div>
-      {currentStep === "intro" && (
-        <div className="text-center">
-          <h1
-            onClick={() => setCurrentStep("question1")}
-            className="text-2xl font-bold"
-          >
-            소개 및 설명
-          </h1>
-          <p className="mt-4 text-gray-600">설문을 시작합니다</p>
-        </div>
-      )}
+      {currentStep === "intro" && <IntroductionPage onNext={handleNext} />}
 
       {currentStep === "question1" && <Part1Page />}
 
