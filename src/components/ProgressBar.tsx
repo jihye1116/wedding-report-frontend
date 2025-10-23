@@ -1,7 +1,6 @@
-import { cn } from "@/utils/cn";
-
-import { SurveyAnswer } from "@/types/survey";
 import { detailedSurveyData } from "@/data/detailedSurveyData";
+import { SurveyAnswer } from "@/types/survey";
+import { cn } from "@/utils/cn";
 
 interface ProgressBarProps {
   className?: string;

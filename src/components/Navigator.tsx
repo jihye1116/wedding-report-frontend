@@ -9,6 +9,7 @@ interface NavigatorProps {
   currentPage?: number;
   totalPages?: number;
   partNumber?: number;
+  canProceed?: boolean;
 }
 
 export const Navigator = ({
@@ -17,6 +18,7 @@ export const Navigator = ({
   currentPage,
   totalPages,
   partNumber,
+  canProceed = true,
 }: NavigatorProps) => {
   // 전체 파트의 총 페이지 수 계산 (IntroductionPage 포함)
   const totalAllPages =
@@ -42,7 +44,11 @@ export const Navigator = ({
           {globalCurrentPage} / {totalAllPages}
         </span>
       )}
-      <NavigateButton direction="right" onClick={onNext || (() => {})} />
+      <NavigateButton
+        direction="right"
+        onClick={onNext || (() => {})}
+        color={canProceed ? "green" : "gray"}
+      />
     </footer>
   );
 };

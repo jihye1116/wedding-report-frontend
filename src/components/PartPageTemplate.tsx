@@ -1,11 +1,12 @@
 "use client";
 
 import { ReactNode } from "react";
+
 import { Navigator } from "@/components/Navigator";
 import { ProgressBar } from "@/components/ProgressBar";
-import { usePartNavigation } from "@/hooks/usePartNavigation";
-import { SurveyPart, SurveyAnswer } from "@/types/survey";
 import { detailedSurveyData } from "@/data/detailedSurveyData";
+import { usePartNavigation } from "@/hooks/usePartNavigation";
+import { SurveyAnswer, SurveyPart, SurveyQuestion } from "@/types/survey";
 
 interface PartPageTemplateProps {
   part: SurveyPart;
@@ -13,7 +14,7 @@ interface PartPageTemplateProps {
   addAnswer: (questionId: number, answer: string | number) => void;
   introComponent: ReactNode;
   questionComponent: (
-    question: any,
+    question: SurveyQuestion,
     idx: number,
     startIndex: number,
   ) => ReactNode;
@@ -53,7 +54,7 @@ export const PartPageTemplate = ({
 
   return (
     <div className="flex min-h-screen flex-col">
-      <main className="container mx-auto flex-1 px-4 py-8">
+      <main className="flex-1">
         {isIntroPage ? (
           introComponent
         ) : (
