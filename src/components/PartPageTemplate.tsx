@@ -19,6 +19,7 @@ interface PartPageTemplateProps {
   ) => ReactNode;
   questionsPerPage?: number;
   onNext?: () => void;
+  onBack?: () => void;
 }
 
 export const PartPageTemplate = ({
@@ -29,6 +30,7 @@ export const PartPageTemplate = ({
   questionComponent,
   questionsPerPage = 5,
   onNext,
+  onBack,
 }: PartPageTemplateProps) => {
   const {
     currentPage,
@@ -38,7 +40,7 @@ export const PartPageTemplate = ({
     startIndex,
     handleNext,
     handleBack,
-  } = usePartNavigation({ part, questionsPerPage, onNext });
+  } = usePartNavigation({ part, questionsPerPage, onNext, onBack });
 
   // 전체 문항 번호 계산
   const getGlobalQuestionNumber = (questionId: number) => {

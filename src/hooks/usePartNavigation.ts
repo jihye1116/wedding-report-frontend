@@ -6,12 +6,14 @@ interface UsePartNavigationProps {
   part: SurveyPart;
   questionsPerPage?: number;
   onNext?: () => void;
+  onBack?: () => void;
 }
 
 export const usePartNavigation = ({
   part,
   questionsPerPage = 5,
   onNext,
+  onBack,
 }: UsePartNavigationProps) => {
   const [currentPage, setCurrentPage] = useState(0);
   const { goToNextPart, goToPreviousPart } = usePartTransition();
@@ -51,7 +53,12 @@ export const usePartNavigation = ({
       setCurrentPage(currentPage - 1);
     } else {
       // 현재 파트의 첫 페이지에서 이전 파트로 이동
-      goToPreviousPart(part.partNumber);
+      console.log("Moving to previous part:", part.partNumber - 1);
+      if (onBack) {
+        onBack();
+      } else {
+        goToPreviousPart(part.partNumber);
+      }
     }
   };
 

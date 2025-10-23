@@ -8,7 +8,7 @@ export const detailedSurveyData: SurveyData = {
       description:
         "정보처리 및 의사결정, 동기 구조 및 자기조절, 외현적 행동 및 생활 방식, MMPI 기반 보조 지표",
       totalQuestions: 45,
-      totalPages: 11,
+      totalPages: 10,
       questions: [
         // 정보처리 및 의사결정 (1-12번)
         {

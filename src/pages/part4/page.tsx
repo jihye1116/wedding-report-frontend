@@ -11,9 +11,10 @@ const QUESTIONS_PER_PAGE = 4;
 
 interface Part4PageProps {
   onNext?: () => void;
+  onBack?: () => void;
 }
 
-export default function Part4Page({ onNext }: Part4PageProps) {
+export default function Part4Page({ onNext, onBack }: Part4PageProps) {
   const { answers, addAnswer } = useSurvey({
     surveyData: detailedSurveyData,
   });
@@ -55,6 +56,7 @@ export default function Part4Page({ onNext }: Part4PageProps) {
       questionComponent={renderQuestion}
       questionsPerPage={QUESTIONS_PER_PAGE}
       onNext={onNext}
+      onBack={onBack}
     />
   );
 }
