@@ -1,9 +1,91 @@
+"use client";
+
+import { useState } from "react";
+
+type PageStep =
+  | "intro"
+  | "question1"
+  | "question2"
+  | "question3"
+  | "question4"
+  | "finish";
+
 export default function Home() {
+  const [currentStep, setCurrentStep] = useState<PageStep>("intro");
+
+  const handleNext = () => {
+    const steps: PageStep[] = [
+      "intro",
+      "question1",
+      "question2",
+      "question3",
+      "question4",
+      "finish",
+    ];
+    const currentIndex = steps.indexOf(currentStep);
+    if (currentIndex < steps.length - 1) {
+      setCurrentStep(steps[currentIndex + 1]);
+    }
+  };
+
+  const handleBack = () => {
+    const steps: PageStep[] = [
+      "intro",
+      "question1",
+      "question2",
+      "question3",
+      "question4",
+      "finish",
+    ];
+    const currentIndex = steps.indexOf(currentStep);
+    if (currentIndex > 0) {
+      setCurrentStep(steps[currentIndex - 1]);
+    }
+  };
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 dark:bg-black">
-      <main className="py-32sm:items-start flex min-h-screen w-full max-w-3xl flex-col items-center justify-between bg-white px-16 dark:bg-black">
-        <span className="text-white">Home</span>
-      </main>
+    <div>
+      {currentStep === "intro" && (
+        <div className="text-center">
+          <h1 className="text-2xl font-bold">소개 및 설명</h1>
+          <p className="mt-4 text-gray-600">설문을 시작합니다</p>
+        </div>
+      )}
+
+      {currentStep === "question1" && (
+        <div className="text-center">
+          <h1 className="text-2xl font-bold">설문 1</h1>
+          <p className="mt-4 text-gray-600">첫 번째 질문입니다</p>
+        </div>
+      )}
+
+      {currentStep === "question2" && (
+        <div className="text-center">
+          <h1 className="text-2xl font-bold">설문 2</h1>
+          <p className="mt-4 text-gray-600">두 번째 질문입니다</p>
+        </div>
+      )}
+
+      {currentStep === "question3" && (
+        <div className="text-center">
+          <h1 className="text-2xl font-bold">설문 3</h1>
+          <p className="mt-4 text-gray-600">세 번째 질문입니다</p>
+        </div>
+      )}
+
+      {currentStep === "question4" && (
+        <div className="text-center">
+          <h1 className="text-2xl font-bold">설문 4</h1>
+          <p className="mt-4 text-gray-600">네 번째 질문입니다</p>
+        </div>
+      )}
+
+      {currentStep === "finish" && (
+        <div className="text-center">
+          <h1 className="text-2xl font-bold">결과 페이지</h1>
+          <p className="mt-4 text-gray-600">설문이 완료되었습니다</p>
+        </div>
+      )}
     </div>
   );
 }
