@@ -58,11 +58,19 @@ export default function Home() {
   };
 
   // 각 파트의 페이지 변경 핸들러
-  const handlePartPageChange = (part: string, page: number) => {
+  const handlePartPageChange = (
+    part: string,
+    page: number,
+    isBackward: boolean = false,
+  ) => {
     setPartPages((prev) => ({
       ...prev,
       [part]: page,
     }));
+    // 앞으로 갈 때만 스크롤을 최상단으로 이동
+    if (!isBackward) {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
   };
 
   return (
@@ -74,7 +82,9 @@ export default function Home() {
           onNext={handleNext}
           onBack={handleBack}
           currentPage={partPages.question1}
-          onPageChange={(page) => handlePartPageChange("question1", page)}
+          onPageChange={(page, isBackward) =>
+            handlePartPageChange("question1", page, isBackward)
+          }
         />
       )}
 
@@ -83,7 +93,9 @@ export default function Home() {
           onNext={handleNext}
           onBack={handleBack}
           currentPage={partPages.question2}
-          onPageChange={(page) => handlePartPageChange("question2", page)}
+          onPageChange={(page, isBackward) =>
+            handlePartPageChange("question2", page, isBackward)
+          }
         />
       )}
 
@@ -92,7 +104,9 @@ export default function Home() {
           onNext={handleNext}
           onBack={handleBack}
           currentPage={partPages.question3}
-          onPageChange={(page) => handlePartPageChange("question3", page)}
+          onPageChange={(page, isBackward) =>
+            handlePartPageChange("question3", page, isBackward)
+          }
         />
       )}
 
@@ -101,7 +115,9 @@ export default function Home() {
           onNext={handleNext}
           onBack={handleBack}
           currentPage={partPages.question4}
-          onPageChange={(page) => handlePartPageChange("question4", page)}
+          onPageChange={(page, isBackward) =>
+            handlePartPageChange("question4", page, isBackward)
+          }
         />
       )}
 

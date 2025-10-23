@@ -1,4 +1,5 @@
 import { useState } from "react";
+
 import { SurveyPart } from "@/types/survey";
 
 interface UsePartNavigationProps {
@@ -7,7 +8,7 @@ interface UsePartNavigationProps {
   onNext?: () => void;
   onBack?: () => void;
   currentPage?: number;
-  onPageChange?: (page: number) => void;
+  onPageChange?: (page: number, isBackward?: boolean) => void;
 }
 
 export const usePartNavigation = ({
@@ -40,7 +41,7 @@ export const usePartNavigation = ({
     if (currentPage < totalPages - 1) {
       const newPage = currentPage + 1;
       if (onPageChange) {
-        onPageChange(newPage);
+        onPageChange(newPage, false);
       } else {
         setInternalCurrentPage(newPage);
       }
@@ -57,7 +58,7 @@ export const usePartNavigation = ({
     if (currentPage > 0) {
       const newPage = currentPage - 1;
       if (onPageChange) {
-        onPageChange(newPage);
+        onPageChange(newPage, true);
       } else {
         setInternalCurrentPage(newPage);
       }

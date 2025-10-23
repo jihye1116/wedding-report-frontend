@@ -16,7 +16,7 @@ interface Part2PageProps {
   onNext?: () => void;
   onBack?: () => void;
   currentPage?: number;
-  onPageChange?: (page: number) => void;
+  onPageChange?: (page: number, isBackward?: boolean) => void;
 }
 
 export default function Part2Page({
