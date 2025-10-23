@@ -7,7 +7,7 @@ import { getSurveyPart } from "@/utils/surveyUtils";
 import { PartPageTemplate } from "@/components/PartPageTemplate";
 import Part4Intro from "./intro";
 
-const QUESTIONS_PER_PAGE = 5;
+const QUESTIONS_PER_PAGE = 4;
 
 interface Part4PageProps {
   onNext?: () => void;
@@ -24,10 +24,14 @@ export default function Part4Page({ onNext }: Part4PageProps) {
     return <div>Part not found.</div>;
   }
 
-  const renderQuestion = (question: any, idx: number, startIndex: number) => (
+  const renderQuestion = (
+    question: any,
+    idx: number,
+    globalQuestionNumber: number,
+  ) => (
     <>
       <h2 className="mb-6">
-        {startIndex + idx + 1}. {question.question}
+        {globalQuestionNumber}. {question.question}
       </h2>
       <TextAreaField
         value={
@@ -38,7 +42,7 @@ export default function Part4Page({ onNext }: Part4PageProps) {
         name=""
         placeholder=""
       />
-      {idx < 4 && <hr className="mt-6 border-t border-gray-300" />}
+      {idx < 3 && <hr className="mt-6 border-t border-gray-300" />}
     </>
   );
 

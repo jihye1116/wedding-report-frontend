@@ -24,10 +24,14 @@ export default function Part3Page({ onNext }: Part3PageProps) {
     return <div>Part not found.</div>;
   }
 
-  const renderQuestion = (question: any, idx: number, startIndex: number) => (
+  const renderQuestion = (
+    question: any,
+    idx: number,
+    globalQuestionNumber: number,
+  ) => (
     <>
       <h2 className="mb-6">
-        {startIndex + idx + 1}. {question.question}
+        {globalQuestionNumber}. {question.question}
       </h2>
       <RatingSelector
         value={
