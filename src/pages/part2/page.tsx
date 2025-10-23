@@ -9,7 +9,11 @@ import Part2Intro from "./intro";
 
 const QUESTIONS_PER_PAGE = 5;
 
-export default function Part2Page() {
+interface Part2PageProps {
+  onNext?: () => void;
+}
+
+export default function Part2Page({ onNext }: Part2PageProps) {
   const { answers, addAnswer } = useSurvey({
     surveyData: detailedSurveyData,
   });
@@ -44,6 +48,7 @@ export default function Part2Page() {
       introComponent={<Part2Intro />}
       questionComponent={renderQuestion}
       questionsPerPage={QUESTIONS_PER_PAGE}
+      onNext={onNext}
     />
   );
 }

@@ -17,6 +17,7 @@ interface PartPageTemplateProps {
     startIndex: number,
   ) => ReactNode;
   questionsPerPage?: number;
+  onNext?: () => void;
 }
 
 export const PartPageTemplate = ({
@@ -26,6 +27,7 @@ export const PartPageTemplate = ({
   introComponent,
   questionComponent,
   questionsPerPage = 5,
+  onNext,
 }: PartPageTemplateProps) => {
   const {
     currentPage,
@@ -35,7 +37,7 @@ export const PartPageTemplate = ({
     startIndex,
     handleNext,
     handleBack,
-  } = usePartNavigation({ part, questionsPerPage });
+  } = usePartNavigation({ part, questionsPerPage, onNext });
 
   return (
     <div className="flex min-h-screen flex-col">
