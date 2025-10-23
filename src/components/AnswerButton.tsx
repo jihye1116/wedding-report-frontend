@@ -20,6 +20,7 @@ export const AnswerButton = ({
 
   return (
     <button
+      type="button"
       className={cn(
         "flex items-center gap-3 rounded-xl bg-white px-4 py-2.5 outline-none",
         selected
