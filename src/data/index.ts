@@ -1,5 +1,4 @@
 // 설문 데이터 내보내기
-export { surveyData } from "./surveyData";
 export { detailedSurveyData } from "./detailedSurveyData";
 
 // 타입 내보내기
@@ -16,16 +15,9 @@ export {
   getSurveyPart,
   getSurveyQuestion,
   getQuestionsByPart,
-  getQuestionsByCategory,
-  calculateProgress,
   calculatePartProgress,
   isSurveyComplete,
   isPartComplete,
-  getNextQuestionId,
-  getPreviousQuestionId,
-  getFirstQuestionIdInPart,
-  getLastQuestionIdInPart,
-  exportSurveyData,
   exportSurveyAnswers,
 } from "../utils/surveyUtils";
 

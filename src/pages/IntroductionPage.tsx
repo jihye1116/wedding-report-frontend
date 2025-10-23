@@ -17,7 +17,7 @@ interface IntroductionPageProps {
   onNext: () => void;
 }
 
-export const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
+const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
   const [step, setStep] = useAtom(introStepAtom);
   const [introData, setIntroData] = useAtom(introDataAtom);
 
@@ -440,3 +440,5 @@ export const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
     </div>
   );
 };
+
+export default IntroductionPage;
