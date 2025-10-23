@@ -30,8 +30,6 @@ export const InputField = ({
           className="block grow py-1.5 pr-3 pl-1 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6"
         />
       </div>
-    );
-  },
-);
-
-InputField.displayName = "InputField";
+    </div>
+  );
+};
