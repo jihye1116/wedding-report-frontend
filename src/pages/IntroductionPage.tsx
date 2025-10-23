@@ -1,7 +1,8 @@
 "use client";
 
+import { useAtom } from "jotai";
 import Image from "next/image";
-import { Fragment, useRef, useState } from "react";
+import { Fragment, useRef } from "react";
 import toast from "react-hot-toast";
 
 import Logo from "@/assets/icons/logo.svg";
@@ -10,26 +11,38 @@ import { InputField } from "@/components/InputField";
 import { Navigator } from "@/components/Navigator";
 import { SelectionCircle } from "@/components/SelectionCircle";
 import { StartButton } from "@/components/StartButton";
+import { introDataAtom, introStepAtom } from "@/store/surveyStore";
 
 interface IntroductionPageProps {
   onNext: () => void;
 }
 
 export const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
-  const [step, setStep] = useState(0);
-  const [agreeAll, setAgreeAll] = useState(false);
-  const [agreePrivacy, setAgreePrivacy] = useState(false);
-  const [agreeMarketing, setAgreeMarketing] = useState(false);
+  const [step, setStep] = useAtom(introStepAtom);
+  const [introData, setIntroData] = useAtom(introDataAtom);
 
-  // 개인정보 입력 state
-  const [name, setName] = useState("");
-  const [partnerName, setPartnerName] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [partnerPhoneNumber, setPartnerPhoneNumber] = useState("");
+  const {
+    agreeAll,
+    agreePrivacy,
+    agreeMarketing,
+    name,
+    partnerName,
+    phoneNumber,
+    partnerPhoneNumber,
+    relationshipYears,
+    gender,
+  } = introData;
 
-  // step 3 state
-  const [relationshipYears, setRelationshipYears] = useState("");
-  const [gender, setGender] = useState("");
+  // 전화번호 입력 핸들러 (숫자만 허용)
+  const handlePhoneNumberChange = (fieldName: string, value: string) => {
+    const numericValue = value.replace(/[^0-9]/g, "");
+    setIntroData({ ...introData, phoneNumber: numericValue });
+  };
+
+  const handlePartnerPhoneNumberChange = (fieldName: string, value: string) => {
+    const numericValue = value.replace(/[^0-9]/g, "");
+    setIntroData({ ...introData, partnerPhoneNumber: numericValue });
+  };
 
   // 각 step별 완료 여부
   const isStep1Complete = !!(
@@ -101,31 +114,32 @@ export const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
 
   const handleAgreeAll = () => {
     const newValue = !agreeAll;
-    setAgreeAll(newValue);
-    setAgreePrivacy(newValue);
-    setAgreeMarketing(newValue);
+    setIntroData({
+      ...introData,
+      agreeAll: newValue,
+      agreePrivacy: newValue,
+      agreeMarketing: newValue,
+    });
   };
 
   const handleAgreePrivacy = () => {
     const newValue = !agreePrivacy;
-    setAgreePrivacy(newValue);
-    // 둘 다 선택되면 전체동의도 활성화
-    if (newValue && agreeMarketing) {
-      setAgreeAll(true);
-    } else {
-      setAgreeAll(false);
-    }
+    const newAgreeAll = newValue && agreeMarketing;
+    setIntroData({
+      ...introData,
+      agreePrivacy: newValue,
+      agreeAll: newAgreeAll,
+    });
   };
 
   const handleAgreeMarketing = () => {
     const newValue = !agreeMarketing;
-    setAgreeMarketing(newValue);
-    // 둘 다 선택되면 전체동의도 활성화
-    if (newValue && agreePrivacy) {
-      setAgreeAll(true);
-    } else {
-      setAgreeAll(false);
-    }
+    const newAgreeAll = newValue && agreePrivacy;
+    setIntroData({
+      ...introData,
+      agreeMarketing: newValue,
+      agreeAll: newAgreeAll,
+    });
   };
 
   return (
@@ -188,7 +202,9 @@ export const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
                 ref={nameRef}
                 name="name"
                 value={name}
-                onChange={(name, value) => setName(value)}
+                onChange={(fieldName, value) =>
+                  setIntroData({ ...introData, name: value })
+                }
                 placeholder="본인의 이름(별칭) 입력"
               />
             </section>
@@ -201,7 +217,9 @@ export const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
                 ref={partnerNameRef}
                 name="partnerName"
                 value={partnerName}
-                onChange={(name, value) => setPartnerName(value)}
+                onChange={(fieldName, value) =>
+                  setIntroData({ ...introData, partnerName: value })
+                }
                 placeholder="내 파트너의 이름(별칭) 입력"
                 type="tel"
               />
@@ -215,8 +233,8 @@ export const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
                 ref={phoneNumberRef}
                 name="phoneNumber"
                 value={phoneNumber}
-                onChange={(name, value) => setPhoneNumber(value)}
-                placeholder="내 휴대전화 번호 입력"
+                onChange={handlePhoneNumberChange}
+                placeholder="내 휴대전화 번호 입력 (숫자만)"
                 type="tel"
               />
             </section>
@@ -229,8 +247,9 @@ export const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
                 ref={partnerPhoneNumberRef}
                 name="partnerPhoneNumber"
                 value={partnerPhoneNumber}
-                onChange={(name, value) => setPartnerPhoneNumber(value)}
-                placeholder="내 파트너의 휴대전화 번호 입력"
+                onChange={handlePartnerPhoneNumberChange}
+                placeholder="내 파트너의 휴대전화 번호 입력 (숫자만)"
+                type="tel"
               />
             </section>
             <p className="pt-1 text-sm leading-snug">
@@ -367,7 +386,12 @@ export const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
                     text={option.text}
                     color="blue"
                     selected={relationshipYears === option.value}
-                    onClick={() => setRelationshipYears(option.value)}
+                    onClick={() =>
+                      setIntroData({
+                        ...introData,
+                        relationshipYears: option.value,
+                      })
+                    }
                   />
                 ))}
               </div>
@@ -397,7 +421,9 @@ export const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
                     text={option.text}
                     color={option.color}
                     selected={gender === option.value}
-                    onClick={() => setGender(option.value)}
+                    onClick={() =>
+                      setIntroData({ ...introData, gender: option.value })
+                    }
                   />
                 ))}
               </div>

@@ -38,15 +38,6 @@ export const Navigator = ({
   // 전체 페이지 번호 (Part1부터 1페이지로 시작)
   const globalCurrentPage = pagesBeforeCurrentPart + (currentPage || 0) + 1;
 
-  // 디버깅용 로그
-  console.log("Navigator debug:", {
-    partNumber,
-    currentPage,
-    pagesBeforeCurrentPart,
-    globalCurrentPage,
-    totalAllPages,
-  });
-
   return (
     <footer className="flex w-full items-center justify-between p-10">
       <NavigateButton direction="left" onClick={onBack || (() => {})} />
@@ -57,7 +48,7 @@ export const Navigator = ({
       )}
       <NavigateButton
         direction="right"
-        onClick={onNext || (() => {})}
+        onClick={(canProceed && onNext) || (() => {})}
         color={canProceed ? "green" : "gray"}
       />
     </footer>

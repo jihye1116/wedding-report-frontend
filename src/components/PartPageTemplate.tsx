@@ -5,7 +5,6 @@ import { ReactNode, useEffect } from "react";
 
 import { Navigator } from "@/components/Navigator";
 import { ProgressBar } from "@/components/ProgressBar";
-import { detailedSurveyData } from "@/data/detailedSurveyData";
 import { usePartNavigation } from "@/hooks/usePartNavigation";
 import { currentPageAtom, currentPartAtom } from "@/store/surveyStore";
 import { SurveyAnswer, SurveyPart, SurveyQuestion } from "@/types/survey";
@@ -29,7 +28,6 @@ interface PartPageTemplateProps {
 
 export const PartPageTemplate = ({
   part,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   answers: _answers,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   addAnswer: _addAnswer,
@@ -81,6 +79,11 @@ export const PartPageTemplate = ({
     ? []
     : part.questions.slice(startIndex, endIndex);
 
+  // 현재 페이지의 모든 문항이 답변되었는지 확인
+  const allQuestionsAnswered = currentQuestions.every((question) =>
+    _answers?.some((a) => a.questionId === question.id),
+  );
+
   // 전체 문항 번호 계산
   const getGlobalQuestionNumber = (questionId: number) => {
     // questionId가 이미 전역 번호이므로 그대로 반환
@@ -115,6 +118,7 @@ export const PartPageTemplate = ({
         currentPage={currentPage}
         totalPages={totalPages}
         partNumber={part.partNumber}
+        canProceed={isIntroPage || allQuestionsAnswered}
       />
     </div>
   );

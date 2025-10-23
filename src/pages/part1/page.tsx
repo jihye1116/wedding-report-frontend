@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 import { PartPageTemplate } from "@/components/PartPageTemplate";
 import { RatingSelector } from "@/components/RatingSelector";
 import { detailedSurveyData } from "@/data/detailedSurveyData";
@@ -43,11 +45,12 @@ export default function Part1Page({
         {globalQuestionNumber}. {question.question}
       </h2>
       {question.image && (
-        <div className="mb-6 flex justify-center">
-          <img
+        <div className="relative mb-6 flex h-64 w-full justify-center">
+          <Image
             src={question.image}
             alt={`Question ${globalQuestionNumber} illustration`}
-            className="h-auto max-h-64 max-w-full object-contain"
+            className="object-contain"
+            fill
           />
         </div>
       )}

@@ -1,9 +1,13 @@
 "use client";
 
+import Image from "next/image";
+
 import { PartPageTemplate } from "@/components/PartPageTemplate";
 import { TextAreaField } from "@/components/TextAreaField";
 import { detailedSurveyData } from "@/data/detailedSurveyData";
 import { useSurvey } from "@/hooks/useSurvey";
+import type { SurveyQuestion } from "@/types/survey";
+
 import Part4Intro from "./intro";
 
 const QUESTIONS_PER_PAGE = 4;
@@ -32,7 +36,7 @@ export default function Part4Page({
   }
 
   const renderQuestion = (
-    question: any,
+    question: SurveyQuestion,
     idx: number,
     globalQuestionNumber: number,
   ) => (
@@ -41,11 +45,12 @@ export default function Part4Page({
         {globalQuestionNumber}. {question.question}
       </h2>
       {question.image && (
-        <div className="mb-6 flex justify-center">
-          <img
+        <div className="relative mb-6 flex h-64 w-full justify-center">
+          <Image
             src={question.image}
             alt={`Question ${globalQuestionNumber} illustration`}
-            className="h-auto max-h-64 max-w-full object-contain"
+            className="object-contain"
+            fill
           />
         </div>
       )}
