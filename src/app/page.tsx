@@ -1,11 +1,12 @@
 "use client";
 
+import { useState } from "react";
+
+import { IntroductionPage } from "@/pages/IntroductionPage";
 import Part1Page from "@/pages/part1/page";
 import Part2Page from "@/pages/part2/page";
 import Part3Page from "@/pages/part3/page";
 import Part4Page from "@/pages/part4/page";
-import { IntroductionPage } from "@/pages/IntroductionPage";
-import { useState } from "react";
 
 type PageStep =
   | "intro"
@@ -52,21 +53,13 @@ export default function Home() {
     <div>
       {currentStep === "intro" && <IntroductionPage onNext={handleNext} />}
 
-      {currentStep === "question1" && (
-        <Part1Page onNext={() => setCurrentStep("question2")} />
-      )}
+      {currentStep === "question1" && <Part1Page onNext={handleNext} />}
 
-      {currentStep === "question2" && (
-        <Part2Page onNext={() => setCurrentStep("question3")} />
-      )}
+      {currentStep === "question2" && <Part2Page onNext={handleNext} />}
 
-      {currentStep === "question3" && (
-        <Part3Page onNext={() => setCurrentStep("question4")} />
-      )}
+      {currentStep === "question3" && <Part3Page onNext={handleNext} />}
 
-      {currentStep === "question4" && (
-        <Part4Page onNext={() => setCurrentStep("finish")} />
-      )}
+      {currentStep === "question4" && <Part4Page onNext={handleNext} />}
 
       {currentStep === "finish" && (
         <div className="text-center">
