@@ -12,9 +12,16 @@ const QUESTIONS_PER_PAGE = 5;
 interface Part1PageProps {
   onNext?: () => void;
   onBack?: () => void;
+  currentPage?: number;
+  onPageChange?: (page: number) => void;
 }
 
-export default function Part1Page({ onNext, onBack }: Part1PageProps) {
+export default function Part1Page({
+  onNext,
+  onBack,
+  currentPage,
+  onPageChange,
+}: Part1PageProps) {
   const { answers, addAnswer } = useSurvey({
     surveyData: detailedSurveyData,
   });
@@ -55,6 +62,8 @@ export default function Part1Page({ onNext, onBack }: Part1PageProps) {
       questionsPerPage={QUESTIONS_PER_PAGE}
       onNext={onNext}
       onBack={onBack}
+      currentPage={currentPage}
+      onPageChange={onPageChange}
     />
   );
 }

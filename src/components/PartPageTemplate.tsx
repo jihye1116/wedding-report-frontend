@@ -20,6 +20,8 @@ interface PartPageTemplateProps {
   questionsPerPage?: number;
   onNext?: () => void;
   onBack?: () => void;
+  currentPage?: number;
+  onPageChange?: (page: number) => void;
 }
 
 export const PartPageTemplate = ({
@@ -31,16 +33,39 @@ export const PartPageTemplate = ({
   questionsPerPage = 5,
   onNext,
   onBack,
+  currentPage: externalCurrentPage,
+  onPageChange,
 }: PartPageTemplateProps) => {
   const {
-    currentPage,
+    currentPage: internalCurrentPage,
     totalPages,
-    isIntroPage,
-    currentQuestions,
-    startIndex,
     handleNext,
     handleBack,
-  } = usePartNavigation({ part, questionsPerPage, onNext, onBack });
+  } = usePartNavigation({
+    part,
+    questionsPerPage,
+    onNext,
+    onBack,
+    currentPage: externalCurrentPage,
+    onPageChange,
+  });
+
+  // 외부에서 전달받은 currentPage가 있으면 사용, 없으면 내부 상태 사용
+  const currentPage =
+    externalCurrentPage !== undefined
+      ? externalCurrentPage
+      : internalCurrentPage;
+
+  // isIntroPage 계산
+  const isIntroPage = currentPage === 0;
+
+  // currentQuestions 계산
+  const questionPageIndex = currentPage - 1; // 소개 페이지(0) 다음부터 문항 시작
+  const startIndex = questionPageIndex * (questionsPerPage || 5);
+  const endIndex = startIndex + (questionsPerPage || 5);
+  const currentQuestions = isIntroPage
+    ? []
+    : part.questions.slice(startIndex, endIndex);
 
   // 전체 문항 번호 계산
   const getGlobalQuestionNumber = (questionId: number) => {

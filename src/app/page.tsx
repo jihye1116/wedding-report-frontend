@@ -19,6 +19,14 @@ type PageStep =
 export default function Home() {
   const [currentStep, setCurrentStep] = useState<PageStep>("intro");
 
+  // 각 파트의 현재 페이지 상태를 관리
+  const [partPages, setPartPages] = useState<Record<string, number>>({
+    question1: 0,
+    question2: 0,
+    question3: 0,
+    question4: 0,
+  });
+
   const handleNext = () => {
     const steps: PageStep[] = [
       "intro",
@@ -49,17 +57,53 @@ export default function Home() {
     }
   };
 
+  // 각 파트의 페이지 변경 핸들러
+  const handlePartPageChange = (part: string, page: number) => {
+    setPartPages((prev) => ({
+      ...prev,
+      [part]: page,
+    }));
+  };
+
   return (
     <div>
       {currentStep === "intro" && <IntroductionPage onNext={handleNext} />}
 
-      {currentStep === "question1" && <Part1Page onNext={handleNext} />}
+      {currentStep === "question1" && (
+        <Part1Page
+          onNext={handleNext}
+          onBack={handleBack}
+          currentPage={partPages.question1}
+          onPageChange={(page) => handlePartPageChange("question1", page)}
+        />
+      )}
 
-      {currentStep === "question2" && <Part2Page onNext={handleNext} />}
+      {currentStep === "question2" && (
+        <Part2Page
+          onNext={handleNext}
+          onBack={handleBack}
+          currentPage={partPages.question2}
+          onPageChange={(page) => handlePartPageChange("question2", page)}
+        />
+      )}
 
-      {currentStep === "question3" && <Part3Page onNext={handleNext} />}
+      {currentStep === "question3" && (
+        <Part3Page
+          onNext={handleNext}
+          onBack={handleBack}
+          currentPage={partPages.question3}
+          onPageChange={(page) => handlePartPageChange("question3", page)}
+        />
+      )}
 
-      {currentStep === "question4" && <Part4Page onNext={handleNext} />}
+      {currentStep === "question4" && (
+        <Part4Page
+          onNext={handleNext}
+          onBack={handleBack}
+          currentPage={partPages.question4}
+          onPageChange={(page) => handlePartPageChange("question4", page)}
+        />
+      )}
 
       {currentStep === "finish" && (
         <div className="text-center">

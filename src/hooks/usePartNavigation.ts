@@ -6,6 +6,8 @@ interface UsePartNavigationProps {
   questionsPerPage?: number;
   onNext?: () => void;
   onBack?: () => void;
+  currentPage?: number;
+  onPageChange?: (page: number) => void;
 }
 
 export const usePartNavigation = ({
@@ -13,16 +15,18 @@ export const usePartNavigation = ({
   questionsPerPage = 5,
   onNext,
   onBack,
+  currentPage: externalCurrentPage,
+  onPageChange,
 }: UsePartNavigationProps) => {
-  const [currentPage, setCurrentPage] = useState(0);
+  const [internalCurrentPage, setInternalCurrentPage] = useState(0);
 
-  const isIntroPage = currentPage === 0;
-  const questionPageIndex = currentPage - 1; // 소개 페이지(0) 다음부터 문항 시작
-  const startIndex = questionPageIndex * questionsPerPage;
-  const endIndex = startIndex + questionsPerPage;
-  const currentQuestions = isIntroPage
-    ? []
-    : part.questions.slice(startIndex, endIndex);
+  // 외부에서 전달받은 currentPage가 있으면 사용, 없으면 내부 상태 사용
+  const currentPage =
+    externalCurrentPage !== undefined
+      ? externalCurrentPage
+      : internalCurrentPage;
+
+  // isIntroPage와 currentQuestions는 PartPageTemplate에서 계산
 
   // 파트의 전체 페이지 수 (이미 정의된 totalPages 사용)
   const totalPages = part.totalPages;
@@ -34,7 +38,12 @@ export const usePartNavigation = ({
       partNumber: part.partNumber,
     });
     if (currentPage < totalPages - 1) {
-      setCurrentPage(currentPage + 1);
+      const newPage = currentPage + 1;
+      if (onPageChange) {
+        onPageChange(newPage);
+      } else {
+        setInternalCurrentPage(newPage);
+      }
     } else {
       // 현재 파트의 마지막 페이지에서 다음 파트로 이동
       console.log("Moving to next part:", part.partNumber + 1);
@@ -46,7 +55,12 @@ export const usePartNavigation = ({
 
   const handleBack = () => {
     if (currentPage > 0) {
-      setCurrentPage(currentPage - 1);
+      const newPage = currentPage - 1;
+      if (onPageChange) {
+        onPageChange(newPage);
+      } else {
+        setInternalCurrentPage(newPage);
+      }
     } else {
       // 현재 파트의 첫 페이지에서 이전 파트로 이동
       console.log("Moving to previous part:", part.partNumber - 1);
@@ -59,9 +73,6 @@ export const usePartNavigation = ({
   return {
     currentPage,
     totalPages,
-    isIntroPage,
-    currentQuestions,
-    startIndex,
     handleNext,
     handleBack,
   };
