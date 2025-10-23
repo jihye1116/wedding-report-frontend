@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 
+import { FinishPage } from "@/pages/FinishPage";
 import { IntroductionPage } from "@/pages/IntroductionPage";
 import Part1Page from "@/pages/part1/page";
 import Part2Page from "@/pages/part2/page";
@@ -121,12 +122,7 @@ export default function Home() {
         />
       )}
 
-      {currentStep === "finish" && (
-        <div className="text-center">
-          <h1 className="text-2xl font-bold">결과 페이지</h1>
-          <p className="mt-4 text-gray-600">설문이 완료되었습니다</p>
-        </div>
-      )}
+      {currentStep === "finish" && <FinishPage />}
     </div>
   );
 }
