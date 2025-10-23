@@ -5,6 +5,7 @@ interface AnswerButtonProps {
   text: string;
   color: "green" | "blue";
   selected: boolean;
+  onClick?: () => void;
 }
 
 export const AnswerButton = ({
@@ -12,21 +13,21 @@ export const AnswerButton = ({
   text,
   color,
   selected,
+  onClick,
 }: AnswerButtonProps) => {
   const blueColor = "#DBEEF2";
   const greenColor = "#CEEBCC";
-  const blueShadow = "rgba(219,238,242,0.8)";
-  const greenShadow = "rgba(206,235,204,0.8)";
 
   return (
     <button
       type="button"
+      onClick={onClick}
       className={cn(
         "flex items-center gap-3 rounded-xl bg-white px-4 py-2.5 outline-none",
         selected
           ? color === "blue"
-            ? `border-2 border-[${blueColor}] shadow-[0_0_8px_${blueShadow}]`
-            : `border-2 border-[${greenColor}] shadow-[0_0_8px_${greenShadow}]`
+            ? `border-2 border-[${blueColor}] -m-px shadow-[0_0_8px_rgba(219,238,242,0.8)]`
+            : `border-2 border-[${greenColor}] -m-px shadow-[0_0_8px_rgba(206,235,204,0.8)]`
           : "border border-[#DCDCDC]",
       )}
     >
