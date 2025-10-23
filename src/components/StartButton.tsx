@@ -10,7 +10,7 @@ export const StartButton = ({ onClick }: StartButtonProps) => {
   return (
     <button
       type="button"
-      className="flex cursor-pointer items-center gap-2 rounded-lg bg-[#6DD4BD] p-2.5 pl-5 outline-none"
+      className="flex cursor-pointer items-center gap-2 rounded-lg bg-[#6DD4BD] p-2.5 pl-5 outline-black"
       onClick={onClick}
     >
       <span className="text-sm leading-tight font-medium text-white">
