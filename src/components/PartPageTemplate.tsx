@@ -18,6 +18,7 @@ interface PartPageTemplateProps {
     question: SurveyQuestion,
     idx: number,
     startIndex: number,
+    totalQuestionsInPage: number,
   ) => ReactNode;
   questionsPerPage?: number;
   onNext?: () => void;
@@ -105,6 +106,7 @@ export const PartPageTemplate = ({
                     question,
                     idx,
                     getGlobalQuestionNumber(question.id),
+                    currentQuestions.length,
                   )}
                 </div>
               ))}

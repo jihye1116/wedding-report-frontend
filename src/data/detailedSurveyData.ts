@@ -73,7 +73,6 @@ export const detailedSurveyData: SurveyData = {
           category: "정보처리 및 의사결정",
           subCategory: "논리·객관중심 ↔ 감정·인간중심",
           type: "rating",
-          image: "/images/정보처리8.png",
         },
         {
           id: 9,
@@ -231,7 +230,6 @@ export const detailedSurveyData: SurveyData = {
           category: "외현적 행동 및 생활 방식",
           subCategory: "내향 ↔ 외향",
           type: "rating",
-          image: "/images/외현적9.png",
         },
         {
           id: 29,
@@ -365,7 +363,7 @@ export const detailedSurveyData: SurveyData = {
       description:
         "정보처리 및 의사결정, 동기 구조 및 자기조절, 외현적 행동 및 생활 방식, MMPI 기반 보조 지표 (심화)",
       totalQuestions: 45,
-      totalPages: 9,
+      totalPages: 10,
       questions: [
         // 정보처리 및 의사결정 (46-57번) - 심화
         {
@@ -672,6 +670,7 @@ export const detailedSurveyData: SurveyData = {
           category: "MMPI 기반 보조 지표",
           subCategory: "정서 안정성 (침체적 ↔ 안정적)",
           type: "rating",
+          image: "/images/MMPI1.png",
         },
         {
           id: 83,
@@ -736,6 +735,7 @@ export const detailedSurveyData: SurveyData = {
           category: "MMPI 기반 보조 지표",
           subCategory: "불안·완벽주의 (불안·통제형 ↔ 여유·수용형)",
           type: "rating",
+          image: "/images/MMPI9.png",
         },
       ],
     },
@@ -828,7 +828,6 @@ export const detailedSurveyData: SurveyData = {
           category: "결혼 생활의 영역",
           subCategory: "가사·생활 분담",
           type: "rating",
-          image: "/images/결혼4.png",
         },
         {
           id: 101,
@@ -843,6 +842,7 @@ export const detailedSurveyData: SurveyData = {
           category: "결혼 생활의 영역",
           subCategory: "가사·생활 분담",
           type: "rating",
+          image: "/images/결혼3.png",
         },
         {
           id: 103,
@@ -850,7 +850,7 @@ export const detailedSurveyData: SurveyData = {
           category: "결혼 생활의 영역",
           subCategory: "재정·경제 태도",
           type: "rating",
-          image: "/images/결혼3.png",
+          image: "/images/결혼4.png",
         },
         {
           id: 104,

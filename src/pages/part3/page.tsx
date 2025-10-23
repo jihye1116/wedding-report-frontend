@@ -39,6 +39,7 @@ export default function Part3Page({
     question: SurveyQuestion,
     idx: number,
     globalQuestionNumber: number,
+    totalQuestionsInPage: number,
   ) => (
     <>
       <h2 className="mb-6 leading-snug font-medium">
@@ -61,7 +62,9 @@ export default function Part3Page({
         }
         onChange={(value) => addAnswer(question.id, value)}
       />
-      {idx < 4 && <hr className="mt-6 border-t border-gray-300" />}
+      {idx < totalQuestionsInPage - 1 && (
+        <hr className="mt-6 border-t border-gray-300" />
+      )}
     </>
   );
 
