@@ -103,6 +103,7 @@ export default function Part4Page({
     globalQuestionNumber: number,
   ) => (
     <>
+      {/* 실제 ID: {question.id} */}
       <h2 className="mb-6 leading-snug font-medium">
         {globalQuestionNumber}. {question.question}
       </h2>

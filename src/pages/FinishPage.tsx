@@ -2,7 +2,7 @@ import Image from "next/image";
 
 import CelebrationImage from "@/assets/images/celebration.png";
 
-export const FinishPage = () => {
+export default function FinishPage() {
   return (
     <div className="flex h-dvh items-center justify-center">
       <main className="flex flex-col gap-10 px-10 py-5 text-center leading-snug text-[#111111]">
@@ -22,4 +22,4 @@ export const FinishPage = () => {
       </main>
     </div>
   );
-};
+}

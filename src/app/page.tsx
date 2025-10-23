@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-import { FinishPage } from "@/pages/FinishPage";
+import FinishPage from "@/pages/FinishPage";
 import { IntroductionPage } from "@/pages/IntroductionPage";
 import Part1Page from "@/pages/part1/page";
 import Part2Page from "@/pages/part2/page";
