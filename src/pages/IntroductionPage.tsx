@@ -31,6 +31,16 @@ export const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
   const [relationshipYears, setRelationshipYears] = useState("");
   const [gender, setGender] = useState("");
 
+  // 각 step별 완료 여부
+  const isStep1Complete = !!(
+    name &&
+    partnerName &&
+    phoneNumber &&
+    partnerPhoneNumber
+  );
+  const isStep2Complete = !!agreePrivacy;
+  const isStep3Complete = !!(relationshipYears && gender);
+
   // input refs
   const nameRef = useRef<HTMLInputElement>(null);
   const partnerNameRef = useRef<HTMLInputElement>(null);
@@ -229,7 +239,11 @@ export const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
             </p>
           </main>
           <div className="flex-1" />
-          <Navigator onNext={handleNextFromStep1} onBack={handleBack} />
+          <Navigator
+            onNext={handleNextFromStep1}
+            onBack={handleBack}
+            canProceed={isStep1Complete}
+          />
         </div>
       )}
       {step === 2 && (
@@ -325,7 +339,11 @@ export const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
             </section>
           </main>
           <div className="flex-1" />
-          <Navigator onNext={handleNextFromStep2} onBack={handleBack} />
+          <Navigator
+            onNext={handleNextFromStep2}
+            onBack={handleBack}
+            canProceed={isStep2Complete}
+          />
         </div>
       )}
       {step === 3 && (
@@ -386,7 +404,11 @@ export const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
             </section>
           </main>
           <div className="flex-1" />
-          <Navigator onNext={handleNextFromStep3} onBack={handleBack} />
+          <Navigator
+            onNext={handleNextFromStep3}
+            onBack={handleBack}
+            canProceed={isStep3Complete}
+          />
         </div>
       )}
     </div>

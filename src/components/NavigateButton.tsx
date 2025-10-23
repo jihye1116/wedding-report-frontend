@@ -15,15 +15,16 @@ export const NavigateButton = ({
   color,
   onClick,
 }: NavigateButtonProps) => {
+  const isGreen =
+    color === "green" || (color === undefined && direction === "left");
+
   return (
     <button
       type="button"
       onClick={onClick}
       className={cn(
         "cursor-pointer rounded-full p-2.5 outline-black",
-        (color ?? direction === "left")
-          ? "outline- bg-[#6DD4BD]"
-          : "bg-[#DCDCDC]",
+        isGreen ? "bg-[#6DD4BD]" : "bg-[#DCDCDC]",
       )}
     >
       <Image

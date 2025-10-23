@@ -1,10 +1,11 @@
 "use client";
 
+import { PartPageTemplate } from "@/components/PartPageTemplate";
 import { RatingSelector } from "@/components/RatingSelector";
 import { detailedSurveyData } from "@/data/detailedSurveyData";
 import { useSurvey } from "@/hooks/useSurvey";
-import { getSurveyPart } from "@/utils/surveyUtils";
-import { PartPageTemplate } from "@/components/PartPageTemplate";
+import type { SurveyQuestion } from "@/types/survey";
+
 import Part1Intro from "./intro";
 
 const QUESTIONS_PER_PAGE = 5;
@@ -33,7 +34,7 @@ export default function Part1Page({
   }
 
   const renderQuestion = (
-    question: any,
+    question: SurveyQuestion,
     idx: number,
     globalQuestionNumber: number,
   ) => (
