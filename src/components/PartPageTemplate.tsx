@@ -1,17 +1,19 @@
 "use client";
 
-import { ReactNode } from "react";
+import { useSetAtom } from "jotai";
+import { ReactNode, useEffect } from "react";
 
 import { Navigator } from "@/components/Navigator";
 import { ProgressBar } from "@/components/ProgressBar";
 import { detailedSurveyData } from "@/data/detailedSurveyData";
 import { usePartNavigation } from "@/hooks/usePartNavigation";
+import { currentPageAtom, currentPartAtom } from "@/store/surveyStore";
 import { SurveyAnswer, SurveyPart, SurveyQuestion } from "@/types/survey";
 
 interface PartPageTemplateProps {
   part: SurveyPart;
-  answers: SurveyAnswer[];
-  addAnswer: (questionId: number, answer: string | number) => void;
+  answers?: SurveyAnswer[]; // 페이지에서 사용되지만 템플릿에서는 직접 사용 안함
+  addAnswer?: (questionId: number, answer: string | number) => void; // 페이지에서 사용되지만 템플릿에서는 직접 사용 안함
   introComponent: ReactNode;
   questionComponent: (
     question: SurveyQuestion,
@@ -27,8 +29,10 @@ interface PartPageTemplateProps {
 
 export const PartPageTemplate = ({
   part,
-  answers,
-  addAnswer,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  answers: _answers,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  addAnswer: _addAnswer,
   introComponent,
   questionComponent,
   questionsPerPage = 5,
@@ -37,6 +41,9 @@ export const PartPageTemplate = ({
   currentPage: externalCurrentPage,
   onPageChange,
 }: PartPageTemplateProps) => {
+  const setCurrentPart = useSetAtom(currentPartAtom);
+  const setCurrentPage = useSetAtom(currentPageAtom);
+
   const {
     currentPage: internalCurrentPage,
     totalPages,
@@ -56,6 +63,12 @@ export const PartPageTemplate = ({
     externalCurrentPage !== undefined
       ? externalCurrentPage
       : internalCurrentPage;
+
+  // 페이지나 파트가 변경될 때마다 전역 상태 업데이트
+  useEffect(() => {
+    setCurrentPart(part.partNumber);
+    setCurrentPage(currentPage);
+  }, [part.partNumber, currentPage, setCurrentPart, setCurrentPage]);
 
   // isIntroPage 계산
   const isIntroPage = currentPage === 0;
@@ -81,7 +94,7 @@ export const PartPageTemplate = ({
           introComponent
         ) : (
           <div className="px-10">
-            <ProgressBar answers={answers} />
+            <ProgressBar />
             <div className="flex flex-col gap-8.5 py-5">
               {currentQuestions.map((question, idx) => (
                 <div key={question.id}>

@@ -1,19 +1,47 @@
+"use client";
+
+import { useAtomValue } from "jotai";
+
 import { detailedSurveyData } from "@/data/detailedSurveyData";
-import { SurveyAnswer } from "@/types/survey";
+import { currentPageAtom, currentPartAtom } from "@/store/surveyStore";
 import { cn } from "@/utils/cn";
 
 interface ProgressBarProps {
   className?: string;
-  answers: SurveyAnswer[];
 }
 
-export function ProgressBar({ className, answers }: ProgressBarProps) {
-  const progress =
-    answers.length /
-    detailedSurveyData.parts.reduce(
-      (acc, part) => acc + part.questions.length,
-      0,
+export function ProgressBar({ className }: ProgressBarProps) {
+  const currentPart = useAtomValue(currentPartAtom);
+  const currentPage = useAtomValue(currentPageAtom);
+
+  // 전체 문항 수
+  const totalQuestions = detailedSurveyData.parts.reduce(
+    (acc, part) => acc + part.questions.length,
+    0,
+  );
+
+  // 현재까지 완료된 문항 수 계산
+  let completedQuestions = 0;
+
+  // 이전 파트들의 모든 문항
+  for (let i = 0; i < currentPart - 1; i++) {
+    completedQuestions += detailedSurveyData.parts[i].questions.length;
+  }
+
+  // 현재 파트에서 현재 페이지까지의 문항
+  // intro 페이지(0)가 아닌 경우에만 추가
+  if (currentPage > 0) {
+    const currentPartData = detailedSurveyData.parts[currentPart - 1];
+    const questionsPerPage = currentPartData.partNumber === 4 ? 4 : 5;
+    // 현재 페이지까지 보여진 문항 수 (intro 페이지 제외)
+    completedQuestions += Math.min(
+      currentPage * questionsPerPage,
+      currentPartData.questions.length,
     );
+  }
+
+  const progress = completedQuestions / totalQuestions;
+
   return (
     <div
       className={cn(

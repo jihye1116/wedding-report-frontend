@@ -39,7 +39,7 @@ export default function Part1Page({
     globalQuestionNumber: number,
   ) => (
     <>
-      <h2 className="mb-6">
+      <h2 className="mb-6 leading-snug font-medium">
         {globalQuestionNumber}. {question.question}
       </h2>
       {question.image && (

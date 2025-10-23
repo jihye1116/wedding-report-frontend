@@ -1,10 +1,9 @@
 "use client";
 
+import { PartPageTemplate } from "@/components/PartPageTemplate";
 import { TextAreaField } from "@/components/TextAreaField";
 import { detailedSurveyData } from "@/data/detailedSurveyData";
 import { useSurvey } from "@/hooks/useSurvey";
-import { getSurveyPart } from "@/utils/surveyUtils";
-import { PartPageTemplate } from "@/components/PartPageTemplate";
 import Part4Intro from "./intro";
 
 const QUESTIONS_PER_PAGE = 4;
@@ -38,7 +37,7 @@ export default function Part4Page({
     globalQuestionNumber: number,
   ) => (
     <>
-      <h2 className="mb-6">
+      <h2 className="mb-6 leading-snug font-medium">
         {globalQuestionNumber}. {question.question}
       </h2>
       {question.image && (

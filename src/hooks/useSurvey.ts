@@ -1,16 +1,18 @@
-import { useState, useCallback, useEffect } from "react";
-import { SurveyData, SurveyAnswer, SurveyQuestion } from "../types/survey";
+import { useAtom } from "jotai";
+import { useCallback, useEffect, useState } from "react";
+
+import { answersAtom } from "@/store/surveyStore";
+import { SurveyAnswer, SurveyData, SurveyQuestion } from "@/types/survey";
 import {
+  calculatePartProgress,
   getSurveyPart,
   getSurveyQuestion,
-  calculatePartProgress,
-  isSurveyComplete,
   isPartComplete,
-} from "../utils/surveyUtils";
+  isSurveyComplete,
+} from "@/utils/surveyUtils";
 
 interface UseSurveyProps {
   surveyData: SurveyData;
-  initialAnswers?: SurveyAnswer[];
 }
 
 interface UseSurveyReturn {
@@ -42,11 +44,8 @@ interface UseSurveyReturn {
   exportAnswers: () => string;
 }
 
-export const useSurvey = ({
-  surveyData,
-  initialAnswers = [],
-}: UseSurveyProps): UseSurveyReturn => {
-  const [answers, setAnswers] = useState<SurveyAnswer[]>(initialAnswers);
+export const useSurvey = ({ surveyData }: UseSurveyProps): UseSurveyReturn => {
+  const [answers, setAnswers] = useAtom(answersAtom);
   const [currentQuestionId, setCurrentQuestionId] = useState<number>(1);
 
   // 현재 질문 정보
@@ -74,9 +73,9 @@ export const useSurvey = ({
   // 답변 추가
   const addAnswer = useCallback(
     (questionId: number, answer: string | number) => {
-      setAnswers((prev) => {
+      setAnswers((prev: SurveyAnswer[]) => {
         const existingIndex = prev.findIndex(
-          (a) => a.questionId === questionId,
+          (a: SurveyAnswer) => a.questionId === questionId,
         );
         if (existingIndex >= 0) {
           // 이미 답변이 있으면 업데이트
@@ -89,7 +88,7 @@ export const useSurvey = ({
         }
       });
     },
-    [],
+    [setAnswers],
   );
 
   // 답변 업데이트
@@ -101,14 +100,21 @@ export const useSurvey = ({
   );
 
   // 답변 제거
-  const removeAnswer = useCallback((questionId: number) => {
-    setAnswers((prev) => prev.filter((a) => a.questionId !== questionId));
-  }, []);
+  const removeAnswer = useCallback(
+    (questionId: number) => {
+      setAnswers((prev: SurveyAnswer[]) =>
+        prev.filter((a: SurveyAnswer) => a.questionId !== questionId),
+      );
+    },
+    [setAnswers],
+  );
 
   // 답변 가져오기
   const getAnswer = useCallback(
     (questionId: number) => {
-      const answer = answers.find((a) => a.questionId === questionId);
+      const answer = answers.find(
+        (a: SurveyAnswer) => a.questionId === questionId,
+      );
       return answer?.answer;
     },
     [answers],
@@ -134,7 +140,7 @@ export const useSurvey = ({
   const resetSurvey = useCallback(() => {
     setAnswers([]);
     setCurrentQuestionId(1);
-  }, []);
+  }, [setAnswers]);
 
   // 답변 내보내기
   const exportAnswers = useCallback(() => {
@@ -148,18 +154,22 @@ export const useSurvey = ({
     }
   }, [answers]);
 
-  // 로컬 스토리지에서 답변 복원
+  // 로컬 스토리지에서 답변 복원 (초기화 시에만)
   useEffect(() => {
     const savedAnswers = localStorage.getItem("survey-answers");
     if (savedAnswers && answers.length === 0) {
       try {
         const parsedAnswers = JSON.parse(savedAnswers);
-        setAnswers(parsedAnswers);
+        // 초기 로딩 시에만 복원하기 위해 setTimeout 사용
+        setTimeout(() => {
+          setAnswers(parsedAnswers);
+        }, 0);
       } catch (error) {
         console.error("Failed to parse saved answers:", error);
       }
     }
-  }, [answers.length]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return {
     currentQuestionId,

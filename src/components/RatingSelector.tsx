@@ -1,4 +1,5 @@
 import React from "react";
+
 import { SelectionCircle } from "./SelectionCircle";
 
 interface RatingSelectorProps {
@@ -33,7 +34,7 @@ export const RatingSelector: React.FC<RatingSelectorProps> = ({
   return (
     <div className="flex flex-col items-center space-y-4">
       {/* 점수 선택 버튼들 */}
-      <div className="flex items-center space-x-4">
+      <div className="flex w-full items-center justify-between px-2.5">
         {[1, 2, 3, 4, 5].map((rating) => (
           <div key={rating} className="flex flex-col items-center space-y-2">
             <SelectionCircle
