@@ -1,5 +1,6 @@
 "use client";
 
+import Part1Page from "@/pages/part1/page";
 import { useState } from "react";
 
 import { IntroductionPage } from "@/pages/IntroductionPage";
@@ -49,12 +50,7 @@ export default function Home() {
     <div>
       {currentStep === "intro" && <IntroductionPage onNext={handleNext} />}
 
-      {currentStep === "question1" && (
-        <div className="text-center">
-          <h1 className="text-2xl font-bold">설문 1</h1>
-          <p className="mt-4 text-gray-600">첫 번째 질문입니다</p>
-        </div>
-      )}
+      {currentStep === "question1" && <Part1Page />}
 
       {currentStep === "question2" && (
         <div className="text-center">
