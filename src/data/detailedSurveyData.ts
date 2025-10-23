@@ -931,6 +931,7 @@ export const detailedSurveyData: SurveyData = {
           category: "주관식",
           subCategory: "인생 우선순위",
           type: "text",
+          image: "/images/주관4.png",
         },
         {
           id: 113,
@@ -963,6 +964,7 @@ export const detailedSurveyData: SurveyData = {
           category: "주관식",
           subCategory: "회복력·성장 태도",
           type: "text",
+          image: "/images/주관8.png",
         },
         {
           id: 117,
@@ -994,6 +996,7 @@ export const detailedSurveyData: SurveyData = {
           category: "주관식",
           subCategory: "종합 인식",
           type: "text",
+          image: "/images/주관12.png",
         },
       ],
     },
