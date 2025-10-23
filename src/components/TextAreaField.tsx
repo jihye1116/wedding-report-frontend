@@ -4,7 +4,7 @@ interface TextAreaFieldProps {
   name: string; // 폼 데이터의 키로 사용
   value: string; // 현재 입력 값
   onChange: (name: string, value: string) => void; // 값 변경 핸들러
-  placeholder: string;
+  placeholder?: string;
   rows?: number; // 기본 행 수 설정
   onClick?: () => void; // 선택적으로 변경
 }
@@ -13,7 +13,7 @@ export const TextAreaField = ({
   name,
   value,
   onChange,
-  placeholder,
+  placeholder = "본인의 생각을 입력해 주세요",
   rows = 8, // 기본값 3행
   onClick,
 }: TextAreaFieldProps) => {

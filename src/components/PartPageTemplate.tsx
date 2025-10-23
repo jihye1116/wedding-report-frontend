@@ -25,6 +25,10 @@ interface PartPageTemplateProps {
   onBack?: () => void;
   currentPage?: number;
   onPageChange?: (page: number) => void;
+  customValidation?: (
+    questions: SurveyQuestion[],
+    answers: SurveyAnswer[],
+  ) => boolean; // 커스텀 검증 함수
 }
 
 export const PartPageTemplate = ({
@@ -39,6 +43,7 @@ export const PartPageTemplate = ({
   onBack,
   currentPage: externalCurrentPage,
   onPageChange,
+  customValidation,
 }: PartPageTemplateProps) => {
   const setCurrentPart = useSetAtom(currentPartAtom);
   const setCurrentPage = useSetAtom(currentPageAtom);
@@ -81,9 +86,11 @@ export const PartPageTemplate = ({
     : part.questions.slice(startIndex, endIndex);
 
   // 현재 페이지의 모든 문항이 답변되었는지 확인
-  const allQuestionsAnswered = currentQuestions.every((question) =>
-    _answers?.some((a) => a.questionId === question.id),
-  );
+  const allQuestionsAnswered = customValidation
+    ? customValidation(currentQuestions, _answers || [])
+    : currentQuestions.every((question) =>
+        _answers?.some((a) => a.questionId === question.id),
+      );
 
   // 전체 문항 번호 계산
   const getGlobalQuestionNumber = (questionId: number) => {
