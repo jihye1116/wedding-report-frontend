@@ -41,6 +41,7 @@ export const detailedSurveyData: SurveyData = {
           category: "정보처리 및 의사결정",
           subCategory: "현재중심 ↔ 미래지향",
           type: "rating",
+          image: "/images/정보처리4.png",
         },
         {
           id: 5,
@@ -72,6 +73,7 @@ export const detailedSurveyData: SurveyData = {
           category: "정보처리 및 의사결정",
           subCategory: "논리·객관중심 ↔ 감정·인간중심",
           type: "rating",
+          image: "/images/정보처리8.png",
         },
         {
           id: 9,
@@ -80,6 +82,7 @@ export const detailedSurveyData: SurveyData = {
           category: "정보처리 및 의사결정",
           subCategory: "반응적 ↔ 조절적",
           type: "rating",
+          image: "/images/정보처리9.png",
         },
         {
           id: 10,
@@ -95,6 +98,7 @@ export const detailedSurveyData: SurveyData = {
           category: "정보처리 및 의사결정",
           subCategory: "반응적 ↔ 조절적",
           type: "rating",
+          image: "/images/정보처리11.png",
         },
         {
           id: 12,
@@ -141,6 +145,7 @@ export const detailedSurveyData: SurveyData = {
           category: "동기 구조 및 자기조절",
           subCategory: "외적동기 ↔ 내적동기",
           type: "rating",
+          image: "/images/동기구조5.png",
         },
         {
           id: 18,
@@ -170,6 +175,7 @@ export const detailedSurveyData: SurveyData = {
           category: "동기 구조 및 자기조절",
           subCategory: "목표실행 자율성 낮음 ↔ 높음",
           type: "rating",
+          image: "/images/동기구조9.png",
         },
         {
           id: 22,
@@ -201,6 +207,7 @@ export const detailedSurveyData: SurveyData = {
           category: "외현적 행동 및 생활 방식",
           subCategory: "내향 ↔ 외향",
           type: "rating",
+          image: "/images/외현적1.png",
         },
         {
           id: 26,
@@ -224,6 +231,7 @@ export const detailedSurveyData: SurveyData = {
           category: "외현적 행동 및 생활 방식",
           subCategory: "내향 ↔ 외향",
           type: "rating",
+          image: "/images/외현적9.png",
         },
         {
           id: 29,
@@ -259,6 +267,7 @@ export const detailedSurveyData: SurveyData = {
           category: "외현적 행동 및 생활 방식",
           subCategory: "자기표현 ↔ 적응배려형",
           type: "rating",
+          image: "/images/외현적9.png",
         },
         {
           id: 34,
@@ -289,6 +298,7 @@ export const detailedSurveyData: SurveyData = {
           category: "MMPI 기반 보조 지표",
           subCategory: "정서 안정성 (침체적 ↔ 안정적)",
           type: "rating",
+          image: "/images/MMPI1.png",
         },
         {
           id: 38,
@@ -345,6 +355,7 @@ export const detailedSurveyData: SurveyData = {
           category: "MMPI 기반 보조 지표",
           subCategory: "불안·완벽주의 (불안·통제형 ↔ 여유·수용형)",
           type: "rating",
+          image: "/images/MMPI9.png",
         },
       ],
     },
@@ -388,6 +399,7 @@ export const detailedSurveyData: SurveyData = {
           category: "정보처리 및 의사결정",
           subCategory: "현재중심 ↔ 미래지향",
           type: "rating",
+          image: "/images/정보처리4.png",
         },
         {
           id: 50,
@@ -436,6 +448,7 @@ export const detailedSurveyData: SurveyData = {
           category: "정보처리 및 의사결정",
           subCategory: "반응적 ↔ 조절적",
           type: "rating",
+          image: "/images/정보처리10.png",
         },
         {
           id: 56,
@@ -444,6 +457,7 @@ export const detailedSurveyData: SurveyData = {
           category: "정보처리 및 의사결정",
           subCategory: "반응적 ↔ 조절적",
           type: "rating",
+          image: "/images/정보처리11.png",
         },
         {
           id: 57,
@@ -509,6 +523,7 @@ export const detailedSurveyData: SurveyData = {
           category: "동기 구조 및 자기조절",
           subCategory: "외적동기 ↔ 내적동기",
           type: "rating",
+          image: "/images/동기구조7.png",
         },
         {
           id: 65,
@@ -548,6 +563,7 @@ export const detailedSurveyData: SurveyData = {
           category: "동기 구조 및 자기조절",
           subCategory: "목표실행 자율성 낮음 ↔ 높음",
           type: "rating",
+          image: "/images/동기구조12.png",
         },
 
         // 외현적 행동 및 생활 방식 (70-81번) - 심화
@@ -582,6 +598,7 @@ export const detailedSurveyData: SurveyData = {
           category: "외현적 행동 및 생활 방식",
           subCategory: "내향 ↔ 외향",
           type: "rating",
+          image: "/images/외현적4.png",
         },
         {
           id: 74,
@@ -628,6 +645,7 @@ export const detailedSurveyData: SurveyData = {
           category: "외현적 행동 및 생활 방식",
           subCategory: "자기표현 ↔ 적응배려형",
           type: "rating",
+          image: "/images/외현적10.png",
         },
         {
           id: 80,
@@ -751,6 +769,7 @@ export const detailedSurveyData: SurveyData = {
           category: "연애 생활의 영역",
           subCategory: "생활 리듬 / 시간 조율",
           type: "rating",
+          image: "/images/연애3.png",
         },
         {
           id: 94,
@@ -766,6 +785,7 @@ export const detailedSurveyData: SurveyData = {
           category: "연애 생활의 영역",
           subCategory: "재정·소비 태도",
           type: "rating",
+          image: "/images/연애5.png",
         },
         {
           id: 96,
@@ -808,6 +828,7 @@ export const detailedSurveyData: SurveyData = {
           category: "결혼 생활의 영역",
           subCategory: "가사·생활 분담",
           type: "rating",
+          image: "/images/결혼4.png",
         },
         {
           id: 101,
@@ -829,6 +850,7 @@ export const detailedSurveyData: SurveyData = {
           category: "결혼 생활의 영역",
           subCategory: "재정·경제 태도",
           type: "rating",
+          image: "/images/결혼3.png",
         },
         {
           id: 104,

@@ -41,6 +41,15 @@ export default function Part2Page({
       <h2 className="mb-6">
         {globalQuestionNumber}. {question.question}
       </h2>
+      {question.image && (
+        <div className="mb-6 flex justify-center">
+          <img
+            src={question.image}
+            alt={`Question ${globalQuestionNumber} illustration`}
+            className="h-auto max-h-64 max-w-full object-contain"
+          />
+        </div>
+      )}
       <RatingSelector
         value={
           (answers.find((a) => a.questionId === question.id)

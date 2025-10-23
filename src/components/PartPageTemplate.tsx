@@ -70,11 +70,8 @@ export const PartPageTemplate = ({
 
   // 전체 문항 번호 계산
   const getGlobalQuestionNumber = (questionId: number) => {
-    let globalNumber = 0;
-    for (let i = 0; i < part.partNumber - 1; i++) {
-      globalNumber += detailedSurveyData.parts[i].questions.length;
-    }
-    return globalNumber + questionId;
+    // questionId가 이미 전역 번호이므로 그대로 반환
+    return questionId;
   };
 
   return (
@@ -102,7 +99,7 @@ export const PartPageTemplate = ({
       <Navigator
         onNext={handleNext}
         onBack={handleBack}
-        currentPage={currentPage + 1}
+        currentPage={currentPage}
         totalPages={totalPages}
         partNumber={part.partNumber}
       />

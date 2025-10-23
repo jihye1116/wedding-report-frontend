@@ -7,6 +7,7 @@ export interface SurveyQuestion {
   subCategory?: string;
   type?: QuestionType;
   options?: string[];
+  image?: string;
 }
 
 export interface SurveyPart {
