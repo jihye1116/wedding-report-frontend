@@ -7,7 +7,7 @@ import CelebrationImage from "@/assets/images/celebration.png";
 import { NavigateButton } from "@/components/NavigateButton";
 import { Navigator } from "@/components/Navigator";
 import Part1ResultPage, { part1TotalPages } from "@/pages/result/part1/page";
-import Part2ResultPage from "@/pages/result/part2/page";
+import Part2ResultPage, { part2TotalPages } from "@/pages/result/part2/page";
 import Part3ResultPage from "@/pages/result/part3/page";
 import Part4ResultPage from "@/pages/result/part4/page";
 import Part5ResultPage from "@/pages/result/part5/page";
@@ -30,6 +30,7 @@ export default function ResultViewerPage({
   const [currentStep, setCurrentStep] = useState<ResultPartStep>("part1");
   const [partPages, setPartPages] = useState({
     part1: 0,
+    part2: 0,
   });
 
   const steps: ResultPartStep[] = [
@@ -55,6 +56,13 @@ export default function ResultViewerPage({
       }
     }
 
+    if (currentStep === "part2") {
+      if (partPages.part2 < part2TotalPages - 1) {
+        handlePartPageChange("part2", partPages.part2 + 1);
+        return;
+      }
+    }
+
     if (currentIndex < steps.length - 1) {
       setCurrentStep(steps[currentIndex + 1]);
     }
@@ -66,6 +74,13 @@ export default function ResultViewerPage({
     if (currentStep === "part1") {
       if (partPages.part1 > 0) {
         handlePartPageChange("part1", partPages.part1 - 1);
+        return;
+      }
+    }
+
+    if (currentStep === "part2") {
+      if (partPages.part2 > 0) {
+        handlePartPageChange("part2", partPages.part2 - 1);
         return;
       }
     }
@@ -95,13 +110,13 @@ export default function ResultViewerPage({
   if (currentStep === "part2") {
     return (
       <div className="flex h-dvh flex-col justify-between">
-        <Part2ResultPage />
+        <Part2ResultPage currentPage={partPages.part2} />
         <Navigator
           onNext={handleNext}
           onBack={handleBack}
           canProceed={true}
-          currentPage={partPages.part1}
-          totalPages={part1TotalPages}
+          currentPage={partPages.part2}
+          totalPages={part2TotalPages}
         />
       </div>
     );
