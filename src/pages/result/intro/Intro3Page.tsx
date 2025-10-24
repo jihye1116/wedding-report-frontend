@@ -1,6 +1,5 @@
-import Image from "next/image";
+import { ReportHeader } from "@/components/ReportHeader";
 import { Navigator } from "@/components/Navigator";
-import Logo from "@/assets/icons/logo.svg";
 
 interface Intro3PageProps {
   onNext: () => void;
@@ -18,15 +17,7 @@ export default function Intro3Page({ onNext, onBack }: Intro3PageProps) {
 
   return (
     <main className="font-pretendard flex h-dvh flex-col justify-between">
-      <div className="px-10">
-        <div className="flex gap-2 pt-5">
-          <Image src={Logo} alt="Logo" width={20} height={20} />
-          <p className="font-gangwon font-bold text-[#7AC6B6]">꽃길 리포트</p>
-        </div>
-        <p className="pb-5 text-sm font-medium text-gray-500">
-          갑돌이 · 갑순이 님의 결과 보고서
-        </p>
-      </div>
+      <ReportHeader />
       <article className="flex flex-col gap-9 px-10 text-[#111111]">
         <div className="flex items-center gap-2">
           <p className="font-gangwon text-3xl leading-snug font-bold whitespace-nowrap">

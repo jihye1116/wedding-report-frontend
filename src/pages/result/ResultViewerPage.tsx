@@ -9,7 +9,13 @@ import Part3ResultPage from "@/pages/result/part3/page";
 import Part4ResultPage from "@/pages/result/part4/page";
 import Part5ResultPage from "@/pages/result/part5/page";
 
-type ResultPartStep = "part1" | "part2" | "part3" | "part4" | "part5" | "finish";
+type ResultPartStep =
+  | "part1"
+  | "part2"
+  | "part3"
+  | "part4"
+  | "part5"
+  | "finish";
 
 interface ResultViewerPageProps {
   onBackToIntro: () => void;
