@@ -1,7 +1,7 @@
 import {
+  ApiErrorResponse,
   SubmitSurveyRequest,
   SubmitSurveyResponse,
-  ApiErrorResponse,
 } from "@/types/api";
 
 // 환경변수에서 API URL을 가져옵니다. 없으면 기본값 사용

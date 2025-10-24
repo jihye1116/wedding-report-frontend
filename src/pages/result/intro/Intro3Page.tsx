@@ -1,5 +1,5 @@
-import { ReportHeader } from "@/components/ReportHeader";
 import { Navigator } from "@/components/Navigator";
+import { ReportHeader } from "@/components/ReportHeader";
 
 interface Intro3PageProps {
   onNext: () => void;
@@ -29,20 +29,14 @@ export default function Intro3Page({ onNext, onBack }: Intro3PageProps) {
           {tocItems.map((item) => (
             <div key={item.id}>
               <p className="flex items-center leading-snug font-medium whitespace-nowrap">
-                <span className="mr-[20px] text-[#4BB7A0]">{item.id}</span>
+                <span className="mr-5 text-[#4BB7A0]">{item.id}</span>
                 {item.title}
               </p>
             </div>
           ))}
         </div>
       </article>
-      <div className="flex w-full py-10">
-        <Navigator
-          onNext={onNext}
-          onBack={onBack}
-          canProceed={true}
-        />
-      </div>
+      <Navigator onNext={onNext} onBack={onBack} canProceed={true} />
     </main>
   );
 }

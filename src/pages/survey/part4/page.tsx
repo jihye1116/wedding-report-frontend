@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect } from "react";
 import Image from "next/image";
+import { useEffect } from "react";
 
 import { PartPageTemplate } from "@/components/PartPageTemplate";
 import { TextAreaField } from "@/components/TextAreaField";
@@ -31,10 +31,6 @@ export default function Part4Page({
   });
 
   const part = detailedSurveyData.parts[3]; // Part 4 직접 참조
-
-  if (!part) {
-    return <div>Part not found.</div>;
-  }
 
   // 주관식 답변 변경 핸들러
   const handleTextChange = (questionId: number, value: string) => {
@@ -67,19 +63,36 @@ export default function Part4Page({
 
     if (part4Answers.length > 0) {
       console.log("📝 Part4 답변 업데이트됨:");
-      logAllPart4Answers();
+      const part4AnswersData = answers.filter((answer) => {
+        const question = part.questions.find((q) => q.id === answer.questionId);
+        return question !== undefined;
+      });
+      console.log("=== Part4 전체 답변 ===");
+      part4AnswersData.forEach((answer) => {
+        const question = part.questions.find((q) => q.id === answer.questionId);
+        console.log(`Q${answer.questionId}: ${question?.question}`);
+        console.log(`A: ${answer.answer}`);
+        console.log("---");
+      });
     }
-  }, [answers, part.questions]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [answers]);
 
   // 전역에서 호출 가능하도록 window 객체에 함수 추가
   useEffect(() => {
     if (typeof window !== "undefined") {
-      (window as any).logPart4Answers = logAllPart4Answers;
+      (window as Window & { logPart4Answers?: () => void }).logPart4Answers =
+        logAllPart4Answers;
       console.log(
         "💡 브라우저 콘솔에서 window.logPart4Answers() 를 호출하여 Part4 답변을 확인할 수 있습니다.",
       );
     }
-  }, [answers, part.questions]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  if (!part) {
+    return <div>Part not found.</div>;
+  }
 
   // 주관식 답변 검증: 모든 문항이 답변되었고, 빈 문자열이 아닌지 확인
   const validateTextAnswers = (

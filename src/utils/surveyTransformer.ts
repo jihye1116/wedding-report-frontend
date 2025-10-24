@@ -1,6 +1,6 @@
-import { SurveyAnswer } from "@/types/survey";
-import { ApiAnswer } from "@/types/api";
 import { detailedSurveyData } from "@/data/detailedSurveyData";
+import { ApiAnswer } from "@/types/api";
+import { SurveyAnswer } from "@/types/survey";
 
 /**
  * 카테고리와 서브카테고리를 기반으로 section과 dimension을 생성합니다.

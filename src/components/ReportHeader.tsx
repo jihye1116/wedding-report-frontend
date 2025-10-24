@@ -1,4 +1,5 @@
 import Image from "next/image";
+
 import Logo from "@/assets/icons/logo.svg";
 
 export function ReportHeader() {

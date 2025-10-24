@@ -1,19 +1,19 @@
 "use client";
 
-import { Suspense, useState, useEffect } from "react";
-import { useSearchParams } from "next/navigation";
 import { useAtom } from "jotai";
+import { useSearchParams } from "next/navigation";
+import { Suspense, useState } from "react";
 
+import { LoadingSpinner } from "@/components/LoadingSpinner";
 import { detailedSurveyData } from "@/data/detailedSurveyData";
-import { answersAtom } from "@/store/surveyStore";
+import ReportIntroductionPage from "@/pages/result/ReportIntroductionPage";
 import FinishPage from "@/pages/survey/FinishPage";
 import IntroductionPage from "@/pages/survey/IntroductionPage";
 import Part1Page from "@/pages/survey/part1/page";
 import Part2Page from "@/pages/survey/part2/page";
 import Part3Page from "@/pages/survey/part3/page";
 import Part4Page from "@/pages/survey/part4/page";
-import ReportIntroductionPage from "@/pages/result/ReportIntroductionPage";
-import { LoadingSpinner } from "@/components/LoadingSpinner";
+import { answersAtom } from "@/store/surveyStore";
 
 type PageStep =
   | "intro"
@@ -27,7 +27,9 @@ function SurveyPage() {
   const searchParams = useSearchParams();
   const [currentStep, setCurrentStep] = useState<PageStep>("intro");
   const [, setAnswers] = useAtom(answersAtom);
-  const [resultId, setResultId] = useState<string | null>(null);
+  const [resultId] = useState<string | null>(() => {
+    return searchParams?.get("id") || null;
+  });
 
   // 각 파트의 현재 페이지 상태를 관리
   const [partPages, setPartPages] = useState<Record<string, number>>({
@@ -36,16 +38,6 @@ function SurveyPage() {
     question3: 0,
     question4: 0,
   });
-
-  // URL에서 결과 ID 확인
-  useEffect(() => {
-    if (searchParams) {
-      const id = searchParams.get("id");
-      if (id) {
-        setResultId(id);
-      }
-    }
-  }, [searchParams]);
 
   const handleNext = () => {
     const steps: PageStep[] = [

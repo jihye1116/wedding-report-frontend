@@ -1,6 +1,7 @@
 import Image from "next/image";
-import { StartButton } from "@/components/StartButton";
+
 import Logo from "@/assets/icons/logo.svg";
+import { StartButton } from "@/components/StartButton";
 
 interface Intro1PageProps {
   onNext: () => void;
@@ -24,11 +25,11 @@ export default function Intro1Page({ onNext }: Intro1PageProps) {
           <p>리포트가 완성되었습니다. </p>
           <p>
             [신혼생활 시뮬레이션 스토리북]프로젝트에 참여해주셔서
-            감사합니다. </p>
+            감사합니다.{" "}
+          </p>
           <p>접속하신 링크는 추후 삭제될 예정이니, </p>
-          <p>아래 '다운받기' 버튼을 눌러 결과를 확인해보세요. </p>
-          <p>그럼, 확인해 볼까요? 
-</p>
+          <p>아래 &apos;다운받기&apos; 버튼을 눌러 결과를 확인해보세요. </p>
+          <p>그럼, 확인해 볼까요?</p>
         </article>
       </main>
       <div className="flex w-full justify-end p-10">

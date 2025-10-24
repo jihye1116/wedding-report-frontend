@@ -1,14 +1,14 @@
 "use client";
 
 import { useSetAtom } from "jotai";
-import { ReactNode, useEffect, useMemo } from "react";
+import { ReactNode, useEffect, useMemo, useState } from "react";
 
 import { Navigator } from "@/components/Navigator";
 import { ProgressBar } from "@/components/ProgressBar";
+import { detailedSurveyData } from "@/data";
 import { usePartNavigation } from "@/hooks/usePartNavigation";
 import { currentPageAtom, currentPartAtom } from "@/store/surveyStore";
 import { SurveyAnswer, SurveyPart, SurveyQuestion } from "@/types/survey";
-import { detailedSurveyData } from "@/data";
 
 interface PartPageTemplateProps {
   part: SurveyPart;
@@ -78,26 +78,40 @@ export const PartPageTemplate = ({
   // isIntroPage 계산
   const isIntroPage = currentPage === 0;
 
-  // 문항을 섞는 함수
-  const shuffleQuestions = (questions: SurveyQuestion[]) => {
-    // Fisher-Yates shuffle 알고리즘
+  // 문항 섞기를 위한 초기 시드 생성 (컴포넌트 마운트 시 한 번만)
+  const [shuffleSeed] = useState(() => Math.random());
+
+  // 시드 기반 랜덤 함수 (순수 함수)
+  const seededRandom = (seed: number, index: number) => {
+    const x = Math.sin(seed * 9999 + index) * 10000;
+    return x - Math.floor(x);
+  };
+
+  // 문항을 섞는 함수 (시드 기반)
+  const shuffleQuestions = (questions: SurveyQuestion[], seed: number) => {
     const shuffled = [...questions];
     for (let i = shuffled.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
+      const j = Math.floor(seededRandom(seed, i) * (i + 1));
       [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
     }
     return shuffled;
   };
 
-  // 전체 문항을 섞어서 페이지별로 재구성 (part가 변경될 때만 재계산)
+  // 전체 문항을 섞어서 페이지별로 재구성 (part와 shuffleSeed가 변경될 때만 재계산)
   const reorganizedQuestions = useMemo(() => {
     // 이미지가 있는 문항과 없는 문항을 분리
     const questionsWithImages = part.questions.filter((q) => q.image);
     const questionsWithoutImages = part.questions.filter((q) => !q.image);
 
-    // 각각 랜덤으로 섞음
-    const shuffledWithImages = shuffleQuestions(questionsWithImages);
-    const shuffledWithoutImages = shuffleQuestions(questionsWithoutImages);
+    // 각각 랜덤으로 섞음 (시드 기반)
+    const shuffledWithImages = shuffleQuestions(
+      questionsWithImages,
+      shuffleSeed,
+    );
+    const shuffledWithoutImages = shuffleQuestions(
+      questionsWithoutImages,
+      shuffleSeed * 2,
+    );
 
     // 페이지별로 재구성: 각 페이지마다 이미지 문항 1개 + 일반 문항 (questionsPerPage - 1)개
     const result: SurveyQuestion[] = [];
@@ -130,7 +144,7 @@ export const PartPageTemplate = ({
     }
 
     return result;
-  }, [part.questions, questionsPerPage]);
+  }, [part.questions, questionsPerPage, shuffleQuestions, shuffleSeed]);
 
   // currentQuestions 계산
   const currentQuestions = useMemo(() => {
