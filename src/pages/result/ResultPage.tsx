@@ -41,15 +41,7 @@ export default function ResultPage({ resultId }: ResultPageProps) {
   };
 
   const handleBack = () => {
-    const steps: ResultStep[] = [
-      "intro1",
-      "intro2",
-      "result1",
-      "result2",
-      "result3",
-      "result4",
-      "finish",
-    ];
+    const steps: ResultStep[] = ["intro1", "intro2"];
     const currentIndex = steps.indexOf(currentStep);
     if (currentIndex > 0) {
       setCurrentStep(steps[currentIndex - 1]);
@@ -75,7 +67,7 @@ export default function ResultPage({ resultId }: ResultPageProps) {
   // 결과 소개 페이지 1
   if (currentStep === "intro1") {
     return (
-      <div className="flex h-dvh flex-col">
+      <div className="flex h-dvh flex-col items-center justify-center">
         <Image
           className="mx-auto py-5"
           src={Logo}
@@ -94,18 +86,12 @@ export default function ResultPage({ resultId }: ResultPageProps) {
               감사합니다.{" "}
             </p>
             <p>접속하신 링크는 추후 삭제될 예정이니, </p>
-            <p>아래 '리포트 보기' 버튼을 눌러 결과를 확인해보세요. </p>
+            <p>아래 '다운받기' 버튼을 눌러 결과를 확인해보세요. </p>
             <p>그럼, 확인해 볼까요? {"\n"}</p>
           </article>
-          <div className="rounded-lg bg-gray-100 p-4">
-            <p className="text-sm text-gray-600">
-              결과 ID:{" "}
-              <span className="font-mono font-semibold">{resultId}</span>
-            </p>
-          </div>
         </main>
         <div className="flex justify-end p-10">
-          <StartButton onClick={handleIntroNext} text="리포트 보기" />
+          <StartButton onClick={handleIntroNext} text="다운받기" />
         </div>
       </div>
     );
@@ -138,8 +124,6 @@ export default function ResultPage({ resultId }: ResultPageProps) {
         <Navigator
           onNext={handleIntroNext}
           onBack={handleIntroBack}
-          currentPage={1}
-          totalPages={2}
           canProceed={true}
         />
       </div>
@@ -177,49 +161,7 @@ export default function ResultPage({ resultId }: ResultPageProps) {
         <Navigator
           onNext={handleNext}
           onBack={handleBack}
-          currentPage={0}
-          totalPages={1}
           partNumber={2}
-          canProceed={true}
-        />
-      </div>
-    );
-  }
-
-  // 결과 파트 3
-  if (currentStep === "result3") {
-    return (
-      <div className="flex h-dvh flex-col">
-        <main className="flex flex-1 flex-col items-center justify-center gap-10 px-10 py-5 text-center leading-snug text-[#111111]">
-          <h1 className="text-2xl font-bold">Part 3: 가치관 및 라이프스타일</h1>
-          <p>결과 파트 3 - 구현 예정</p>
-        </main>
-        <Navigator
-          onNext={handleNext}
-          onBack={handleBack}
-          currentPage={0}
-          totalPages={1}
-          partNumber={3}
-          canProceed={true}
-        />
-      </div>
-    );
-  }
-
-  // 결과 파트 4
-  if (currentStep === "result4") {
-    return (
-      <div className="flex h-dvh flex-col">
-        <main className="flex flex-1 flex-col items-center justify-center gap-10 px-10 py-5 text-center leading-snug text-[#111111]">
-          <h1 className="text-2xl font-bold">Part 4: 결혼 및 미래 계획</h1>
-          <p>결과 파트 4 - 구현 예정</p>
-        </main>
-        <Navigator
-          onNext={handleNext}
-          onBack={handleBack}
-          currentPage={0}
-          totalPages={1}
-          partNumber={4}
           canProceed={true}
         />
       </div>
