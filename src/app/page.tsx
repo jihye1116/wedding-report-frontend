@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { Suspense, useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import { useAtom } from "jotai";
 
@@ -13,6 +13,7 @@ import Part2Page from "@/pages/survey/part2/page";
 import Part3Page from "@/pages/survey/part3/page";
 import Part4Page from "@/pages/survey/part4/page";
 import ResultPage from "@/pages/result/ResultPage";
+import { LoadingSpinner } from "@/components/LoadingSpinner";
 
 type PageStep =
   | "intro"
@@ -22,7 +23,7 @@ type PageStep =
   | "question4"
   | "finish";
 
-export default function Home() {
+function SurveyPage() {
   const searchParams = useSearchParams();
   const [currentStep, setCurrentStep] = useState<PageStep>("intro");
   const [, setAnswers] = useAtom(answersAtom);
@@ -165,5 +166,13 @@ export default function Home() {
 
       {currentStep === "finish" && <FinishPage />}
     </div>
+  );
+}
+
+export default function Home() {
+  return (
+    <Suspense fallback={<div className="flex h-dvh items-center justify-center"><LoadingSpinner /></div>}>
+      <SurveyPage />
+    </Suspense>
   );
 }
