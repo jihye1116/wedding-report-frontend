@@ -4,8 +4,8 @@ import { useAtom } from "jotai";
 import Image from "next/image";
 import { Fragment } from "react";
 
-import FemaleImage from "@/assets/images/female.png";
-import MaleImage from "@/assets/images/male.png";
+import Female from "@/assets/images/female.svg";
+import Male from "@/assets/images/male.svg";
 import { Navigator } from "@/components/Navigator";
 import { ReportHeader } from "@/components/ReportHeader";
 import { Tag } from "@/components/Tag";
@@ -149,7 +149,7 @@ export default function Part4ResultPage({
           <div className="flex flex-col gap-10 px-10 py-5">
             <section>
               <div className="flex items-end gap-3">
-                <Image src={MaleImage} alt="남성" width={48} />
+                <Image src={Male} alt="남성" width={48} />
                 <p className="leading-loose font-semibold">갑돌이 님의 변화</p>
               </div>
               <div className="flex flex-col gap-5 bg-[#F8F8F8] p-5 leading-snug">
@@ -177,7 +177,7 @@ export default function Part4ResultPage({
             <section>
               <div className="flex items-end justify-end gap-3">
                 <p className="leading-loose font-semibold">갑순이 님의 변화</p>
-                <Image src={FemaleImage} alt="여성" width={48} />
+                <Image src={Female} alt="여성" width={48} />
               </div>
               <div className="flex flex-col gap-5 bg-[#F8F8F8] p-5 leading-snug">
                 <h2 className="text-lg font-semibold">

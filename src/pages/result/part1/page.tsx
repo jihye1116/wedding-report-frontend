@@ -1,9 +1,10 @@
+import Image from "next/image";
+
+import Female from "@/assets/images/female.svg";
+import Graph from "@/assets/images/graph.png";
+import Male from "@/assets/images/male.svg";
 import { ReportHeader } from "@/components/ReportHeader";
 import { SliderComponent } from "@/components/SliderComponent";
-import Image from "next/image";
-import Female from "@/assets/images/female.svg";
-import Male from "@/assets/images/male.svg";
-import Graph from "@/assets/images/graph.png";
 
 const Page1 = () => (
   <article className="flex flex-col gap-10 px-10 py-5 font-medium text-[#111111]">
