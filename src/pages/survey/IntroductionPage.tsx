@@ -353,7 +353,9 @@ const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
                 />
                 <p className="text-sm">(선택) 마케팅 정보 수신 동의</p>
               </div>
-              <p>(주)후아의 서비스, 이벤트, 프로모션 등 마케팅 정보 발송</p>
+              <p className="text-sm">
+                (주)후아의 서비스, 이벤트, 프로모션 등 마케팅 정보 발송
+              </p>
             </section>
           </main>
           <div className="flex-1" />
