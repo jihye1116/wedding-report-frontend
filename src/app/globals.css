@@ -173,5 +173,10 @@ body {
 }
 
 .result-gradient {
-  background: linear-gradient(to left, #edffdb 50%, #b3e5da 26%, #edffdb 50%);
+  background: linear-gradient(
+    to left,
+    #edffdb4d 0%,
+    /* 4d = alpha 0.3 (70% 투명) */ #b3e5da4d 50%,
+    #edffdb4d 100%
+  );
 }
