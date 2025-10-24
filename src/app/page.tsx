@@ -1,13 +1,15 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 
-import FinishPage from "@/pages/FinishPage";
-import IntroductionPage from "@/pages/IntroductionPage";
-import Part1Page from "@/pages/part1/page";
-import Part2Page from "@/pages/part2/page";
-import Part3Page from "@/pages/part3/page";
-import Part4Page from "@/pages/part4/page";
+import FinishPage from "@/pages/survey/FinishPage";
+import IntroductionPage from "@/pages/survey/IntroductionPage";
+import Part1Page from "@/pages/survey/part1/page";
+import Part2Page from "@/pages/survey/part2/page";
+import Part3Page from "@/pages/survey/part3/page";
+import Part4Page from "@/pages/survey/part4/page";
+import ResultPage from "@/pages/result/ResultPage";
 
 type PageStep =
   | "intro"
@@ -18,7 +20,9 @@ type PageStep =
   | "finish";
 
 export default function Home() {
+  const searchParams = useSearchParams();
   const [currentStep, setCurrentStep] = useState<PageStep>("intro");
+  const [resultId, setResultId] = useState<string | null>(null);
 
   // 각 파트의 현재 페이지 상태를 관리
   const [partPages, setPartPages] = useState<Record<string, number>>({
@@ -27,6 +31,16 @@ export default function Home() {
     question3: 0,
     question4: 0,
   });
+
+  // URL에서 결과 ID 확인
+  useEffect(() => {
+    if (searchParams) {
+      const id = searchParams.get("id");
+      if (id) {
+        setResultId(id);
+      }
+    }
+  }, [searchParams]);
 
   const handleNext = () => {
     const steps: PageStep[] = [
@@ -73,6 +87,11 @@ export default function Home() {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
+
+  // 결과 ID가 있으면 결과 페이지 표시
+  if (resultId) {
+    return <ResultPage resultId={resultId} />;
+  }
 
   return (
     <div>

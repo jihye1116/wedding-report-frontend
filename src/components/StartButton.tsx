@@ -4,9 +4,13 @@ import ChevronRight from "@/assets/icons/chevron-right-sm.svg";
 
 interface StartButtonProps {
   onClick: () => void;
+  text?: string;
 }
 
-export const StartButton = ({ onClick }: StartButtonProps) => {
+export const StartButton = ({
+  onClick,
+  text = "기본 정보 입력",
+}: StartButtonProps) => {
   return (
     <button
       type="button"
@@ -14,7 +18,7 @@ export const StartButton = ({ onClick }: StartButtonProps) => {
       onClick={onClick}
     >
       <span className="text-sm leading-tight font-medium text-white">
-        기본 정보 입력
+        {text}
       </span>
       <Image src={ChevronRight} alt="Start" width={24} height={24} />
     </button>
