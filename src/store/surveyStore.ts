@@ -19,6 +19,6 @@ export const introDataAtom = atom({
   partnerName: "",
   phoneNumber: "",
   partnerPhoneNumber: "",
-  relationshipYears: "",
+  relationshipDuration: 0,
   gender: "",
 });

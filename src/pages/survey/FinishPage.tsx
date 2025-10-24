@@ -35,6 +35,10 @@ export default function FinishPage() {
         throw new Error("파트너 정보가 누락되었습니다.");
       }
 
+      if (!introData.relationshipDuration) {
+        throw new Error("연애 기간 정보가 누락되었습니다.");
+      }
+
       if (answers.length === 0) {
         throw new Error("설문 답변이 없습니다.");
       }
@@ -49,9 +53,9 @@ export default function FinishPage() {
         my_gender: introData.gender,
         partner_name: introData.partnerName,
         partner_phone: introData.partnerPhoneNumber,
+        relationship_duration: introData.relationshipDuration,
         my_answers: apiAnswers,
       };
-
       console.log(requestData);
 
       // 백엔드에 제출

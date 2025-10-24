@@ -29,7 +29,7 @@ const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
     partnerName,
     phoneNumber,
     partnerPhoneNumber,
-    relationshipYears,
+    relationshipDuration,
     gender,
   } = introData;
 
@@ -52,7 +52,7 @@ const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
     partnerPhoneNumber
   );
   const isStep2Complete = !!agreePrivacy;
-  const isStep3Complete = !!(relationshipYears && gender);
+  const isStep3Complete = !!(relationshipDuration && gender);
 
   // input refs
   const nameRef = useRef<HTMLInputElement>(null);
@@ -97,7 +97,7 @@ const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
   };
 
   const handleNextFromStep3 = () => {
-    if (!relationshipYears) {
+    if (!relationshipDuration) {
       toast.error("연애 기간을 선택해주세요.");
       return;
     }
@@ -375,22 +375,22 @@ const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
               </h2>
               <div className="flex w-fit flex-col gap-4">
                 {[
-                  { label: "A", text: "1년 미만", value: "less-than-1" },
-                  { label: "B", text: "1~2년", value: "1-2" },
-                  { label: "C", text: "3~4년", value: "3-4" },
-                  { label: "D", text: "5~9년", value: "5-9" },
-                  { label: "E", text: "10년 이상", value: "10-plus" },
+                  { label: "A", text: "1년 미만", value: 1 },
+                  { label: "B", text: "1~2년", value: 2 },
+                  { label: "C", text: "3~4년", value: 3 },
+                  { label: "D", text: "5~9년", value: 4 },
+                  { label: "E", text: "10년 이상", value: 5 },
                 ].map((option) => (
                   <AnswerButton
                     key={option.value}
                     label={option.label}
                     text={option.text}
                     color="blue"
-                    selected={relationshipYears === option.value}
+                    selected={relationshipDuration === option.value}
                     onClick={() =>
                       setIntroData({
                         ...introData,
-                        relationshipYears: option.value,
+                        relationshipDuration: option.value,
                       })
                     }
                   />
