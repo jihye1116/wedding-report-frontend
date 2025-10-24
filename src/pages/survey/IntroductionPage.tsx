@@ -221,7 +221,6 @@ const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
                   setIntroData({ ...introData, partnerName: value })
                 }
                 placeholder="내 파트너의 이름(별칭) 입력"
-                type="tel"
               />
             </section>
             <section className="flex flex-col gap-4">
