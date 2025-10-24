@@ -125,13 +125,10 @@ export default function ResultViewerPage({
   if (currentStep === "part4") {
     return (
       <div className="flex h-dvh flex-col justify-between">
-        <Part4ResultPage />
-        <Navigator
+        <Part4ResultPage
           onNext={handleNext}
           onBack={handleBack}
-          canProceed={true}
-          currentPage={partPages.part1}
-          totalPages={part1TotalPages}
+          currentPage={0}
         />
       </div>
     );

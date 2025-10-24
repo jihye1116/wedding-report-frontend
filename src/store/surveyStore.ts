@@ -22,3 +22,6 @@ export const introDataAtom = atom({
   relationshipDuration: 0,
   gender: "",
 });
+
+// Part4 Result 페이지 step 상태 전역 관리
+export const part4ResultStepAtom = atom<number>(1);
