@@ -37,11 +37,11 @@ export const RatingSelector: React.FC<RatingSelectorProps> = ({
       <div className="flex w-full items-center justify-between px-2.5">
         {[1, 2, 3, 4, 5].map((rating) => (
           <div key={rating} className="flex flex-col items-center space-y-2">
+            <span className="text-xs font-medium text-gray-600">{rating}</span>
             <SelectionCircle
               selected={value === rating}
               onClick={() => handleRatingClick(rating)}
             />
-            <span className="text-xs font-medium text-gray-600">{rating}</span>
           </div>
         ))}
       </div>
