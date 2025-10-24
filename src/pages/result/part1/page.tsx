@@ -55,7 +55,7 @@ interface Part1ResultPageProps {
 
 export default function Part1ResultPage({ currentPage }: Part1ResultPageProps) {
   return (
-    <div className="font-pretendard">
+    <div className="font-pretendard flex-1">
       <ReportHeader />
       {pages[currentPage]}
     </div>
