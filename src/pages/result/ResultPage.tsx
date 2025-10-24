@@ -6,6 +6,7 @@ import Image from "next/image";
 import { Navigator } from "@/components/Navigator";
 import { StartButton } from "@/components/StartButton";
 import Logo from "@/assets/icons/logo.svg";
+import { NavigateButton } from "@/components/NavigateButton";
 
 interface ResultPageProps {
   resultId: string;
@@ -90,8 +91,8 @@ export default function ResultPage({ resultId }: ResultPageProps) {
             <p>그럼, 확인해 볼까요? {"\n"}</p>
           </article>
         </main>
-        <div className="flex justify-end p-10">
-          <StartButton onClick={handleIntroNext} text="다운받기" />
+        <div className="flex w-full justify-end p-10">
+          <StartButton onClick={handleIntroNext} text="리포트 보기" />
         </div>
       </div>
     );
@@ -109,23 +110,19 @@ export default function ResultPage({ resultId }: ResultPageProps) {
           height={100}
         />
         <main className="flex flex-col gap-10 px-10 py-5">
-          <h1 className="text-center text-3xl font-medium text-[#111111]">
-            리포트 구성 안내
-          </h1>
           <article className="flex flex-col gap-4 leading-snug whitespace-pre-wrap text-[#111111]">
-            <p>리포트는 총 4개 파트로 구성되어 있습니다:</p>
-            <p>• Part 1: 기본 성격 특성</p>
-            <p>• Part 2: 관계 및 소통</p>
-            <p>• Part 3: 가치관 및 라이프스타일</p>
-            <p>• Part 4: 결혼 및 미래 계획</p>
-            <p>각 파트별로 상세한 분석 결과를 확인하실 수 있습니다.</p>
+            <p className="font-gangwon">남성이름</p>
+            <p className="font-gangwon">여성이름</p>
+            <p className="font-gangwon">만든 날짜</p>
           </article>
         </main>
-        <Navigator
-          onNext={handleIntroNext}
-          onBack={handleIntroBack}
-          canProceed={true}
-        />
+        <div>
+          <NavigateButton
+            direction="right"
+            onClick={handleIntroNext}
+            color={"green"}
+          />
+        </div>
       </div>
     );
   }
