@@ -24,7 +24,7 @@ const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
   const {
     agreeAll,
     agreePrivacy,
-    agreeMarketing,
+    event_promotion_agree,
     name,
     partnerName,
     phoneNumber,
@@ -118,13 +118,13 @@ const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
       ...introData,
       agreeAll: newValue,
       agreePrivacy: newValue,
-      agreeMarketing: newValue,
+      event_promotion_agree: newValue,
     });
   };
 
   const handleAgreePrivacy = () => {
     const newValue = !agreePrivacy;
-    const newAgreeAll = newValue && agreeMarketing;
+    const newAgreeAll = newValue && event_promotion_agree;
     setIntroData({
       ...introData,
       agreePrivacy: newValue,
@@ -132,12 +132,12 @@ const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
     });
   };
 
-  const handleAgreeMarketing = () => {
-    const newValue = !agreeMarketing;
+  const handleAgreeEventPromotion = () => {
+    const newValue = !event_promotion_agree;
     const newAgreeAll = newValue && agreePrivacy;
     setIntroData({
       ...introData,
-      agreeMarketing: newValue,
+      event_promotion_agree: newValue,
       agreeAll: newAgreeAll,
     });
   };
@@ -348,8 +348,8 @@ const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
               <div className="flex items-center gap-2.5">
                 <SelectionCircle
                   size="sm"
-                  selected={agreeMarketing}
-                  onClick={handleAgreeMarketing}
+                  selected={event_promotion_agree}
+                  onClick={handleAgreeEventPromotion}
                 />
                 <p className="text-sm">(선택) 마케팅 정보 수신 동의</p>
               </div>

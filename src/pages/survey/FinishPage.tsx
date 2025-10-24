@@ -54,6 +54,7 @@ export default function FinishPage() {
         partner_name: introData.partnerName,
         partner_phone: introData.partnerPhoneNumber,
         relationship_duration: introData.relationshipDuration,
+        event_promotion_agree: introData.event_promotion_agree,
         my_answers: apiAnswers,
       };
       console.log(requestData);

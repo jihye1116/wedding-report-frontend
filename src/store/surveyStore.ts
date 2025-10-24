@@ -14,7 +14,7 @@ export const introStepAtom = atom<number>(0);
 export const introDataAtom = atom({
   agreeAll: false,
   agreePrivacy: false,
-  agreeMarketing: false,
+  event_promotion_agree: false,
   name: "",
   partnerName: "",
   phoneNumber: "",
