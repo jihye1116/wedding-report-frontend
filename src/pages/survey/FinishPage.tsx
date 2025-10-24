@@ -1,19 +1,19 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAtom } from "jotai";
 import Image from "next/image";
 
 import CelebrationImage from "@/assets/images/celebration.png";
+import { LoadingSpinner } from "@/components/LoadingSpinner";
 import { answersAtom, introDataAtom } from "@/store/surveyStore";
 import { submitSurvey } from "@/utils/api";
 import { transformSurveyAnswersToApi } from "@/utils/surveyTransformer";
-import { LoadingSpinner } from "@/components/LoadingSpinner";
 
 export default function FinishPage() {
   const [answers] = useAtom(answersAtom);
   const [introData] = useAtom(introDataAtom);
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(true);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [surveyResult, setSurveyResult] = useState<{
@@ -24,7 +24,6 @@ export default function FinishPage() {
 
   const handleSubmit = async () => {
     try {
-      setIsSubmitting(true);
       setError(null);
 
       // 데이터 유효성 검사
@@ -71,12 +70,18 @@ export default function FinishPage() {
     }
   };
 
+  useEffect(() => {
+    handleSubmit();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   if (isSubmitting) {
     return (
       <div className="flex h-dvh items-center justify-center">
-        <div className="flex flex-col items-center gap-4">
+        <div className="flex flex-col items-center gap-4 text-center text-lg text-[#E5E5E5]">
+          답변을 제출하고 있습니다. <br />
+          잠시만 기다려 주세요...
           <LoadingSpinner />
-          <p className="text-lg text-[#111111]">설문을 제출하고 있습니다...</p>
         </div>
       </div>
     );
@@ -104,23 +109,9 @@ export default function FinishPage() {
       <div className="flex h-dvh items-center justify-center">
         <main className="flex flex-col gap-10 px-10 py-5 text-center leading-snug text-[#111111]">
           <h1 className="text-2xl font-bold">제출되었습니다 🌸</h1>
-          <section className="flex flex-col gap-4">
-            <p>
-              &quot;행복한 결혼이란 두 영혼이 서로를 이해하고, 함께 성장하는
-              여정이다.&quot;
-            </p>
-            <p className="text-lg">- 톨스토이</p>
-          </section>
+
           <Image src={CelebrationImage} alt="Celebration" className="mx-auto" />
           <div className="flex flex-col gap-2">
-            <p className="font-semibold text-[#FF6B9D]">
-              {surveyResult.message}
-            </p>
-            {!surveyResult.is_complete && (
-              <p className="text-sm text-gray-600">
-                상대방이 설문을 완료하면 자동으로 분석이 진행됩니다.
-              </p>
-            )}
             <p className="mt-4">
               리포트 작업이 완료되면 문자 발송 예정이며, 영업일 기준 최대 2일
               소요될 수 있습니다.
@@ -131,35 +122,5 @@ export default function FinishPage() {
     );
   }
 
-  return (
-    <div className="flex h-dvh items-center justify-center">
-      <main className="flex flex-col gap-10 px-10 py-5 text-center leading-snug text-[#111111]">
-        <h1 className="text-2xl font-bold">설문을 완료하셨습니다! 🌸</h1>
-        <section className="flex flex-col gap-4">
-          <p>
-            &quot;행복한 결혼이란 두 영혼이 서로를 이해하고, 함께 성장하는
-            여정이다.&quot;
-          </p>
-          <p className="text-lg">- 톨스토이</p>
-        </section>
-        <Image src={CelebrationImage} alt="Celebration" className="mx-auto" />
-        <div className="flex flex-col gap-4">
-          <p>
-            아래 버튼을 눌러 설문을 제출해주세요.
-            <br />
-            제출 후 리포트 작업이 완료되면 문자로 알려드립니다.
-          </p>
-          <button
-            onClick={handleSubmit}
-            className="rounded-lg bg-[#FF6B9D] px-8 py-4 text-lg font-semibold text-white transition-colors hover:bg-[#FF5A8C]"
-          >
-            설문 제출하기
-          </button>
-          <p className="text-sm text-gray-600">
-            * 영업일 기준 최대 2일 소요될 수 있습니다.
-          </p>
-        </div>
-      </main>
-    </div>
-  );
+  return null;
 }
