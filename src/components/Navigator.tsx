@@ -20,22 +20,19 @@ export const Navigator = ({
   partNumber,
   canProceed = true,
 }: NavigatorProps) => {
-  // 전체 파트의 총 페이지 수 계산 (IntroductionPage 포함)
-  const totalAllPages =
-    1 +
-    detailedSurveyData.parts.reduce((sum, part) => sum + part.totalPages, 0);
+  // 전체 파트의 총 페이지 수 계산
+  const totalAllPages = detailedSurveyData.parts.reduce(
+    (sum, part) => sum + part.totalPages,
+    0,
+  );
 
-  // 현재 파트까지의 누적 페이지 수 계산 (IntroductionPage 포함)
+  // 현재 파트까지의 누적 페이지 수 계산
   const currentPartIndex = (partNumber || 1) - 1;
-  const pagesBeforeCurrentPart =
-    currentPartIndex === 0
-      ? 0 // Part1의 경우 이전 파트가 없으므로 0
-      : 1 +
-        detailedSurveyData.parts
-          .slice(0, currentPartIndex)
-          .reduce((sum, part) => sum + part.totalPages, 0);
+  const pagesBeforeCurrentPart = detailedSurveyData.parts
+    .slice(0, currentPartIndex)
+    .reduce((sum, part) => sum + part.totalPages, 0);
 
-  // 전체 페이지 번호 (Part1부터 1페이지로 시작)
+  // 전체 페이지 번호
   const globalCurrentPage = pagesBeforeCurrentPart + (currentPage || 0) + 1;
 
   return (

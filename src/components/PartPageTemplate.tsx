@@ -8,6 +8,7 @@ import { ProgressBar } from "@/components/ProgressBar";
 import { usePartNavigation } from "@/hooks/usePartNavigation";
 import { currentPageAtom, currentPartAtom } from "@/store/surveyStore";
 import { SurveyAnswer, SurveyPart, SurveyQuestion } from "@/types/survey";
+import { detailedSurveyData } from "@/data";
 
 interface PartPageTemplateProps {
   part: SurveyPart;
@@ -150,10 +151,9 @@ export const PartPageTemplate = ({
 
   // 각 파트의 시작 번호 계산
   const getPartStartNumber = (partNumber: number) => {
-    const partQuestionsCount = [45, 45, 18, 12]; // Part 1~4의 문항 수
     let startNumber = 0;
     for (let i = 0; i < partNumber - 1; i++) {
-      startNumber += partQuestionsCount[i];
+      startNumber += detailedSurveyData.parts[i]?.questions.length || 0;
     }
     return startNumber;
   };
