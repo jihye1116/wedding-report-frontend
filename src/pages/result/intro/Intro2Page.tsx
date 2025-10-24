@@ -23,9 +23,7 @@ export default function Intro2Page({ onNext }: Intro2PageProps) {
         <p className="text-[#59847B]">여성이름</p>
         <p className="mt-3">만든 날짜</p>
       </article>
-      <div className="flex w-full py-10">
-        <NavigateButton direction="right" onClick={onNext} color={"green"} />
-      </div>
+      <NavigateButton direction="right" onClick={onNext} color={"green"} />
     </main>
   );
 }
