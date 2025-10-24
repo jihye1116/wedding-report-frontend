@@ -171,3 +171,7 @@ body {
 .font-pretendard {
   font-family: "Pretendard", sans;
 }
+
+.result-gradient {
+  background: linear-gradient(to left, #edffdb 50%, #b3e5da 26%, #edffdb 50%);
+}
