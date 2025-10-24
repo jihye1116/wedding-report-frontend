@@ -2,7 +2,10 @@
 
 import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
+import { useAtom } from "jotai";
 
+import { detailedSurveyData } from "@/data/detailedSurveyData";
+import { answersAtom } from "@/store/surveyStore";
 import FinishPage from "@/pages/survey/FinishPage";
 import IntroductionPage from "@/pages/survey/IntroductionPage";
 import Part1Page from "@/pages/survey/part1/page";
@@ -22,6 +25,7 @@ type PageStep =
 export default function Home() {
   const searchParams = useSearchParams();
   const [currentStep, setCurrentStep] = useState<PageStep>("intro");
+  const [, setAnswers] = useAtom(answersAtom);
   const [resultId, setResultId] = useState<string | null>(null);
 
   // 각 파트의 현재 페이지 상태를 관리
@@ -95,6 +99,24 @@ export default function Home() {
 
   return (
     <div>
+      {process.env.NODE_ENV === "development" && (
+        <button
+          onClick={() => {
+            // 모든 rating 문항은 3점, text 문항은 "테스트 답변입니다"로 설정
+            const testAnswers = detailedSurveyData.parts.flatMap((part) =>
+              part.questions.map((question) => ({
+                questionId: question.id,
+                answer: question.type === "rating" ? 3 : "테스트 답변입니다.",
+              })),
+            );
+            setAnswers(testAnswers);
+            setCurrentStep("finish");
+          }}
+          className="fixed right-4 bottom-4 z-50 rounded-lg bg-blue-500 px-4 py-2 text-white"
+        >
+          테스트 데이터 설정
+        </button>
+      )}
       {currentStep === "intro" && <IntroductionPage onNext={handleNext} />}
 
       {currentStep === "question1" && (
