@@ -1,5 +1,5 @@
-import { ReportHeader } from "@/components/ReportHeader";
 import { Navigator } from "@/components/Navigator";
+import { ReportHeader } from "@/components/ReportHeader";
 
 interface Intro3PageProps {
   onNext: () => void;
@@ -37,11 +37,7 @@ export default function Intro3Page({ onNext, onBack }: Intro3PageProps) {
         </div>
       </article>
       <div className="flex w-full py-10">
-        <Navigator
-          onNext={onNext}
-          onBack={onBack}
-          canProceed={true}
-        />
+        <Navigator onNext={onNext} onBack={onBack} canProceed={true} />
       </div>
     </main>
   );

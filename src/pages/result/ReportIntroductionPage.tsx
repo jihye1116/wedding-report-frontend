@@ -1,10 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import ResultViewerPage from "./ResultViewerPage";
+
 import Intro1Page from "./intro/Intro1Page";
 import Intro2Page from "./intro/Intro2Page";
 import Intro3Page from "./intro/Intro3Page";
+import ResultViewerPage from "./ResultViewerPage";
 
 interface ReportIntroductionPageProps {
   resultId: string;
@@ -18,7 +19,12 @@ export default function ReportIntroductionPage({
   const [currentStep, setCurrentStep] = useState<IntroStep>("intro1");
 
   const handleNext = () => {
-    const steps: IntroStep[] = ["intro1", "intro2", "intro3", "viewing_results"];
+    const steps: IntroStep[] = [
+      "intro1",
+      "intro2",
+      "intro3",
+      "viewing_results",
+    ];
     const currentIndex = steps.indexOf(currentStep);
     if (currentIndex < steps.length - 1) {
       setCurrentStep(steps[currentIndex + 1]);
@@ -26,7 +32,12 @@ export default function ReportIntroductionPage({
   };
 
   const handleBack = () => {
-    const steps: IntroStep[] = ["intro1", "intro2", "intro3", "viewing_results"];
+    const steps: IntroStep[] = [
+      "intro1",
+      "intro2",
+      "intro3",
+      "viewing_results",
+    ];
     const currentIndex = steps.indexOf(currentStep);
     if (currentIndex > 0) {
       setCurrentStep(steps[currentIndex - 1]);

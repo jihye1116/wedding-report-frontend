@@ -1,8 +1,8 @@
 import {
+  SurveyAnswer,
   SurveyData,
   SurveyPart,
   SurveyQuestion,
-  SurveyAnswer,
 } from "../types/survey";
 
 /**
