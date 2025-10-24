@@ -12,7 +12,7 @@ import Part1Page from "@/pages/survey/part1/page";
 import Part2Page from "@/pages/survey/part2/page";
 import Part3Page from "@/pages/survey/part3/page";
 import Part4Page from "@/pages/survey/part4/page";
-import ResultPage from "@/pages/result/ResultPage";
+import ReportIntroductionPage from "@/pages/result/ReportIntroductionPage";
 import { LoadingSpinner } from "@/components/LoadingSpinner";
 
 type PageStep =
@@ -95,7 +95,7 @@ function SurveyPage() {
 
   // 결과 ID가 있으면 결과 페이지 표시
   if (resultId) {
-    return <ResultPage resultId={resultId} />;
+    return <ReportIntroductionPage resultId={resultId} />;
   }
 
   return (
@@ -171,7 +171,13 @@ function SurveyPage() {
 
 export default function Home() {
   return (
-    <Suspense fallback={<div className="flex h-dvh items-center justify-center"><LoadingSpinner /></div>}>
+    <Suspense
+      fallback={
+        <div className="flex h-dvh items-center justify-center">
+          <LoadingSpinner />
+        </div>
+      }
+    >
       <SurveyPage />
     </Suspense>
   );
