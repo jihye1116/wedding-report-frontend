@@ -1,7 +1,10 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 
+import CelebrationImage from "@/assets/images/celebration.png";
+import { NavigateButton } from "@/components/NavigateButton";
 import { Navigator } from "@/components/Navigator";
 import Part1ResultPage, { part1TotalPages } from "@/pages/result/part1/page";
 import Part2ResultPage from "@/pages/result/part2/page";
@@ -76,10 +79,8 @@ export default function ResultViewerPage({
 
   if (currentStep === "part1") {
     return (
-      <div className="flex h-dvh flex-col">
-        <main className="flex-1">
-          <Part1ResultPage currentPage={partPages.part1} />
-        </main>
+      <div className="flex h-dvh flex-col justify-between">
+        <Part1ResultPage currentPage={partPages.part1} />
         <Navigator
           onNext={handleNext}
           onBack={handleBack}
@@ -93,62 +94,82 @@ export default function ResultViewerPage({
 
   if (currentStep === "part2") {
     return (
-      <div className="flex h-dvh flex-col">
-        <main className="flex-1">
-          <Part2ResultPage />
-        </main>
-        <Navigator onNext={handleNext} onBack={handleBack} canProceed={true} />
+      <div className="flex h-dvh flex-col justify-between">
+        <Part2ResultPage />
+        <Navigator
+          onNext={handleNext}
+          onBack={handleBack}
+          canProceed={true}
+          currentPage={partPages.part1}
+          totalPages={part1TotalPages}
+        />
       </div>
     );
   }
 
   if (currentStep === "part3") {
     return (
-      <div className="flex h-dvh flex-col">
-        <main className="flex-1">
-          <Part3ResultPage />
-        </main>
-        <Navigator onNext={handleNext} onBack={handleBack} canProceed={true} />
+      <div className="flex h-dvh flex-col justify-between">
+        <Part3ResultPage />
+        <Navigator
+          onNext={handleNext}
+          onBack={handleBack}
+          canProceed={true}
+          currentPage={partPages.part1}
+          totalPages={part1TotalPages}
+        />
       </div>
     );
   }
 
   if (currentStep === "part4") {
     return (
-      <div className="flex h-dvh flex-col">
-        <main className="flex-1">
-          <Part4ResultPage />
-        </main>
-        <Navigator onNext={handleNext} onBack={handleBack} canProceed={true} />
+      <div className="flex h-dvh flex-col justify-between">
+        <Part4ResultPage />
+        <Navigator
+          onNext={handleNext}
+          onBack={handleBack}
+          canProceed={true}
+          currentPage={partPages.part1}
+          totalPages={part1TotalPages}
+        />
       </div>
     );
   }
 
   if (currentStep === "part5") {
     return (
-      <div className="flex h-dvh flex-col">
-        <main className="flex-1">
-          <Part5ResultPage />
-        </main>
-        <Navigator onNext={handleNext} onBack={handleBack} canProceed={true} />
+      <div className="flex h-dvh flex-col justify-between">
+        <Part5ResultPage />
+        <Navigator
+          onNext={handleNext}
+          onBack={handleBack}
+          canProceed={true}
+          currentPage={partPages.part1}
+          totalPages={part1TotalPages}
+        />
       </div>
     );
   }
 
   if (currentStep === "finish") {
     return (
-      <div className="flex h-dvh items-center justify-center">
+      <div className="flex h-dvh flex-col items-center justify-center">
+        <div className="flex-2" />
         <main className="flex flex-col gap-10 px-10 py-5 text-center leading-snug text-[#111111]">
-          <h1 className="text-2xl font-bold">리포트 완료 🌸</h1>
-          <section className="flex flex-col gap-4">
+          <section className="flex flex-col gap-4 leading-snug">
             <p>
               &quot;행복한 결혼이란 두 영혼이 서로를 이해하고, 함께 성장하는
               여정이다.&quot;
             </p>
             <p className="text-lg">- 톨스토이</p>
           </section>
-          <p>리포트를 모두 확인하셨습니다. 감사합니다!</p>
+          <Image src={CelebrationImage} alt="Celebration" className="mx-auto" />
         </main>
+        <div className="flex-1" />
+        <footer className="flex w-full items-center justify-between p-10">
+          <NavigateButton direction="left" onClick={handleBack} />
+        </footer>
       </div>
     );
   }
