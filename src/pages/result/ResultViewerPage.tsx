@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 import { Navigator } from "@/components/Navigator";
-import Part1ResultPage from "@/pages/result/part1/page";
+import Part1ResultPage, { part1TotalPages } from "@/pages/result/part1/page";
 import Part2ResultPage from "@/pages/result/part2/page";
 import Part3ResultPage from "@/pages/result/part3/page";
 import Part4ResultPage from "@/pages/result/part4/page";
@@ -25,6 +25,9 @@ export default function ResultViewerPage({
   onBackToIntro,
 }: ResultViewerPageProps) {
   const [currentStep, setCurrentStep] = useState<ResultPartStep>("part1");
+  const [partPages, setPartPages] = useState({
+    part1: 0,
+  });
 
   const steps: ResultPartStep[] = [
     "part1",
@@ -35,8 +38,20 @@ export default function ResultViewerPage({
     "finish",
   ];
 
+  const handlePartPageChange = (part: keyof typeof partPages, page: number) => {
+    setPartPages((prev) => ({ ...prev, [part]: page }));
+  };
+
   const handleNext = () => {
     const currentIndex = steps.indexOf(currentStep);
+
+    if (currentStep === "part1") {
+      if (partPages.part1 < part1TotalPages - 1) {
+        handlePartPageChange("part1", partPages.part1 + 1);
+        return;
+      }
+    }
+
     if (currentIndex < steps.length - 1) {
       setCurrentStep(steps[currentIndex + 1]);
     }
@@ -44,6 +59,14 @@ export default function ResultViewerPage({
 
   const handleBack = () => {
     const currentIndex = steps.indexOf(currentStep);
+
+    if (currentStep === "part1") {
+      if (partPages.part1 > 0) {
+        handlePartPageChange("part1", partPages.part1 - 1);
+        return;
+      }
+    }
+
     if (currentIndex > 0) {
       setCurrentStep(steps[currentIndex - 1]);
     } else {
@@ -55,9 +78,15 @@ export default function ResultViewerPage({
     return (
       <div className="flex h-dvh flex-col">
         <main className="flex-1">
-          <Part1ResultPage />
+          <Part1ResultPage currentPage={partPages.part1} />
         </main>
-        <Navigator onNext={handleNext} onBack={handleBack} canProceed={true} />
+        <Navigator
+          onNext={handleNext}
+          onBack={handleBack}
+          canProceed={true}
+          currentPage={partPages.part1}
+          totalPages={part1TotalPages}
+        />
       </div>
     );
   }
