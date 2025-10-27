@@ -14,7 +14,8 @@ import Male from "@/assets/images/male.svg";
 
 const part2Data = [
   {
-    badgeText: "공감 시너지",
+    badgeText: "공감 기반 시너지",
+    badgeSubtitle: "Positive Resonance",
     badgeColor: "#9AD8CA",
     subtitle: ": 비슷한 특성이 긍정적으로 작용하는 경우",
     description:
@@ -58,6 +59,7 @@ const part2Data = [
   },
   {
     badgeText: "중첩 리스크",
+    badgeSubtitle: "Overlapping Risk",
     badgeColor: "#FFB3B3",
     subtitle: ": 유사한 성향이 지나치게 겹쳐 역기능을 일으키는 경우",
     description:
@@ -97,6 +99,7 @@ const part2Data = [
   },
   {
     badgeText: "보완적 상호작용",
+    badgeSubtitle: "Complementary Dynamic",
     badgeColor: "#AEC6F5",
     subtitle: ": 서로 다른 특성이 조화를 이루며 강점을 만드는 경우",
     description:
@@ -140,6 +143,7 @@ const part2Data = [
   },
   {
     badgeText: "인지적 충돌",
+    badgeSubtitle: "Cognitive Friction",
     badgeColor: "#FFDDA6",
     subtitle: ": 차이에서 비롯된 이해 부족과 갈등",
     description:
@@ -185,6 +189,7 @@ const part2Data = [
 
 interface PageContent {
   badgeText: string;
+  badgeSubtitle: string;
   badgeColor: string;
   subtitle: string;
   description: string;
@@ -278,7 +283,12 @@ const ResultPage = ({ data, index }: ResultPageProps) => (
     )}
 
     <div className="flex flex-col gap-6 px-10 py-5 font-medium text-[#111111]">
-      <Badge title={data.badgeText} color={data.badgeColor} no={`0${index}`} />
+      <Badge
+        title={data.badgeText}
+        subtitle={data.badgeSubtitle}
+        color={data.badgeColor}
+        no={`0${index}`}
+      />
       <h3 className="text-gray-500">{data.subtitle}</h3>
 
       <p className="text-gray-500">{data.description}</p>
