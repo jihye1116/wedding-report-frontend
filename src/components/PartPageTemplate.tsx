@@ -1,7 +1,15 @@
 "use client";
 
 import { useSetAtom } from "jotai";
-import { ReactNode, useEffect, useMemo, useState } from "react";
+import {
+  ReactNode,
+  useEffect,
+  useMemo,
+  useState,
+  useRef,
+  cloneElement,
+  ReactElement,
+} from "react";
 
 import { Navigator } from "@/components/Navigator";
 import { ProgressBar } from "@/components/ProgressBar";
@@ -12,8 +20,8 @@ import { SurveyAnswer, SurveyPart, SurveyQuestion } from "@/types/survey";
 
 interface PartPageTemplateProps {
   part: SurveyPart;
-  answers?: SurveyAnswer[]; // 페이지에서 사용되지만 템플릿에서는 직접 사용 안함
-  addAnswer?: (questionId: number, answer: string | number) => void; // 페이지에서 사용되지만 템플릿에서는 직접 사용 안함
+  answers?: SurveyAnswer[];
+  addAnswer?: (questionId: number, answer: string | number) => void;
   introComponent: ReactNode;
   questionComponent: (
     question: SurveyQuestion,
@@ -29,13 +37,12 @@ interface PartPageTemplateProps {
   customValidation?: (
     questions: SurveyQuestion[],
     answers: SurveyAnswer[],
-  ) => boolean; // 커스텀 검증 함수
+  ) => boolean;
 }
 
 export const PartPageTemplate = ({
   part,
   answers: _answers,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   addAnswer: _addAnswer,
   introComponent,
   questionComponent,
@@ -48,6 +55,8 @@ export const PartPageTemplate = ({
 }: PartPageTemplateProps) => {
   const setCurrentPart = useSetAtom(currentPartAtom);
   const setCurrentPage = useSetAtom(currentPageAtom);
+
+  const questionRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   const {
     currentPage: internalCurrentPage,
@@ -63,31 +72,25 @@ export const PartPageTemplate = ({
     onPageChange,
   });
 
-  // 외부에서 전달받은 currentPage가 있으면 사용, 없으면 내부 상태 사용
   const currentPage =
     externalCurrentPage !== undefined
       ? externalCurrentPage
       : internalCurrentPage;
 
-  // 페이지나 파트가 변경될 때마다 전역 상태 업데이트
   useEffect(() => {
     setCurrentPart(part.partNumber);
     setCurrentPage(currentPage);
   }, [part.partNumber, currentPage, setCurrentPart, setCurrentPage]);
 
-  // isIntroPage 계산
   const isIntroPage = currentPage === 0;
 
-  // 문항 섞기를 위한 초기 시드 생성 (컴포넌트 마운트 시 한 번만)
   const [shuffleSeed] = useState(() => Math.random());
 
-  // 시드 기반 랜덤 함수 (순수 함수)
   const seededRandom = (seed: number, index: number) => {
     const x = Math.sin(seed * 9999 + index) * 10000;
     return x - Math.floor(x);
   };
 
-  // 문항을 섞는 함수 (시드 기반)
   const shuffleQuestions = (questions: SurveyQuestion[], seed: number) => {
     const shuffled = [...questions];
     for (let i = shuffled.length - 1; i > 0; i--) {
@@ -97,13 +100,10 @@ export const PartPageTemplate = ({
     return shuffled;
   };
 
-  // 전체 문항을 섞어서 페이지별로 재구성 (part와 shuffleSeed가 변경될 때만 재계산)
   const reorganizedQuestions = useMemo(() => {
-    // 이미지가 있는 문항과 없는 문항을 분리
     const questionsWithImages = part.questions.filter((q) => q.image);
     const questionsWithoutImages = part.questions.filter((q) => !q.image);
 
-    // 각각 랜덤으로 섞음 (시드 기반)
     const shuffledWithImages = shuffleQuestions(
       questionsWithImages,
       shuffleSeed,
@@ -113,29 +113,23 @@ export const PartPageTemplate = ({
       shuffleSeed * 2,
     );
 
-    // 페이지별로 재구성: 각 페이지마다 이미지 문항 1개 + 일반 문항 (questionsPerPage - 1)개
     const result: SurveyQuestion[] = [];
     const totalQuestionPages = Math.ceil(
       part.questions.length / (questionsPerPage || 5),
     );
-    let normalQuestionIdx = 0; // 일반 문항 인덱스 추적
+    let normalQuestionIdx = 0;
 
     for (let pageIdx = 0; pageIdx < totalQuestionPages; pageIdx++) {
-      const imageQuestion = shuffledWithImages[pageIdx]; // 해당 페이지의 이미지 문항 (없을 수도 있음)
-
-      // 현재 페이지에 넣을 일반 문항 개수 계산
+      const imageQuestion = shuffledWithImages[pageIdx];
       const normalQuestionsCount = imageQuestion
         ? (questionsPerPage || 5) - 1
         : questionsPerPage || 5;
-
-      // 일반 문항 가져오기
       const normalQuestions = shuffledWithoutImages.slice(
         normalQuestionIdx,
         normalQuestionIdx + normalQuestionsCount,
       );
       normalQuestionIdx += normalQuestionsCount;
 
-      // 이미지 문항이 있으면 맨 앞에, 그 다음 일반 문항들
       if (imageQuestion) {
         result.push(imageQuestion, ...normalQuestions);
       } else {
@@ -144,26 +138,23 @@ export const PartPageTemplate = ({
     }
 
     return result;
-  }, [part.questions, questionsPerPage, shuffleQuestions, shuffleSeed]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [part.questions, questionsPerPage, shuffleSeed]);
 
-  // currentQuestions 계산
   const currentQuestions = useMemo(() => {
     if (isIntroPage) return [];
-
-    const questionPageIndex = currentPage - 1; // 소개 페이지(0) 다음부터 문항 시작
+    const questionPageIndex = currentPage - 1;
     const startIndex = questionPageIndex * (questionsPerPage || 5);
     const endIndex = startIndex + (questionsPerPage || 5);
     return reorganizedQuestions.slice(startIndex, endIndex);
   }, [reorganizedQuestions, currentPage, isIntroPage, questionsPerPage]);
 
-  // 현재 페이지의 모든 문항이 답변되었는지 확인
   const allQuestionsAnswered = customValidation
     ? customValidation(currentQuestions, _answers || [])
     : currentQuestions.every((question) =>
         _answers?.some((a) => a.questionId === question.id),
       );
 
-  // 각 파트의 시작 번호 계산
   const getPartStartNumber = (partNumber: number) => {
     let startNumber = 0;
     for (let i = 0; i < partNumber - 1; i++) {
@@ -172,9 +163,7 @@ export const PartPageTemplate = ({
     return startNumber;
   };
 
-  // 전체 문항 번호 계산 (문항이 나오는 순서 기준)
   const getDisplayQuestionNumber = (question: SurveyQuestion) => {
-    // reorganizedQuestions에서의 인덱스를 찾아서 파트 시작 번호에 더함
     const indexInReorganized = reorganizedQuestions.findIndex(
       (q) => q.id === question.id,
     );
@@ -191,17 +180,54 @@ export const PartPageTemplate = ({
           <div className="wrapper">
             <ProgressBar />
             <div className="flex flex-col gap-8.5 py-5">
-              {currentQuestions.map((question, idx) => (
-                <div key={question.id}>
-                  {/* 실제 ID: {question.id} */}
-                  {questionComponent(
-                    question,
-                    idx,
-                    getDisplayQuestionNumber(question),
-                    currentQuestions.length,
-                  )}
-                </div>
-              ))}
+              {currentQuestions.map((question, idx) => {
+                const questionElement = questionComponent(
+                  question,
+                  idx,
+                  getDisplayQuestionNumber(question),
+                  currentQuestions.length,
+                );
+
+                const enhancedQuestionElement = cloneElement(
+                  questionElement as ReactElement<{
+                    addAnswer?: (
+                      questionId: number,
+                      answer: string | number,
+                    ) => void;
+                  }>,
+                  {
+                    addAnswer: (
+                      questionId: number,
+                      answer: string | number,
+                    ) => {
+                      _addAnswer?.(questionId, answer);
+
+                      if (
+                        question.type === "rating" &&
+                        idx < currentQuestions.length - 1
+                      ) {
+                        setTimeout(() => {
+                          questionRefs.current[idx + 1]?.scrollIntoView({
+                            behavior: "smooth",
+                            block: "center",
+                          });
+                        }, 150);
+                      }
+                    },
+                  },
+                );
+
+                return (
+                  <div
+                    key={question.id}
+                    ref={(el) => {
+                      questionRefs.current[idx] = el;
+                    }}
+                  >
+                    {enhancedQuestionElement}
+                  </div>
+                );
+              })}
             </div>
           </div>
         )}
