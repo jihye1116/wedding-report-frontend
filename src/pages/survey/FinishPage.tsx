@@ -112,10 +112,19 @@ export default function FinishPage() {
   if (isSubmitted && surveyResult) {
     return (
       <div className="flex h-dvh items-center justify-center">
-        <main className="wrapper flex flex-col gap-10 py-5 text-center leading-snug text-[#111111]">
+        <main className="wrapper flex w-full flex-col gap-10 py-5 text-center leading-snug text-[#111111]">
           <h1 className="text-2xl font-bold">제출되었습니다 🌸</h1>
 
-          <Image src={CelebrationImage} alt="Celebration" className="mx-auto" />
+          <div className="result-gradient flex h-70 w-full items-center justify-center">
+            <Image
+              src={CelebrationImage}
+              alt="Celebration"
+              className=""
+              width={185}
+              height={250}
+            />
+          </div>
+
           <div className="flex flex-col gap-2">
             <p className="mt-4">
               리포트 작업이 완료되면 문자 발송 예정이며, 영업일 기준 최대 2일
