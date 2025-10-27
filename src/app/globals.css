@@ -184,3 +184,7 @@ body {
 span {
   word-break: keep-all;
 }
+
+.wrapper {
+  @apply px-10 lg:px-[20%];
+}

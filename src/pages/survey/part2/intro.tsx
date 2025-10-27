@@ -12,10 +12,10 @@ export default function Part2Intro() {
         width={100}
         height={100}
       />
-      <h1 className="px-10 py-5 text-xl font-bold">
+      <h1 className="wrapper py-5 text-xl font-bold">
         Part 2. 내가 보는 파트너(Partner)
       </h1>
-      <section className="flex flex-col gap-5 px-10 py-5 leading-snug text-[#111111]">
+      <section className="wrapper flex flex-col gap-5 py-5 leading-snug text-[#111111]">
         <p>이번에는 당신이 바라보는 상대방에 대해 답하는 순서입니다.</p>
         <p>“그 사람은 이런 상황에서 이렇게 행동할 것 같다.”</p>
         <p>“평소에는 이런 스타일이다.”</p>

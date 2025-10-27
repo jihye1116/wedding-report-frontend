@@ -10,7 +10,7 @@ interface Intro2PageProps {
 export default function Intro2Page({ onNext }: Intro2PageProps) {
   return (
     <div className="flex h-dvh flex-col justify-between">
-      <div className="px-10">
+      <div className="wrapper">
         <p className="font-gangwon flex justify-end py-5 font-bold text-[#7AC6B6]">
           꽃길만 걷자
         </p>

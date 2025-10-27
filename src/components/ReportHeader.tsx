@@ -4,7 +4,7 @@ import Logo from "@/assets/icons/logo.svg";
 
 export function ReportHeader() {
   return (
-    <header className="px-10">
+    <header className="wrapper">
       <div className="flex gap-2 pt-5">
         <Image src={Logo} alt="Logo" width={20} height={20} />
         <p className="font-gangwon font-bold text-[#7AC6B6]">꽃길 리포트</p>

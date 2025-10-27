@@ -41,7 +41,7 @@ export const Navigator = ({
     : pagesBeforeCurrentPart + (currentPage || 0) + 1;
 
   return (
-    <footer className="flex w-full items-center justify-between p-10">
+    <footer className="wrapper flex w-full items-center justify-between py-10">
       <NavigateButton direction="left" onClick={onBack || (() => {})} />
       {currentPage !== undefined && totalPages !== undefined && (
         <span className="text-black">

@@ -204,7 +204,7 @@ interface ResultPageProps {
 }
 
 const IntroPage = () => (
-  <div className="flex flex-col gap-6 px-10 py-5 font-medium text-[#111111]">
+  <div className="wrapper flex flex-col gap-6 py-5 font-medium text-[#111111]">
     <div className="flex items-center gap-2">
       <p className="text-lg leading-snug font-bold whitespace-nowrap">
         2. 상호작용 4영역 시뮬레이션
@@ -259,7 +259,7 @@ const ResultPage = ({ data, index }: ResultPageProps) => (
   <div>
     {/* 상단 추가 UI - 첫 번째 데이터 페이지에만 */}
     {index === 1 && (
-      <div className="px-10 pt-5">
+      <div className="wrapper pt-5">
         <div className="flex items-center gap-2">
           <p className="text-lg leading-snug font-bold whitespace-nowrap">
             2. 상호작용 4영역 시뮬레이션
@@ -282,7 +282,7 @@ const ResultPage = ({ data, index }: ResultPageProps) => (
       </div>
     )}
 
-    <div className="flex flex-col gap-6 px-10 py-5 font-medium text-[#111111]">
+    <div className="wrapper flex flex-col gap-6 py-5 font-medium text-[#111111]">
       <Badge
         title={data.badgeText}
         subtitle={data.badgeSubtitle}

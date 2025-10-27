@@ -13,10 +13,10 @@ export default function Part3ResultPage({ step }: Part3ResultPageProps) {
       <ReportHeader />
       {step === 1 && (
         <Fragment>
-          <h1 className="px-10 py-5 text-xl font-bold text-[#111111]">
+          <h1 className="wrapper py-5 text-xl font-bold text-[#111111]">
             3. 36개월 신혼생활 시뮬레이션
           </h1>
-          <article className="flex flex-col gap-5 px-10 py-5 leading-snug text-[#7E7E7E]">
+          <article className="wrapper flex flex-col gap-5 py-5 leading-snug text-[#7E7E7E]">
             <p>
               <b>
                 결혼 초반 3년은 관계의 정착 여부와 질적 방향성을 결정짓는 핵심
@@ -57,12 +57,12 @@ export default function Part3ResultPage({ step }: Part3ResultPageProps) {
       )}
       {step === 2 && (
         <Fragment>
-          <h1 className="px-10 py-5 text-xl font-bold text-[#111111]">
+          <h1 className="wrapper py-5 text-xl font-bold text-[#111111]">
             [1년차 시뮬레이션]
           </h1>
-          <article className="flex flex-col gap-7.5 px-10 py-5 leading-snug text-[#7E7E7E]">
+          <article className="wrapper flex flex-col gap-7.5 py-5 leading-snug text-[#7E7E7E]">
             <div className="flex flex-col items-center gap-2.5">
-              <div className="rounded-full bg-[#B3E5DA] px-10 py-2.5 font-bold text-white">
+              <div className="wrapper rounded-full bg-[#B3E5DA] py-2.5 font-bold text-white">
                 1년 차
               </div>
               <p className="border-t border-[#B3E5DA] py-5">
@@ -103,9 +103,9 @@ export default function Part3ResultPage({ step }: Part3ResultPageProps) {
       )}
       {step === 3 && (
         <Fragment>
-          <article className="flex flex-col gap-7.5 px-10 py-5 leading-snug">
+          <article className="wrapper flex flex-col gap-7.5 py-5 leading-snug">
             <section className="flex flex-col gap-5">
-              <h2 className="px-10 py-5 text-center text-lg font-bold text-[#111111]">
+              <h2 className="wrapper py-5 text-center text-lg font-bold text-[#111111]">
                 Month 1 - 3
               </h2>
               <div className="result-gradient flex flex-col items-center gap-2.5 rounded-[20px] px-2.5 py-5">
@@ -143,9 +143,9 @@ export default function Part3ResultPage({ step }: Part3ResultPageProps) {
       )}
       {step === 4 && (
         <Fragment>
-          <article className="flex flex-col gap-7.5 px-10 py-5 leading-snug">
+          <article className="wrapper flex flex-col gap-7.5 py-5 leading-snug">
             <section className="flex flex-col gap-5">
-              <h2 className="px-10 py-5 text-center text-lg font-bold text-[#111111]">
+              <h2 className="wrapper py-5 text-center text-lg font-bold text-[#111111]">
                 Month 4 - 6
               </h2>
               <div className="result-gradient flex flex-col items-center gap-2.5 rounded-[20px] px-2.5 py-5">
@@ -184,9 +184,9 @@ export default function Part3ResultPage({ step }: Part3ResultPageProps) {
       )}
       {step === 5 && (
         <Fragment>
-          <article className="flex flex-col gap-7.5 px-10 py-5 leading-snug">
+          <article className="wrapper flex flex-col gap-7.5 py-5 leading-snug">
             <section className="flex flex-col gap-5">
-              <h2 className="px-10 py-5 text-center text-lg font-bold text-[#111111]">
+              <h2 className="wrapper py-5 text-center text-lg font-bold text-[#111111]">
                 Month 7 - 9
               </h2>
               <div className="result-gradient flex flex-col items-center gap-2.5 rounded-[20px] px-2.5 py-5">
@@ -224,9 +224,9 @@ export default function Part3ResultPage({ step }: Part3ResultPageProps) {
       )}
       {step === 6 && (
         <Fragment>
-          <article className="flex flex-col gap-7.5 px-10 py-5 leading-snug">
+          <article className="wrapper flex flex-col gap-7.5 py-5 leading-snug">
             <section className="flex flex-col gap-5">
-              <h2 className="px-10 py-5 text-center text-lg font-bold text-[#111111]">
+              <h2 className="wrapper py-5 text-center text-lg font-bold text-[#111111]">
                 Month 10 - 12
               </h2>
               <div className="result-gradient flex flex-col items-center gap-2.5 rounded-[20px] px-2.5 py-5">
@@ -264,7 +264,7 @@ export default function Part3ResultPage({ step }: Part3ResultPageProps) {
       )}
       {step === 7 && (
         <Fragment>
-          <article className="flex flex-col gap-10 px-10 py-5 leading-snug">
+          <article className="wrapper flex flex-col gap-10 py-5 leading-snug">
             <section className="flex flex-col gap-5">
               <h2 className="text-center text-lg font-bold text-[#111111]">
                 긴장도
@@ -325,11 +325,11 @@ export default function Part3ResultPage({ step }: Part3ResultPageProps) {
       )}
       {step === 8 && (
         <Fragment>
-          <h1 className="px-10 py-5 text-xl font-bold text-[#111111]">
+          <h1 className="wrapper py-5 text-xl font-bold text-[#111111]">
             3. 36개월 신혼생활 시뮬레이션
           </h1>
           <div className="flex-5" />
-          <section className="flex flex-col gap-7.5 px-10 py-5">
+          <section className="wrapper flex flex-col gap-7.5 py-5">
             <span className="text-center text-lg leading-snug font-medium">
               “ 첫 해를 지나온 두 사람에게는 무엇이 가장 소중할까요? “
             </span>
@@ -342,12 +342,12 @@ export default function Part3ResultPage({ step }: Part3ResultPageProps) {
       )}
       {step === 9 && (
         <Fragment>
-          <h1 className="px-10 py-5 text-xl font-bold text-[#111111]">
+          <h1 className="wrapper py-5 text-xl font-bold text-[#111111]">
             [2년차 시뮬레이션]
           </h1>
-          <article className="flex flex-col gap-7.5 px-10 py-5 leading-snug text-[#7E7E7E]">
+          <article className="wrapper flex flex-col gap-7.5 py-5 leading-snug text-[#7E7E7E]">
             <div className="flex flex-col items-center gap-2.5">
-              <div className="rounded-full bg-[#B3E5DA] px-10 py-2.5 font-bold text-white">
+              <div className="wrapper rounded-full bg-[#B3E5DA] py-2.5 font-bold text-white">
                 2년 차
               </div>
               <p className="border-t border-[#B3E5DA] py-5">
@@ -397,9 +397,9 @@ export default function Part3ResultPage({ step }: Part3ResultPageProps) {
       )}
       {step === 10 && (
         <Fragment>
-          <article className="flex flex-col gap-7.5 px-10 py-5 leading-snug">
+          <article className="wrapper flex flex-col gap-7.5 py-5 leading-snug">
             <section className="flex flex-col gap-5">
-              <h2 className="px-10 py-5 text-center text-lg font-bold text-[#111111]">
+              <h2 className="wrapper py-5 text-center text-lg font-bold text-[#111111]">
                 Month 1 - 3
               </h2>
               <div className="result-gradient flex flex-col items-center gap-2.5 rounded-[20px] px-2.5 py-5">
@@ -437,9 +437,9 @@ export default function Part3ResultPage({ step }: Part3ResultPageProps) {
       )}
       {step === 11 && (
         <Fragment>
-          <article className="flex flex-col gap-7.5 px-10 py-5 leading-snug">
+          <article className="wrapper flex flex-col gap-7.5 py-5 leading-snug">
             <section className="flex flex-col gap-5">
-              <h2 className="px-10 py-5 text-center text-lg font-bold text-[#111111]">
+              <h2 className="wrapper py-5 text-center text-lg font-bold text-[#111111]">
                 Month 4 - 6
               </h2>
               <div className="result-gradient flex flex-col items-center gap-2.5 rounded-[20px] px-2.5 py-5">
@@ -478,9 +478,9 @@ export default function Part3ResultPage({ step }: Part3ResultPageProps) {
       )}
       {step === 12 && (
         <Fragment>
-          <article className="flex flex-col gap-7.5 px-10 py-5 leading-snug">
+          <article className="wrapper flex flex-col gap-7.5 py-5 leading-snug">
             <section className="flex flex-col gap-5">
-              <h2 className="px-10 py-5 text-center text-lg font-bold text-[#111111]">
+              <h2 className="wrapper py-5 text-center text-lg font-bold text-[#111111]">
                 Month 7 - 9
               </h2>
               <div className="result-gradient flex flex-col items-center gap-2.5 rounded-[20px] px-2.5 py-5">
@@ -518,9 +518,9 @@ export default function Part3ResultPage({ step }: Part3ResultPageProps) {
       )}
       {step === 13 && (
         <Fragment>
-          <article className="flex flex-col gap-7.5 px-10 py-5 leading-snug">
+          <article className="wrapper flex flex-col gap-7.5 py-5 leading-snug">
             <section className="flex flex-col gap-5">
-              <h2 className="px-10 py-5 text-center text-lg font-bold text-[#111111]">
+              <h2 className="wrapper py-5 text-center text-lg font-bold text-[#111111]">
                 Month 10 - 12
               </h2>
               <div className="result-gradient flex flex-col items-center gap-2.5 rounded-[20px] px-2.5 py-5">
@@ -558,7 +558,7 @@ export default function Part3ResultPage({ step }: Part3ResultPageProps) {
       )}
       {step === 14 && (
         <Fragment>
-          <article className="flex flex-col gap-10 px-10 py-5 leading-snug">
+          <article className="wrapper flex flex-col gap-10 py-5 leading-snug">
             <section className="flex flex-col gap-5">
               <h2 className="text-center text-lg font-bold text-[#111111]">
                 정서 연결도
@@ -626,11 +626,11 @@ export default function Part3ResultPage({ step }: Part3ResultPageProps) {
       )}
       {step === 15 && (
         <Fragment>
-          <h1 className="px-10 py-5 text-xl font-bold text-[#111111]">
+          <h1 className="wrapper py-5 text-xl font-bold text-[#111111]">
             3. 36개월 신혼생활 시뮬레이션
           </h1>
           <div className="flex-5" />
-          <section className="flex flex-col gap-7.5 px-10 py-5">
+          <section className="wrapper flex flex-col gap-7.5 py-5">
             <span className="text-center text-lg leading-snug font-medium">
               “ 미래의 기반을 다지는 결혼 3년차 “
             </span>
@@ -643,12 +643,12 @@ export default function Part3ResultPage({ step }: Part3ResultPageProps) {
       )}
       {step === 16 && (
         <Fragment>
-          <h1 className="px-10 py-5 text-xl font-bold text-[#111111]">
+          <h1 className="wrapper py-5 text-xl font-bold text-[#111111]">
             [3년차 시뮬레이션]
           </h1>
-          <article className="flex flex-col gap-7.5 px-10 py-5 leading-snug text-[#7E7E7E]">
+          <article className="wrapper flex flex-col gap-7.5 py-5 leading-snug text-[#7E7E7E]">
             <div className="flex flex-col items-center gap-2.5">
-              <div className="rounded-full bg-[#B3E5DA] px-10 py-2.5 font-bold text-white">
+              <div className="wrapper rounded-full bg-[#B3E5DA] py-2.5 font-bold text-white">
                 3년 차
               </div>
               <p className="border-t border-[#B3E5DA] pt-5">
@@ -705,9 +705,9 @@ export default function Part3ResultPage({ step }: Part3ResultPageProps) {
       )}
       {step === 17 && (
         <Fragment>
-          <article className="flex flex-col gap-7.5 px-10 py-5 leading-snug">
+          <article className="wrapper flex flex-col gap-7.5 py-5 leading-snug">
             <section className="flex flex-col gap-5">
-              <h2 className="px-10 py-5 text-center text-lg font-bold text-[#111111]">
+              <h2 className="wrapper py-5 text-center text-lg font-bold text-[#111111]">
                 Month 1 - 3
               </h2>
               <div className="result-gradient flex flex-col items-center gap-2.5 rounded-[20px] px-2.5 py-5">
@@ -745,9 +745,9 @@ export default function Part3ResultPage({ step }: Part3ResultPageProps) {
       )}
       {step === 18 && (
         <Fragment>
-          <article className="flex flex-col gap-7.5 px-10 py-5 leading-snug">
+          <article className="wrapper flex flex-col gap-7.5 py-5 leading-snug">
             <section className="flex flex-col gap-5">
-              <h2 className="px-10 py-5 text-center text-lg font-bold text-[#111111]">
+              <h2 className="wrapper py-5 text-center text-lg font-bold text-[#111111]">
                 Month 4 - 6
               </h2>
               <div className="result-gradient flex flex-col items-center gap-2.5 rounded-[20px] px-2.5 py-5">
@@ -786,9 +786,9 @@ export default function Part3ResultPage({ step }: Part3ResultPageProps) {
       )}
       {step === 19 && (
         <Fragment>
-          <article className="flex flex-col gap-7.5 px-10 py-5 leading-snug">
+          <article className="wrapper flex flex-col gap-7.5 py-5 leading-snug">
             <section className="flex flex-col gap-5">
-              <h2 className="px-10 py-5 text-center text-lg font-bold text-[#111111]">
+              <h2 className="wrapper py-5 text-center text-lg font-bold text-[#111111]">
                 Month 7 - 9
               </h2>
               <div className="result-gradient flex flex-col items-center gap-2.5 rounded-[20px] px-2.5 py-5">
@@ -826,9 +826,9 @@ export default function Part3ResultPage({ step }: Part3ResultPageProps) {
       )}
       {step === 20 && (
         <Fragment>
-          <article className="flex flex-col gap-7.5 px-10 py-5 leading-snug">
+          <article className="wrapper flex flex-col gap-7.5 py-5 leading-snug">
             <section className="flex flex-col gap-5">
-              <h2 className="px-10 py-5 text-center text-lg font-bold text-[#111111]">
+              <h2 className="wrapper py-5 text-center text-lg font-bold text-[#111111]">
                 Month 10 - 12
               </h2>
               <div className="result-gradient flex flex-col items-center gap-2.5 rounded-[20px] px-2.5 py-5">
@@ -866,7 +866,7 @@ export default function Part3ResultPage({ step }: Part3ResultPageProps) {
       )}
       {step === 21 && (
         <Fragment>
-          <article className="flex flex-col gap-10 px-10 py-5 leading-snug">
+          <article className="wrapper flex flex-col gap-10 py-5 leading-snug">
             <section className="flex flex-col gap-5">
               <h2 className="text-center text-lg font-bold text-[#111111]">
                 관계 회복 탄력성

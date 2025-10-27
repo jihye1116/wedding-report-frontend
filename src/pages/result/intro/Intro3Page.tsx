@@ -18,7 +18,7 @@ export default function Intro3Page({ onNext, onBack }: Intro3PageProps) {
   return (
     <main className="font-pretendard flex h-dvh flex-col justify-between">
       <ReportHeader />
-      <article className="flex flex-col gap-9 px-10 text-[#111111]">
+      <article className="wrapper flex flex-col gap-9 text-[#111111]">
         <div className="flex items-center gap-2">
           <p className="font-gangwon text-3xl leading-snug font-bold whitespace-nowrap">
             목차

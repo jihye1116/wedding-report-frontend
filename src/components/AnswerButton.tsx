@@ -15,7 +15,7 @@ export const AnswerButton = ({
   selected,
   onClick,
 }: AnswerButtonProps) => {
-  const blueColor = "#DBEEF2";
+  const blueColor = "#E2F1F5";
   const greenColor = "#CEEBCC";
 
   return (
@@ -45,10 +45,10 @@ export const AnswerButton = ({
       }}
     >
       <div
-        className={cn(
-          "rounded px-2 py-1",
-          color === "blue" ? `bg-[${blueColor}]` : `bg-[${greenColor}]`,
-        )}
+        className="rounded px-2 py-1"
+        style={{
+          backgroundColor: color === "blue" ? blueColor : greenColor,
+        }}
       >
         <span className="leading-snug font-bold text-[#111111]">{label}</span>
       </div>

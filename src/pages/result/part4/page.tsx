@@ -16,11 +16,11 @@ export default function Part4ResultPage({ step }: Part4ResultPageProps) {
       <ReportHeader />
       {step === 1 && (
         <Fragment>
-          <h1 className="px-10 py-5 text-xl font-bold text-[#111111]">
+          <h1 className="wrapper py-5 text-xl font-bold text-[#111111]">
             4. 주요 관계 지표 예측
           </h1>
           <div className="flex-3" />
-          <p className="px-10 py-5 text-center text-lg font-medium text-[#111111]">
+          <p className="wrapper py-5 text-center text-lg font-medium text-[#111111]">
             &quot; 서로의 리듬이 안정되면, 관계의 방향성은 자연히 드러납니다.
             &quot;
           </p>
@@ -29,7 +29,7 @@ export default function Part4ResultPage({ step }: Part4ResultPageProps) {
       )}
       {step === 2 && (
         <article className="flex-1">
-          <h1 className="px-10 py-5 text-xl font-bold text-[#111111]">
+          <h1 className="wrapper py-5 text-xl font-bold text-[#111111]">
             01 관계 방향성 요약
           </h1>
           <section className="mx-10 my-5 rounded-xl border border-[#9AD8CA] p-5">
@@ -51,10 +51,10 @@ export default function Part4ResultPage({ step }: Part4ResultPageProps) {
       )}
       {step === 3 && (
         <article className="flex-1">
-          <h1 className="px-10 py-5 text-xl font-bold text-[#111111]">
+          <h1 className="wrapper py-5 text-xl font-bold text-[#111111]">
             02 주요 지표별 예측
           </h1>
-          <div className="flex flex-col gap-10 px-10 py-5">
+          <div className="wrapper flex flex-col gap-10 py-5">
             <section className="flex flex-col gap-3 rounded-3xl border border-[#DCDCDC] p-5 text-black">
               <div className="flex items-center justify-center gap-1.5">
                 <h2 className="text-lg leading-relaxed font-bold">
@@ -112,10 +112,10 @@ export default function Part4ResultPage({ step }: Part4ResultPageProps) {
       )}
       {step === 4 && (
         <article className="flex-1">
-          <h1 className="px-10 py-5 text-xl font-bold text-[#111111]">
+          <h1 className="wrapper py-5 text-xl font-bold text-[#111111]">
             03 개인의 변화
           </h1>
-          <div className="flex flex-col gap-10 px-10 py-5">
+          <div className="wrapper flex flex-col gap-10 py-5">
             <section>
               <div className="flex items-end gap-3">
                 <Image src={Male} alt="남성" width={48} />
@@ -175,7 +175,7 @@ export default function Part4ResultPage({ step }: Part4ResultPageProps) {
       )}
       {step === 5 && (
         <article className="flex-1">
-          <h1 className="px-10 py-5 text-xl font-bold text-[#111111]">
+          <h1 className="wrapper py-5 text-xl font-bold text-[#111111]">
             04 핵심 꽃길 포인트
           </h1>
           <section className="mx-10 my-5 flex flex-col gap-7.5 rounded-xl border border-[#9AD8CA] p-5">

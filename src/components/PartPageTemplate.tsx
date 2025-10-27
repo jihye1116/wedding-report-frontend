@@ -188,7 +188,7 @@ export const PartPageTemplate = ({
         {isIntroPage ? (
           introComponent
         ) : (
-          <div className="px-10">
+          <div className="wrapper">
             <ProgressBar />
             <div className="flex flex-col gap-8.5 py-5">
               {currentQuestions.map((question, idx) => (

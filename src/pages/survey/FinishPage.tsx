@@ -95,7 +95,7 @@ export default function FinishPage() {
   if (error) {
     return (
       <div className="flex h-dvh items-center justify-center">
-        <main className="flex flex-col gap-6 px-10 py-5 text-center leading-snug text-[#111111]">
+        <main className="wrapper flex flex-col gap-6 py-5 text-center leading-snug text-[#111111]">
           <h1 className="text-2xl font-bold text-red-600">제출 실패</h1>
           <p className="text-lg">{error}</p>
           <button
@@ -112,7 +112,7 @@ export default function FinishPage() {
   if (isSubmitted && surveyResult) {
     return (
       <div className="flex h-dvh items-center justify-center">
-        <main className="flex flex-col gap-10 px-10 py-5 text-center leading-snug text-[#111111]">
+        <main className="wrapper flex flex-col gap-10 py-5 text-center leading-snug text-[#111111]">
           <h1 className="text-2xl font-bold">제출되었습니다 🌸</h1>
 
           <Image src={CelebrationImage} alt="Celebration" className="mx-auto" />

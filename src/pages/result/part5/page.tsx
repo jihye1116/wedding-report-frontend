@@ -4,10 +4,10 @@ export default function Part5ResultPage() {
   return (
     <main className="font-pretendard">
       <ReportHeader />
-      <h1 className="px-10 py-5 text-xl font-bold text-[#111111]">
+      <h1 className="wrapper py-5 text-xl font-bold text-[#111111]">
         5. 종합 결론
       </h1>
-      <article className="flex flex-col gap-7.5 px-10 py-5 leading-snug text-[#111111]">
+      <article className="wrapper flex flex-col gap-7.5 py-5 leading-snug text-[#111111]">
         <section className="flex flex-col gap-5">
           <div className="rounded-r-full bg-[#B3E5DA] py-2.5 text-center font-bold">
             1. 걸어온 길

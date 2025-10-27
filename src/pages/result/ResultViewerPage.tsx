@@ -251,7 +251,7 @@ export default function ResultViewerPage({
     return (
       <div className="flex h-dvh flex-col items-center justify-center">
         <div className="flex-2" />
-        <main className="flex flex-col gap-10 px-10 py-5 text-center leading-snug text-[#111111]">
+        <main className="wrapper flex flex-col gap-10 py-5 text-center leading-snug text-[#111111]">
           <section className="flex flex-col gap-4 leading-snug">
             <p>
               &quot;행복한 결혼이란 두 영혼이 서로를 이해하고, 함께 성장하는

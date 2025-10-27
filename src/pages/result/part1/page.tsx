@@ -7,7 +7,7 @@ import { ReportHeader } from "@/components/ReportHeader";
 import { SliderComponent } from "@/components/SliderComponent";
 
 const Page1 = () => (
-  <article className="flex flex-col gap-10 px-10 py-5 font-medium text-[#111111]">
+  <article className="wrapper flex flex-col gap-10 py-5 font-medium text-[#111111]">
     <div className="flex items-center gap-2">
       <p className="text-xl leading-snug font-bold whitespace-nowrap">
         01. 개인성향 분석
@@ -37,7 +37,7 @@ const Page1 = () => (
 );
 
 const Page2 = () => (
-  <article className="flex flex-col gap-9 px-10 py-5 text-[#111111]">
+  <article className="wrapper flex flex-col gap-9 py-5 text-[#111111]">
     <div className="flex items-center gap-2">
       <p className="text-xl leading-snug font-bold whitespace-nowrap">
         01. 개인성향 분석
@@ -129,7 +129,7 @@ const Page2 = () => (
 
 const Page3 = () => (
   <div className="min-h-screen bg-white text-gray-900">
-    <div className="flex flex-col gap-8 px-10 py-6">
+    <div className="wrapper flex flex-col gap-8 py-6">
       {/* Header with user info */}
       <div className="flex items-center justify-end gap-3">
         <span className="text-lg font-medium">갑순이 님</span>
@@ -191,7 +191,7 @@ const Page3 = () => (
 
 const Page4 = () => (
   <div className="min-h-screen bg-white text-gray-900">
-    <div className="flex flex-col gap-8 px-10 py-6">
+    <div className="wrapper flex flex-col gap-8 py-6">
       {/* Header with user info */}
       <div className="flex items-center justify-end gap-3">
         <span className="text-lg font-medium">갑돌이 님</span>
@@ -253,7 +253,7 @@ const Page4 = () => (
 
 const Page5 = () => (
   <div className="min-h-screen bg-white text-gray-900">
-    <div className="flex flex-col gap-8 px-10 py-6">
+    <div className="wrapper flex flex-col gap-8 py-6">
       {/* Header with user info */}
       <div className="flex items-center justify-end gap-3">
         <span className="text-lg font-medium">갑순이 님</span>
@@ -313,7 +313,7 @@ const Page5 = () => (
 
 const Page6 = () => (
   <div className="min-h-screen bg-white text-gray-900">
-    <div className="flex flex-col gap-8 px-10 py-6">
+    <div className="wrapper flex flex-col gap-8 py-6">
       {/* Header with user info */}
       <div className="flex items-center justify-end gap-3">
         <span className="text-lg font-medium">갑돌이 님</span>
@@ -373,7 +373,7 @@ const Page6 = () => (
 
 const Page7 = () => (
   <div className="min-h-screen bg-white text-gray-900">
-    <div className="flex flex-col gap-8 px-10 py-6">
+    <div className="wrapper flex flex-col gap-8 py-6">
       {/* Header with user info */}
       <div className="flex items-center justify-end gap-3">
         <span className="text-lg font-medium">갑순이 님</span>
@@ -435,7 +435,7 @@ const Page7 = () => (
 
 const Page8 = () => (
   <div className="min-h-screen bg-white text-gray-900">
-    <div className="flex flex-col gap-8 px-10 py-6">
+    <div className="wrapper flex flex-col gap-8 py-6">
       {/* Header with user info */}
       <div className="flex items-center justify-end gap-3">
         <span className="text-lg font-medium">갑돌이 님</span>

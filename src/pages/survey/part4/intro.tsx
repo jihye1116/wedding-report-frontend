@@ -12,10 +12,10 @@ export default function Part4Intro() {
         width={100}
         height={100}
       />
-      <h1 className="px-10 py-5 text-xl font-bold">
+      <h1 className="wrapper py-5 text-xl font-bold">
         Part 4. 나를 말하는 문장들(주관식)
       </h1>
-      <section className="flex flex-col gap-5 px-10 py-5 leading-snug text-[#111111]">
+      <section className="wrapper flex flex-col gap-5 py-5 leading-snug text-[#111111]">
         <p>
           마지막으로, 짧은 문장으로 당신의 생각과 감정을 표현하는 단계입니다.
         </p>
