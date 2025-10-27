@@ -33,11 +33,11 @@ export const usePartNavigation = ({
   const totalPages = part.totalPages;
 
   const handleNext = () => {
-    console.log("handleNext called", {
-      currentPage,
-      totalPages,
-      partNumber: part.partNumber,
-    });
+    // console.log("handleNext called", {
+    //   currentPage,
+    //   totalPages,
+    //   partNumber: part.partNumber,
+    // });
     if (currentPage < totalPages - 1) {
       const newPage = currentPage + 1;
       if (onPageChange) {
