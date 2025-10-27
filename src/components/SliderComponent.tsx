@@ -44,6 +44,7 @@ export const SliderComponent: React.FC<SliderComponentProps> = ({
   const BORDER_W = 4; // px
   const INDICATOR_OUTER = TRACK_H;
   const INDICATOR_INNER = INDICATOR_OUTER - BORDER_W * 2;
+  const INDICATOR_RADIUS = INDICATOR_OUTER / 2; // 추가: 반지름
 
   // ===== 유틸 =====
   const clamp = (n: number, min: number, max: number) =>
@@ -105,7 +106,7 @@ export const SliderComponent: React.FC<SliderComponentProps> = ({
   }
 
   // 인디케이터 위치: 좌측 모서리 기준, 트랙 너비 - 외경 범위 안
-  const indicatorLeft = `calc((100% - ${INDICATOR_OUTER}px) * ${ratio})`;
+  const indicatorCenter = `clamp(${INDICATOR_RADIUS}px, calc(${(ratio * 100).toFixed(4)}%), calc(100% - ${INDICATOR_RADIUS}px))`;
 
   // 중앙선 노출 여부(기본: center에서만 표시)
   const showMidLine = showCenterLine ?? origin === "center";
@@ -172,9 +173,12 @@ export const SliderComponent: React.FC<SliderComponentProps> = ({
           <div
             className="absolute top-0"
             style={{
-              left: indicatorLeft,
+              left: indicatorCenter, // 중심 좌표
+              transform: "translateX(-50%)", // 중심 정렬
               width: INDICATOR_OUTER,
               height: INDICATOR_OUTER,
+              // (선택) 서브픽셀 깜빡임 줄이기
+              // willChange: "left, transform",
             }}
             aria-hidden
           >
