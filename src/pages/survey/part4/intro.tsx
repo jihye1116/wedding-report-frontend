@@ -4,18 +4,18 @@ import Logo from "@/assets/icons/logo.svg";
 
 export default function Part4Intro() {
   return (
-    <div className="mx-auto max-w-2xl">
+    <div className="wrapper mx-auto">
       <Image
-        className="mx-auto py-5"
+        className="mx-auto py-5 lg:mt-15 lg:mb-10"
         src={Logo}
         alt="Logo"
         width={100}
         height={100}
       />
-      <h1 className="wrapper py-5 text-xl font-bold">
+      <h1 className="py-5 text-xl font-bold lg:mt-15">
         Part 4. 나를 말하는 문장들(주관식)
       </h1>
-      <section className="wrapper flex flex-col gap-5 py-5 leading-snug text-[#111111]">
+      <section className="flex flex-col gap-5 py-5 leading-snug text-[#111111]">
         <p>
           마지막으로, 짧은 문장으로 당신의 생각과 감정을 표현하는 단계입니다.
         </p>
