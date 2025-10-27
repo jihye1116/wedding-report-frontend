@@ -28,11 +28,11 @@ export function TextQuestion({
 
   return (
     <>
-      <h2 className="mb-6 font-medium leading-snug">
+      <h2 className="mb-6 leading-snug font-medium">
         {globalQuestionNumber}. {question.question}
       </h2>
       {question.image && (
-        <div className="relative mb-6 flex h-64 w-full justify-center">
+        <div className="relative mb-6 flex aspect-square w-full justify-center">
           <Image
             src={question.image}
             alt={`Question ${globalQuestionNumber} illustration`}
@@ -43,8 +43,8 @@ export function TextQuestion({
       )}
       <TextAreaField
         value={
-          (answers.find((a) => a.questionId === question.id)?.answer as string) ||
-          ""
+          (answers.find((a) => a.questionId === question.id)
+            ?.answer as string) || ""
         }
         onChange={(name, value) => handleTextChange(question.id, value)}
         name={`question-${question.id}`}

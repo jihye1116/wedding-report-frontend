@@ -186,5 +186,5 @@ span {
 }
 
 .wrapper {
-  @apply px-10 lg:px-[20%];
+  @apply px-10 xl:px-120;
 }

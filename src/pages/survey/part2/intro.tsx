@@ -6,13 +6,13 @@ export default function Part2Intro() {
   return (
     <div className="wrapper mx-auto">
       <Image
-        className="mx-auto py-5 lg:mt-15 lg:mb-10"
+        className="mx-auto py-5 xl:mt-15 xl:mb-10"
         src={Logo}
         alt="Logo"
         width={100}
         height={100}
       />
-      <h1 className="py-5 text-xl font-bold lg:mt-15">
+      <h1 className="py-5 text-xl font-bold xl:mt-15">
         Part 2. 내가 보는 파트너(Partner)
       </h1>
       <section className="flex flex-col gap-5 py-5 leading-snug text-[#111111]">

@@ -145,7 +145,7 @@ const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
   return (
     <div className="flex h-dvh flex-col">
       <Image
-        className="mx-auto pt-8 pb-5 lg:mt-20"
+        className="mx-auto pt-8 pb-5 xl:mt-20"
         src={Logo}
         alt="Logo"
         width={100}
@@ -154,7 +154,7 @@ const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
       {step === 0 && (
         <Fragment>
           <main className="wrapper flex flex-col gap-10 py-5">
-            <h1 className="text-center text-3xl font-medium text-[#111111] lg:my-10">
+            <h1 className="text-center text-3xl font-medium text-[#111111] xl:my-10">
               꽃길 리포트 설문
             </h1>
             <article className="flex flex-col gap-4 leading-snug whitespace-pre-wrap text-[#111111]">

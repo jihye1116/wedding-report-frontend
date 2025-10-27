@@ -17,7 +17,7 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
     ref,
   ) => {
     return (
-      <div onClick={onClick} className="w-full outline-none lg:w-100">
+      <div onClick={onClick} className="w-full outline-none xl:w-100">
         <div className="flex items-center rounded-sm bg-white outline-1 -outline-offset-1 outline-gray-300 has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-[#111111]">
           <input
             ref={ref}

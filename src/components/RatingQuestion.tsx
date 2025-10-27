@@ -28,7 +28,7 @@ export function RatingQuestion({
         {globalQuestionNumber}. {question.question}
       </h2>
       {question.image && (
-        <div className="relative mb-6 flex h-64 w-full justify-center">
+        <div className="relative mb-6 flex aspect-square w-full justify-center">
           <Image
             src={question.image}
             alt={`Question ${globalQuestionNumber} illustration`}
