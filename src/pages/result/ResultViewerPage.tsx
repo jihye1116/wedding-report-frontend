@@ -1,5 +1,6 @@
 "use client";
 
+import { useAtom } from "jotai";
 import Image from "next/image";
 import { useState } from "react";
 
@@ -11,6 +12,7 @@ import Part2ResultPage, { part2TotalPages } from "@/pages/result/part2/page";
 import Part3ResultPage from "@/pages/result/part3/page";
 import Part4ResultPage from "@/pages/result/part4/page";
 import Part5ResultPage from "@/pages/result/part5/page";
+import { part3ResultStepAtom, part4ResultStepAtom } from "@/store/surveyStore";
 
 type ResultPartStep =
   | "part1"
@@ -27,6 +29,8 @@ interface ResultViewerPageProps {
 export default function ResultViewerPage({
   onBackToIntro,
 }: ResultViewerPageProps) {
+  const [part3Step, setPart3Step] = useAtom(part3ResultStepAtom);
+  const [part4Step, setPart4Step] = useAtom(part4ResultStepAtom);
   const [currentStep, setCurrentStep] = useState<ResultPartStep>("part1");
   const [partPages, setPartPages] = useState({
     part1: 0,
@@ -42,11 +46,56 @@ export default function ResultViewerPage({
     "finish",
   ];
 
+  // 전체 페이지 수 계산
+  const totalResultPages = part1TotalPages + part2TotalPages + 21 + 5 + 1 + 1; // part1 + part2 + part3(21) + part4(5) + part5(1) + finish(1)
+
+  // 현재 전체 페이지 번호 계산
+  const getCurrentGlobalPage = () => {
+    let globalPage = 0;
+
+    if (currentStep === "part1") {
+      return partPages.part1 + 1;
+    }
+
+    globalPage += part1TotalPages;
+
+    if (currentStep === "part2") {
+      return globalPage + partPages.part2 + 1;
+    }
+
+    globalPage += part2TotalPages;
+
+    if (currentStep === "part3") {
+      return globalPage + part3Step;
+    }
+
+    globalPage += 21;
+
+    if (currentStep === "part4") {
+      return globalPage + part4Step;
+    }
+
+    globalPage += 5;
+
+    if (currentStep === "part5") {
+      return globalPage + 1;
+    }
+
+    globalPage += 1;
+
+    if (currentStep === "finish") {
+      return globalPage + 1;
+    }
+
+    return 1;
+  };
+
   const handlePartPageChange = (part: keyof typeof partPages, page: number) => {
     setPartPages((prev) => ({ ...prev, [part]: page }));
   };
 
   const handleNext = () => {
+    window.scrollTo({ top: 0 });
     const currentIndex = steps.indexOf(currentStep);
 
     if (currentStep === "part1") {
@@ -100,8 +149,9 @@ export default function ResultViewerPage({
           onNext={handleNext}
           onBack={handleBack}
           canProceed={true}
-          currentPage={partPages.part1}
-          totalPages={part1TotalPages}
+          currentPage={getCurrentGlobalPage() - 1}
+          totalPages={totalResultPages}
+          isResultPage={true}
         />
       </div>
     );
@@ -115,8 +165,9 @@ export default function ResultViewerPage({
           onNext={handleNext}
           onBack={handleBack}
           canProceed={true}
-          currentPage={partPages.part2}
-          totalPages={part2TotalPages}
+          currentPage={getCurrentGlobalPage() - 1}
+          totalPages={totalResultPages}
+          isResultPage={true}
         />
       </div>
     );
@@ -125,13 +176,27 @@ export default function ResultViewerPage({
   if (currentStep === "part3") {
     return (
       <div className="flex h-dvh flex-col justify-between">
-        <Part3ResultPage />
+        <Part3ResultPage step={part3Step} />
         <Navigator
-          onNext={handleNext}
-          onBack={handleBack}
+          onNext={() => {
+            if (part3Step === 21) {
+              handleNext();
+            } else {
+              setPart3Step((prev) => prev + 1);
+            }
+            window.scrollTo({ top: 0 });
+          }}
+          onBack={() => {
+            if (part3Step === 1) {
+              handleBack();
+            } else {
+              setPart3Step((prev) => prev - 1);
+            }
+          }}
           canProceed={true}
-          currentPage={partPages.part1}
-          totalPages={part1TotalPages}
+          currentPage={getCurrentGlobalPage() - 1}
+          totalPages={totalResultPages}
+          isResultPage={true}
         />
       </div>
     );
@@ -140,10 +205,27 @@ export default function ResultViewerPage({
   if (currentStep === "part4") {
     return (
       <div className="flex h-dvh flex-col justify-between">
-        <Part4ResultPage
-          onNext={handleNext}
-          onBack={handleBack}
-          currentPage={0}
+        <Part4ResultPage step={part4Step} />
+        <Navigator
+          onNext={() => {
+            if (part4Step === 5) {
+              handleNext();
+            } else {
+              setPart4Step((prev) => prev + 1);
+            }
+            window.scrollTo({ top: 0 });
+          }}
+          onBack={() => {
+            if (part4Step === 1) {
+              handleBack();
+            } else {
+              setPart4Step((prev) => prev - 1);
+            }
+          }}
+          canProceed={true}
+          currentPage={getCurrentGlobalPage() - 1}
+          totalPages={totalResultPages}
+          isResultPage={true}
         />
       </div>
     );
@@ -157,8 +239,9 @@ export default function ResultViewerPage({
           onNext={handleNext}
           onBack={handleBack}
           canProceed={true}
-          currentPage={partPages.part1}
-          totalPages={part1TotalPages}
+          currentPage={getCurrentGlobalPage() - 1}
+          totalPages={totalResultPages}
+          isResultPage={true}
         />
       </div>
     );

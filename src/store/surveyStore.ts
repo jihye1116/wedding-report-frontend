@@ -23,5 +23,7 @@ export const introDataAtom = atom({
   gender: "",
 });
 
+// Part3 Result 페이지 step 상태 전역 관리
+export const part3ResultStepAtom = atom<number>(1);
 // Part4 Result 페이지 step 상태 전역 관리
 export const part4ResultStepAtom = atom<number>(1);

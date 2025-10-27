@@ -1,47 +1,16 @@
-"use client";
-
-import { useAtom } from "jotai";
 import Image from "next/image";
 import { Fragment } from "react";
 
 import Female from "@/assets/images/female.svg";
 import Male from "@/assets/images/male.svg";
-import { Navigator } from "@/components/Navigator";
 import { ReportHeader } from "@/components/ReportHeader";
 import { Tag } from "@/components/Tag";
-import { part1TotalPages } from "@/pages/result/part1/page";
-import { part4ResultStepAtom } from "@/store/surveyStore";
 
 interface Part4ResultPageProps {
-  onNext: () => void;
-  onBack: () => void;
-  currentPage: number;
+  step: number;
 }
 
-export default function Part4ResultPage({
-  onNext,
-  onBack,
-  currentPage,
-}: Part4ResultPageProps) {
-  const [step, setStep] = useAtom(part4ResultStepAtom);
-
-  const handleNext = () => {
-    if (step === 5) {
-      onNext();
-    } else {
-      setStep((prev) => prev + 1);
-    }
-    window.scrollTo({ top: 0 });
-  };
-
-  const handleBack = () => {
-    if (step === 1) {
-      onBack();
-    } else {
-      setStep((prev) => prev - 1);
-    }
-  };
-
+export default function Part4ResultPage({ step }: Part4ResultPageProps) {
   return (
     <main className="font-pretendard flex flex-1 flex-col">
       <ReportHeader />
@@ -242,13 +211,6 @@ export default function Part4ResultPage({
           </section>
         </article>
       )}
-      <Navigator
-        onNext={handleNext}
-        onBack={handleBack}
-        canProceed={true}
-        currentPage={currentPage}
-        totalPages={part1TotalPages}
-      />
     </main>
   );
 }

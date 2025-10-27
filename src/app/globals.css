@@ -180,3 +180,7 @@ body {
     #edffdb4d 100%
   );
 }
+
+span {
+  word-break: keep-all;
+}
