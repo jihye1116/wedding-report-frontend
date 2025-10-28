@@ -1,6 +1,5 @@
 "use client";
 
-import { useAtom } from "jotai";
 import Image from "next/image";
 import { Fragment, useRef } from "react";
 import toast from "react-hot-toast";
@@ -11,15 +10,14 @@ import { InputField } from "@/components/InputField";
 import { Navigator } from "@/components/Navigator";
 import { SelectionCircle } from "@/components/SelectionCircle";
 import { StartButton } from "@/components/StartButton";
-import { introDataAtom, introStepAtom } from "@/store/surveyStore";
+import { useIntroduction } from "@/hooks/useIntroduction";
 
 interface IntroductionPageProps {
   onNext: () => void;
 }
 
 const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
-  const [step, setStep] = useAtom(introStepAtom);
-  const [introData, setIntroData] = useAtom(introDataAtom);
+  const { step, setStep, introData, setIntroData } = useIntroduction();
 
   const {
     agreeAll,
