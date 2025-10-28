@@ -26,7 +26,7 @@ export default function Intro2Page({ onNext }: Intro2PageProps) {
         </article>
       </div>
 
-      <div className="p-10">
+      <div className="flex w-full justify-end p-10 xl:mt-auto">
         <NavigateButton direction="right" onClick={onNext} color={"green"} />
       </div>
     </div>
