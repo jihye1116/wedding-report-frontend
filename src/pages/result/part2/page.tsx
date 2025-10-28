@@ -6,6 +6,7 @@ import InteractionZone from "@/assets/images/interaction-zone.png";
 import FourSection from "@/assets/images/four-section.png";
 import Female from "@/assets/images/female.svg";
 import Male from "@/assets/images/male.svg";
+import EmpathyQuadrant from "@/components/EmpathyQuadrant";
 /*
   Part 2: 공감 기반 시너지 (Positive Resonance)
   - 페이지 총 4장 구성
@@ -16,7 +17,7 @@ const part2Data = [
   {
     badgeText: "공감 기반 시너지",
     badgeSubtitle: "Positive Resonance",
-    badgeColor: "#9AD8CA",
+    badgeColor: "#7BBC80",
     subtitle: ": 비슷한 특성이 긍정적으로 작용하는 경우",
     description:
       "두 사람이 비슷한 사고방식과 감정 스타일, 생활 리듬을 가질 때 드러나는 영역입니다. 이 공통점은 상호 이해와 안정감을 빠르게 만들어 주며, 정서적 친밀감과 신뢰가 견고해지도록 돕습니다.",
@@ -60,7 +61,7 @@ const part2Data = [
   {
     badgeText: "중첩 리스크",
     badgeSubtitle: "Overlapping Risk",
-    badgeColor: "#FFB3B3",
+    badgeColor: "#F4A83A",
     subtitle: ": 유사한 성향이 지나치게 겹쳐 역기능을 일으키는 경우",
     description:
       "비슷한 성향이라도, 그것이 과도하게 겹칠 경우 갈등 요소가 됩니다. 예를 들어 두 사람이 모두 완벽주의적이거나 고집이 강한 경우, 양보나 조율이 어려워지고, 긴장이 누적될 수 있습니다. 겉으로는 유사하지만, 실질적으로는 마찰을 일으키는 '숨은 갈등'이 이 영역에서 발생합니다.",
@@ -100,7 +101,7 @@ const part2Data = [
   {
     badgeText: "보완적 상호작용",
     badgeSubtitle: "Complementary Dynamic",
-    badgeColor: "#AEC6F5",
+    badgeColor: "#3993D9",
     subtitle: ": 서로 다른 특성이 조화를 이루며 강점을 만드는 경우",
     description:
       "성향이 다르지만, 서로를 보완하는 방식으로 작용할 때 이 영역이 형성됩니다. 예를 들어 한 사람이 감정을 잘 표현하고, 다른 사람이 이를 잘 수용하는 구조라면 균형 잡힌 대화가 가능해집니다. 이러한 차이는 갈등이 아니라 ‘시너지의 원천’이 됩니다.",
@@ -144,7 +145,7 @@ const part2Data = [
   {
     badgeText: "인지적 충돌",
     badgeSubtitle: "Cognitive Friction",
-    badgeColor: "#FFDDA6",
+    badgeColor: "#FF827E",
     subtitle: ": 차이에서 비롯된 이해 부족과 갈등",
     description:
       "두 사람의 성향이 너무 상이하여 서로를 받아들이기 어렵거나, 차이를 해석하는 방식이 전혀 다를 경우에 발생합니다. 이로 인해 오해, 소통 장벽, 감정적 거리감이 생기며 관계의 안정성을 해칠 수 있습니다. 다양성은 때때로 갈등의 씨앗이 되기도 하므로, 이 영역은 의식적 조율이 필요합니다.",
@@ -211,7 +212,7 @@ const IntroPage = () => (
       </p>
     </div>
 
-    <h3 className="pt-5 text-center text-lg">
+    <h3 className="pt-5 text-center text-lg xl:pt-10">
       두 사람이 함께 살아가는 “접촉면”
     </h3>
 
@@ -273,12 +274,7 @@ const ResultPage = ({ data, index }: ResultPageProps) => (
           이해하고, 어떤 영역에서 어떻게 조율해 나갈지를 인식하는 것입니다.
         </p>
 
-        <Image
-          src={FourSection}
-          alt="Interaction Zone"
-          width={310}
-          className="mx-auto my-8"
-        />
+        <EmpathyQuadrant />
       </div>
     )}
 
@@ -310,7 +306,7 @@ const ResultPage = ({ data, index }: ResultPageProps) => (
 
       <p className="text-lg font-semibold">🕰 언제, 어떻게 작용하나</p>
 
-      <div className="flex flex-col gap-4">
+      <div className="grid grid-cols-1 gap-4 xl:grid-cols-3">
         {data.whens.map((when, index) => (
           <WhenBox key={index} label={when.label}>
             <span dangerouslySetInnerHTML={{ __html: when.description }} />
