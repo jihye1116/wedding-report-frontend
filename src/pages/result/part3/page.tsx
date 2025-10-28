@@ -16,7 +16,13 @@ export default function Part3ResultPage({ step }: Part3ResultPageProps) {
           <h1 className="wrapper py-5 text-xl font-bold text-[#111111]">
             3. 36개월 신혼생활 시뮬레이션
           </h1>
-          <article className="wrapper flex flex-col gap-5 py-5 leading-snug text-[#7E7E7E]">
+          <article className="wrapper flex flex-col gap-5 py-5 leading-snug text-[#7E7E7E] xl:pt-10">
+            <p className="text-gray-400">
+              ※ 본 시뮬레이션 리포트는 실제 커플의 다양한 설문과 대화 데이터를
+              기반으로 한 성향 예측 도구이며, 진단이나 처방을 목적으로 하지
+              않습니다. 관계 이해와 소통의 참고 자료로 활용하시되, 심층적인
+              상담이나 치료가 필요한 경우에는 전문가의 도움을 권장합니다.
+            </p>
             <p>
               <b>
                 결혼 초반 3년은 관계의 정착 여부와 질적 방향성을 결정짓는 핵심
@@ -62,14 +68,15 @@ export default function Part3ResultPage({ step }: Part3ResultPageProps) {
           </h1>
           <article className="wrapper flex flex-col gap-7.5 py-5 leading-snug text-[#7E7E7E]">
             <div className="flex flex-col items-center gap-2.5">
-              <div className="wrapper rounded-full bg-[#B3E5DA] py-2.5 font-bold text-white">
+              <div className="rounded-full bg-[#B3E5DA] px-10 py-2.5 font-bold text-white">
                 1년 차
               </div>
               <p className="border-t border-[#B3E5DA] py-5">
                 결혼 1년 차는 기대와 설렘이 공존하는 시기입니다. 서로에 대한
                 애정, ‘함께 산다’는 새로움 자체가 기쁨과 충만함을 안겨주지만,
-                일상의 궤도 안에서는 조용한 균열과 미세한 충돌이 서서히 드러나기
-                시작합니다.
+                일상의 궤도 안에서는{" "}
+                <span className="font-bold">조용한 균열과 미세한 충돌</span>이
+                서서히 드러나기 시작합니다.
               </p>
             </div>
             <p>대표적인 갈등 지점은 다음과 같습니다:</p>
@@ -105,7 +112,7 @@ export default function Part3ResultPage({ step }: Part3ResultPageProps) {
         <Fragment>
           <article className="wrapper flex flex-col gap-7.5 py-5 leading-snug">
             <section className="flex flex-col gap-5">
-              <h2 className="wrapper py-5 text-center text-lg font-bold text-[#111111]">
+              <h2 className="px-10 py-5 text-center text-lg font-bold text-[#111111]">
                 Month 1 - 3
               </h2>
               <div className="result-gradient flex flex-col items-center gap-2.5 rounded-[20px] px-2.5 py-5">
@@ -145,7 +152,7 @@ export default function Part3ResultPage({ step }: Part3ResultPageProps) {
         <Fragment>
           <article className="wrapper flex flex-col gap-7.5 py-5 leading-snug">
             <section className="flex flex-col gap-5">
-              <h2 className="wrapper py-5 text-center text-lg font-bold text-[#111111]">
+              <h2 className="px-10 py-5 text-center text-lg font-bold text-[#111111]">
                 Month 4 - 6
               </h2>
               <div className="result-gradient flex flex-col items-center gap-2.5 rounded-[20px] px-2.5 py-5">
@@ -186,7 +193,7 @@ export default function Part3ResultPage({ step }: Part3ResultPageProps) {
         <Fragment>
           <article className="wrapper flex flex-col gap-7.5 py-5 leading-snug">
             <section className="flex flex-col gap-5">
-              <h2 className="wrapper py-5 text-center text-lg font-bold text-[#111111]">
+              <h2 className="px-10 py-5 text-center text-lg font-bold text-[#111111]">
                 Month 7 - 9
               </h2>
               <div className="result-gradient flex flex-col items-center gap-2.5 rounded-[20px] px-2.5 py-5">
@@ -226,7 +233,7 @@ export default function Part3ResultPage({ step }: Part3ResultPageProps) {
         <Fragment>
           <article className="wrapper flex flex-col gap-7.5 py-5 leading-snug">
             <section className="flex flex-col gap-5">
-              <h2 className="wrapper py-5 text-center text-lg font-bold text-[#111111]">
+              <h2 className="px-10 py-5 text-center text-lg font-bold text-[#111111]">
                 Month 10 - 12
               </h2>
               <div className="result-gradient flex flex-col items-center gap-2.5 rounded-[20px] px-2.5 py-5">
@@ -269,9 +276,13 @@ export default function Part3ResultPage({ step }: Part3ResultPageProps) {
               <h2 className="text-center text-lg font-bold text-[#111111]">
                 긴장도
               </h2>
-              <section className="flex flex-col gap-7.5">
-                <BarChart values={[10, 10, 10, 10]} barColor="#B3D4F5" />
-                <div className="flex flex-col gap-5 rounded-xl bg-[#F8F8F8] p-5">
+              <section className="flex flex-col items-center justify-center gap-7.5 lg:flex-row">
+                <div className="mx-auto w-[300px] shrink-0 lg:w-[360px] xl:w-[340px]">
+                  <BarChart values={[10, 10, 10, 10]} barColor="#B3D4F5" />
+                </div>
+
+                {/* 텍스트 카드는 내용 높이만 */}
+                <div className="flex flex-1 flex-col gap-5 rounded-xl bg-[#F8F8F8] p-5">
                   <p className="whitespace-pre-wrap">
                     1년 차에는 서로에 대한 이해와 기대 사이에서 작은 마찰이
                     일어납니다. 큰 싸움은 아니지만, ‘기대와 다른 방식’에서 오는
@@ -311,14 +322,17 @@ export default function Part3ResultPage({ step }: Part3ResultPageProps) {
               <h3 className="text-center leading-snug font-semibold text-[#3EA38D]">
                 🧭 1년 차 부부를 위한 질문
               </h3>
-              <ul className="list-disc space-y-1 pl-5 text-center">
-                <li>우리는 요즘 무엇에 가장 많은 에너지를 쓰고 있는가?</li>
-                <li>서로의 불안과 피로를 같은 방향에서 보고 있는가?</li>
-                <li>&apos;우리의 결정 방식&apos;에 대해 동의하고 있는가?</li>
-                <li>
-                  요즘 나는, 이 사람과 어떤 주제를 가장 자주 이야기하고 있는가?
-                </li>
-              </ul>
+              <div className="space-y-1 text-center">
+                <div>• 우리는 요즘 무엇에 가장 많은 에너지를 쓰고 있는가?</div>
+                <div>• 서로의 불안과 피로를 같은 방향에서 보고 있는가?</div>
+                <div>
+                  • &apos;우리의 결정 방식&apos;에 대해 동의하고 있는가?
+                </div>
+                <div>
+                  • 요즘 나는, 이 사람과 어떤 주제를 가장 자주 이야기하고
+                  있는가?
+                </div>
+              </div>
             </section>
           </article>
         </Fragment>
@@ -563,18 +577,22 @@ export default function Part3ResultPage({ step }: Part3ResultPageProps) {
               <h2 className="text-center text-lg font-bold text-[#111111]">
                 정서 연결도
               </h2>
-              <section className="flex flex-col gap-7.5">
-                <BarChart values={[10, 10, 10, 10]} barColor="#67E4C8" />
-                <div className="flex flex-col gap-5 rounded-xl bg-[#F8F8F8] p-5">
+              <section className="flex flex-col items-center justify-center gap-7.5 lg:flex-row lg:gap-2">
+                <div className="mx-auto w-[300px] shrink-0">
+                  <BarChart values={[10, 10, 10, 10]} barColor="#67E4C8" />
+                </div>
+
+                {/* 텍스트 카드는 내용 높이만 */}
+                <div className="flex flex-1 flex-col gap-5 rounded-xl bg-[#F8F8F8] p-5">
                   <p className="whitespace-pre-wrap">
                     2년 차가 되면 반복되는 갈등과 현실적 압박을 통과하며, 서로의{" "}
                     <b>불안·상처·한계</b>를 더 자주 접하게 됩니다. 이때는
-                    ‘가깝지만 상처받기 쉬운’ 상태이기도 합니다.
+                    '가깝지만 상처받기 쉬운' 상태이기도 합니다.
                   </p>
                   <p className="whitespace-pre-wrap">
                     갈등과 압박을 회피하지 않고 대화하고 회복한 경험들이
                     쌓이면서, 정서 연결은 점차 수직적으로 깊어지기 시작합니다.
-                    이 시기를 <b>“관계의 전환점”</b>이라 부를 수 있습니다.
+                    이 시기를 <b>"관계의 전환점"</b>이라 부를 수 있습니다.
                   </p>
                 </div>
               </section>
@@ -871,9 +889,13 @@ export default function Part3ResultPage({ step }: Part3ResultPageProps) {
               <h2 className="text-center text-lg font-bold text-[#111111]">
                 관계 회복 탄력성
               </h2>
-              <section className="flex flex-col gap-7.5">
-                <BarChart values={[10, 10, 10, 10]} barColor="#FFC0C1" />
-                <div className="flex flex-col gap-5 rounded-xl bg-[#F8F8F8] p-5">
+              <section className="flex flex-col items-center justify-center gap-7.5 lg:flex-row">
+                <div className="mx-auto w-[300px] shrink-0 lg:w-[360px] xl:w-[340px]">
+                  <BarChart values={[10, 10, 10, 10]} barColor="#FFC0C1" />
+                </div>
+
+                {/* 텍스트 카드는 내용 높이만 */}
+                <div className="flex flex-1 flex-col gap-5 rounded-xl bg-[#F8F8F8] p-5">
                   <p className="whitespace-pre-wrap">
                     3년 차에 접어들면서, 두 사람은 싸움이 아니라 ‘회복의 방식’에
                     주목하기 시작합니다. 감정만이 아니라 맥락을 공유하고, 말보다
