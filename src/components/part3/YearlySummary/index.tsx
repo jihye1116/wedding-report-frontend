@@ -1,0 +1,52 @@
+import { YearlySummaryData } from "@/data/part3SimulationData";
+import { BarChart } from "@/components/BarChart";
+
+interface YearlySummaryProps {
+  data: YearlySummaryData;
+}
+
+export default function YearlySummary({ data }: YearlySummaryProps) {
+  return (
+    <article className="wrapper flex flex-col gap-10 py-5 leading-snug">
+      <section className="flex flex-col gap-5">
+        <h2 className="text-center text-lg font-bold text-[#111111]">
+          {data.chartTitle}
+        </h2>
+        <section className="flex flex-col items-center justify-center gap-7.5 2xl:flex-row">
+          <div className="mx-auto w-[300px] shrink-0 lg:w-[360px] xl:w-[340px]">
+            <BarChart values={[10, 10, 10, 10]} barColor={data.barColor} />
+          </div>
+          <div className="flex flex-1 flex-col gap-5 rounded-xl bg-[#F8F8F8] p-5">
+            {data.chartAnalysis.map((p, i) => (
+              <p
+                key={i}
+                className="whitespace-pre-wrap"
+                dangerouslySetInnerHTML={{ __html: p }}
+              />
+            ))}
+          </div>
+        </section>
+      </section>
+      <section className="flex flex-col gap-5">
+        <h2 className="text-center text-lg font-bold">“{data.summaryTitle}”</h2>
+        {data.summaryContent.map((p, i) => (
+          <p
+            key={i}
+            className="whitespace-pre-wrap font-medium leading-snug text-[#7E7E7E]"
+            dangerouslySetInnerHTML={{ __html: p }}
+          />
+        ))}
+      </section>
+      <section className="result-gradient flex flex-col gap-5 p-5">
+        <h3 className="text-center font-semibold leading-snug text-[#3EA38D]">
+          🧭 {data.year}년 차 부부를 위한 질문
+        </h3>
+        <div className="space-y-1 text-center">
+          {data.questions.map((q, i) => (
+            <div key={i}>{q}</div>
+          ))}
+        </div>
+      </section>
+    </article>
+  );
+}

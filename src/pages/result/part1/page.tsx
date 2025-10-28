@@ -53,7 +53,7 @@ const Page2 = () => (
         지금부터 소개할 세 가지 성향 영역은, 함께하는 삶을 조금 더 편안하고
         유연하게 만들어줄 ‘관계의 기반’을 여는 열쇠입니다.
       </div>
-      <div className="flex flex-col gap-4 xl:flex-row xl:justify-center">
+      <div className="flex flex-col gap-4 2xl:flex-row 2xl:justify-center">
         <div className="flex justify-center gap-2.5">
           <Image src={Female} alt="female" width={100} height={100} />
           <Image src={Male} alt="male" width={100} height={100} />
