@@ -10,11 +10,13 @@ interface Intro2PageProps {
 
 export default function Intro2Page({ onNext }: Intro2PageProps) {
   return (
-    <div className="h-dvh">
-      <ReportHeader />
+    <div className="relative h-dvh">
+      <div className="absolute top-0 right-0 left-0 z-10 hidden xl:block">
+        <ReportHeader />
+      </div>
 
-      <div className="wrapper flex flex-col justify-between">
-        <div className="">
+      <div className="wrapper flex h-full flex-col justify-between xl:pt-20">
+        <div className="h-full">
           <p className="font-gangwon flex justify-end py-5 font-bold text-[#7AC6B6] xl:hidden">
             꽃길만 걷자
           </p>
