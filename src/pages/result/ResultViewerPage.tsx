@@ -143,7 +143,7 @@ export default function ResultViewerPage({
 
   if (currentStep === "part1") {
     return (
-      <div className="flex h-dvh flex-col justify-between">
+      <div className="flex h-dvh flex-col">
         <Part1ResultPage currentPage={partPages.part1} />
         <Navigator
           onNext={handleNext}
