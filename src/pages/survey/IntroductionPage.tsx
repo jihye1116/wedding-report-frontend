@@ -44,12 +44,17 @@ const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
     setIntroData({ ...introData, partnerPhoneNumber: numericValue });
   };
 
+  // 전화번호 유효성 검사 (11자리 숫자)
+  const isValidPhoneNumber = (phone: string) => {
+    return phone && phone.length === 11 && /^[0-9]{11}$/.test(phone);
+  };
+
   // 각 step별 완료 여부
   const isStep1Complete = !!(
     name &&
     partnerName &&
-    phoneNumber &&
-    partnerPhoneNumber
+    isValidPhoneNumber(phoneNumber) &&
+    isValidPhoneNumber(partnerPhoneNumber)
   );
   const isStep2Complete = !!agreePrivacy;
   const isStep3Complete = !!(relationshipDuration && gender);
@@ -75,14 +80,22 @@ const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
       toast.error("파트너 이름을 입력해주세요.");
       return;
     }
-    if (!phoneNumber) {
+    if (!phoneNumber || !isValidPhoneNumber(phoneNumber)) {
       phoneNumberRef.current?.focus();
-      toast.error("전화번호를 입력해주세요.");
+      if (!phoneNumber) {
+        toast.error("전화번호를 입력해주세요.");
+      } else {
+        toast.error("전화번호를 11자리 숫자로 정확히 입력해주세요.");
+      }
       return;
     }
-    if (!partnerPhoneNumber) {
+    if (!partnerPhoneNumber || !isValidPhoneNumber(partnerPhoneNumber)) {
       partnerPhoneNumberRef.current?.focus();
-      toast.error("파트너 전화번호를 입력해주세요.");
+      if (!partnerPhoneNumber) {
+        toast.error("파트너 전화번호를 입력해주세요.");
+      } else {
+        toast.error("파트너 전화번호를 11자리 숫자로 정확히 입력해주세요.");
+      }
       return;
     }
     handleNext();
@@ -235,7 +248,7 @@ const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
                 name="phoneNumber"
                 value={phoneNumber}
                 onChange={handlePhoneNumberChange}
-                placeholder="내 휴대전화 번호 입력 (숫자만)"
+                placeholder="내 휴대전화 번호 11자리 입력(숫자만)"
                 type="tel"
               />
             </section>
@@ -249,7 +262,7 @@ const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
                 name="partnerPhoneNumber"
                 value={partnerPhoneNumber}
                 onChange={handlePartnerPhoneNumberChange}
-                placeholder="내 파트너의 휴대전화 번호 입력 (숫자만)"
+                placeholder="파트너의 휴대전화 번호 11자리 입력(숫자만)"
                 type="tel"
               />
             </section>
