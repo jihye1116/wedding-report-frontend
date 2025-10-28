@@ -7,7 +7,7 @@ export interface SurveyQuestion {
   subCategory?: string;
   type?: QuestionType;
   options?: string[];
-  image?: string;
+  image?: string | { male: string; female: string };
 }
 
 export interface SurveyPart {

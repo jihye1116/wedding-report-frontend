@@ -18,6 +18,10 @@ export const detailedSurveyData: SurveyData = {
           category: "정보처리 및 의사결정",
           subCategory: "현재중심 ↔ 미래지향",
           type: "rating",
+          image: {
+            male: "/images/man/M1_1.png",
+            female: "/images/woman/W1_1.png",
+          },
         },
         {
           id: 2,
@@ -41,7 +45,6 @@ export const detailedSurveyData: SurveyData = {
           category: "정보처리 및 의사결정",
           subCategory: "현재중심 ↔ 미래지향",
           type: "rating",
-          image: "/images/정보처리4.png",
         },
         {
           id: 5,
@@ -57,6 +60,10 @@ export const detailedSurveyData: SurveyData = {
           category: "정보처리 및 의사결정",
           subCategory: "논리·객관중심 ↔ 감정·인간중심",
           type: "rating",
+          image: {
+            male: "/images/man/M1_6.png",
+            female: "/images/woman/W1_6.png",
+          },
         },
         {
           id: 7,
@@ -81,7 +88,6 @@ export const detailedSurveyData: SurveyData = {
           category: "정보처리 및 의사결정",
           subCategory: "반응적 ↔ 조절적",
           type: "rating",
-          image: "/images/정보처리9.png",
         },
         {
           id: 10,
@@ -97,7 +103,10 @@ export const detailedSurveyData: SurveyData = {
           category: "정보처리 및 의사결정",
           subCategory: "반응적 ↔ 조절적",
           type: "rating",
-          image: "/images/정보처리11.png",
+          image: {
+            male: "/images/man/M1_11.png",
+            female: "/images/woman/W1_11.png",
+          },
         },
         {
           id: 12,
@@ -137,6 +146,10 @@ export const detailedSurveyData: SurveyData = {
           category: "동기 구조 및 자기조절",
           subCategory: "안정지향 ↔ 도전지향",
           type: "rating",
+          image: {
+            male: "/images/man/M2_4.png",
+            female: "/images/woman/W2_4.png",
+          },
         },
         {
           id: 17,
@@ -144,7 +157,6 @@ export const detailedSurveyData: SurveyData = {
           category: "동기 구조 및 자기조절",
           subCategory: "외적동기 ↔ 내적동기",
           type: "rating",
-          image: "/images/동기구조5.png",
         },
         {
           id: 18,
@@ -174,7 +186,10 @@ export const detailedSurveyData: SurveyData = {
           category: "동기 구조 및 자기조절",
           subCategory: "목표실행 자율성 낮음 ↔ 높음",
           type: "rating",
-          image: "/images/동기구조9.png",
+          image: {
+            male: "/images/man/M2_9.png",
+            female: "/images/woman/W2_9.png",
+          },
         },
         {
           id: 22,
@@ -206,7 +221,6 @@ export const detailedSurveyData: SurveyData = {
           category: "외현적 행동 및 생활 방식",
           subCategory: "내향 ↔ 외향",
           type: "rating",
-          image: "/images/외현적1.png",
         },
         {
           id: 26,
@@ -215,6 +229,10 @@ export const detailedSurveyData: SurveyData = {
           category: "외현적 행동 및 생활 방식",
           subCategory: "내향 ↔ 외향",
           type: "rating",
+          image: {
+            male: "/images/man/M3_2.png",
+            female: "/images/woman/W3_2.png",
+          },
         },
         {
           id: 27,
@@ -251,6 +269,10 @@ export const detailedSurveyData: SurveyData = {
           category: "외현적 행동 및 생활 방식",
           subCategory: "유연 ↔ 계획",
           type: "rating",
+          image: {
+            male: "/images/man/M3_7.png",
+            female: "/images/woman/W3_7.png",
+          },
         },
         {
           id: 32,
@@ -265,7 +287,6 @@ export const detailedSurveyData: SurveyData = {
           category: "외현적 행동 및 생활 방식",
           subCategory: "자기표현 ↔ 적응배려형",
           type: "rating",
-          image: "/images/외현적9.png",
         },
         {
           id: 34,
@@ -287,6 +308,10 @@ export const detailedSurveyData: SurveyData = {
           category: "외현적 행동 및 생활 방식",
           subCategory: "자기표현 ↔ 적응배려형",
           type: "rating",
+          image: {
+            male: "/images/man/M3_12.png",
+            female: "/images/woman/W3_12.png",
+          },
         },
 
         // MMPI 기반 보조 지표 (37-45번)
@@ -296,7 +321,6 @@ export const detailedSurveyData: SurveyData = {
           category: "MMPI 기반 보조 지표",
           subCategory: "정서 안정성 (침체적 ↔ 안정적)",
           type: "rating",
-          image: "/images/MMPI1.png",
         },
         {
           id: 38,
@@ -325,6 +349,10 @@ export const detailedSurveyData: SurveyData = {
           category: "MMPI 기반 보조 지표",
           subCategory: "신뢰 경향 (경계적 ↔ 수용적)",
           type: "rating",
+          image: {
+            male: "/images/man/M6_5.png",
+            female: "/images/woman/W6_5.png",
+          },
         },
         {
           id: 42,
@@ -353,7 +381,6 @@ export const detailedSurveyData: SurveyData = {
           category: "MMPI 기반 보조 지표",
           subCategory: "불안·완벽주의 (불안·통제형 ↔ 여유·수용형)",
           type: "rating",
-          image: "/images/MMPI9.png",
         },
       ],
     },
@@ -373,6 +400,10 @@ export const detailedSurveyData: SurveyData = {
           category: "정보처리 및 의사결정",
           subCategory: "현재중심 ↔ 미래지향",
           type: "rating",
+          image: {
+            male: "/images/woman/W1_1.png",
+            female: "/images/man/M1_1.png",
+          },
         },
         {
           id: 47,
@@ -397,7 +428,6 @@ export const detailedSurveyData: SurveyData = {
           category: "정보처리 및 의사결정",
           subCategory: "현재중심 ↔ 미래지향",
           type: "rating",
-          image: "/images/정보처리4.png",
         },
         {
           id: 50,
@@ -414,6 +444,10 @@ export const detailedSurveyData: SurveyData = {
           category: "정보처리 및 의사결정",
           subCategory: "논리·객관중심 ↔ 감정·인간중심",
           type: "rating",
+          image: {
+            male: "/images/woman/W1_6.png",
+            female: "/images/man/M1_6.png",
+          },
         },
         {
           id: 52,
@@ -446,7 +480,6 @@ export const detailedSurveyData: SurveyData = {
           category: "정보처리 및 의사결정",
           subCategory: "반응적 ↔ 조절적",
           type: "rating",
-          image: "/images/정보처리10.png",
         },
         {
           id: 56,
@@ -455,7 +488,10 @@ export const detailedSurveyData: SurveyData = {
           category: "정보처리 및 의사결정",
           subCategory: "반응적 ↔ 조절적",
           type: "rating",
-          image: "/images/정보처리11.png",
+          image: {
+            male: "/images/woman/W1_11.png",
+            female: "/images/man/M1_11.png",
+          },
         },
         {
           id: 57,
@@ -497,6 +533,10 @@ export const detailedSurveyData: SurveyData = {
           category: "동기 구조 및 자기조절",
           subCategory: "안정지향 ↔ 도전지향",
           type: "rating",
+          image: {
+            male: "/images/woman/W2_4.png",
+            female: "/images/man/M2_4.png",
+          },
         },
         {
           id: 62,
@@ -521,7 +561,6 @@ export const detailedSurveyData: SurveyData = {
           category: "동기 구조 및 자기조절",
           subCategory: "외적동기 ↔ 내적동기",
           type: "rating",
-          image: "/images/동기구조7.png",
         },
         {
           id: 65,
@@ -537,6 +576,10 @@ export const detailedSurveyData: SurveyData = {
           category: "동기 구조 및 자기조절",
           subCategory: "목표실행 자율성 낮음 ↔ 높음",
           type: "rating",
+          image: {
+            male: "/images/woman/W2_9.png",
+            female: "/images/man/M2_9.png",
+          },
         },
         {
           id: 67,
@@ -561,7 +604,6 @@ export const detailedSurveyData: SurveyData = {
           category: "동기 구조 및 자기조절",
           subCategory: "목표실행 자율성 낮음 ↔ 높음",
           type: "rating",
-          image: "/images/동기구조12.png",
         },
 
         // 외현적 행동 및 생활 방식 (70-81번) - 심화
@@ -580,6 +622,10 @@ export const detailedSurveyData: SurveyData = {
           category: "외현적 행동 및 생활 방식",
           subCategory: "내향 ↔ 외향",
           type: "rating",
+          image: {
+            male: "/images/woman/W3_2.png",
+            female: "/images/man/M3_2.png",
+          },
         },
         {
           id: 72,
@@ -596,7 +642,6 @@ export const detailedSurveyData: SurveyData = {
           category: "외현적 행동 및 생활 방식",
           subCategory: "내향 ↔ 외향",
           type: "rating",
-          image: "/images/외현적4.png",
         },
         {
           id: 74,
@@ -620,6 +665,10 @@ export const detailedSurveyData: SurveyData = {
           category: "외현적 행동 및 생활 방식",
           subCategory: "유연 ↔ 계획",
           type: "rating",
+          image: {
+            male: "/images/woman/W3_7.png",
+            female: "/images/man/M3_7.png",
+          },
         },
         {
           id: 77,
@@ -643,7 +692,6 @@ export const detailedSurveyData: SurveyData = {
           category: "외현적 행동 및 생활 방식",
           subCategory: "자기표현 ↔ 적응배려형",
           type: "rating",
-          image: "/images/외현적10.png",
         },
         {
           id: 80,
@@ -660,6 +708,10 @@ export const detailedSurveyData: SurveyData = {
           category: "외현적 행동 및 생활 방식",
           subCategory: "자기표현 ↔ 적응배려형",
           type: "rating",
+          image: {
+            male: "/images/woman/W3_12.png",
+            female: "/images/man/M3_12.png",
+          },
         },
 
         // MMPI 기반 보조 지표 (82-90번) - 심화
@@ -670,7 +722,6 @@ export const detailedSurveyData: SurveyData = {
           category: "MMPI 기반 보조 지표",
           subCategory: "정서 안정성 (침체적 ↔ 안정적)",
           type: "rating",
-          image: "/images/MMPI1.png",
         },
         {
           id: 83,
@@ -703,6 +754,10 @@ export const detailedSurveyData: SurveyData = {
           category: "MMPI 기반 보조 지표",
           subCategory: "신뢰 경향 (경계적 ↔ 수용적)",
           type: "rating",
+          image: {
+            male: "/images/woman/W6_5.png",
+            female: "/images/man/M6_5.png",
+          },
         },
         {
           id: 87,
@@ -735,7 +790,6 @@ export const detailedSurveyData: SurveyData = {
           category: "MMPI 기반 보조 지표",
           subCategory: "불안·완벽주의 (불안·통제형 ↔ 여유·수용형)",
           type: "rating",
-          image: "/images/MMPI9.png",
         },
       ],
     },
@@ -754,7 +808,12 @@ export const detailedSurveyData: SurveyData = {
           category: "연애 생활의 영역",
           subCategory: "생활 리듬 / 시간 조율",
           type: "rating",
+          image: {
+            male: "/images/man/M5_1.png",
+            female: "/images/woman/W5_1.png",
+          },
         },
+
         {
           id: 92,
           question:
@@ -769,7 +828,6 @@ export const detailedSurveyData: SurveyData = {
           category: "연애 생활의 영역",
           subCategory: "생활 리듬 / 시간 조율",
           type: "rating",
-          image: "/images/연애3.png",
         },
         {
           id: 94,
@@ -785,7 +843,6 @@ export const detailedSurveyData: SurveyData = {
           category: "연애 생활의 영역",
           subCategory: "재정·소비 태도",
           type: "rating",
-          image: "/images/연애5.png",
         },
         {
           id: 96,
@@ -794,6 +851,10 @@ export const detailedSurveyData: SurveyData = {
           category: "연애 생활의 영역",
           subCategory: "재정·소비 태도",
           type: "rating",
+          image: {
+            male: "/images/man/M5_6.png",
+            female: "/images/woman/W5_6.png",
+          },
         },
         {
           id: 97,
@@ -835,6 +896,10 @@ export const detailedSurveyData: SurveyData = {
           category: "결혼 생활의 영역",
           subCategory: "가사·생활 분담",
           type: "rating",
+          image: {
+            male: "/images/man/M4_2.png",
+            female: "/images/woman/W4_2.png",
+          },
         },
         {
           id: 102,
@@ -842,7 +907,6 @@ export const detailedSurveyData: SurveyData = {
           category: "결혼 생활의 영역",
           subCategory: "가사·생활 분담",
           type: "rating",
-          image: "/images/결혼3.png",
         },
         {
           id: 103,
@@ -850,7 +914,6 @@ export const detailedSurveyData: SurveyData = {
           category: "결혼 생활의 영역",
           subCategory: "재정·경제 태도",
           type: "rating",
-          image: "/images/결혼4.png",
         },
         {
           id: 104,
@@ -874,6 +937,10 @@ export const detailedSurveyData: SurveyData = {
           category: "결혼 생활의 영역",
           subCategory: "양가 관계·경계",
           type: "rating",
+          image: {
+            male: "/images/man/M4_7.png",
+            female: "/images/woman/W4_7.png",
+          },
         },
         {
           id: 107,
@@ -907,6 +974,10 @@ export const detailedSurveyData: SurveyData = {
           category: "주관식",
           subCategory: "가사·생활 분담",
           type: "text",
+          image: {
+            male: "/images/man/M7_1.png",
+            female: "/images/woman/W7_1.png",
+          },
         },
         {
           id: 110,
@@ -931,7 +1002,6 @@ export const detailedSurveyData: SurveyData = {
           category: "주관식",
           subCategory: "인생 우선순위",
           type: "text",
-          image: "/images/주관4.png",
         },
         {
           id: 113,
@@ -940,6 +1010,10 @@ export const detailedSurveyData: SurveyData = {
           category: "주관식",
           subCategory: "인생 우선순위",
           type: "text",
+          image: {
+            male: "/images/man/M7_5.png",
+            female: "/images/woman/W7_5.png",
+          },
         },
         {
           id: 114,
@@ -964,7 +1038,6 @@ export const detailedSurveyData: SurveyData = {
           category: "주관식",
           subCategory: "회복력·성장 태도",
           type: "text",
-          image: "/images/주관8.png",
         },
         {
           id: 117,
@@ -973,6 +1046,10 @@ export const detailedSurveyData: SurveyData = {
           category: "주관식",
           subCategory: "결혼의 의미·비전",
           type: "text",
+          image: {
+            male: "/images/man/M7_9.png",
+            female: "/images/woman/W7_9.png",
+          },
         },
         {
           id: 118,
@@ -996,7 +1073,6 @@ export const detailedSurveyData: SurveyData = {
           category: "주관식",
           subCategory: "종합 인식",
           type: "text",
-          image: "/images/주관12.png",
         },
       ],
     },

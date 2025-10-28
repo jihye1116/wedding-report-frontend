@@ -93,6 +93,7 @@ export const PartPageTemplate = ({
 
   const shuffleQuestions = (questions: SurveyQuestion[], seed: number) => {
     const shuffled = [...questions];
+
     for (let i = shuffled.length - 1; i > 0; i--) {
       const j = Math.floor(seededRandom(seed, i) * (i + 1));
       [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];

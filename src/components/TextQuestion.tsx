@@ -1,8 +1,10 @@
 "use client";
 
+import { useAtom } from "jotai";
 import Image from "next/image";
 
 import { TextAreaField } from "@/components/TextAreaField";
+import { introDataAtom } from "@/store/surveyStore";
 import type { SurveyAnswer, SurveyQuestion } from "@/types/survey";
 
 interface TextQuestionProps {
@@ -22,19 +24,29 @@ export function TextQuestion({
   answers,
   addAnswer,
 }: TextQuestionProps) {
+  const [introData] = useAtom(introDataAtom);
+  const { gender } = introData;
+
   const handleTextChange = (questionId: number, value: string) => {
     addAnswer(questionId, value);
   };
+
+  let imageUrl: string | undefined;
+  if (typeof question.image === "string") {
+    imageUrl = question.image;
+  } else if (question.image && gender) {
+    imageUrl = question.image[gender as "male" | "female"];
+  }
 
   return (
     <>
       <h2 className="mb-6 leading-snug font-medium">
         {globalQuestionNumber}. {question.question}
       </h2>
-      {question.image && (
+      {imageUrl && (
         <div className="relative mb-6 flex aspect-square w-full justify-center">
           <Image
-            src={question.image}
+            src={imageUrl}
             alt={`Question ${globalQuestionNumber} illustration`}
             className="object-contain"
             fill
