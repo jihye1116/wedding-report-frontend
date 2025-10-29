@@ -147,7 +147,10 @@ export default function ResultViewerPage({
   if (currentStep === "part1") {
     return (
       <div className="flex h-dvh flex-col">
-        <Part1ResultPage currentPage={partPages.part1} />
+        <Part1ResultPage
+          currentPage={partPages.part1}
+          reportData={reportData}
+        />
         <Navigator
           onNext={handleNext}
           onBack={handleBack}
@@ -163,7 +166,10 @@ export default function ResultViewerPage({
   if (currentStep === "part2") {
     return (
       <div className="flex h-dvh flex-col justify-between">
-        <Part2ResultPage currentPage={partPages.part2} />
+        <Part2ResultPage
+          currentPage={partPages.part2}
+          reportData={reportData}
+        />
         <Navigator
           onNext={handleNext}
           onBack={handleBack}
@@ -179,7 +185,7 @@ export default function ResultViewerPage({
   if (currentStep === "part3") {
     return (
       <div className="flex h-dvh flex-col justify-between">
-        <Part3ResultPage step={part3Step} />
+        <Part3ResultPage step={part3Step} reportData={reportData} />
         <Navigator
           onNext={() => {
             if (part3Step === 21) {
@@ -208,7 +214,7 @@ export default function ResultViewerPage({
   if (currentStep === "part4") {
     return (
       <div className="flex h-dvh flex-col justify-between">
-        <Part4ResultPage step={part4Step} />
+        <Part4ResultPage step={part4Step} reportData={reportData} />
         <Navigator
           onNext={() => {
             if (part4Step === 5) {
@@ -237,7 +243,7 @@ export default function ResultViewerPage({
   if (currentStep === "part5") {
     return (
       <div className="flex h-dvh flex-col justify-between">
-        <Part5ResultPage />
+        <Part5ResultPage reportData={reportData} />
         <Navigator
           onNext={handleNext}
           onBack={handleBack}

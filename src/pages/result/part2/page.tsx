@@ -7,6 +7,7 @@ import FourSection from "@/assets/images/four-section.png";
 import Female from "@/assets/images/female.svg";
 import Male from "@/assets/images/male.svg";
 import EmpathyQuadrant from "@/components/EmpathyQuadrant";
+import { ReportData } from "@/types/api";
 /*
   Part 2: 공감 기반 시너지 (Positive Resonance)
   - 페이지 총 4장 구성
@@ -328,9 +329,13 @@ export const part2TotalPages = pages.length;
 
 interface Part2ResultPageProps {
   currentPage: number;
+  reportData?: ReportData | null;
 }
 
-export default function Part2ResultPage({ currentPage }: Part2ResultPageProps) {
+export default function Part2ResultPage({
+  currentPage,
+  reportData,
+}: Part2ResultPageProps) {
   const safeIndex = (() => {
     const len = pages.length;
     if (!len) return 0;

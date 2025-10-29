@@ -5,12 +5,22 @@ import Female from "@/assets/images/female.svg";
 import Male from "@/assets/images/male.svg";
 import { ReportHeader } from "@/components/ReportHeader";
 import { Tag } from "@/components/Tag";
+import { ReportData } from "@/types/api";
 
 interface Part4ResultPageProps {
   step: number;
+  reportData?: ReportData | null;
 }
 
-export default function Part4ResultPage({ step }: Part4ResultPageProps) {
+export default function Part4ResultPage({
+  step,
+  reportData,
+}: Part4ResultPageProps) {
+  const maleName =
+    reportData?.personal_analyses?.male?.profile?.name || "갑돌이";
+  const femaleName =
+    reportData?.personal_analyses?.female?.profile?.name || "갑순이";
+
   return (
     <main className="font-pretendard flex flex-1 flex-col">
       <ReportHeader />
@@ -34,13 +44,13 @@ export default function Part4ResultPage({ step }: Part4ResultPageProps) {
           </h1>
           <section className="my-5 rounded-xl border border-[#9AD8CA] p-5 xl:mt-10">
             <p className="leading-snug whitespace-pre-wrap text-black">
-              도현과 현서의 관계는 앞으로도 큰 불안정 없이 꾸준히 이어질
-              가능성이 있습니다. 서로의 생활 리듬이 이미 조율되어 있고, 갈등이
-              생겨도 감정적으로 부딪히기보다 정리하고 다시 균형을 찾는 방식이
-              익숙해져 있습니다. 다만 이런 안정감 속에서는 감정 교류가
-              점차 루틴의 그림자 속으로 들어갈 가능성이 있습니다. 이 커플은
+              {maleName}과 {femaleName}의 관계는 앞으로도 큰 불안정 없이 꾸준히
+              이어질 가능성이 있습니다. 서로의 생활 리듬이 이미 조율되어 있고,
+              갈등이 생겨도 감정적으로 부딪히기보다 정리하고 다시 균형을 찾는
+              방식이 익숙해져 있습니다. 다만 이런 안정감 속에서는 감정 교류가
+              점차 루틴의 그림자 속으로 들어갈 가능성이 있습니다. 이 커플은
               감정을 행동으로 표현하는 경향이 강해, 감정의 밀도가 옅어질 때는
-              ‘이해’보다 ‘공감’이 더 필요할 수 있습니다. 앞으로의 관계는 유지의
+              '이해'보다 '공감'이 더 필요할 수 있습니다. 앞으로의 관계는 유지의
               안정보다 감정의 순환을 만드는 방향으로 가는 것이 좋습니다. 감정을
               새롭게 표현하거나, 일상 속에서 서로의 기분을 묻는 작은 루틴을
               더하면 이 관계는 지금보다 더 따뜻하고 유연하게 성장할 수 있을
@@ -120,7 +130,9 @@ export default function Part4ResultPage({ step }: Part4ResultPageProps) {
             <section>
               <div className="flex items-end gap-3">
                 <Image src={Male} alt="남성" width={48} />
-                <p className="leading-loose font-semibold">갑돌이 님의 변화</p>
+                <p className="leading-loose font-semibold">
+                  {maleName} 님의 변화
+                </p>
               </div>
               <div className="flex flex-col gap-5 bg-[#F8F8F8] p-5 leading-snug">
                 <h2 className="text-lg font-semibold">
@@ -146,7 +158,9 @@ export default function Part4ResultPage({ step }: Part4ResultPageProps) {
             </section>
             <section>
               <div className="flex items-end justify-end gap-3">
-                <p className="leading-loose font-semibold">갑순이 님의 변화</p>
+                <p className="leading-loose font-semibold">
+                  {femaleName} 님의 변화
+                </p>
                 <Image src={Female} alt="여성" width={48} />
               </div>
               <div className="flex flex-col gap-5 bg-[#F8F8F8] p-5 leading-snug">

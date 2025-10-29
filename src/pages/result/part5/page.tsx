@@ -1,6 +1,11 @@
 import { ReportHeader } from "@/components/ReportHeader";
+import { ReportData } from "@/types/api";
 
-export default function Part5ResultPage() {
+interface Part5ResultPageProps {
+  reportData?: ReportData | null;
+}
+
+export default function Part5ResultPage({ reportData }: Part5ResultPageProps) {
   return (
     <main className="font-pretendard">
       <ReportHeader />

@@ -6,6 +6,7 @@ import Male from "@/assets/images/male.svg";
 import { ReportHeader } from "@/components/ReportHeader";
 import { SliderComponent } from "@/components/SliderComponent";
 import { SummaryBox } from "@/components/SummaryBox";
+import { ReportData } from "@/types/api";
 
 const Page1 = () => (
   <article className="wrapper flex flex-1 flex-col font-medium text-[#111111]">
@@ -138,397 +139,549 @@ const Page2 = () => (
   </article>
 );
 
-const Page3 = () => (
-  <article className="wrapper flex-1 bg-white text-gray-900">
-    <div className="flex items-center xl:pt-15 xl:pb-2">
-      <p className="text-xl leading-snug font-bold whitespace-nowrap">
-        01 정보처리 및 의사결정 방식
-      </p>
-    </div>
-    <div className="mt-5 flex flex-col gap-8">
-      {/* Header with user info */}
-      <div className="flex items-end justify-end gap-3">
-        <span className="font-medium">갑순이 님</span>
-        <Image src={Female} alt="female" width={40} height={40} />
+const Page3 = ({ reportData }: { reportData?: ReportData | null }) => {
+  const femaleName =
+    reportData?.personal_analyses?.female?.profile?.name || "갑순이";
+
+  // scaled_score를 슬라이더 값으로 변환 (-30 ~ +30 -> 0 ~ 30)
+  const convertScaledScore = (scaledScore: number) => {
+    return Math.round((scaledScore + 30) / 2); // -30~+30을 0~30으로 변환
+  };
+
+  return (
+    <article className="wrapper flex-1 bg-white text-gray-900">
+      <div className="flex items-center xl:pt-15 xl:pb-2">
+        <p className="text-xl leading-snug font-bold whitespace-nowrap">
+          01 정보처리 및 의사결정 방식
+        </p>
       </div>
+      <div className="mt-5 flex flex-col gap-8">
+        {/* Header with user info */}
+        <div className="flex items-end justify-end gap-3">
+          <span className="font-medium">{femaleName} 님</span>
+          <Image src={Female} alt="female" width={40} height={40} />
+        </div>
 
-      {/* Slider Sections */}
-      <div className="space-y-10">
-        {/* Section 1: 변화나 위험을 대할 때의 행동 에너지 방향 */}
-        <SliderComponent
-          title="1. 사고의 시간 초점"
-          leftLabel="현재지향형"
-          rightLabel="미래지향형"
-          value={20}
-          maxValue={30}
-          indicatorColor="#E2F2FD"
-          clampColor="#6EA3C7"
-          description="갑순이는 위험을 회피하기보다는, 도전과 가능성에 반응하며 움직이는 성향이 강합니다. 변화가 예고될 때 위축되기보다는, 오히려 그 안에서 기회와 의미를 탐색하고 실행으로 옮기려는 동기를 갖고 있습니다. 새로운 아이디어나 낯선 경험을 두려워하지 않으며, 일상의 반복보다 미지의 가능성에 호기심을 느끼는 경향이 있습니다."
-        />
-        <hr className="mt-6 border-t border-gray-300" />
+        {/* Slider Sections */}
+        <div className="space-y-10">
+          {/* Section 1: 사고의 시간 초점 */}
+          <SliderComponent
+            title="1. 사고의 시간 초점"
+            leftLabel="현재지향형"
+            rightLabel="미래지향형"
+            value={convertScaledScore(
+              reportData?.personal_analyses?.female?.score_analysis
+                ?.현재지향_미래지향?.scaled_score || 0,
+            )}
+            maxValue={30}
+            indicatorColor="#E2F2FD"
+            clampColor="#6EA3C7"
+            description="현재 드러난 사실과 미래에 일어날 가능성 모두에 관심을 가지는 성향을 갖고 있습니다. 구체적인 데이터와 전체적인 패턴을 모두 고려하며, 상황을 해석할 때 '지금 무엇이 중요한가?'와 '앞으로 어떻게 변할 수 있을까?'라는 질문을 자연스럽게 떠올립니다."
+          />
+          <hr className="mt-6 border-t border-gray-300" />
 
-        {/* Section 2: 사고 초점 */}
-        <SliderComponent
-          title="2. 사고 초점"
-          leftLabel="논리·객관중심"
-          rightLabel="감정·인간중심"
-          value={5}
-          maxValue={30}
-          indicatorColor="#DAFEE0"
-          clampColor="#22c55e"
-          description="갑순이는 타인의 인정이나 기대가 동기의 한 요소가 되기도 하지만, 그에 못지않게 내면에서 비롯된 직관, 영감, 의미 추구 역시 강한 동기 요인이 됩니다. 다시 말해, 외부로부터 평가받고자 하는 욕구와, 내면의 방향성을 따르고자 하는 힘 사이에서 균형을 이루고 있습니다. 이로 인해 갑순이님은 주체적으로 움직이면서도 주변의 기대나 기준을 완전히 무시하지 않는 유연한 태도를 지닙니다."
-        />
-        <hr className="mt-6 border-t border-gray-300" />
+          {/* Section 2: 사고 초점 */}
+          <SliderComponent
+            title="2. 사고 초점"
+            leftLabel="논리·객관중심"
+            rightLabel="감정·인간중심"
+            value={convertScaledScore(
+              reportData?.personal_analyses?.female?.score_analysis
+                ?.논리중심_감정중심?.scaled_score || 0,
+            )}
+            maxValue={30}
+            indicatorColor="#DAFEE0"
+            clampColor="#22c55e"
+            description="논리와 감정을 모두 고려해 상황에 맞게 유연하게 판단하는 성향을 갖고 있습니다. 현재 사실과 미래 가능성 어느 쪽에도 치우치지 않고 균형 있게 상황을 바라보며, 구체적 데이터와 패턴, 의미를 모두 함께 고려합니다."
+          />
+          <hr className="mt-6 border-t border-gray-300" />
 
-        {/* Section 3: 자기조절과 실행 자율성 */}
-        <SliderComponent
-          origin="left"
-          title="3. 정서 반응 민감도"
-          leftLabel="반응적"
-          rightLabel="조절적"
-          value={75}
-          maxValue={100}
-          indicatorColor="#FEECDA"
-          clampColor="#76634E"
-          scale={[0, 25, 50, 75, 100]}
-          description="갑순이는 자신이 설정한 목표를 스스로 계획하고 실천할 수 있는 실행 자율성이 높은 편입니다. 단지 아이디어나 의도를 갖는 데 그치지 않고, 그것을 구체적인 행동으로 전환하고 유지하는 능력을 가지고 있습니다. 스스로 동기를 조절하고 방향을 정하며, 일정한 흐름으로 목표를 끝까지 추진할 수 있는 심리적 자기관리력이 강점입니다."
-        />
-      </div>
+          {/* Section 3: 정서 반응 민감도 */}
+          <SliderComponent
+            origin="left"
+            title="3. 정서 반응 민감도"
+            leftLabel="반응적"
+            rightLabel="조절적"
+            value={convertScaledScore(
+              reportData?.personal_analyses?.female?.score_analysis
+                ?.반응적_조절적?.scaled_score || 0,
+            )}
+            maxValue={30}
+            indicatorColor="#FEECDA"
+            clampColor="#76634E"
+            description="감정을 잘 조절하며 침착하게 대응하는 성향을 갖고 있습니다. 현재 드러난 사실에 주목하여 신속하고 명확하게 상황을 파악하며, 논리적으로 문제에 접근하는 능력이 뛰어납니다."
+          />
+        </div>
 
-      {/* Summary Box */}
-      <SummaryBox text="변화에 빠르게 반응하는 직관적 문제 해결 자" />
-    </div>
-  </article>
-);
-
-const Page4 = () => (
-  <article className="wrapper flex-1 bg-white text-gray-900">
-    <div className="flex items-center xl:pt-15 xl:pb-2">
-      <p className="text-xl leading-snug font-bold whitespace-nowrap">
-        01 정보처리 및 의사결정 방식
-      </p>
-    </div>
-    <div className="mt-5 flex flex-col gap-8">
-      {/* Header with user info */}
-      <div className="flex items-end justify-end gap-3">
-        <span className="font-medium">갑돌이 님</span>
-        <Image src={Male} alt="male" width={40} height={40} />
-      </div>
-
-      {/* Slider Sections */}
-      <div className="space-y-10">
-        {/* Section 1: 변화나 위험을 대할 때의 행동 에너지 방향 */}
-        <SliderComponent
-          title="1. 사고의 시간 초점"
-          leftLabel="현재지향형"
-          rightLabel="미래지향형"
-          value={20}
-          maxValue={30}
-          indicatorColor="#E2F2FD"
-          clampColor="#6EA3C7"
-          description="갑돌이는 위험을 회피하기보다는, 도전과 가능성에 반응하며 움직이는 성향이 강합니다. 변화가 예고될 때 위축되기보다는, 오히려 그 안에서 기회와 의미를 탐색하고 실행으로 옮기려는 동기를 갖고 있습니다. 새로운 아이디어나 낯선 경험을 두려워하지 않으며, 일상의 반복보다 미지의 가능성에 호기심을 느끼는 경향이 있습니다."
-        />
-        <hr className="mt-6 border-t border-gray-300" />
-
-        {/* Section 2: 사고 초점 */}
-        <SliderComponent
-          title="2. 사고 초점"
-          leftLabel="논리·객관중심"
-          rightLabel="감정·인간중심"
-          value={5}
-          maxValue={30}
-          indicatorColor="#DAFEE0"
-          clampColor="#22c55e"
-          description="갑돌이는 타인의 인정이나 기대가 동기의 한 요소가 되기도 하지만, 그에 못지않게 내면에서 비롯된 직관, 영감, 의미 추구 역시 강한 동기 요인이 됩니다. 다시 말해, 외부로부터 평가받고자 하는 욕구와, 내면의 방향성을 따르고자 하는 힘 사이에서 균형을 이루고 있습니다. 이로 인해 갑돌이님은 주체적으로 움직이면서도 주변의 기대나 기준을 완전히 무시하지 않는 유연한 태도를 지닙니다."
-        />
-        <hr className="mt-6 border-t border-gray-300" />
-
-        {/* Section 3: 자기조절과 실행 자율성 */}
-        <SliderComponent
-          origin="left"
-          title="3. 정서 반응 민감도"
-          leftLabel="반응적"
-          rightLabel="조절적"
-          value={75}
-          maxValue={100}
-          indicatorColor="#FEECDA"
-          clampColor="#76634E"
-          scale={[0, 25, 50, 75, 100]}
-          description="갑돌이는 자신이 설정한 목표를 스스로 계획하고 실천할 수 있는 실행 자율성이 높은 편입니다. 단지 아이디어나 의도를 갖는 데 그치지 않고, 그것을 구체적인 행동으로 전환하고 유지하는 능력을 가지고 있습니다. 스스로 동기를 조절하고 방향을 정하며, 일정한 흐름으로 목표를 끝까지 추진할 수 있는 심리적 자기관리력이 강점입니다."
+        {/* Summary Box */}
+        <SummaryBox
+          text={
+            reportData?.personal_analyses?.female?.detailed_analysis?.["1-1"]
+              ?.characteristicDefinition ||
+            "현재와 미래를 균형 있게 조화시키려는 성향"
+          }
         />
       </div>
+    </article>
+  );
+};
 
-      {/* Summary Box */}
-      <SummaryBox text="균형잡힌 동기 구조를 가진 리더십형" />
-    </div>
-  </article>
-);
+const Page4 = ({ reportData }: { reportData?: ReportData | null }) => {
+  const maleName =
+    reportData?.personal_analyses?.male?.profile?.name || "갑돌이";
 
-const Page5 = () => (
-  <article className="wrapper flex-1 bg-white text-gray-900">
-    <div className="flex items-center xl:pt-15 xl:pb-2">
-      <p className="text-xl leading-snug font-bold whitespace-nowrap">
-        02 동기 구조 및 자기조절
-      </p>
-    </div>
-    <div className="mt-5 flex flex-col gap-8">
-      {/* Header with user info */}
-      <div className="flex items-end justify-end gap-3">
-        <span className="font-medium">갑순이 님</span>
-        <Image src={Female} alt="female" width={40} height={40} />
+  // scaled_score를 슬라이더 값으로 변환 (-30 ~ +30 -> 0 ~ 30)
+  const convertScaledScore = (scaledScore: number) => {
+    return Math.round((scaledScore + 30) / 2); // -30~+30을 0~30으로 변환
+  };
+
+  return (
+    <article className="wrapper flex-1 bg-white text-gray-900">
+      <div className="flex items-center xl:pt-15 xl:pb-2">
+        <p className="text-xl leading-snug font-bold whitespace-nowrap">
+          01 정보처리 및 의사결정 방식
+        </p>
       </div>
+      <div className="mt-5 flex flex-col gap-8">
+        {/* Header with user info */}
+        <div className="flex items-end justify-end gap-3">
+          <span className="font-medium">{maleName} 님</span>
+          <Image src={Male} alt="male" width={40} height={40} />
+        </div>
 
-      {/* Slider Sections */}
-      <div className="space-y-10">
-        {/* Section 1: 변화나 위험을 대할 때의 행동 에너지 방향 */}
-        <SliderComponent
-          title="1. 변화나 위험을 대할 때의 행동 에너지 방향"
-          leftLabel="안전지향"
-          rightLabel="도전지향"
-          value={20}
-          maxValue={30}
-          indicatorColor="#FDE2E2"
-          clampColor="#D68787"
-          description="갑순이는 위험을 회피하기보다는, 도전과 가능성에 반응하며 움직이는 성향이 강합니다. 변화가 예고될 때 위축되기보다는, 오히려 그 안에서 기회와 의미를 탐색하고 실행으로 옮기려는 동기를 갖고 있습니다. 새로운 아이디어나 낯선 경험을 두려워하지 않으며, 일상의 반복보다 미지의 가능성에 호기심을 느끼는 경향이 있습니다."
-        />
-        <hr className="mt-6 border-t border-gray-300" />
+        {/* Slider Sections */}
+        <div className="space-y-10">
+          {/* Section 1: 사고의 시간 초점 */}
+          <SliderComponent
+            title="1. 사고의 시간 초점"
+            leftLabel="현재지향형"
+            rightLabel="미래지향형"
+            value={convertScaledScore(
+              reportData?.personal_analyses?.male?.score_analysis
+                ?.현재지향_미래지향?.scaled_score || 0,
+            )}
+            maxValue={30}
+            indicatorColor="#E2F2FD"
+            clampColor="#6EA3C7"
+            description="현재 드러난 사실과 미래에 일어날 가능성 모두에 관심을 가지는 성향을 갖고 있습니다. 구체적인 데이터와 전체적인 패턴을 모두 고려하며, 상황을 해석할 때 '지금 무엇이 중요한가?'와 '앞으로 어떻게 변할 수 있을까?'라는 질문을 자연스럽게 떠올립니다."
+          />
+          <hr className="mt-6 border-t border-gray-300" />
 
-        {/* Section 2: 동기의 원천 */}
-        <SliderComponent
-          title="2. 동기의 원천"
-          leftLabel="외적동기"
-          rightLabel="내적동기"
-          value={15}
-          maxValue={30}
-          indicatorColor="#EEE3FF"
-          clampColor="#8E6CC2"
-          description="갑순이는 타인의 인정이나 기대가 동기의 한 요소가 되기도 하지만, 그에 못지않게 내면에서 비롯된 직관, 영감, 의미 추구 역시 강한 동기 요인이 됩니다. 다시 말해, 외부로부터 평가받고자 하는 욕구와, 내면의 방향성을 따르고자 하는 힘 사이에서 균형을 이루고 있습니다. 이로 인해 갑순이님은 주체적으로 움직이면서도 주변의 기대나 기준을 완전히 무시하지 않는 유연한 태도를 지닙니다."
-        />
-        <hr className="mt-6 border-t border-gray-300" />
+          {/* Section 2: 사고 초점 */}
+          <SliderComponent
+            title="2. 사고 초점"
+            leftLabel="논리·객관중심"
+            rightLabel="감정·인간중심"
+            value={convertScaledScore(
+              reportData?.personal_analyses?.male?.score_analysis
+                ?.논리중심_감정중심?.scaled_score || 0,
+            )}
+            maxValue={30}
+            indicatorColor="#DAFEE0"
+            clampColor="#22c55e"
+            description="논리와 감정을 모두 고려해 상황에 맞게 유연하게 판단하는 성향을 갖고 있습니다. 현재 사실과 미래 가능성 어느 쪽에도 치우치지 않고 균형 있게 상황을 바라보며, 구체적 데이터와 패턴, 의미를 모두 함께 고려합니다."
+          />
+          <hr className="mt-6 border-t border-gray-300" />
 
-        {/* Section 3: 자기조절과 실행 자율성 */}
-        <SliderComponent
-          title="3. 자기조절과 실행 자율성"
-          leftLabel="낮음"
-          rightLabel="높음"
-          value={20}
-          maxValue={30}
-          indicatorColor="#FEFBDA"
-          clampColor="#C2BD91"
-          description="갑순이는 위험을 회피하기보다는, 도전과 가능성에 반응하며 움직이는 성향이 강합니다. 변화가 예고될 때 위축되기보다는, 오히려 그 안에서 기회와 의미를 탐색하고 실행으로 옮기려는 동기를 갖고 있습니다. 새로운 아이디어나 낯선 경험을 두려워하지 않으며, 일상의 반복보다 미지의 가능성에 호기심을 느끼는 경향이 있습니다."
-        />
-      </div>
+          {/* Section 3: 정서 반응 민감도 */}
+          <SliderComponent
+            origin="left"
+            title="3. 정서 반응 민감도"
+            leftLabel="반응적"
+            rightLabel="조절적"
+            value={convertScaledScore(
+              reportData?.personal_analyses?.male?.score_analysis?.반응적_조절적
+                ?.scaled_score || 0,
+            )}
+            maxValue={30}
+            indicatorColor="#FEECDA"
+            clampColor="#76634E"
+            description="감정을 잘 조절하며 침착하게 대응하는 성향을 갖고 있습니다. 현재 드러난 사실에 주목하여 신속하고 명확하게 상황을 파악하며, 논리적으로 문제에 접근하는 능력이 뛰어납니다."
+          />
+        </div>
 
-      {/* Summary Box */}
-      <SummaryBox text="목표 지향적 실행력의 소유자" />
-    </div>
-  </article>
-);
-
-const Page6 = () => (
-  <article className="wrapper flex-1 bg-white text-gray-900">
-    <div className="flex items-center xl:pt-15 xl:pb-2">
-      <p className="text-xl leading-snug font-bold whitespace-nowrap">
-        02 동기 구조 및 자기조절
-      </p>
-    </div>
-    <div className="mt-5 flex flex-col gap-8">
-      {/* Header with user info */}
-      <div className="flex items-end justify-end gap-3">
-        <span className="font-medium">갑돌이 님</span>
-        <Image src={Male} alt="male" width={40} height={40} />
-      </div>
-
-      {/* Slider Sections */}
-      <div className="space-y-10">
-        {/* Section 1: 변화나 위험을 대할 때의 행동 에너지 방향 */}
-        <SliderComponent
-          title="1. 변화나 위험을 대할 때의 행동 에너지 방향"
-          leftLabel="안전지향"
-          rightLabel="도전지향"
-          value={20}
-          maxValue={30}
-          indicatorColor="#FDE2E2"
-          clampColor="#D68787"
-          description="갑돌이는 위험을 회피하기보다는, 도전과 가능성에 반응하며 움직이는 성향이 강합니다. 변화가 예고될 때 위축되기보다는, 오히려 그 안에서 기회와 의미를 탐색하고 실행으로 옮기려는 동기를 갖고 있습니다. 새로운 아이디어나 낯선 경험을 두려워하지 않으며, 일상의 반복보다 미지의 가능성에 호기심을 느끼는 경향이 있습니다."
-        />
-        <hr className="mt-6 border-t border-gray-300" />
-
-        {/* Section 2: 동기의 원천 */}
-        <SliderComponent
-          title="2. 동기의 원천"
-          leftLabel="외적동기"
-          rightLabel="내적동기"
-          value={15}
-          maxValue={30}
-          indicatorColor="#EEE3FF"
-          clampColor="#8E6CC2"
-          description="갑돌이는 타인의 인정이나 기대가 동기의 한 요소가 되기도 하지만, 그에 못지않게 내면에서 비롯된 직관, 영감, 의미 추구 역시 강한 동기 요인이 됩니다. 다시 말해, 외부로부터 평가받고자 하는 욕구와, 내면의 방향성을 따르고자 하는 힘 사이에서 균형을 이루고 있습니다. 이로 인해 갑돌이님은 주체적으로 움직이면서도 주변의 기대나 기준을 완전히 무시하지 않는 유연한 태도를 지닙니다."
-        />
-        <hr className="mt-6 border-t border-gray-300" />
-
-        {/* Section 3: 자기조절과 실행 자율성 */}
-        <SliderComponent
-          title="3. 자기조절과 실행 자율성"
-          leftLabel="낮음"
-          rightLabel="높음"
-          value={20}
-          maxValue={30}
-          indicatorColor="#FEFBDA"
-          clampColor="#C2BD91"
-          description="갑돌이는 위험을 회피하기보다는, 도전과 가능성에 반응하며 움직이는 성향이 강합니다. 변화가 예고될 때 위축되기보다는, 오히려 그 안에서 기회와 의미를 탐색하고 실행으로 옮기려는 동기를 갖고 있습니다. 새로운 아이디어나 낯선 경험을 두려워하지 않으며, 일상의 반복보다 미지의 가능성에 호기심을 느끼는 경향이 있습니다."
+        {/* Summary Box */}
+        <SummaryBox
+          text={
+            reportData?.personal_analyses?.male?.detailed_analysis?.["1-2"]
+              ?.characteristicDefinition ||
+            "상황에 따라 논리와 감정을 균형 있게 고려하는 성향"
+          }
         />
       </div>
+    </article>
+  );
+};
 
-      {/* Summary Box */}
-      <SummaryBox text="신중한 관계 형성의 전문가" />
-    </div>
-  </article>
-);
+const Page5 = ({ reportData }: { reportData?: ReportData | null }) => {
+  const femaleName =
+    reportData?.personal_analyses?.female?.profile?.name || "갑순이";
 
-const Page7 = () => (
-  <article className="wrapper flex-1 bg-white text-gray-900">
-    <div className="flex items-center xl:pt-15 xl:pb-2">
-      <p className="text-xl leading-snug font-bold whitespace-nowrap">
-        03 외현적 행동 및 생활방식
-      </p>
-    </div>
-    <div className="mt-5 flex flex-col gap-8">
-      {/* Header with user info */}
-      <div className="flex items-end justify-end gap-3">
-        <span className="font-medium">갑순이 님</span>
-        <Image src={Female} alt="female" width={40} height={40} />
+  // scaled_score를 슬라이더 값으로 변환 (-30 ~ +30 -> 0 ~ 30)
+  const convertScaledScore = (scaledScore: number) => {
+    return Math.round((scaledScore + 30) / 2); // -30~+30을 0~30으로 변환
+  };
+
+  return (
+    <article className="wrapper flex-1 bg-white text-gray-900">
+      <div className="flex items-center xl:pt-15 xl:pb-2">
+        <p className="text-xl leading-snug font-bold whitespace-nowrap">
+          02 동기 구조 및 자기조절
+        </p>
       </div>
+      <div className="mt-5 flex flex-col gap-8">
+        {/* Header with user info */}
+        <div className="flex items-end justify-end gap-3">
+          <span className="font-medium">{femaleName} 님</span>
+          <Image src={Female} alt="female" width={40} height={40} />
+        </div>
 
-      {/* Slider Sections */}
-      <div className="space-y-10">
-        {/* Section 1: 대인 관계에서의 에너지 순환 패턴 */}
-        <SliderComponent
-          title="1. 대인 관계에서의 에너지 순환 패턴"
-          leftLabel="내향형"
-          rightLabel="외향형"
-          value={20}
-          maxValue={30}
-          indicatorColor="#E2FAFD"
-          clampColor="#94DEE8"
-          description="갑순이는 위험을 회피하기보다는, 도전과 가능성에 반응하며 움직이는 성향이 강합니다. 변화가 예고될 때 위축되기보다는, 오히려 그 안에서 기회와 의미를 탐색하고 실행으로 옮기려는 동기를 갖고 있습니다. 새로운 아이디어나 낯선 경험을 두려워하지 않으며, 일상의 반복보다 미지의 가능성에 호기심을 느끼는 경향이 있습니다."
-        />
-        <hr className="mt-6 border-t border-gray-300" />
+        {/* Slider Sections */}
+        <div className="space-y-10">
+          {/* Section 1: 변화나 위험을 대할 때의 행동 에너지 방향 */}
+          <SliderComponent
+            title="1. 변화나 위험을 대할 때의 행동 에너지 방향"
+            leftLabel="안전지향"
+            rightLabel="도전지향"
+            value={convertScaledScore(
+              reportData?.personal_analyses?.female?.score_analysis
+                ?.안정지향_도전지향?.scaled_score || 0,
+            )}
+            maxValue={30}
+            indicatorColor="#FDE2E2"
+            clampColor="#D68787"
+            description="안정과 도전 사이에서 균형을 이루는 성향을 갖고 있습니다. 상황에 따라 신중하게 판단하며, 위험을 회피하기보다는 도전과 가능성에 반응하며 움직이는 성향이 있습니다. 변화가 예고될 때 위축되기보다는, 그 안에서 기회와 의미를 탐색하고 실행으로 옮기려는 동기를 갖고 있습니다."
+          />
+          <hr className="mt-6 border-t border-gray-300" />
 
-        {/* Section 2: 일상 구조화 및 실행 방식 */}
-        <SliderComponent
-          title="2. 일상 구조화 및 실행 방식"
-          leftLabel="유연형"
-          rightLabel="계획형"
-          value={5}
-          maxValue={30}
-          indicatorColor="#E2FDF0"
-          clampColor="#97CCB2"
-          description="갑순이는 타인의 인정이나 기대가 동기의 한 요소가 되기도 하지만, 그에 못지않게 내면에서 비롯된 직관, 영감, 의미 추구 역시 강한 동기 요인이 됩니다. 다시 말해, 외부로부터 평가받고자 하는 욕구와, 내면의 방향성을 따르고자 하는 힘 사이에서 균형을 이루고 있습니다. 이로 인해 갑순이님은 주체적으로 움직이면서도 주변의 기대나 기준을 완전히 무시하지 않는 유연한 태도를 지닙니다."
-        />
-        <hr className="mt-6 border-t border-gray-300" />
+          {/* Section 2: 동기의 원천 */}
+          <SliderComponent
+            title="2. 동기의 원천"
+            leftLabel="외적동기"
+            rightLabel="내적동기"
+            value={convertScaledScore(
+              reportData?.personal_analyses?.female?.score_analysis
+                ?.외적동기_내적동기?.scaled_score || 0,
+            )}
+            maxValue={30}
+            indicatorColor="#EEE3FF"
+            clampColor="#8E6CC2"
+            description="내면에서 비롯된 직관, 영감, 의미 추구가 강한 동기 요인이 됩니다. 타인의 인정이나 기대보다는 내면의 방향성을 따르고자 하는 힘이 강하며, 주체적으로 움직이면서도 주변의 기대나 기준을 완전히 무시하지 않는 유연한 태도를 지닙니다."
+          />
+          <hr className="mt-6 border-t border-gray-300" />
 
-        {/* Section 3: 정서 반응 민감도 */}
-        <SliderComponent
-          origin="left"
-          title="3. 감정·의사 표현 스타일"
-          leftLabel="자기표현형"
-          rightLabel="적응배려형"
-          value={75}
-          maxValue={100}
-          indicatorColor="#E2E2FD"
-          clampColor="#8A8ACD"
-          scale={[0, 25, 50, 75, 100]}
-          description="갑순이는 자신이 설정한 목표를 스스로 계획하고 실천할 수 있는 실행 자율성이 높은 편입니다. 단지 아이디어나 의도를 갖는 데 그치지 않고, 그것을 구체적인 행동으로 전환하고 유지하는 능력을 가지고 있습니다. 스스로 동기를 조절하고 방향을 정하며, 일정한 흐름으로 목표를 끝까지 추진할 수 있는 심리적 자기관리력이 강점입니다."
-        />
-      </div>
+          {/* Section 3: 자기조절과 실행 자율성 */}
+          <SliderComponent
+            title="3. 자기조절과 실행 자율성"
+            leftLabel="낮음"
+            rightLabel="높음"
+            value={convertScaledScore(
+              reportData?.personal_analyses?.female?.score_analysis
+                ?.반응적_조절적?.scaled_score || 0,
+            )}
+            maxValue={30}
+            indicatorColor="#FEFBDA"
+            clampColor="#C2BD91"
+            description="자신이 설정한 목표를 스스로 계획하고 실천할 수 있는 실행 자율성이 높은 편입니다. 단지 아이디어나 의도를 갖는 데 그치지 않고, 그것을 구체적인 행동으로 전환하고 유지하는 능력을 가지고 있습니다. 스스로 동기를 조절하고 방향을 정하며, 일정한 흐름으로 목표를 끝까지 추진할 수 있는 심리적 자기관리력이 강점입니다."
+          />
+        </div>
 
-      {/* Summary Box */}
-      <SummaryBox text="유연한 일상 관리의 달인" />
-    </div>
-  </article>
-);
-
-const Page8 = () => (
-  <article className="wrapper flex-1 bg-white text-gray-900">
-    <div className="flex items-center xl:pt-15 xl:pb-2">
-      <p className="text-xl leading-snug font-bold whitespace-nowrap">
-        03 외현적 행동 및 생활방식
-      </p>
-    </div>
-    <div className="mt-5 flex flex-col gap-8">
-      {/* Header with user info */}
-      <div className="flex items-end justify-end gap-3">
-        <span className="font-medium">갑돌이 님</span>
-        <Image src={Male} alt="male" width={40} height={40} />
-      </div>
-
-      {/* Slider Sections */}
-      <div className="space-y-10">
-        {/* Section 1: 대인 관계에서의 에너지 순환 패턴 */}
-        <SliderComponent
-          title="1. 대인 관계에서의 에너지 순환 패턴"
-          leftLabel="내향형"
-          rightLabel="외향형"
-          value={20}
-          maxValue={30}
-          indicatorColor="#E2FAFD"
-          clampColor="#94DEE8"
-          description="갑돌이는 위험을 회피하기보다는, 도전과 가능성에 반응하며 움직이는 성향이 강합니다. 변화가 예고될 때 위축되기보다는, 오히려 그 안에서 기회와 의미를 탐색하고 실행으로 옮기려는 동기를 갖고 있습니다. 새로운 아이디어나 낯선 경험을 두려워하지 않으며, 일상의 반복보다 미지의 가능성에 호기심을 느끼는 경향이 있습니다."
-        />
-        <hr className="mt-6 border-t border-gray-300" />
-
-        {/* Section 2: 동기의 원천 */}
-        <SliderComponent
-          title="2. 일상 구조화 및 실행 방식"
-          leftLabel="유연형"
-          rightLabel="계획형"
-          value={5}
-          maxValue={30}
-          indicatorColor="#E2FDF0"
-          clampColor="#97CCB2"
-          description="갑순이는 타인의 인정이나 기대가 동기의 한 요소가 되기도 하지만, 그에 못지않게 내면에서 비롯된 직관, 영감, 의미 추구 역시 강한 동기 요인이 됩니다. 다시 말해, 외부로부터 평가받고자 하는 욕구와, 내면의 방향성을 따르고자 하는 힘 사이에서 균형을 이루고 있습니다. 이로 인해 갑순이님은 주체적으로 움직이면서도 주변의 기대나 기준을 완전히 무시하지 않는 유연한 태도를 지닙니다."
-        />
-        <hr className="mt-6 border-t border-gray-300" />
-
-        {/* Section 3: 정서 반응 민감도 */}
-        <SliderComponent
-          origin="left"
-          title="3. 감정·의사 표현 스타일"
-          leftLabel="자기표현형"
-          rightLabel="적응배려형"
-          value={75}
-          maxValue={100}
-          indicatorColor="#E2E2FD"
-          clampColor="#8A8ACD"
-          scale={[0, 25, 50, 75, 100]}
-          description="갑돌이는 자신이 설정한 목표를 스스로 계획하고 실천할 수 있는 실행 자율성이 높은 편입니다. 단지 아이디어나 의도를 갖는 데 그치지 않고, 그것을 구체적인 행동으로 전환하고 유지하는 능력을 가지고 있습니다. 스스로 동기를 조절하고 방향을 정하며, 일정한 흐름으로 목표를 끝까지 추진할 수 있는 심리적 자기관리력이 강점입니다."
+        {/* Summary Box */}
+        <SummaryBox
+          text={
+            reportData?.personal_analyses?.female?.detailed_analysis?.["2-2"]
+              ?.characteristicDefinition ||
+            "내적 동기와 외적 동기 사이에서 균형을 이루려는 성향"
+          }
         />
       </div>
+    </article>
+  );
+};
 
-      {/* Summary Box */}
-      <SummaryBox text="균형잡힌 소통의 전문가" />
-    </div>
-  </article>
-);
+const Page6 = ({ reportData }: { reportData?: ReportData | null }) => {
+  const maleName =
+    reportData?.personal_analyses?.male?.profile?.name || "갑돌이";
 
-const pages = [
+  // scaled_score를 슬라이더 값으로 변환 (-30 ~ +30 -> 0 ~ 30)
+  const convertScaledScore = (scaledScore: number) => {
+    return Math.round((scaledScore + 30) / 2); // -30~+30을 0~30으로 변환
+  };
+
+  return (
+    <article className="wrapper flex-1 bg-white text-gray-900">
+      <div className="flex items-center xl:pt-15 xl:pb-2">
+        <p className="text-xl leading-snug font-bold whitespace-nowrap">
+          02 동기 구조 및 자기조절
+        </p>
+      </div>
+      <div className="mt-5 flex flex-col gap-8">
+        {/* Header with user info */}
+        <div className="flex items-end justify-end gap-3">
+          <span className="font-medium">{maleName} 님</span>
+          <Image src={Male} alt="male" width={40} height={40} />
+        </div>
+
+        {/* Slider Sections */}
+        <div className="space-y-10">
+          {/* Section 1: 변화나 위험을 대할 때의 행동 에너지 방향 */}
+          <SliderComponent
+            title="1. 변화나 위험을 대할 때의 행동 에너지 방향"
+            leftLabel="안전지향"
+            rightLabel="도전지향"
+            value={convertScaledScore(
+              reportData?.personal_analyses?.male?.score_analysis
+                ?.안정지향_도전지향?.scaled_score || 0,
+            )}
+            maxValue={30}
+            indicatorColor="#FDE2E2"
+            clampColor="#D68787"
+            description="안정과 도전 사이에서 균형을 이루는 성향을 갖고 있습니다. 상황에 따라 신중하게 판단하며, 위험을 회피하기보다는 도전과 가능성에 반응하며 움직이는 성향이 있습니다. 변화가 예고될 때 위축되기보다는, 그 안에서 기회와 의미를 탐색하고 실행으로 옮기려는 동기를 갖고 있습니다."
+          />
+          <hr className="mt-6 border-t border-gray-300" />
+
+          {/* Section 2: 동기의 원천 */}
+          <SliderComponent
+            title="2. 동기의 원천"
+            leftLabel="외적동기"
+            rightLabel="내적동기"
+            value={convertScaledScore(
+              reportData?.personal_analyses?.male?.score_analysis
+                ?.외적동기_내적동기?.scaled_score || 0,
+            )}
+            maxValue={30}
+            indicatorColor="#EEE3FF"
+            clampColor="#8E6CC2"
+            description="내면에서 비롯된 직관, 영감, 의미 추구가 강한 동기 요인이 됩니다. 타인의 인정이나 기대보다는 내면의 방향성을 따르고자 하는 힘이 강하며, 주체적으로 움직이면서도 주변의 기대나 기준을 완전히 무시하지 않는 유연한 태도를 지닙니다."
+          />
+          <hr className="mt-6 border-t border-gray-300" />
+
+          {/* Section 3: 자기조절과 실행 자율성 */}
+          <SliderComponent
+            title="3. 자기조절과 실행 자율성"
+            leftLabel="낮음"
+            rightLabel="높음"
+            value={convertScaledScore(
+              reportData?.personal_analyses?.male?.score_analysis?.반응적_조절적
+                ?.scaled_score || 0,
+            )}
+            maxValue={30}
+            indicatorColor="#FEFBDA"
+            clampColor="#C2BD91"
+            description="자신이 설정한 목표를 스스로 계획하고 실천할 수 있는 실행 자율성이 높은 편입니다. 단지 아이디어나 의도를 갖는 데 그치지 않고, 그것을 구체적인 행동으로 전환하고 유지하는 능력을 가지고 있습니다. 스스로 동기를 조절하고 방향을 정하며, 일정한 흐름으로 목표를 끝까지 추진할 수 있는 심리적 자기관리력이 강점입니다."
+          />
+        </div>
+
+        {/* Summary Box */}
+        <SummaryBox
+          text={
+            reportData?.personal_analyses?.male?.detailed_analysis?.["2-1"]
+              ?.characteristicDefinition ||
+            "안정적이고 예측 가능한 환경에서 안전감을 느끼는 성향"
+          }
+        />
+      </div>
+    </article>
+  );
+};
+
+const Page7 = ({ reportData }: { reportData?: ReportData | null }) => {
+  const femaleName =
+    reportData?.personal_analyses?.female?.profile?.name || "갑순이";
+
+  // scaled_score를 슬라이더 값으로 변환 (-30 ~ +30 -> 0 ~ 30)
+  const convertScaledScore = (scaledScore: number) => {
+    return Math.round((scaledScore + 30) / 2); // -30~+30을 0~30으로 변환
+  };
+
+  return (
+    <article className="wrapper flex-1 bg-white text-gray-900">
+      <div className="flex items-center xl:pt-15 xl:pb-2">
+        <p className="text-xl leading-snug font-bold whitespace-nowrap">
+          03 외현적 행동 및 생활방식
+        </p>
+      </div>
+      <div className="mt-5 flex flex-col gap-8">
+        {/* Header with user info */}
+        <div className="flex items-end justify-end gap-3">
+          <span className="font-medium">{femaleName} 님</span>
+          <Image src={Female} alt="female" width={40} height={40} />
+        </div>
+
+        {/* Slider Sections */}
+        <div className="space-y-10">
+          {/* Section 1: 대인 관계에서의 에너지 순환 패턴 */}
+          <SliderComponent
+            title="1. 대인 관계에서의 에너지 순환 패턴"
+            leftLabel="내향형"
+            rightLabel="외향형"
+            value={convertScaledScore(
+              reportData?.personal_analyses?.female?.score_analysis?.내향_외향
+                ?.scaled_score || 0,
+            )}
+            maxValue={30}
+            indicatorColor="#E2FAFD"
+            clampColor="#94DEE8"
+            description="내향과 외향 사이에서 균형을 이루는 성향을 갖고 있습니다. 상황에 따라 혼자만의 시간을 즐기기도 하고, 다른 사람들과의 상호작용에서 에너지를 얻기도 합니다. 조용한 환경에서 깊이 생각하는 것을 좋아하면서도, 필요할 때는 활발하게 소통하는 능력을 가지고 있습니다."
+          />
+          <hr className="mt-6 border-t border-gray-300" />
+
+          {/* Section 2: 일상 구조화 및 실행 방식 */}
+          <SliderComponent
+            title="2. 일상 구조화 및 실행 방식"
+            leftLabel="유연형"
+            rightLabel="계획형"
+            value={convertScaledScore(
+              reportData?.personal_analyses?.female?.score_analysis?.유연_계획
+                ?.scaled_score || 0,
+            )}
+            maxValue={30}
+            indicatorColor="#E2FDF0"
+            clampColor="#97CCB2"
+            description="유연함과 계획성 사이에서 균형을 이루는 성향을 갖고 있습니다. 상황에 따라 미리 계획을 세우기도 하고, 그때그때 유연하게 대응하기도 합니다. 구조화된 일상을 선호하면서도 예상치 못한 변화에 적응할 수 있는 능력을 가지고 있습니다."
+          />
+          <hr className="mt-6 border-t border-gray-300" />
+
+          {/* Section 3: 감정·의사 표현 스타일 */}
+          <SliderComponent
+            origin="left"
+            title="3. 감정·의사 표현 스타일"
+            leftLabel="자기표현형"
+            rightLabel="적응배려형"
+            value={convertScaledScore(
+              reportData?.personal_analyses?.female?.score_analysis
+                ?.자기표현_적응배려?.scaled_score || 0,
+            )}
+            maxValue={30}
+            indicatorColor="#E2E2FD"
+            clampColor="#8A8ACD"
+            description="상대를 배려하되 필요시 의견을 표현하는 스타일을 갖고 있습니다. 조화롭게 관계를 유지하면서도 자신의 생각과 감정을 적절히 전달할 수 있는 능력을 가지고 있습니다. 상대방의 입장을 고려하면서도 진정성 있는 소통을 추구합니다."
+          />
+        </div>
+
+        {/* Summary Box */}
+        <SummaryBox
+          text={
+            reportData?.personal_analyses?.female?.detailed_analysis?.["3-2"]
+              ?.characteristicDefinition ||
+            "상황에 따라 유연하게 대처하고 계획과 즉흥 사이에서 균형을 이루는 성향"
+          }
+        />
+      </div>
+    </article>
+  );
+};
+
+const Page8 = ({ reportData }: { reportData?: ReportData | null }) => {
+  const maleName =
+    reportData?.personal_analyses?.male?.profile?.name || "갑돌이";
+
+  // scaled_score를 슬라이더 값으로 변환 (-30 ~ +30 -> 0 ~ 30)
+  const convertScaledScore = (scaledScore: number) => {
+    return Math.round((scaledScore + 30) / 2); // -30~+30을 0~30으로 변환
+  };
+
+  return (
+    <article className="wrapper flex-1 bg-white text-gray-900">
+      <div className="flex items-center xl:pt-15 xl:pb-2">
+        <p className="text-xl leading-snug font-bold whitespace-nowrap">
+          03 외현적 행동 및 생활방식
+        </p>
+      </div>
+      <div className="mt-5 flex flex-col gap-8">
+        {/* Header with user info */}
+        <div className="flex items-end justify-end gap-3">
+          <span className="font-medium">{maleName} 님</span>
+          <Image src={Male} alt="male" width={40} height={40} />
+        </div>
+
+        {/* Slider Sections */}
+        <div className="space-y-10">
+          {/* Section 1: 대인 관계에서의 에너지 순환 패턴 */}
+          <SliderComponent
+            title="1. 대인 관계에서의 에너지 순환 패턴"
+            leftLabel="내향형"
+            rightLabel="외향형"
+            value={convertScaledScore(
+              reportData?.personal_analyses?.male?.score_analysis?.내향_외향
+                ?.scaled_score || 0,
+            )}
+            maxValue={30}
+            indicatorColor="#E2FAFD"
+            clampColor="#94DEE8"
+            description="내향과 외향 사이에서 균형을 이루는 성향을 갖고 있습니다. 상황에 따라 혼자만의 시간을 즐기기도 하고, 다른 사람들과의 상호작용에서 에너지를 얻기도 합니다. 조용한 환경에서 깊이 생각하는 것을 좋아하면서도, 필요할 때는 활발하게 소통하는 능력을 가지고 있습니다."
+          />
+          <hr className="mt-6 border-t border-gray-300" />
+
+          {/* Section 2: 일상 구조화 및 실행 방식 */}
+          <SliderComponent
+            title="2. 일상 구조화 및 실행 방식"
+            leftLabel="유연형"
+            rightLabel="계획형"
+            value={convertScaledScore(
+              reportData?.personal_analyses?.male?.score_analysis?.유연_계획
+                ?.scaled_score || 0,
+            )}
+            maxValue={30}
+            indicatorColor="#E2FDF0"
+            clampColor="#97CCB2"
+            description="유연함과 계획성 사이에서 균형을 이루는 성향을 갖고 있습니다. 상황에 따라 미리 계획을 세우기도 하고, 그때그때 유연하게 대응하기도 합니다. 구조화된 일상을 선호하면서도 예상치 못한 변화에 적응할 수 있는 능력을 가지고 있습니다."
+          />
+          <hr className="mt-6 border-t border-gray-300" />
+
+          {/* Section 3: 감정·의사 표현 스타일 */}
+          <SliderComponent
+            origin="left"
+            title="3. 감정·의사 표현 스타일"
+            leftLabel="자기표현형"
+            rightLabel="적응배려형"
+            value={convertScaledScore(
+              reportData?.personal_analyses?.male?.score_analysis
+                ?.자기표현_적응배려?.scaled_score || 0,
+            )}
+            maxValue={30}
+            indicatorColor="#E2E2FD"
+            clampColor="#8A8ACD"
+            description="상대를 배려하되 필요시 의견을 표현하는 스타일을 갖고 있습니다. 조화롭게 관계를 유지하면서도 자신의 생각과 감정을 적절히 전달할 수 있는 능력을 가지고 있습니다. 상대방의 입장을 고려하면서도 진정성 있는 소통을 추구합니다."
+          />
+        </div>
+
+        {/* Summary Box */}
+        <SummaryBox
+          text={
+            reportData?.personal_analyses?.male?.detailed_analysis?.["3-1"]
+              ?.characteristicDefinition ||
+            "내향과 외향 사이에서 균형 있게 상황에 맞춰 유연하게 대응하는 성향"
+          }
+        />
+      </div>
+    </article>
+  );
+};
+
+const createPages = (reportData?: ReportData | null) => [
   <Page1 key="1" />,
   <Page2 key="2" />,
-  <Page3 key="3" />,
-  <Page4 key="4" />,
-  <Page5 key="5" />,
-  <Page6 key="6" />,
-  <Page7 key="7" />,
-  <Page8 key="8" />,
+  <Page3 key="3" reportData={reportData} />,
+  <Page4 key="4" reportData={reportData} />,
+  <Page5 key="5" reportData={reportData} />,
+  <Page6 key="6" reportData={reportData} />,
+  <Page7 key="7" reportData={reportData} />,
+  <Page8 key="8" reportData={reportData} />,
 ];
-export const part1TotalPages = pages.length;
+export const part1TotalPages = 8; // Page1부터 Page8까지 총 8페이지
 
 interface Part1ResultPageProps {
   currentPage: number;
+  reportData?: ReportData | null;
 }
 
-export default function Part1ResultPage({ currentPage }: Part1ResultPageProps) {
+export default function Part1ResultPage({
+  currentPage,
+  reportData,
+}: Part1ResultPageProps) {
+  const pages = createPages(reportData);
+
   return (
     <div className="font-pretendard flex flex-1 flex-col">
       <ReportHeader />

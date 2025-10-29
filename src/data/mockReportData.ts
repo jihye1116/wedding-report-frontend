@@ -56,91 +56,76 @@ export const mockReportData: ReportData = {
                 total_score: 8,
                 label: "신중형",
                 description:
-                  "타인을 신뢰하되 경계심도 유지. 상황에 따라 적절히 판단.",
+                  "처음엔 경계하되 시간이 지나면 신뢰. 적정 수준의 경계심.",
               },
             },
           },
           {
-            section_name: "사회적 관계 및 의사소통",
+            section_name: "외현적 행동 및 생활방식",
             dimensions: {
-              외향성_내향성: {
-                raw_scores: [3, 3, 3, 3],
-                total_score: 12,
-                label: "중립/균형",
+              자기표현_적응배려: {
+                raw_scores: [4, 4, 4, 4],
+                total_score: 14,
+                label: "약한 적응배려형",
                 description:
-                  "상황에 따라 외향적, 내향적 특성을 모두 활용. 유연한 사회적 적응.",
+                  "상대를 배려하되 필요시 의견 표현. 조화롭지만 주장도 가능.",
               },
-              감정표현_논리적사고: {
-                raw_scores: [3, 3, 3, 3],
-                total_score: 12,
-                label: "중립/균형",
+              유연_계획: {
+                raw_scores: [2, 3, 2, 5],
+                total_score: 16,
+                label: "약한 계획형",
                 description:
-                  "감정과 논리를 균형있게 활용. 상황에 맞는 적절한 의사소통.",
+                  "계획을 선호하지만 변화에도 대응. 체계적이되 융통성도 발휘.",
               },
-              협력_경쟁: {
-                raw_scores: [3, 3, 3, 3],
-                total_score: 12,
-                label: "중립/균형",
+              내향_외향: {
+                raw_scores: [2, 2, 3, 3],
+                total_score: 10,
+                label: "약한 내향",
                 description:
-                  "협력과 경쟁을 상황에 맞게 선택. 유연한 관계 형성.",
+                  "내향적이지만 사회적 상호작용도 필요. 소수의 친밀한 관계 선호.",
               },
             },
           },
           {
-            section_name: "가치관 및 라이프스타일",
+            section_name: "정보처리 및 의사결정",
             dimensions: {
-              전통적_현대적: {
+              현재지향_미래지향: {
+                raw_scores: [4, 4, 3, 2],
+                total_score: 13,
+                label: "중립/균형",
+                description:
+                  "현재와 미래를 상황에 따라 유연하게 고려. 즉각적 필요와 장기 계획 사이의 균형 추구.",
+              },
+              논리중심_감정중심: {
                 raw_scores: [3, 3, 3, 3],
                 total_score: 12,
                 label: "중립/균형",
                 description:
-                  "전통과 현대를 균형있게 수용. 상황에 맞는 가치관 적용.",
+                  "상황에 따라 논리와 감정을 적절히 활용. 효율성과 인간관계 모두 중요하게 생각.",
               },
-              개인주의_집단주의: {
-                raw_scores: [3, 3, 3, 3],
-                total_score: 12,
+              반응적_조절적: {
+                raw_scores: [4, 3, 4, 4],
+                total_score: 13,
                 label: "중립/균형",
                 description:
-                  "개인과 집단의 이익을 균형있게 고려. 유연한 가치관.",
-              },
-              안정지향_변화지향: {
-                raw_scores: [3, 3, 3, 3],
-                total_score: 12,
-                label: "중립/균형",
-                description: "안정과 변화를 상황에 맞게 선택. 유연한 적응력.",
+                  "감정과 이성의 균형. 상황에 따라 감정 표현과 조절을 적절히 선택.",
               },
             },
           },
         ],
       },
       score_analysis: {
-        자율성: {
-          raw_scores: [3, 4, 3, 3],
-          total_score: 13,
-          avg_score: 3.25,
-          scaled_score: 65,
-          scale_type: "5점 척도",
-          scale_range: "1-5",
-          label: "중립/균형",
-          interpretation_level: "보통",
-          interpretation_description:
-            "상황에 따라 타인 의견과 자기 판단을 적절히 활용. 유연한 의사결정.",
-          dimension_name: "자율성",
-          positive_label: "자율적",
-          negative_label: "의존적",
-        },
         외적동기_내적동기: {
           raw_scores: [3, 4, 3, 2],
           total_score: 12,
           avg_score: 3.0,
-          scaled_score: 60,
-          scale_type: "5점 척도",
-          scale_range: "1-5",
-          label: "중립/균형",
-          interpretation_level: "보통",
-          interpretation_description:
-            "상황에 따라 외적 인정과 내적 의미 모두 고려. 균형잡힌 동기 체계.",
-          dimension_name: "외적동기_내적동기",
+          scaled_score: 0.0,
+          scale_type: "bipolar",
+          scale_range: "-30 ~ +30",
+          label: "균형형",
+          interpretation_level: "균형형",
+          interpretation_description: "균형형 (상황 적응형)",
+          dimension_name: "외적 ↔ 내적 동기",
           positive_label: "내적동기",
           negative_label: "외적동기",
         },
@@ -148,80 +133,247 @@ export const mockReportData: ReportData = {
           raw_scores: [2, 3, 2, 2],
           total_score: 9,
           avg_score: 2.25,
-          scaled_score: 45,
-          scale_type: "5점 척도",
-          scale_range: "1-5",
-          label: "약한 안정지향",
-          interpretation_level: "낮음",
-          interpretation_description:
-            "안정을 선호하지만 기회가 있으면 시도. 리스크를 신중하게 검토한 후 도전.",
-          dimension_name: "안정지향_도전지향",
-          positive_label: "도전지향",
-          negative_label: "안정지향",
+          scaled_score: -11.2,
+          scale_type: "bipolar",
+          scale_range: "-30 ~ +30",
+          label: "안정형",
+          interpretation_level: "뚜렷함 (음의 방향)",
+          interpretation_description: "해당 경향이 뚜렷하게 나타남",
+          dimension_name: "안정 ↔ 도전",
+          positive_label: "도전형",
+          negative_label: "안정형",
+        },
+        자기표현_적응배려: {
+          raw_scores: [4, 4, 4, 4],
+          total_score: 16,
+          avg_score: 4.0,
+          scaled_score: 15.0,
+          scale_type: "bipolar",
+          scale_range: "-30 ~ +30",
+          label: "적응·배려형",
+          interpretation_level: "뚜렷함 (양의 방향)",
+          interpretation_description: "반대 경향이 뚜렷하게 나타남",
+          dimension_name: "자기표현 ↔ 적응배려",
+          positive_label: "적응·배려형",
+          negative_label: "자기표현형",
+        },
+        유연_계획: {
+          raw_scores: [2, 3, 2, 5],
+          total_score: 12,
+          avg_score: 3.0,
+          scaled_score: 0.0,
+          scale_type: "bipolar",
+          scale_range: "-30 ~ +30",
+          label: "균형형",
+          interpretation_level: "균형형",
+          interpretation_description: "균형형 (상황 적응형)",
+          dimension_name: "유연 ↔ 계획",
+          positive_label: "계획형",
+          negative_label: "유연형",
+        },
+        내향_외향: {
+          raw_scores: [2, 2, 3, 3],
+          total_score: 10,
+          avg_score: 2.5,
+          scaled_score: -7.5,
+          scale_type: "bipolar",
+          scale_range: "-30 ~ +30",
+          label: "균형형",
+          interpretation_level: "균형형",
+          interpretation_description: "균형형 (상황 적응형)",
+          dimension_name: "내향 ↔ 외향",
+          positive_label: "외향",
+          negative_label: "내향",
+        },
+        현재지향_미래지향: {
+          raw_scores: [4, 4, 3, 2],
+          total_score: 13,
+          avg_score: 3.25,
+          scaled_score: 3.8,
+          scale_type: "bipolar",
+          scale_range: "-30 ~ +30",
+          label: "균형형",
+          interpretation_level: "균형형",
+          interpretation_description: "균형형 (상황 적응형)",
+          dimension_name: "현재중심 ↔ 미래지향",
+          positive_label: "미래지향",
+          negative_label: "현재중심",
+        },
+        논리중심_감정중심: {
+          raw_scores: [3, 3, 3, 3],
+          total_score: 12,
+          avg_score: 3.0,
+          scaled_score: 0.0,
+          scale_type: "bipolar",
+          scale_range: "-30 ~ +30",
+          label: "균형형",
+          interpretation_level: "균형형",
+          interpretation_description: "균형형 (상황 적응형)",
+          dimension_name: "논리·객관 ↔ 감정·인간",
+          positive_label: "감정·인간중심",
+          negative_label: "논리·객관중심",
+        },
+        반응적_조절적: {
+          raw_scores: [4, 3, 4, 4],
+          total_score: 15,
+          avg_score: 3.75,
+          scaled_score: 11.2,
+          scale_type: "bipolar",
+          scale_range: "-30 ~ +30",
+          label: "조절적",
+          interpretation_level: "뚜렷함 (양의 방향)",
+          interpretation_description: "반대 경향이 뚜렷하게 나타남",
+          dimension_name: "반응적 ↔ 조절적",
+          positive_label: "조절적",
+          negative_label: "반응적",
         },
       },
       detailed_analysis: {
-        자율성: {
+        "2-2": {
           characteristicDefinition:
-            "자율성은 개인이 자신의 행동과 결정을 스스로 통제하고 관리하는 능력을 의미합니다.",
+            "내적 동기와 외적 동기 사이에서 균형을 이루려는 성향",
           informationPerceptionMethod:
-            "상황에 따라 타인 의견과 자기 판단을 적절히 활용",
+            "주변 상황에 따라 내적 가치와 외부 인정 모두를 고려하여 조화롭게 판단하는 성향을 갖고 있습니다. 현재 나타난 사실과 미래 가능성에 모두 균형 있게 주목하며, 구체적 데이터와 의미를 함께 살피는 편입니다. 상황을 해석할 때는 '지금 이 상황에서 무엇이 중요하며 앞으로 어떻게 대응할 수 있을까?'라는 질문을 자연스럽게 떠올립니다.",
           informationPerceptionMethodReason:
-            "유연한 의사결정을 통해 다양한 관점을 고려할 수 있습니다.",
+            "내적 신념과 외적 기대 사이에서 균형을 잘 맞추려는 노력을 통해 자신만의 기준을 더 단단히 세워 나가는 것이 도움이 됩니다.",
           characteristicSummary:
-            "중립/균형된 자율성을 보이며, 상황에 맞는 적절한 판단을 내립니다.",
+            "내적 가치와 외부 요구를 균형 있게 고려하는 편입니다\n상황에 맞게 유연하게 동기를 조율하는 성향이 있습니다\n구체적 사실과 의미를 함께 파악하는 능력이 뛰어난 편입니다\n자기 신념을 더 명확히 하고 일관되게 유지할 수 있습니다",
           partnerPerception:
-            "파트너는 균형잡힌 의사결정 능력을 인정하고 신뢰할 것입니다.",
+            "상대방은 균형 잡힌 시야를 가진 사람으로 인식하며, 상황에 따라 융통성 있게 행동하는 모습에서 신뢰를 느낄 수 있습니다.",
         },
-        외적동기_내적동기: {
+        "2-1": {
           characteristicDefinition:
-            "외적동기와 내적동기는 개인이 행동을 일으키는 동기의 원천을 나타냅니다.",
+            "안정적이고 예측 가능한 환경에서 안전감을 느끼는 성향",
           informationPerceptionMethod:
-            "상황에 따라 외적 인정과 내적 의미 모두 고려",
+            "현재 드러난 사실과 구체적인 데이터를 중심으로 세상을 이해하는 성향이 있습니다. 상황을 해석할 때 '이 상황이 무엇인지', '지금 확실한 것이 무엇인지'에 집중하며 변동이나 불확실성보다는 안정된 상태를 선호합니다.",
           informationPerceptionMethodReason:
-            "균형잡힌 동기 체계를 통해 다양한 자극에 반응할 수 있습니다.",
+            "변화가 생길 때 신중하게 판단하고, 확실한 근거를 바탕으로 대응하는 연습이 도움이 될 것입니다.",
           characteristicSummary:
-            "중립/균형된 동기 체계를 가지고 있으며, 상황에 맞는 적절한 동기를 활용합니다.",
+            "안정적인 환경을 선호하는 편입니다\n구체적이고 명확한 정보를 중요하게 여기는 경향이 있습니다\n변화보다는 현재 상태를 유지하려는 성향이 있습니다\n새로운 도전이나 불확실성에 대해 주의가 필요할 수 있습니다",
           partnerPerception:
-            "파트너는 균형잡힌 동기 체계를 인정하고 함께 성장할 수 있을 것입니다.",
+            "상대방은 나를 신중하고 안정감을 주는 사람으로 보며, 예측 가능하고 믿음직한 성향이 있다고 인식할 수 있습니다.",
         },
-        안정지향_도전지향: {
-          characteristicDefinition:
-            "안정지향과 도전지향은 개인이 변화와 새로운 경험에 대한 태도를 나타냅니다.",
-          informationPerceptionMethod: "안정을 선호하지만 기회가 있으면 시도",
+        "3-3": {
+          characteristicDefinition: "상대방에 맞춰 조화롭게 행동하려는 성향",
+          informationPerceptionMethod:
+            "관계나 상황을 이해할 때 현재 드러난 사실과 상대방의 감정에 더 주목하는 성향을 갖고 있습니다. 구체적인 데이터와 상황을 중시하며, '지금 이 상황에서 상대방이 원하는 것은 무엇일까?', '어떻게 하면 서로 잘 어울릴 수 있을까?'라는 질문을 자연스럽게 떠올립니다.",
           informationPerceptionMethodReason:
-            "리스크를 신중하게 검토한 후 도전할 수 있습니다.",
+            "조화로운 관계를 위해 자신의 의견을 조금 더 분명하게 표현하는 연습이 도움이 될 수 있습니다.",
           characteristicSummary:
-            "약한 안정지향을 보이며, 신중한 판단 후 도전하는 경향이 있습니다.",
+            "다른 사람의 감정을 잘 살피는 편입니다\n분위기를 고려하여 유연하게 행동하는 성향이 있습니다\n갈등보다는 평화를 중시하는 편입니다\n자기주장이 약해질 수 있습니다",
           partnerPerception:
-            "파트너는 신중한 도전 정신을 인정하고 함께 안정적으로 성장할 수 있을 것입니다.",
+            "상대방은 나를 배려 깊고 협조적인 사람으로 보며, 갈등을 피하며 원만한 관계를 만들어 가려는 사람으로 인식합니다.",
+        },
+        "3-2": {
+          characteristicDefinition:
+            "상황에 따라 유연하게 대처하고 계획과 즉흥 사이에서 균형을 이루는 성향",
+          informationPerceptionMethod:
+            "이 사람은 현재 상황과 미래 가능성 모두에 주의를 기울이며, 구체적인 데이터와 그 안의 패턴을 두루 살펴보는 성향을 갖고 있습니다. 상황을 해석할 때는 '지금 이게 왜 중요한지', '앞으로 어떻게 변할 수 있을까?'라는 질문을 자연스럽게 떠올리며 균형 잡힌 시각으로 접근합니다.",
+          informationPerceptionMethodReason:
+            "유연성과 계획적인 면을 잘 조화시켜 자신의 선택 기준을 더욱 명확히 하면 성장에 도움이 될 것입니다.",
+          characteristicSummary:
+            "상황에 따라 유연하게 대처하는 편입니다\n계획과 즉흥 사이에서 균형을 이루려는 성향이 있습니다\n구체적 데이터와 패턴 모두에 관심을 기울이는 편입니다\n결정을 내릴 때 우유부단해질 수 있습니다",
+          partnerPerception:
+            "상대방은 나를 변화하는 상황에 맞춰 융통성 있게 행동하는 사람으로 보면서도, 때때로 계획성 있는 면과 즉흥적인 면 사이에서 균형을 잡으려 노력하는 사람으로 인식합니다.",
+        },
+        "3-1": {
+          characteristicDefinition:
+            "내향과 외향 사이에서 균형 있게 상황에 맞춰 유연하게 대응하는 성향",
+          informationPerceptionMethod:
+            "이 사람은 현재와 미래 모두에 적절히 주목하는 성향을 갖고 있습니다. 구체적인 사실과 데이터뿐 아니라, 그 안에 담긴 의미와 패턴도 함께 고려하며 상황을 이해합니다. 자연스럽게 '이 상황에서 어떻게 행동하는 것이 좋을까?', '앞으로 어떤 변화가 예상될까?'라는 질문을 떠올립니다.",
+          informationPerceptionMethodReason:
+            "균형 잡힌 시각을 유지하되 때로는 빠른 결정이나 표현을 위해 자신의 직감과 신중함을 명확히 구분하는 연습이 도움이 될 수 있습니다.",
+          characteristicSummary:
+            "내향과 외향의 중간에서 유연하게 상황에 적응하는 편입니다\n구체적인 정보와 의미를 함께 고려하는 성향이 있습니다\n상황에 따라 신중함과 적극성을 조화롭게 발휘하는 편입니다\n결정이나 표현에 있어 때로 명확한 방향 설정이 필요할 수 있습니다",
+          partnerPerception:
+            "상대방은 나를 상황에 맞게 조율하며 균형 잡힌 태도로 신뢰할 만한 사람으로 보는 경향이 있습니다.",
+        },
+        "1-1": {
+          characteristicDefinition: "현재와 미래를 균형 있게 조화시키려는 성향",
+          informationPerceptionMethod:
+            "이 분은 현재 드러난 사실과 미래의 가능성 모두에 주목하는 균형 잡힌 정보 처리 방식을 가지고 있습니다. 구체적인 데이터와 더불어 패턴과 의미를 함께 살펴 상황을 이해하며, '지금 이 상황에서 무엇이 중요한가?', '앞으로 어떤 변화가 예상되는가?'라는 질문을 자연스럽게 떠올립니다.",
+          informationPerceptionMethodReason:
+            "현재와 미래를 잘 조화시키기 위해서는 때때로 한쪽에 치우친 관점에서 벗어나 보다 폭넓은 시야를 키우는 연습이 도움이 될 수 있습니다.",
+          characteristicSummary:
+            "현재 사실과 미래 가능성에 균형 있게 주목하는 편입니다\n구체적 데이터와 패턴, 의미를 함께 고려하려는 성향이 있습니다\n상황을 다각도로 분석하며 융통성 있게 대처하는 편입니다\n때때로 정보의 우선순위를 정하는 데 어려움을 느낄 수 있습니다",
+          partnerPerception:
+            "상대방은 나를 현재 상황과 미래 전망을 모두 고려하는 신중하고 균형 잡힌 사람으로 보는 경향이 있습니다.",
+        },
+        "1-2": {
+          characteristicDefinition:
+            "상황에 따라 논리와 감정을 균형 있게 고려하는 성향",
+          informationPerceptionMethod:
+            "현재 드러난 사실과 미래 가능성에 골고루 주목하는 성향을 갖고 있습니다. 구체적인 데이터와 패턴, 의미를 모두 중요하게 여기며, 상황을 해석할 때 '지금 상황은 어떤 의미를 가지는가?'와 '앞으로 어떻게 변할 수 있을까?'라는 질문을 자연스럽게 떠올립니다.",
+          informationPerceptionMethodReason:
+            "균형을 이루는 성향을 더욱 효과적으로 활용하기 위해 때로는 한쪽에 집중해 명확한 결정을 내리는 연습이 필요합니다.",
+          characteristicSummary:
+            "논리와 감정을 적절히 조율하는 편입니다\n구체적 데이터와 추상적 의미를 두루 살피는 성향이 있습니다\n현실과 미래 가능성을 함께 고려하는 능력이 뛰어난 편입니다\n결정 과정에서 선택지가 많아 우왕좌왕할 수 있습니다",
+          partnerPerception:
+            "상대방은 나를 상황에 따라 이성적 판단과 감정적 배려를 적절히 조화시키는 균형 잡힌 사람으로 볼 수 있습니다.",
+        },
+        "1-3": {
+          characteristicDefinition: "감정을 잘 조절하며 차분하게 대응하는 성향",
+          informationPerceptionMethod:
+            "조금 느리고 신중하게 상황을 바라보며, 즉각적인 반응보다는 감정을 조절하고 생각을 정리하는 방식을 선호하는 성향을 가지고 있습니다. 주로 현재 드러난 구체적인 사실에 주목하며, 상황을 해석할 때 즉각적인 감정적 반응보다는 신중한 판단과 평정을 우선시하는 경향이 있습니다. 이러한 성향은 '지금 이 상황에서 어떻게 평온함을 유지할 수 있을까?'라는 질문을 자연스럽게 떠올리게 합니다.",
+          informationPerceptionMethodReason:
+            "감정을 조절하는 능력을 더욱 강화하며, 스트레스 상황에서도 유연한 대처법을 개발하면 더욱 건강한 정서관리가 가능할 것입니다.",
+          characteristicSummary:
+            "감정을 차분하게 조절하는 편입니다\n신중하게 상황을 바라보려는 성향이 있습니다\n구체적인 사실에 집중하는 경향이 있습니다\n감정 표현과 소통에 있어 조금 더 개방적으로 변할 수 있습니다",
+          partnerPerception:
+            "상대방은 감정을 잘 다스리며 신중하고 안정적인 사람으로 인식할 수 있습니다. 그러나 때로는 감정을 잘 드러내지 않아 다가가기 어려운 면이 있을 수 있습니다.",
         },
       },
     },
     female: {
       profile: {
-        name: "곤뇽독",
+        name: "링선",
         sections: [
+          {
+            section_name: "정보처리 및 의사결정",
+            dimensions: {
+              반응적_조절적: {
+                raw_scores: [4, 4, 3, 4],
+                total_score: 13,
+                label: "중립/균형",
+                description:
+                  "감정과 이성의 균형. 상황에 따라 감정 표현과 조절을 적절히 선택.",
+              },
+              현재지향_미래지향: {
+                raw_scores: [3, 4, 2, 3],
+                total_score: 12,
+                label: "중립/균형",
+                description:
+                  "현재와 미래를 상황에 따라 유연하게 고려. 즉각적 필요와 장기 계획 사이의 균형 추구.",
+              },
+              논리중심_감정중심: {
+                raw_scores: [3, 1, 4, 2],
+                total_score: 10,
+                label: "약한 논리중심",
+                description:
+                  "논리적 접근을 선호하지만 사람의 감정도 어느 정도 고려. 합리성과 배려 사이에서 균형 모색.",
+              },
+            },
+          },
           {
             section_name: "동기 구조 및 자기조절",
             dimensions: {
+              외적동기_내적동기: {
+                raw_scores: [3, 3, 5, 5],
+                total_score: 16,
+                label: "약한 내적동기",
+                description:
+                  "내적 의미를 중시하되 외부 피드백도 참고. 자율성과 사회적 관계의 조화.",
+              },
               자율성: {
-                raw_scores: [3, 4, 3, 3],
-                total_score: 13,
+                raw_scores: [2, 4, 2, 4],
+                total_score: 12,
                 label: "중립/균형",
                 description:
                   "상황에 따라 타인 의견과 자기 판단을 적절히 활용. 유연한 의사결정.",
               },
-              외적동기_내적동기: {
-                raw_scores: [3, 4, 3, 2],
-                total_score: 12,
-                label: "중립/균형",
-                description:
-                  "상황에 따라 외적 인정과 내적 의미 모두 고려. 균형잡힌 동기 체계.",
-              },
               안정지향_도전지향: {
-                raw_scores: [2, 3, 2, 2],
-                total_score: 9,
+                raw_scores: [3, 4, 2, 2],
+                total_score: 11,
                 label: "약한 안정지향",
                 description:
                   "안정을 선호하지만 기회가 있으면 시도. 리스크를 신중하게 검토한 후 도전.",
@@ -232,11 +384,17 @@ export const mockReportData: ReportData = {
             section_name: "MMPI 기반 보조지표",
             dimensions: {
               불안완벽주의: {
-                raw_scores: [2, 4, 3],
-                total_score: 11,
-                label: "여유 있는 형",
+                raw_scores: [2, 3, 2],
+                total_score: 9,
+                label: "조심스러운 형",
                 description:
-                  "실수를 수용하고 마음의 여유 유지. 예상 밖 상황에 호기심.",
+                  "완벽을 추구하지만 어느 정도 여유 유지 시도. 적정 긴장감.",
+              },
+              신뢰경향: {
+                raw_scores: [3, 4, 5],
+                total_score: 10,
+                label: "수용적 신뢰형",
+                description: "타인을 비교적 쉽게 믿음. 의심보다 믿음이 앞섬.",
               },
               정서안정성: {
                 raw_scores: [3, 4, 3],
@@ -245,168 +403,318 @@ export const mockReportData: ReportData = {
                 description:
                   "감정 회복이 빠른 편. 자주 만족감과 성취감을 느낌.",
               },
-              신뢰경향: {
-                raw_scores: [4, 4, 4],
-                total_score: 8,
-                label: "신중형",
-                description:
-                  "타인을 신뢰하되 경계심도 유지. 상황에 따라 적절히 판단.",
-              },
             },
           },
           {
-            section_name: "사회적 관계 및 의사소통",
+            section_name: "외현적 행동 및 생활방식",
             dimensions: {
-              외향성_내향성: {
-                raw_scores: [3, 3, 3, 3],
-                total_score: 12,
-                label: "중립/균형",
+              내향_외향: {
+                raw_scores: [1, 4, 3, 2],
+                total_score: 10,
+                label: "약한 내향",
                 description:
-                  "상황에 따라 외향적, 내향적 특성을 모두 활용. 유연한 사회적 적응.",
+                  "내향적이지만 사회적 상호작용도 필요. 소수의 친밀한 관계 선호.",
               },
-              감정표현_논리적사고: {
-                raw_scores: [3, 3, 3, 3],
-                total_score: 12,
-                label: "중립/균형",
+              유연_계획: {
+                raw_scores: [4, 2, 2, 4],
+                total_score: 14,
+                label: "약한 계획형",
                 description:
-                  "감정과 논리를 균형있게 활용. 상황에 맞는 적절한 의사소통.",
+                  "계획을 선호하지만 변화에도 대응. 체계적이되 융통성도 발휘.",
               },
-              협력_경쟁: {
-                raw_scores: [3, 3, 3, 3],
-                total_score: 12,
-                label: "중립/균형",
+              자기표현_적응배려: {
+                raw_scores: [5, 2, 4, 5],
+                total_score: 14,
+                label: "약한 적응배려형",
                 description:
-                  "협력과 경쟁을 상황에 맞게 선택. 유연한 관계 형성.",
-              },
-            },
-          },
-          {
-            section_name: "가치관 및 라이프스타일",
-            dimensions: {
-              전통적_현대적: {
-                raw_scores: [3, 3, 3, 3],
-                total_score: 12,
-                label: "중립/균형",
-                description:
-                  "전통과 현대를 균형있게 수용. 상황에 맞는 가치관 적용.",
-              },
-              개인주의_집단주의: {
-                raw_scores: [3, 3, 3, 3],
-                total_score: 12,
-                label: "중립/균형",
-                description:
-                  "개인과 집단의 이익을 균형있게 고려. 유연한 가치관.",
-              },
-              안정지향_변화지향: {
-                raw_scores: [3, 3, 3, 3],
-                total_score: 12,
-                label: "중립/균형",
-                description: "안정과 변화를 상황에 맞게 선택. 유연한 적응력.",
+                  "상대를 배려하되 필요시 의견 표현. 조화롭지만 주장도 가능.",
               },
             },
           },
         ],
       },
       score_analysis: {
-        자율성: {
-          raw_scores: [3, 4, 3, 3],
-          total_score: 13,
-          avg_score: 3.25,
-          scaled_score: 65,
-          scale_type: "5점 척도",
-          scale_range: "1-5",
-          label: "중립/균형",
-          interpretation_level: "보통",
-          interpretation_description:
-            "상황에 따라 타인 의견과 자기 판단을 적절히 활용. 유연한 의사결정.",
-          dimension_name: "자율성",
-          positive_label: "자율적",
-          negative_label: "의존적",
+        반응적_조절적: {
+          raw_scores: [4, 4, 3, 4],
+          total_score: 15,
+          avg_score: 3.75,
+          scaled_score: 11.2,
+          scale_type: "bipolar",
+          scale_range: "-30 ~ +30",
+          label: "조절적",
+          interpretation_level: "뚜렷함 (양의 방향)",
+          interpretation_description: "반대 경향이 뚜렷하게 나타남",
+          dimension_name: "반응적 ↔ 조절적",
+          positive_label: "조절적",
+          negative_label: "반응적",
         },
-        외적동기_내적동기: {
-          raw_scores: [3, 4, 3, 2],
+        현재지향_미래지향: {
+          raw_scores: [3, 4, 2, 3],
           total_score: 12,
           avg_score: 3.0,
-          scaled_score: 60,
-          scale_type: "5점 척도",
-          scale_range: "1-5",
-          label: "중립/균형",
-          interpretation_level: "보통",
-          interpretation_description:
-            "상황에 따라 외적 인정과 내적 의미 모두 고려. 균형잡힌 동기 체계.",
-          dimension_name: "외적동기_내적동기",
+          scaled_score: 0.0,
+          scale_type: "bipolar",
+          scale_range: "-30 ~ +30",
+          label: "균형형",
+          interpretation_level: "균형형",
+          interpretation_description: "균형형 (상황 적응형)",
+          dimension_name: "현재중심 ↔ 미래지향",
+          positive_label: "미래지향",
+          negative_label: "현재중심",
+        },
+        논리중심_감정중심: {
+          raw_scores: [3, 1, 4, 2],
+          total_score: 10,
+          avg_score: 2.5,
+          scaled_score: -7.5,
+          scale_type: "bipolar",
+          scale_range: "-30 ~ +30",
+          label: "균형형",
+          interpretation_level: "균형형",
+          interpretation_description: "균형형 (상황 적응형)",
+          dimension_name: "논리·객관 ↔ 감정·인간",
+          positive_label: "감정·인간중심",
+          negative_label: "논리·객관중심",
+        },
+        외적동기_내적동기: {
+          raw_scores: [3, 3, 5, 5],
+          total_score: 16,
+          avg_score: 4.0,
+          scaled_score: 15.0,
+          scale_type: "bipolar",
+          scale_range: "-30 ~ +30",
+          label: "내적동기",
+          interpretation_level: "뚜렷함 (양의 방향)",
+          interpretation_description: "반대 경향이 뚜렷하게 나타남",
+          dimension_name: "외적 ↔ 내적 동기",
           positive_label: "내적동기",
           negative_label: "외적동기",
         },
         안정지향_도전지향: {
-          raw_scores: [2, 3, 2, 2],
-          total_score: 9,
-          avg_score: 2.25,
-          scaled_score: 45,
-          scale_type: "5점 척도",
-          scale_range: "1-5",
-          label: "약한 안정지향",
-          interpretation_level: "낮음",
-          interpretation_description:
-            "안정을 선호하지만 기회가 있으면 시도. 리스크를 신중하게 검토한 후 도전.",
-          dimension_name: "안정지향_도전지향",
-          positive_label: "도전지향",
-          negative_label: "안정지향",
+          raw_scores: [3, 4, 2, 2],
+          total_score: 11,
+          avg_score: 2.75,
+          scaled_score: -3.8,
+          scale_type: "bipolar",
+          scale_range: "-30 ~ +30",
+          label: "균형형",
+          interpretation_level: "균형형",
+          interpretation_description: "균형형 (상황 적응형)",
+          dimension_name: "안정 ↔ 도전",
+          positive_label: "도전형",
+          negative_label: "안정형",
+        },
+        내향_외향: {
+          raw_scores: [1, 4, 3, 2],
+          total_score: 10,
+          avg_score: 2.5,
+          scaled_score: -7.5,
+          scale_type: "bipolar",
+          scale_range: "-30 ~ +30",
+          label: "균형형",
+          interpretation_level: "균형형",
+          interpretation_description: "균형형 (상황 적응형)",
+          dimension_name: "내향 ↔ 외향",
+          positive_label: "외향",
+          negative_label: "내향",
+        },
+        유연_계획: {
+          raw_scores: [4, 2, 2, 4],
+          total_score: 12,
+          avg_score: 3.0,
+          scaled_score: 0.0,
+          scale_type: "bipolar",
+          scale_range: "-30 ~ +30",
+          label: "균형형",
+          interpretation_level: "균형형",
+          interpretation_description: "균형형 (상황 적응형)",
+          dimension_name: "유연 ↔ 계획",
+          positive_label: "계획형",
+          negative_label: "유연형",
+        },
+        자기표현_적응배려: {
+          raw_scores: [5, 2, 4, 5],
+          total_score: 16,
+          avg_score: 4.0,
+          scaled_score: 15.0,
+          scale_type: "bipolar",
+          scale_range: "-30 ~ +30",
+          label: "적응·배려형",
+          interpretation_level: "뚜렷함 (양의 방향)",
+          interpretation_description: "반대 경향이 뚜렷하게 나타남",
+          dimension_name: "자기표현 ↔ 적응배려",
+          positive_label: "적응·배려형",
+          negative_label: "자기표현형",
         },
       },
       detailed_analysis: {
-        자율성: {
-          characteristicDefinition:
-            "자율성은 개인이 자신의 행동과 결정을 스스로 통제하고 관리하는 능력을 의미합니다.",
+        "1-3": {
+          characteristicDefinition: "감정을 잘 조절하며 침착하게 대응하는 성향",
           informationPerceptionMethod:
-            "상황에 따라 타인 의견과 자기 판단을 적절히 활용",
+            "현재 드러난 사실에 주목하여 신속하고 명확하게 상황을 파악하는 성향을 갖고 있습니다. 구체적인 데이터를 중심으로 정보를 받아들이며, ‘지금 이 상황에서 무엇이 문제인지’, ‘어떻게 하면 감정을 다스릴 수 있을까?’라는 질문을 많이 떠올립니다.",
           informationPerceptionMethodReason:
-            "유연한 의사결정을 통해 다양한 관점을 고려할 수 있습니다.",
+            "감정을 조절하는 능력을 더욱 발전시키려면, 순간적인 반응보다는 유연한 사고를 통해 다양한 관점에서 상황을 보는 연습이 필요합니다.",
           characteristicSummary:
-            "중립/균형된 자율성을 보이며, 상황에 맞는 적절한 판단을 내립니다.",
+            "감정을 침착하게 관리하는 성향이 있습니다\n실제 상황에 집중하며 구체적 정보를 중요하게 여기는 편입니다\n논리적으로 문제에 접근하는 데 능한 편입니다\n감정 표현이 제한적일 수 있습니다",
           partnerPerception:
-            "파트너는 균형잡힌 의사결정 능력을 인정하고 신뢰할 것입니다.",
+            "상대방은 나를 차분하고 안정적으로 감정을 처리하는 사람으로 보며, 감정에 휩쓸리지 않고 냉정하게 판단하는 모습으로 인식합니다.",
         },
-        외적동기_내적동기: {
-          characteristicDefinition:
-            "외적동기와 내적동기는 개인이 행동을 일으키는 동기의 원천을 나타냅니다.",
+        "1-1": {
+          characteristicDefinition: "현재와 미래를 균형 있게 바라보는 성향",
           informationPerceptionMethod:
-            "상황에 따라 외적 인정과 내적 의미 모두 고려",
+            "현재 드러난 사실과 미래에 일어날 가능성 모두에 관심을 가지는 성향을 갖고 있습니다. 구체적인 데이터와 전체적인 패턴을 모두 고려하며, 상황을 해석할 때 '지금 무엇이 중요한가?'와 '앞으로 어떻게 변할 수 있을까?'라는 질문을 자연스럽게 떠올립니다.",
           informationPerceptionMethodReason:
-            "균형잡힌 동기 체계를 통해 다양한 자극에 반응할 수 있습니다.",
+            "현재와 미래를 균형 있게 보려는 성향을 유지하면서도 때로는 더 명확한 우선순위를 정해 집중하는 연습이 도움이 될 수 있습니다.",
           characteristicSummary:
-            "중립/균형된 동기 체계를 가지고 있으며, 상황에 맞는 적절한 동기를 활용합니다.",
+            "현재 사실과 미래 가능성 모두를 고려하는 편입니다\n구체적 데이터와 패턴, 의미를 균형 있게 보는 성향이 있습니다\n상황에 따라 유연하게 시각을 전환하는 능력이 뛰어난 편입니다\n때로는 선택과 집중이 부족해 의사결정에 시간이 걸릴 수 있습니다",
           partnerPerception:
-            "파트너는 균형잡힌 동기 체계를 인정하고 함께 성장할 수 있을 것입니다.",
+            "상대방은 나를 현실과 이상 사이에서 균형감 있게 생각하는 사람으로 보며, 상황에 따라 유연하게 대응하는 모습이 신뢰를 줍니다.",
         },
-        안정지향_도전지향: {
+        "1-2": {
           characteristicDefinition:
-            "안정지향과 도전지향은 개인이 변화와 새로운 경험에 대한 태도를 나타냅니다.",
-          informationPerceptionMethod: "안정을 선호하지만 기회가 있으면 시도",
+            "논리와 감정을 모두 고려해 상황에 맞게 유연하게 판단하는 성향",
+          informationPerceptionMethod:
+            "현재 사실과 미래 가능성 어느 쪽에도 치우치지 않고 균형 있게 상황을 바라보는 성향을 갖고 있습니다. 구체적 데이터와 패턴, 의미를 모두 함께 고려하며 ‘이 상황에서 가장 합리적이고 의미 있는 선택은 무엇일까?’와 같은 질문을 자연스럽게 떠올립니다. 상황에 따라 논리적 근거와 인간관계 모두를 조화롭게 생각하려는 특징이 있습니다.",
           informationPerceptionMethodReason:
-            "리스크를 신중하게 검토한 후 도전할 수 있습니다.",
+            "더 명확한 계획 수립을 위해 가끔은 감정보다는 객관적 사실에 더 집중하는 연습이 도움이 될 수 있습니다.",
           characteristicSummary:
-            "약한 안정지향을 보이며, 신중한 판단 후 도전하는 경향이 있습니다.",
+            "논리와 감정을 모두 적절히 고려하는 편입니다\n구체적인 정보와 전체적인 의미를 균형 있게 파악하려는 성향이 있습니다\n상황에 따라 유연하게 판단하는 능력이 뛰어난 편입니다\n때로는 명확한 우선순위를 정하는 데 어려움을 느낄 수 있습니다",
           partnerPerception:
-            "파트너는 신중한 도전 정신을 인정하고 함께 안정적으로 성장할 수 있을 것입니다.",
+            "상대방은 나를 합리적이면서도 따뜻한 사람으로 보며 상황에 맞게 현명하게 의사결정하는 사람으로 인식할 가능성이 큽니다.",
+        },
+        "2-2": {
+          characteristicDefinition: "내면의 기준과 의미에 따라 움직이는 성향",
+          informationPerceptionMethod:
+            "내적동기를 가진 이 성향은 현재 드러난 사실보다는 미래의 가능성과 내포된 의미에 더 주목하는 경향이 있습니다. 구체적인 데이터보다는 상황 속 패턴과 본질적 가치를 중심으로 생각하며, '이 일이 내게 어떤 의미가 있나?', '앞으로 어떻게 발전할 수 있을까?'라는 질문을 자연스럽게 떠올립니다.",
+          informationPerceptionMethodReason:
+            "내면의 기준을 존중하면서도 때때로 외부 피드백을 수용하는 유연성을 키우면 더 건강한 동기 유지가 가능합니다.",
+          characteristicSummary:
+            "내면의 가치와 의미를 중요하게 여기는 편입니다\n미래 가능성에 주목하는 성향이 있습니다\n상황을 전체적인 흐름과 패턴으로 해석하는 편입니다\n외부의 객관적 피드백을 받아들이는 데 어려움을 느낄 수 있습니다",
+          partnerPerception:
+            "상대방은 나를 내적인 신념과 기준을 중시하며 스스로 동기를 부여하는 사람으로 볼 수 있습니다.",
+        },
+        "2-1": {
+          characteristicDefinition:
+            "상황에 따라 안정과 도전 사이를 유연하게 조절하는 성향",
+          informationPerceptionMethod:
+            "안정과 도전 사이에서 균형을 이루는 성향이 있어, 현재 사실과 미래 가능성 모두에 관심을 갖는 편입니다. 구체적인 데이터와 함께 패턴과 의미를 함께 살피며 상황을 해석하고, '지금 이 상황에서 무엇이 가장 적절할까?', '앞으로 어떻게 대응할 수 있을까?'라는 질문을 자연스럽게 떠올립니다.",
+          informationPerceptionMethodReason:
+            "자신의 균형 있는 성향을 더욱 잘 활용하기 위해서는 상황에 따라 우선순위를 명확히 정해 혼란을 줄이는 연습이 필요합니다.",
+          characteristicSummary:
+            "상황에 따라 유연하게 대응하는 편입니다\n현재와 미래를 고루 바라보려는 성향이 있습니다\n구체적 사실과 전체 흐름을 함께 고려하는 능력이 뛰어난 편입니다\n때때로 결정 과정에서 우선순위를 정하는 데 어려움을 느낄 수 있습니다",
+          partnerPerception:
+            "상대방은 균형 잡힌 태도로 상황을 신중하게 고려하는 사람으로 인식하며, 안정과 변화를 적절히 조율하는 능력이 있다고 느낄 수 있습니다",
+        },
+        "3-1": {
+          characteristicDefinition:
+            "상황에 따라 내향성과 외향성을 모두 발휘하는 균형형 성향",
+          informationPerceptionMethod:
+            "현재 상황과 그에 따른 구체적 사실을 중요하게 여기면서도, 때로는 미래의 가능성과 전체적인 흐름에도 주의를 기울이는 성향이 있습니다. 구체적인 데이터와 패턴, 의미를 모두 참고하며 상황에 따라 '이게 지금 어떤 의미인가?', '앞으로 어떻게 변할까?' 하는 질문을 자연스럽게 떠올립니다.",
+          informationPerceptionMethodReason:
+            "이 균형적 성향을 더 건강하게 활용하려면, 상황에 맞추어 내향성과 외향성 에너지를 잘 조절하는 연습이 필요합니다.",
+          characteristicSummary:
+            "현재 상황과 구체적인 사실을 중요하게 여기는 편입니다\n미래 가능성과 전체적인 흐름에도 관심을 기울이는 성향이 있습니다\n필요에 따라 내향적이거나 외향적인 태도를 유연하게 조절하는 능력이 뛰어난 편입니다\n때때로 지나치게 신중해지거나 우유부단해질 수 있습니다",
+          partnerPerception:
+            "상대방은 나를 상황에 맞게 적절히 반응하고 균형 잡힌 태도를 가진 사람으로 보는 경향이 있습니다.",
+        },
+        "3-2": {
+          characteristicDefinition:
+            "상황과 필요에 따라 유연하게 계획과 즉흥 사이를 조절하는 성향",
+          informationPerceptionMethod:
+            "주로 현재 드러난 사실과 미래 가능성 모두에 고르게 주목하는 성향을 갖고 있습니다. 구체적 데이터와 패턴, 의미를 균형 있게 고려하며, 상황을 해석할 때 '지금 어떤 부분이 중요한가?'와 '앞으로 어떻게 변할 수 있을까?'를 자연스럽게 생각합니다.",
+          informationPerceptionMethodReason:
+            "균형 잡힌 시각을 유지하되 때로는 더욱 명확한 우선순위 설정을 통해 의사결정의 효율을 높일 필요가 있습니다.",
+          characteristicSummary:
+            "계획과 즉흥 사이에서 적절히 조절하는 편입니다\n상황에 따라 유연하게 대응하는 성향이 있습니다\n구체적 정보와 추상적 의미를 모두 고려하는 능력이 뛰어납니다\n결정을 내릴 때 우선순위 설정에 어려움을 느낄 수 있습니다",
+          partnerPerception:
+            "상대방은 나를 상황에 맞게 잘 조율하며 갑작스러운 변화에도 유연하게 대처하는 사람으로 봅니다.",
+        },
+        "3-3": {
+          characteristicDefinition:
+            "상황에 부드럽게 적응하고 타인을 배려하는 성향",
+          informationPerceptionMethod:
+            "현재 나타난 사실과 주변 사람들의 감정에 주목하는 성향을 갖고 있습니다. 구체적이고 명확한 정보에 집중하며, 상황을 볼 때 '지금 이 순간에 무엇이 필요한가?', '이 상황에서 모두가 편안할 수 있는 방법은 무엇인가?'라는 질문을 자주 떠올립니다.",
+          informationPerceptionMethodReason:
+            "더 건강한 대인관계를 위해 자신의 의견을 좀 더 솔직하고 분명하게 표현하는 연습이 필요합니다.",
+          characteristicSummary:
+            "상대방을 이해하고 신중히 배려하는 편입니다\n현재 상황을 기반으로 문제를 해결하려는 성향이 있습니다\n구체적인 사실과 데이터를 중요하게 여기는 편입니다\n자신의 생각을 적극적으로 표현하는 데 어려움을 느낄 수 있습니다",
+          partnerPerception:
+            "상대방은 나를 부드럽고 배려심 깊으며 협력적인 사람으로 인식할 가능성이 큽니다.",
         },
       },
     },
   },
   interaction_zones: [
     {
-      zoneType: "협력형",
-      description: "두 사람이 서로를 보완하며 함께 성장하는 관계",
+      zoneType: "공감 기반 시너지",
+      description:
+        "곤뇽독과 링선은 전반적으로 균형형 성향이 많아 서로의 방식에 크게 부담을 주지 않습니다. 둘 다 현재와 미래, 논리와 감정 사이에서 잘 조절하는 편이라 공감대가 쉽게 형성됩니다. 특히 둘 다 내향과 외향이 균형되어 있어 함께 있을 때 편안한 분위기를 만들기 좋습니다. 게다가 자기 표현과 적응·배려 점수가 같아 상대를 존중하는 마음이 비슷한 듯해 안정감을 줍니다.",
       characteristics: [
-        "상호 존중과 이해",
-        "공동 목표 추구",
-        "갈등 해결 능력",
-        "지속적인 소통",
+        "성향 균형 일치 — 비슷한 균형형이 서로 편안을 만들어냄",
+        "상호 존중 기반 — 자기 표현·적응 배려가 비슷해 배려심 큼",
+        "감정·논리 균형 — 의사소통과 판단이 부드럽고 원활함",
       ],
       timeline_impact: {
-        dating_early: "서로를 이해하고 적응하는 시기",
-        marriage_early: "가족으로서의 역할 분담과 협력",
-        marriage_mid_late: "장기적인 관계 유지와 성장",
+        dating_early:
+          "곧 만남이 자연스럽고 마음이 열리기 쉽습니다. 곤뇽독과 링선은 서로의 태도가 무겁지 않고 편안하게 대화를 이어가며 공통 관심사를 찾아갑니다. 약간 조심스럽지만 신뢰가 쌓이는 과정을 밟습니다.",
+        marriage_early:
+          "결혼 초반엔 서로의 의견을 잘 듣고 일상 조율이 비교적 순조롭습니다. 예를 들어 집안일 분담이나 가계 관리에서 함께 대화를 통해 균형을 맞춥니다. 이때 신뢰가 깊어져 안정적 관계 기반을 만들어요.",
+        marriage_mid_late:
+          "결혼 중후반에도 서로의 의사결정과 생활 양식이 크게 부딪히지 않아서 꾸준한 공감이 이어집니다. 중요한 가족 문제나 미래 계획을 짤 때도 호흡이 잘 맞아 큰 갈등이 적습니다.",
+      },
+    },
+    {
+      zoneType: "중첩 리스크",
+      description:
+        "두 사람 모두 균형형이 많아서 큰 갈등 없이 지내지만, 때로는 서로 보완해 줄 독특한 힘이 부족하기도 합니다. 자기표현과 적응배려 점수가 같아 의사소통에 편안함은 있지만, 돌발적인 변화나 스트레스 상황엔 유연하게 대처하기 어려울 수 있습니다. 또한, 모두 안정쪽에 가깝지만 정확히 같진 않아 미묘한 방향 차이가 쌓일 때 무심코 답답함을 느낄 여지도 있습니다. 이런 차이가 너무 커지면 마음속에 쌓여 관계가 한층 견고해지기보단 정체될 위험도 있습니다.",
+      characteristics: [
+        "보완할 차별점 부족 — 서로의 약점을 채워주기 어려움",
+        "비슷한 방식의 반복 — 발전보다 정체가 됐을 때 답답함 큼",
+        "미묘한 방향 차이 — 갈등 없이도 답답함이 쌓이기 쉽다",
+      ],
+      timeline_impact: {
+        dating_early:
+          "초반에는 서로에게 편안하고 안정적으로 느껴집니다. 그러나 깊은 대화나 감정 표출이 적어 감정의 깊이를 느끼기 어려운 순간도 있습니다. 갈등 상황에선 비슷한 문제 해결 시도가 길어질 수 있습니다.",
+        marriage_early:
+          "생활 리듬이 맞아도 돌발상황에서는 둘 다 ‘어떻게 해야 하지?’ 하며 답답함을 느낄 수 있습니다. 예를 들어 예상치 못한 금전 문제를 맞닥뜨렸을 때, 누가 주도적으로 풀기보다 함께 막히는 일이 발생할 수 있어요.",
+        marriage_mid_late:
+          "장기적으로 서로의 차이가 너무 작거나 방향이 엇갈리면 새로운 시도를 막는 요인이 됩니다. 둘 다 안정 지향이지만 미묘한 긴장과 무력감이 쌓여, 차츰 외부에 도움이나 관심을 찾는 경향이 늘어날 수 있습니다.",
+      },
+    },
+    {
+      zoneType: "보완적 상호작용",
+      description:
+        "곤뇽독과 링선은 내적 동기 점수에서 차이가 있어, 서로 조금 다른 동기 부여가 관계에 활력을 줍니다. 링선은 내적 동기가 강한 반면, 곤뇽독은 균형형이라 링선이 스스로 꾸준히 이끄는 모습에 곤뇽독이 균형 잡아 주는 역할을 할 수 있습니다. 또한 곤뇽독은 안정 쪽 성향이 조금 더 강하고 링선은 약간 균형형이어서 둘 사이에 적절한 긴장과 이완이 형성됩니다. 이런 차이 덕분에 서로에게 새로운 시각과 동력을 주면서 성장하는 모습이 기대됩니다.",
+      characteristics: [
+        "동기 부여 차이 — 한 쪽의 집중력이 다른 쪽에 안정감 제공",
+        "역할 분담 효과 — 서로의 약점을 자연스레 보완함",
+        "성장 기회 증가 — 다름에서 배우며 관계가 확장됨",
+      ],
+      timeline_impact: {
+        dating_early:
+          "둘의 차이가 처음에는 새롭게 느껴져 상대의 다른 면이 흥미롭게 다가옵니다. 예를 들어 링선이 자신의 내적 동기와 계획성을 보여주고, 곤뇽독이 좀 더 유연한 태도로 받아주는 모습입니다. 서로 배우고 존중하는 신선한 경험도 많습니다.",
+        marriage_early:
+          "살림이나 역할 분담 때 자연스럽게 각자의 강점이 돋보입니다. 곤뇽독은 안정적인 환경을 만들고, 링선은 스스로 목표를 추구하며 두 사람 모두 만족하는 조화로운 팀워크를 이룹니다.",
+        marriage_mid_late:
+          "꾸준히 서로에게 지지자이자 멘토가 되어 줍니다. 링선은 강한 내적 동기로 꾸준히 성장하며, 곤뇽독은 안정과 균형으로 긴장을 완화시켜 줍니다. 두 사람 관계가 성장의 따뜻한 밑거름이 됩니다.",
+      },
+    },
+    {
+      zoneType: "인지적 충돌",
+      description:
+        "곤뇽독과 링선은 전반적으로 균형점이 많아 큰 성향 차이가 없지만, 내적 동기 부분에서는 분명한 차이가 있어 소통에 미묘한 긴장이 생길 수 있습니다. 링선이 내부에서 동기 부여를 받으며 스스로 무언가를 추진하는 데 집중하는 반면, 곤뇽독은 외적·내적 동기를 균형 있게 받아들여 혼란스러울 때도 있습니다. 이런 점이 때때로 오해를 만들고, 상대의 행동 의도를 제대로 이해하지 못할 위험도 있습니다. 두 사람 모두 적응 배려형이지만, 서로 다른 내적 태도가 대립으로 작용하면 쉽게 스트레스를 받을 수 있습니다.",
+      characteristics: [
+        "동기 차이의 긴장 — 내적 동기 집중과 균형형 간 갈등 유발",
+        "오해 소통장벽 — 한쪽 행동의 이유를 상대가 잘못 해석함",
+        "감정적 스트레스 — 서로 다름이 반복적 갈등으로 증폭",
+      ],
+      timeline_impact: {
+        dating_early:
+          "처음엔 다름이 흥미로울 수 있지만, 점차 관심사나 추진 방식에서 부딪히기도 합니다. 링선이 스스로 꾸준히 나가려 할 때 곤뇽독이 이해하기 어려울 때가 생겨 ‘왜 그렇게 하지?’라는 의문이 반복될 수 있습니다.",
+        marriage_early:
+          "결혼 생활 중 돈 쓰기, 일 처리 방법에서 자주 마찰이 생길 수 있습니다. 링선이 마음속 갈등을 숨기며 자기 주도적으로 움직일 때 곤뇽독이 그걸 느끼지 못해 서운함이나 불신이 커지는 순간이 있습니다.",
+        marriage_mid_late:
+          "계속 같은 주제로 오해가 반복되면 둘 다 방어적 태도가 늘어나고 대화를 하기보다 각자 자신의 방식대로 일상을 보내는 일이 많아집니다. 결과적으로 신뢰가 약해지고 거리감이 깊어질 위험이 큽니다.",
       },
     },
   ],
@@ -414,102 +722,594 @@ export const mockReportData: ReportData = {
     stages: [
       {
         stage_number: 1,
-        period: "1-3개월",
-        event_emoji: "💕",
-        outcome: "긍정적",
-        selected_topic: "첫 만남과 호감 형성",
-        title: "첫 만남의 설렘",
-        introduction: "두 사람이 처음 만나 서로에게 호감을 느끼는 시기입니다.",
-        dialogue: "안녕하세요! 처음 뵙네요. 정말 반가워요.",
-        analysis: "서로에 대한 첫인상이 좋고, 자연스러운 대화가 이어집니다.",
-        reason: "두 사람 모두 상대방을 긍정적으로 인식하고 있습니다.",
-        available_topics: ["첫 만남", "호감 형성", "대화"],
-        decision_dimensions: ["외향성_내향성", "감정표현_논리적사고"],
+        period: "1~3M",
+        event_emoji: "🎮",
+        outcome: "conflict",
+        selected_topic: "각자만의 시간 vs 함께하는 시간",
+        title: "### '혼자만의 시간이 필요해'라는 말이 자꾸 맴돌 때",
+        introduction: `결혼 후 1~3개월은 두 사람이 서로의 생활 방식에 익숙해지는 시기입니다. 곤뇽독님과 링선님도 각자의 개인 시간이 중요하다는 걸 느끼면서도 함께 보내는 시간도 늘리고 싶어 합니다. 하지만 서로 시간을 보내는 방식이나 원하는 정도가 달라서 자연스럽게 갈등이 생기기 시작합니다. 여기에 각자 혼자만의 공간이 필요하다는 마음도 강해 서로의 요구를 조율하는 게 쉽지 않은 상황입니다.`,
+        dialogue: `> 곤뇽독: "오늘은 혼자 게임 좀 하고 싶어. 링선아, 나만의 시간이 좀 필요해."
+  > 
+  > 링선: "또? 우리 같이 영화 보려 했는데. 항상 혼자만 시간을 보내니까 서운해."
+  > 
+  > 곤뇽독: "아니야, 너랑 보내는 시간도 좋아. 근데 너무 붙어 있으면 힘들어."
+  > 
+  > 링선: "그럼 나한테도 혼자 있고 싶을 때 말해줘. 나도 내 공간이 필요하거든."
+  > 
+  > 곤뇽독: "응, 그렇게 하면 좀 나을 것 같다. 근데 가끔은 같이 있어줘야 하지 않을까?"
+  > 
+  > 링선: "나도 그게 너무 답답해. 균형 맞추기 힘들어."`,
+        analysis: `곤뇽독님은 개인 취미 시간과 혼자만의 공간을 강하게 원하고,
+  링선님은 함께하는 시간을 더 중요하게 생각합니다.
+  
+  서로 바라는 시간의 균형이 크게 달라서 자주 충돌합니다.
+  함께 있으면서도 공간과 시간이 부족하다는 느낌에 스트레스를 받습니다.
+  
+  서로가 지닌 욕구가 다르기에, 조율하지 않으면 갈등으로 번지기 쉽습니다.
+  그러나 서로가 상대방의 필요를 이해하려 노력하는 모습도 보여,
+  앞으로 조화로운 균형점을 찾으려는 가능성은 열려 있습니다.`,
+        reason:
+          "곤뇽독과 링선의 각자만의 시간에 대한 점수 차이가 15점 이상이며, 곤뇽독이 극단적인 독립성 성향을 보여 충돌 가능성이 높기 때문이다.",
+        available_topics: [
+          "개인 취미 시간 확보",
+          "각자만의 시간 vs 함께하는 시간",
+          "취미에 대한 이해와 존중",
+          "혼자만의 공간 필요성",
+        ],
+        decision_dimensions: ["독립성", "외향성_내향성"],
       },
       {
         stage_number: 2,
-        period: "4-6개월",
-        event_emoji: "🌹",
-        outcome: "긍정적",
-        selected_topic: "관계 발전과 깊어지는 감정",
-        title: "관계의 발전",
-        introduction: "서로에 대한 감정이 깊어지고 관계가 발전하는 시기입니다.",
-        dialogue: "당신과 함께 있으면 시간이 정말 빨리 지나가네요.",
-        analysis: "두 사람 모두 관계의 발전에 만족하고 있습니다.",
-        reason: "서로에 대한 이해가 깊어지고 있습니다.",
-        available_topics: ["관계 발전", "감정 표현", "미래 계획"],
-        decision_dimensions: ["감정표현_논리적사고", "협력_경쟁"],
+        period: "4~6M",
+        event_emoji: "💳",
+        outcome: "conflict",
+        selected_topic: "소비 vs 저축 우선순위",
+        title: "### 지금 쓸까? 나중을 위해 아낄까?",
+        introduction: `결혼한 지 4~6개월 차, 곤뇽독과 링선은 함께 살고 있는 집의 월세 갱신 시기에 다가왔어요. 미래를 생각하는 곤뇽독은 저축과 장기 계획에 집중하고 싶지만, 링선은 현재 생활의 편안함과 작은 소비에 더 가치를 두고 있어요. 서로 다른 시선 때문에 작은 다툼이 자주 일어나기 시작했죠. 서로의 생각이 다르다 보니 결정이 쉽지 않은 상황입니다.`,
+        dialogue: `> 곤뇽독: "이번 달부터는 꼭 저축 좀 늘려야 할 것 같아. 미래를 준비해야지."
+  > 
+  > 링선: "지금 분위기 좋은데, 왜 애써 아껴야 해? 가끔은 좀 써야지."
+  > 
+  > 곤뇽독: "그렇게 계속 쓰다 보면 큰돈 모으기 어려워. 나중에 후회할 거야."
+  > 
+  > 링선: "넌 항상 미래만 생각해서 답답해. 지금 즐기면서 살아야지."
+  > 
+  > 곤뇽독: "넌 너무 지금만 보는 것 같아. 우린 계획 세우고 움직여야 해."`,
+        analysis: `곤뇽독님은 미래를 중요하게 생각하는 편이라 저축과 장기 계획을 중시합니다. 반면 링선님은 현재 중심적인 사고방식으로 지금의 생활 만족과 소비를 더 선호하죠. 두 사람의 재정에 관한 가치관 차이가 커서 서로 이해하기 어려운 상황입니다. 이 때문에 소비와 저축을 어떻게 우선할지 갈등이 생기고, 서로의 관점을 설득하는 과정에서 긴장이 높아집니다. 서로의 입장을 완전히 바꾸기는 어렵고, 작은 다툼이 반복되어 스트레스가 쌓일 가능성이 큽니다.`,
+        reason:
+          "곤뇽독과 링선의 현재중심-미래지향 점수 차이가 3.8점으로 크지 않지만 링선의 점수가 0.0으로 극단에 가까운 중립형이며, 재정 관련 가치관 차원이 중요한 주제이므로 엄격한 기준에 따라 충돌로 판단했습니다.",
+        available_topics: [
+          "월세/전세 갱신 결정",
+          "저축 목표 설정",
+          "소비 vs 저축 우선순위",
+          "장기 재정 계획",
+        ],
+        decision_dimensions: ["재정경제태도_결혼", "현재지향_미래지향"],
+      },
+      {
+        stage_number: 3,
+        period: "7~9M",
+        event_emoji: "⏰",
+        outcome: "conflict",
+        selected_topic: "대화 시간 줄어듦",
+        title: "### 말수가 줄어드는 밤, 마음은 멀어지는 걸까?",
+        introduction: `결혼 7~9개월 차인 곤뇽독과 링선은 요즘 각자 일에 바빠서 대화할 시간이 많이 줄었어요. 곤뇽독은 프로젝트 마감 때문에 늦게까지 일하는 날이 많고, 링선도 자신의 일과 집안 일로 정신이 없어요. 처음엔 잠깐씩이라도 대화를 나누었지만, 점차 하루가 어떻게 지나가는지 서로 모르는 날이 많아졌어요.
+  
+  서로에게 관심은 있지만 피곤한 몸과 마음 때문에 대화를 시도하는 것도 힘들어졌어요. 곤뇽독은 일에 전념하며 링선이 이해해주길 바라고, 링선은 곤뇽독이 자신에게 조금만 더 신경 써주길 기대합니다.
+  
+  서로 마음속에 답답함이 쌓이지만 바쁜 일상으로 자꾸 미뤄져서 작은 불만이 커지고 있어요.`,
+        dialogue: `> 링선: "오늘 하루 어떻게 보냈어? 말도 별로 없네."
+  > 
+  > 곤뇽독: "그냥 일이 많았어. 피곤해서 말할 기운이 안 나."
+  > 
+  > 링선: "그래도 좀 신경 써서 얘기해주면 좋잖아. 내가 혼자 말하는 느낌이야."
+  > 
+  > 곤뇽독: "난 네가 나 이해해주는 줄 알았어. 왜 갑자기 불만이야?"
+  > 
+  > 링선: "불만이라기보다, 그냥 우리 사이가 좀 멀어진 것 같아서..."
+  > 
+  > 곤뇽독: "그럼 네가 먼저 연락해. 난 일 때문에 정신없단 말이야."`,
+        analysis: `곤뇽독님과 링선님 모두 일과 집안 일에 쫓기면서 대화 시간이 크게 줄었어요. 곤뇽독님은 일이 우선이라 감정을 표현하는 시간이 부족하고, 링선님은 그런 곤뇽독님의 태도를 서운하게 느끼죠. 서로 다른 기대감과 피곤함이 쌓여 소통이 점차 어려워졌어요.
+  
+  서로의 역할과 상황에 대한 이해가 부족해 작은 말들이 갈등으로 커지고 있습니다. 특히 곤뇽독님은 링선님이 자신의 부담을 이해하지 못한다고 느끼고, 링선님은 곤뇽독님이 자신을 소홀히 한다고 생각해요. 이 차이점이 오해와 불만을 키우고 있네요.`,
+        reason:
+          "대화 시간과 소통에 대한 점수 차이가 12점 이상으로 크고, 곤뇽독의 극단적 성향(70점 이상)이 있어 충돌 가능성이 높다 판단했습니다.",
+        available_topics: [
+          "프로젝트 마감과 시간 부족",
+          "일과 관계의 우선순위",
+          "바쁠 때 서로 응원하기",
+          "대화 시간 줄어듦",
+        ],
+        decision_dimensions: ["우선순위관리", "공감능력"],
+      },
+      {
+        stage_number: 4,
+        period: "10~12M",
+        event_emoji: "🕓",
+        outcome: "conflict",
+        selected_topic: "업무 스트레스와 소통 단절",
+        title: "### 힘든 시간, 말하지 못한 마음의 거리",
+        introduction: `결혼한 지 10개월에서 12개월 사이, 곤뇽독님과 링선님은 각자의 업무 때문에 점점 지쳐갑니다. 
+  야근과 주말 근무가 잦아지면서 둘 사이에 대화가 줄어들고, 서로의 감정을 제대로 표현하지 못해 소통에 어려움을 느끼고 있습니다.
+  
+  곤뇽독님은 일이 힘들 때 주로 혼자 생각하며 쉬는 편이고,
+  링선님은 피로할 때 감정을 솔직하게 말하고 싶어 하지만 상대가 들을 준비가 되어 있는지 불안해합니다.
+  
+  이 과정에서 작은 오해가 쌓여 두 사람은 점점 멀어지는 것 같은 기분을 느끼고 있습니다.`,
+        dialogue: `> 링선: "오늘 또 야근이야? 너무 힘들지 않아? 나한테도 좀 말해봐."
+  > 
+  > 곤뇽독: "괜찮아. 그냥 좀 피곤할 뿐이야. 너는 왜 자꾸 물어봐?"
+  > 
+  > 링선: "물어보는 게 아니라, 같이 나누고 싶어서 그래. 너는 내 마음도 이해하려고 안 하잖아."
+  > 
+  > 곤뇽독: "내가 힘들다고 해도 넌 그냥 걱정만 하고, 해결책도 없잖아. 그래서 얘기하기 싫어."
+  > 
+  > 링선: "그럼 뭐, 나한테 힘든 것도 못 말하겠다는 거야? 너무 서운해."`,
+        analysis: `곤뇽독님은 업무 스트레스를 혼자 풀고 싶어 하는 내성적인 방식이며, 링선님은 감정을 공유하고 위로를 받고자 하는 외향적인 방식입니다.
+  
+  서로 다른 감정 표현 방식과 기대가 맞지 않아 대화가 단절되고, '서로를 이해하지 못한다'는 생각이 깊어지고 있습니다.
+  
+  곤뇽독님은 링선님의 걱정과 조언이 오히려 부담으로 느껴지고, 링선님은 곤뇽독님이 마음을 닫는 것처럼 느껴 서운함이 쌓입니다.
+  
+  이처럼 감정 표현 방식과 소통의 거리가 두 사람 사이에 큰 벽을 만들고 있습니다.`,
+        reason:
+          "업무 스트레스와 감정 표현 방식에서 15점 이상 점수 차이와 극단적 성향 차이가 있어 갈등 가능성이 매우 높습니다.",
+        available_topics: [
+          "업무 스트레스와 소통 단절",
+          "피로할 때 감정 표현 방식",
+          "배우자에게 힘듦 털어놓기",
+          "야근과 주말 근무로 인한 거리감",
+        ],
+        decision_dimensions: ["감정표현_개방폐쇄", "스트레스대응"],
+      },
+      {
+        stage_number: 5,
+        period: "13~15M",
+        event_emoji: "🧺",
+        outcome: "conflict",
+        selected_topic: "청소 빈도와 기준 차이",
+        title: "### 깨끗함의 기준은 어디에 있을까?",
+        introduction: `결혼한 지 14개월 차, 곤뇽독과 링선은 함께 사는 공간을 서로 다른 시각으로 바라보고 있습니다. 링선은 청소를 자주 해서 항상 집안이 깔끔하기를 원하는 반면, 곤뇽독은 청소를 주말에 몰아서 하는 편이라 둘 사이의 빈도 차이가 점점 손해감정을 불러일으키고 있습니다. 서로의 청소 기준이 달라 갈등이 커지는 시기입니다.`,
+        dialogue: `> 링선: "오늘도 바닥 좀 닦아 줄래? 먼지가 많아 보여."
+  > 
+  > 곤뇽독: "난 이번 주말에 한 번에 하려고 했어. 조금만 기다려줘."
+  > 
+  > 링선: "그런 식으로 미루면 집이 금방 지저분해져. 난 매일 조금씩 하는 게 좋아."
+  > 
+  > 곤뇽독: "그게 얼마나 의미가 있냐고. 난 효율적으로 하는 게 더 낫다고 생각해."
+  > 
+  > 링선: "효율보다 깨끗함이 먼저야!"`,
+        analysis: `링선은 청결과 자주 청소하는 걸 중요하게 생각하며,
+  곤뇽독은 청소 빈도를 낮추고 몰아서 하는 방식을 선호합니다.
+  
+  두 사람의 청소 기준과 빈도에 큰 차이가 있어,
+  서로의 생활방식이 자꾸 부딪히는 상황입니다.
+  
+  이런 차이는 곤뇽독이 청소를 미루는 동안 링선이 쌓이는 불편함을 크게 느끼게 되고,
+  곤뇽독은 링선의 잦은 요구가 부담스럽게 다가오는 갈등 포인트로 작용합니다.`,
+        reason:
+          "청소 빈도와 기준 점수 차이가 15점 이상이고, 링선이 극단적 청결 성향을 보여 충돌 가능성이 매우 높음.",
+        available_topics: [
+          "집안일 분담 방식",
+          "청소 빈도와 기준 차이",
+          "요리와 설거지 역할",
+          "정리정돈 습관 차이",
+        ],
+        decision_dimensions: ["가사생활분담"],
+      },
+      {
+        stage_number: 6,
+        period: "16~18M",
+        event_emoji: "📚",
+        outcome: "conflict",
+        selected_topic: "개인 성장 vs 부부 시간",
+        title: "### 각자의 꿈과 우리의 시간 사이에서",
+        introduction: `결혼 16~18개월 차, 곤뇽독님과 링선님은 각자의 성장을 위해 노력하는 시기입니다. 특히 링선님은 내적 동기가 강해 자기계발과 개인 성장을 매우 중요하게 생각하고 많은 시간을 투자하고 싶어 하죠. 반면, 곤뇽독님은 내적 동기와 외적 동기 사이에서 균형을 추구하는 타입이라 둘 사이에 시간 배분에 대한 기대치가 다릅니다. 
+  
+  이 시기에는 링선님의 학원이나 강의에 투자하는 시간이 많아지면서 부부가 함께 보내는 시간이 줄고, 곤뇽독님은 이 점에서 서운함과 불안함을 느낄 수 있습니다. 서로를 응원하고 싶지만, 각자의 욕구가 달라 자칫 마찰이 커질 위험이 높습니다.
+  
+  그들은 미래를 위한 투자라는 공통의 목표를 가지고 있지만, 지금 당장의 ‘함께하는 시간’에 대한 가치관 차이가 점점 두 사람 사이를 멀어지게 합니다.`,
+        dialogue: `> 링선: "이번 학원 끝나면 자격증 따는 데 더 가까워질 거야. 우리 미래를 위해서라니까."
+  > 
+  > 곤뇽독: "알긴 하는데, 요즘 너랑 보내는 시간이 너무 적은 것 같아. 나 혼자 있는 시간이 많아지네."
+  > 
+  > 링선: "미안, 그래도 이게 나한테는 정말 중요한 거야. 너도 좀 이해해줘."
+  > 
+  > 곤뇽독: "이해는 하지. 근데 우리 둘 다 행복해야 하는 거 아니야? 난 링선이랑 시간 보내고 싶어."
+  > 
+  > 링선: "내가 너랑 시간을 덜 보내서 미안해. 근데 조금만 더 참아줘, 조금만 더!"`,
+        analysis: `이 상황은 링선님이 개인 성장에 강한 내적 동기(15점)를 보여 자기계발에 많은 시간과 비용을 쏟는 반면,
+  곤뇽독님은 내적·외적 동기가 균형 잡혀 있어 부부가 함께 보내는 시간도 중요하게 생각한다는 점에서 비롯됩니다.
+  
+  점수 차이가 15점으로 충돌 기준을 넘고 있어 둘의 가치관 차이가 분명히 갈등의 씨앗이 되고 있습니다.
+  
+  링선님의 강한 자기계발 욕구와 곤뇽독님의 ‘같이 있는 시간’ 욕구가 서로 충돌하면서 두 사람 모두 서운함과 걱정을 느낍니다. 미래를 위한 투자가 부부 관계에 미치는 영향을 조율하는 게 필요합니다.`,
+        reason:
+          "내적 동기 점수 차이가 15점으로 충돌 기준(10점 이상)을 넘고, 가치관 차이가 부부 시간을 두고 직접 맞서기 때문에 갈등 가능성이 높다.",
+        available_topics: [
+          "자기계발 투자",
+          "학원/강의 시간과 비용",
+          "개인 성장 vs 부부 시간",
+          "미래를 위한 투자",
+        ],
+        decision_dimensions: ["외적동기_내적동기", "목표실행자율성"],
+      },
+      {
+        stage_number: 7,
+        period: "19~21M",
+        event_emoji: "💼",
+        outcome: "conflict",
+        selected_topic: "배우자의 이직 제안",
+        title: "### 너의 미래, 나의 현재 사이에서",
+        introduction: `결혼 후 19~21개월 차, 곤뇽독과 링선은 서로 다른 미래에 대한 생각으로 고민이 깊어졌습니다. 곤뇽독님은 안정적인 직장을 선호하며 현재에 집중하는 경향이 강하지만, 링선님은 미래를 위해 이직과 새로운 도전을 희망하고 있습니다. 이 시기는 서로의 가치관 차이와 함께 상대방의 선택을 어떻게 지지할지 결정하는 중요한 시기입니다. 두 사람은 서로의 입장을 이해하고자 노력하지만, 현재와 미래에 대한 시선 차이가 점점 큰 갈등 요소가 되고 있습니다.`,
+        dialogue: `> 링선: "나 이번에 이직 제안 받았어. 더 좋은 기회야. 꼭 해야 해."
+  > 
+  > 곤뇽독: "지금 그냥 괜찮잖아. 안정적인 게 더 좋아. 왜 굳이 바꿔?"
+  > 
+  > 링선: "미래를 생각해야지. 지금 머무르면 뒤처져."
+  > 
+  > 곤뇽독: "난 지금에 집중하는 게 맞다고 생각해. 너무 앞서가지 마."
+  > 
+  > 링선: "너는 항상 현재만 봐서 답답해. 나는 성장하고 싶은데…"
+  > 
+  > 곤뇽독: "그렇다고 너무 무리하면 우리 삶이 흔들려. 조금만 더 생각하자."
+  > 
+  > 링선: "너무 소극적이야, 그게 문제야!"`,
+        analysis: `곤뇽독님은 현재 상황에 집중하고 안정을 중시하는 성향이 강합니다. 반면 링선님은 미래 지향적이고 적극적인 자기계발을 희망합니다. 이런 시선 차이는 이직 같은 중요한 결정에서 크게 부딪히게 되며, 서로가 상대방의 선택에 불안과 답답함을 느끼게 됩니다. 점수 차이가 3.8점으로 크진 않지만 링선님의 미래지향이 매우 강하게 나타나는 점과 곤뇽독님의 현재중심 성향이 대비되면서 대화는 갈등으로 흐릅니다. 서로의 가치관 차이를 완전히 이해하지 못해 긴장이 깊어질 수 있는 시기입니다.`,
+        reason:
+          "현재중심과 미래지향 점수 차이가 3.8점이지만, 링선이 극단적 미래지향(0.0점 극단에 가까운 기준)인 반면 곤뇽독은 상대적으로 현재중심으로 균형을 맞추고 있어 갈등 가능성이 높다고 판단했습니다.",
+        available_topics: [
+          "배우자의 이직 제안",
+          "자기계발과 커리어 변화",
+          "안정 vs 도전 가치관",
+          "서로의 성장 지지하기",
+        ],
+        decision_dimensions: ["현재지향_미래지향", "목표실행자율성"],
+      },
+      {
+        stage_number: 8,
+        period: "22~24M",
+        event_emoji: "💰",
+        outcome: "conflict",
+        selected_topic: "공동 계좌 vs 분리 관리",
+        title: "### 돈을 나누는 게 왜 이렇게 어려운 걸까?",
+        introduction: `결혼한 지 22개월이 지난 곤뇽독과 링선은 이제 생활비와 개인 지출 문제에 집중하게 되었습니다.
+  
+  두 사람은 돈 관리를 어떻게 할지 결정해야 하는 시점에 도달했는데, 곤뇽독은 공동 계좌를 선호하는 반면 링선은 분리 관리를 더 믿고 있습니다.
+  
+  서로 다른 방식과 생각 때문에 돈 이야기를 할 때마다 어색함과 갈등이 조금씩 쌓이는 상황입니다.
+  
+  이 시기에는 재정 투명성과 돈에 대한 편안함 정도가 관계에 큰 영향을 미치기 때문에, 작은 차이가 큰 문제로 비화할 수 있습니다.`,
+        dialogue: `> 곤뇽독: "우리 그냥 공동 계좌 만들어서 생활비랑 공과금 다 같이 관리하자. 훨씬 편할 거야."
+  > 
+  > 링선: "난 그게 좀 불안해. 각자 쓰는 돈은 각자 관리하는 게 더 좋아 보여."
+  > 
+  > 곤뇽독: "뭐가 불안한데? 우리가 부부인데 당연히 투명하게 써야 하지 않아?"
+  > 
+  > 링선: "당연히 투명해야지, 근데 내 돈까지 다 보여주는 게 부담스러워. 개인 시간이 필요한 거야."
+  > 
+  > 곤뇽독: "그럼 우리가 왜 결혼했는데? 신뢰가 부족한 거야?"
+  > 
+  > 링선: "아니, 신뢰랑 별개로 내 돈 내 마음대로 쓰고 싶다는 거야."`,
+        analysis: `곤뇽독님은 '재정 투명성'과 '공동 책임'을 매우 중요하게 생각합니다. 그래서 공동 계좌를 통해 서로의 지출을 공유하고 싶어 하죠.
+  
+  반면 링선님은 '개인의 경제 자유'와 '개인 지출의 독립성'에 더 무게를 둡니다. 분리 관리가 각자의 자유와 부담을 줄여준다고 느껴요.
+  
+  이 두 가지 가치관은 서로 크게 달라서 돈 관리 방식을 두고 자주 충돌합니다. 이 시기의 이런 갈등은 결혼 생활에서 재정 문제에 대한 근본적인 기대 차이에서 오는 자연스러운 마찰이라고 볼 수 있습니다.`,
+        reason:
+          "두 사람의 재정 관리 성향 점수 차이가 10점 이상이며, 중요한 가치관 차원이어서 엄격히 충돌로 판단했습니다.",
+        available_topics: [
+          "용돈과 개인 지출",
+          "공동 계좌 vs 분리 관리",
+          "돈 이야기의 편안함",
+          "재정 투명성",
+        ],
+        decision_dimensions: ["재정경제태도_결혼", "신뢰경향"],
+      },
+      {
+        stage_number: 9,
+        period: "25~27M",
+        event_emoji: "🪑",
+        outcome: "excitement",
+        selected_topic: "신혼집 인테리어 취향 차이",
+        title: "### 서로 다른 취향이 만나 빛나는 우리 집",
+        introduction: `결혼 25~27개월 차, 곤뇽독과 링선은 신혼집을 꾸미고 있습니다. 짧은 시간 동안 함께 살아온 경험 덕분에 서로에 대한 이해도 깊어졌지만, 집 꾸미기에 관한 취향은 조금씩 달라서 고민이 생기고 있습니다. 곤뇽독은 실용적인 디자인을 선호하고 링선은 감성적이고 따뜻한 분위기를 원합니다.
+  
+  서로 생각이 다르지만, 두 사람은 이를 갈등이라기보다는 새롭게 함께 만들어가는 즐거운 과정으로 여기고 있습니다. 신혼집이라는 공간을 꾸미며 서로의 의견을 조율하는 시간이 두 사람 사이에 새로운 설렘을 만듭니다.`,
+        dialogue: `> 곤뇽독: "이 소파는 깔끔하고 관리하기 쉽잖아, 그레이 톤이라 오래 써도 좋아."
+  >
+  > 링선: "근데 좀 차갑게 느껴져. 아이보리색 쪽이 더 집 같고 따뜻할 것 같은데."
+  >
+  > 곤뇽독: "음, 아이보리는 금방 더러워지니까 난 좀 걱정돼."
+  >
+  > 링선: "그럼 밝은 그레이 톤은 어때? 따뜻함과 실용성 사이에서 타협하는 거지."
+  >
+  > 곤뇽독: "좋아, 그렇게 하자. 우리 집이니까 둘이 같이 결정하는 게 제일 중요한 거야."`,
+        analysis: `곤뇽독은 실용성과 관리 편리성을 중요하게 생각하며 객관적인 기준으로 가구를 고릅니다. 반면 링선은 공간의 감성적인 분위기와 따뜻함을 더 중요하게 느끼고 있습니다. 점수 차이는 7.5점으로 중간 정도이나, 두 사람 모두 극단적이지 않고 균형 잡힌 태도를 가지고 있습니다.
+  
+  서로의 차이를 이해하고 존중하면서 논리적인 곤뇽독과 감성적인 링선이 상호 보완적으로 작용하기 때문에 의견 충돌보다는 좋은 조화와 설렘의 과정으로 이 상황을 받아들입니다. 함께 집을 꾸미는 일이 둘 사이의 신뢰와 친밀감을 쌓는 기회가 되고 있습니다.`,
+        reason:
+          "점수 차이가 7.5점으로 중간이며, 두 사람 모두 극단적이지 않고 서로 보완적인 성향이라 갈등 가능성보다 시너지 가능성이 큽니다.",
+        available_topics: [
+          "신혼집 인테리어 취향 차이",
+          "가구 구입 예산 논의",
+          "집 꾸미기 우선순위",
+          "실용성 vs 디자인 선호도",
+        ],
+        decision_dimensions: [
+          "빠른판단_신중판단",
+          "독립실행_협력실행",
+          "논리중심_감정중심",
+        ],
+      },
+      {
+        stage_number: 10,
+        period: "28~30M",
+        event_emoji: "🏖️",
+        outcome: "excitement",
+        selected_topic: "주거에 대한 가치관 차이",
+        title: "### 우리 집 어디로 할까, 고민할수록 설렌다!",
+        introduction: `결혼을 앞두고 서로 다른 생각들이 차근차근 맞춰지는 순간, 그게 참 신기하고 설레더라. 나는 회사랑 가까운 곳에서 편하게 살고 싶었어. 출근길이 너무 힘들면 하루가 피곤하잖아. 그런데 너는 자연이 가까운 곳에서 지금 당장 좋은 집을 찾는 게 더 중요하다면서, 지금 살 집에 투자하고 싶다고 하더라. 서로 다른 생각이 충돌할 때마다 대화하면서 점점 서로를 더 이해하게 됐어.
+  
+  내가 조금 더 현실적이고 안정적인 걸 좋아해서, 당장 살기 좋은 집 위주로 찾으려고 했는데, 너는 마음이 더 중요하다며 감정에 따라 결정하자고 했지. 그걸 들으니 나도 그냥 편한 곳만 고를 게 아니라, 내가 느끼는 행복이 뭘까 한 번 깊게 생각하게 됐어. 이런 고민들이 오히려 우리 사이를 더 단단하게 만들어서, 결혼이 더 기대되더라.
+  
+  그리고 집을 어디에 둬야 할까 하는 문제도 결국 우리 인생 우선순위 이야기로 이어졌어. 너는 지금 행복이 가장 중요하다고 했고, 나는 미래를 위해 조금 불편하더라도 준비하는 게 낫다고 생각했지. 그래서 서로 다르지만, 그 차이를 존중하면서 좀 더 좋은 방향을 찾으려고 노력하는 시간들이 참 소중했어.`,
+        dialogue: `곤뇽독: “너는 왜 자꾸 자연 가까운 데를 고집해? 출근할 때 너무 멀면 힘들 거야.”
+  링선: “출근도 중요하지만, 하루 중 집에서 보내는 시간이 더 길잖아. 나는 마음이 편한 게 더 중요해.”
+  곤뇽독: “그렇긴 한데, 우리 돈도 생각하고, 지금 살기 편한 게 우선일 것 같은데.”
+  링선: “그래서 우리 둘 다 만족하는 곳을 찾자. 예쁜 집이 있고, 출근도 너무 힘들지 않은 곳 말이야.”
+  곤뇽독: “맞아, 서로 생각 다르지만 같이 이야기하니까 더 좋은 길이 보이는 것 같아.”`,
+        analysis: `이 두 사람은 각기 다른 가치관을 가지고 있지만, 서로의 생각을 듣고 존중하며 좋은 결정을 내리기 위해 노력 중이야. 곤뇽독은 현실적이고 안정적인 삶을 선호해서 주거지를 직장 근처 중심으로 고려했어. 반면 링선은 감정과 마음의 평화를 중요하게 생각해 자연 가까운 곳을 원했지. 이런 차이가 갈등이 아니라 대화의 기회가 되면서 서로를 더 깊이 이해하게 된 거야.
+  
+  또 지금과 미래 사이에서 고민하는 모습도 보여. 곤뇽독은 현재 편안한 삶 우선, 링선은 내적인 행복과 만족을 중시해. 두 성향이 다르지만 서로의 가치를 인정하고 균형을 맞추려는 모습이 꽤 설레는 시작점이 되었어. 이런 건강한 대화가 앞으로의 결혼 생활에도 긍정적인 힘이 될 거야.`,
+        reason:
+          "결혼 전 서로 다른 가치관과 우선순위가 충돌하면서 생기는 고민과 대화에서 자연스럽게 설렘과 기대가 느껴지도록 구성했어. 두 사람의 성향 차이를 반영해 현재와 미래, 감정과 논리 사이에서 균형을 찾아가는 모습을 중학교 수준 말투로 표현했고, 구체적 상황인 집 위치와 생활 방식을 예로 들면서 현실감도 살렸어.",
+        available_topics: [
+          "여름휴가에서 새로운 모습 발견",
+          "일상을 벗어난 대화",
+          "여유로운 시간의 소중함",
+        ],
+        decision_dimensions: [],
+      },
+      {
+        stage_number: 11,
+        period: "31~33M",
+        event_emoji: "🎬",
+        outcome: "excitement",
+        selected_topic: "함께하는 주말 취미",
+        title: "### 관계에도 '노력'이 필요하다는 것",
+        introduction: `휴가에서 돌아오고, 곤뇽독이랑 링선은 생각했어.
+  
+  좋았던 그 기분이 일상에서도 이어지려면, 그냥 두면 안 되겠구나.
+  
+  거창한 변화 말고, 작은 규칙과 가벼운 약속부터. 서로에게 필요한 게 뭔지 틈틈이 묻고, 짧아도 매주 함께하는 순간을 남기자고.
+  
+  그렇게 둘만의 페이스를 다시 만들기 시작했어.`,
+        dialogue: `> 곤뇽독: "이번 주말엔 아침에 산책부터 해볼까?"
+  > 
+  > 링선: "좋아. 커피 한 잔 사서 동네 한 바퀴. 어렵지 않잖아."
+  > 
+  > 곤뇽독: "그리고 한 달에 한 번은 하루 비워두자. 아무 약속도 잡지 말고 우리만."
+  > 
+  > 링선: "응. 그 시간만큼은 꼭 지키자."`,
+        analysis: `관계는 저절로 좋아지지 않더라. 대신, 작게라도 꾸준히 하면 분명 달라진다.
+  
+  '우리의 리듬'을 의식적으로 만드는 일. 그게 사이를 단단하게 지켜준다.`,
+        reason: "해피엔딩 수렴 단계",
+        available_topics: [
+          "함께하는 주말 취미",
+          "관계에 지속적 노력 필요함 깨닫기",
+          "새로운 공통 관심사 찾기",
+        ],
+        decision_dimensions: [],
+      },
+      {
+        stage_number: 12,
+        period: "34~36M",
+        event_emoji: "💬",
+        outcome: "excitement",
+        selected_topic: "쌓인 진짜 생각 나누기",
+        title: "### 이제 진짜 이해하게 됐다",
+        introduction: `곤뇽독이랑 링선, 지난 시간을 천천히 돌아봤어.
+  
+  싸운 날도 있었고, 말이 통하지 않던 날도 있었지. 근데 이상하게 지금은 그 순간들까지도 '우리의 과정'처럼 느껴져.
+  
+  서로를 바꾸려 하기보다, 다름을 다루는 법을 배웠다는 게 더 정확한 말 같아.`,
+        dialogue: `> 곤뇽독: "내가 급하게 결론 내려던 거, 너 얼마나 답답했을까."
+  > 
+  > 링선: "나도 감정부터 꺼내는 습관, 네가 힘들었을 거 알아."
+  > 
+  > 곤뇽독: "이젠 네가 왜 그렇게 말했는지 먼저 떠올라."
+  > 
+  > 링선: "나도 네 침묵이 그냥 휴식일 때가 많다는 걸 알게 됐어."`,
+        analysis: `우리는 완벽해지진 않았어. 대신, 함께 가는 법을 배웠지.
+  
+  같은 문제를 만나도 예전처럼 부딪히지 않고, 서로의 속도로 한 번씩 맞춰가. 그래서 이제, '괜찮아. 우리는 해낼 거야'라는 마음이 자연스럽게 든다.`,
+        reason: "해피엔딩 수렴 단계",
+        available_topics: [
+          "쌓인 진짜 생각 나누기",
+          "서로에 대한 깊은 이해",
+          "3년의 여정을 돌아보며",
+        ],
+        decision_dimensions: [],
       },
     ],
     summary: {
-      total_stages: 2,
-      conflict_count: 0,
-      excitement_count: 2,
-      conflict_rate: 0.0,
+      total_stages: 12,
+      conflict_count: 8,
+      excitement_count: 4,
+      conflict_rate: 0.67,
       male_name: "곤뇽독",
-      female_name: "곤뇽독",
+      female_name: "링선",
     },
   },
+
   yearly_indicators: [
     {
       year: 1,
-      indicator_type: "관계 만족도",
-      indicator_name: "전반적 만족도",
+      indicator_type: "tension",
+      indicator_name: "긴장도",
       quarterly_scores: [
-        { quarter: "Q1", score: 85 },
-        { quarter: "Q2", score: 88 },
-        { quarter: "Q3", score: 90 },
-        { quarter: "Q4", score: 92 },
+        { quarter: "Q1", score: 7.2 },
+        { quarter: "Q2", score: 7.2 },
+        { quarter: "Q3", score: 6.2 },
+        { quarter: "Q4", score: 4.2 },
       ],
-      graph_interpretation: "지속적으로 상승하는 만족도",
-      title: "1년차 관계 만족도",
-      description: "첫 해 동안 관계 만족도가 지속적으로 향상되었습니다.",
+      graph_interpretation:
+        "두 사람은 서로에게 각자의 시간을 어떻게 쓸지, 돈을 어떻게 관리할지에 대해 기대가 다릅니다. 이런 차이 때문에 자주 긴장되는 순간이 생깁니다.",
+      title: "다른 리듬 속에서 맞춰가는 첫 해",
+      description: `결혼 초에는 서로의 생활 습관과 가치관 차이로 갈등이 쉽게 생길 수 있습니다. 예를 들어, 한 사람은 혼자만의 시간이 필요하고, 다른 사람은 함께 있는 시간을 더 중요시할 때 오해가 쌓입니다. 또 돈을 어떻게 쓸지, 집안일을 어떻게 나눌지에 대한 생각 차이도 크면 자주 다툴 수 있습니다.
+  
+  이럴 때는 서로의 다름을 인정하는 게 중요합니다. 상대방이 원하는 것이 무엇인지 먼저 물어보고, 내가 바라는 점도 솔직하게 말하는 연습이 필요합니다. 작은 갈등이 생겼을 때 바로 이야기하면 큰 싸움으로 번지지 않을 수 있습니다.
+  
+  시간이 지나면서 서로의 방식을 조금씩 이해하게 되고, 상대방을 배려하는 방법도 배워갈 수 있습니다. 처음에는 힘들어도, 함께 맞춰가는 노력을 하면 점점 더 편안해질 수 있습니다.`,
       questions: [
-        "서로에 대한 만족도는?",
-        "관계의 질은?",
-        "미래에 대한 기대는?",
+        "서로에게 가장 바라는 생활 습관은 무엇인가요?",
+        "혼자만의 시간이 필요할 때 어떻게 말하면 좋을까요?",
+        "집안일과 돈 관리를 나눌 때 서로의 생각을 어떻게 존중할 수 있을까요?",
+      ],
+    },
+    {
+      year: 2,
+      indicator_type: "connection",
+      indicator_name: "정서 연결도",
+      quarterly_scores: [
+        { quarter: "Q1", score: 7.8 },
+        { quarter: "Q2", score: 6.7 },
+        { quarter: "Q3", score: 8.3 },
+        { quarter: "Q4", score: 7.6 },
+      ],
+      graph_interpretation:
+        "두 사람은 서로를 신뢰하는 마음이 자라고 있습니다. 감정과 생각을 나누는 일이 점점 자연스러워지고, 서로에게 조금 더 편안하게 다가갈 수 있게 됩니다.",
+      title: "함께 쌓아가는 마음의 다리, 둘째 해",
+      description: `이 시기에는 재정, 가족, 일 등 현실적인 문제들이 더 자주 찾아옵니다. 한 사람은 미래를 생각하고 저축을 중요하게 여기고, 다른 사람은 오늘의 만족을 더 신경 쓸 수 있습니다. 이런 차이를 인정하고, 서로의 생각을 듣는 연습이 필요합니다.
+  
+  배우자로서 서로의 역할과 책임에 대해 대화하면, 오해가 줄어듭니다. 자신만의 방식이 아니라, 함께 결정하는 법을 배우는 것이 중요합니다. 때로는 나와 다른 의견을 받아들이는 용기도 필요합니다.
+  
+  이런 경험을 바탕으로 두 사람만의 가치관을 만들어갈 수 있습니다. 서로를 믿고, 감정을 솔직하게 나누는 시간을 자주 갖는 것이 관계를 더 깊게 만들어줍니다.`,
+      questions: [
+        "서로에게 신뢰를 느끼는 순간은 언제인가요?",
+        "둘 다 만족할 수 있는 돈 관리 방법은 무엇일까요?",
+        "서로의 기분과 생각을 솔직하게 나누려면 어떤 노력이 필요할까요?",
+      ],
+    },
+    {
+      year: 3,
+      indicator_type: "resilience",
+      indicator_name: "회복 탄력성",
+      quarterly_scores: [
+        { quarter: "Q1", score: 7.9 },
+        { quarter: "Q2", score: 7.8 },
+        { quarter: "Q3", score: 9.1 },
+        { quarter: "Q4", score: 8.7 },
+      ],
+      graph_interpretation:
+        "두 사람은 다양한 문제와 갈등이 생겨도, 서로를 존중하며 건강하게 해결할 수 있는 힘이 자라고 있습니다. 외부에서 오는 어려움도 함께 이겨내는 방법을 배워갑니다.",
+      title: "함께 이겨내는 힘, 세 번째 해의 성장",
+      description: `결혼 초 36개월은 두 사람이 앞으로 얼마나 행복하게 지낼 수 있을지 결정하는 중요한 시기입니다. 이때 여러 번의 갈등과 문제를 겪으면서, 서로를 더 잘 이해하고 배려하는 방법을 배우게 됩니다.
+  
+  앞으로를 위해서는, 문제가 생겼을 때 감정을 숨기지 말고 빨리 이야기하는 습관을 들이면 좋습니다. 또, 상대방의 입장에서 한 번 더 생각해보고, 내가 틀릴 수도 있다는 마음을 가지면 갈등이 쉽게 풀립니다.
+  
+  함께 시간을 보내면서 서로에게 고마운 점을 자주 말해주는 것도 중요합니다. 이렇게 하면 둘 다 관계에서 더 큰 행복을 느낄 수 있습니다. 서로를 믿고, 힘든 일이 생겨도 함께 해결하려는 태도가 앞으로의 결혼 생활을 더 튼튼하게 만들어줍니다.`,
+      questions: [
+        "함께 어려운 일을 겪었을 때 서로를 어떻게 도와주었나요?",
+        "앞으로 힘든 일이 생기면 어떤 방식으로 해결하고 싶으신가요?",
+        "서로에게 고마운 점을 최근에 언제 표현했나요?",
       ],
     },
   ],
   relationship_prediction: {
-    relationship_direction: "긍정적 발전",
+    relationship_direction:
+      "곤뇽독과 링선은 서로 다른 생각과 생활 습관 때문에 자주 다투었지만, 시간이 지나면서 다름을 인정하고 함께 조율하는 방법을 배웠습니다. 앞으로도 갈등은 생길 수 있지만, 서로의 입장을 듣고 작은 약속을 지키며 꾸준히 노력하면 더 단단하고 안정된 부부가 될 수 있습니다. 중요한 것은 문제가 생길 때 바로 대화로 풀려고 하고, 완벽함보다 서로의 다름을 받아들이는 태도를 계속 유지하는 것입니다.",
     indicator_predictions: [
       {
-        indicator: "관계 만족도",
+        indicator: "정서 안정성",
         level: "높음",
-        description: "지속적으로 높은 만족도를 유지할 것으로 예상됩니다.",
+        description:
+          "두 사람 모두 감정을 잘 조절하는 점수가 높고, 감정에 크게 휘둘리지 않는 특징이 있습니다. 갈등이 있어도 쉽게 흥분하거나 감정이 흔들리지 않고, 상황을 차분하게 받아들일 가능성이 높습니다.",
+      },
+      {
+        indicator: "소통 리듬",
+        level: "중간",
+        description:
+          "서로 배려하고 적응하려는 성향이 강해서 대화가 크게 어긋나지 않습니다. 하지만 둘 다 감정을 직접적으로 표현하는 스타일이 아니기 때문에 오해가 생길 때는 말을 아끼거나 속마음을 숨길 수 있습니다.",
+      },
+      {
+        indicator: "갈등 회복력",
+        level: "높음",
+        description:
+          "갈등이 생겨도 서로 맞춰주려는 태도와 조절 능력이 좋아 금방 화해할 수 있습니다. 감정에 휩쓸리지 않고, 문제를 차분히 해결하려고 할 가능성이 높습니다.",
+      },
+      {
+        indicator: "역할 조율도",
+        level: "중간",
+        description:
+          "두 사람 모두 다른 사람을 배려하는 점이 높아 역할을 나누는 데 심한 갈등은 적겠지만, 서로 양보하다가 할 일을 미루거나, 솔직한 의견을 말하지 못해 답답함을 느낄 수 있습니다.",
       },
     ],
     personal_changes: [
       {
         name: "곤뇽독",
-        title: "성장하는 파트너",
-        description: "관계를 통해 지속적으로 성장하고 발전할 것입니다.",
+        title: "혼자의 시간에서 '함께'의 시간으로",
+        description:
+          "결혼 초반 곤뇽독은 혼자만의 시간이 꼭 필요하다고 느꼈습니다. 집안일을 하거나, 돈을 쓸 때도 자신만의 방식과 기준을 고집했습니다. 그래서 링선과 자주 의견이 부딪히고, 서로 대화가 줄면서 점점 마음이 멀어지는 느낌을 받았습니다. 하지만 여러 번의 갈등을 겪으면서, 곤뇽독은 자신의 생각만이 옳지 않을 수 있다는 점을 깨달았습니다. 집안일이나 돈 문제에서 서로 타협하는 법을 배우기 시작했습니다. 또, 서로 다른 취향을 받아들이고, 집을 함께 꾸미는 과정에서 '함께'의 즐거움을 느꼈습니다. 곤뇽독은 이제 링선의 입장에서 생각하고, 작은 일에도 먼저 배려하려고 노력합니다. 마지막 3년 차에는 '진짜 서로를 이해하게 되었다'고 느끼며, 혼자만의 시간보다 '함께 보내는 시간'의 소중함을 알게 되었습니다. 이 변화는 곤뇽독이 관계에서 더 적극적으로 노력하고 성장했다는 것을 보여줍니다.",
+      },
+      {
+        name: "링선",
+        title: "마음 속 이야기에서 솔직한 표현으로",
+        description:
+          "링선은 처음에 자신의 진짜 마음을 잘 드러내지 않고, 곤뇽독에게 맞추려는 모습이 많았습니다. 힘든 일이 있어도 참고, 상대방을 먼저 생각하다 보니 자신의 감정은 뒤로 미뤘습니다. 시간이 지나면서 자주 다투게 되고, 서로의 차이에 대해 고민하는 일이 많아졌습니다. 그 과정에서 링선은 자신의 생각과 감정을 솔직하게 말하는 것이 중요하다는 것을 알게 되었습니다. 집안일, 돈, 미래에 대한 고민을 곤뇽독과 이야기하며, 서로 이해하는 시간이 늘어났습니다. 특히, 각자의 취향과 꿈을 나누며, 더 가까워질 수 있었습니다. 이제 링선은 자신의 마음을 숨기지 않고, 곤뇽독에게 편하게 표현할 수 있게 되었습니다. 관계에서 '배려만 하는 사람'이 아니라, '함께 의견을 나누는 사람'으로 바뀌었습니다. 이 변화는 링선이 자신을 존중하고, 진짜 소통을 배운 성장의 과정입니다.",
       },
     ],
     flower_path_points: [
       {
-        point: "상호 존중",
-        description: "서로를 존중하고 이해하는 관계를 유지하세요.",
+        point: "작은 습관부터 서로를 위해 바꿔보세요",
+        description:
+          "곤뇽독님은 안정적인 것을 좋아하지만, 가끔은 새로운 생각이나 변화를 받아들이려는 노력을 해보세요. 링선님은 스스로에게 엄격한 편이니, 자기 자신을 좀 더 칭찬하고 인정해보세요. 각자 한 걸음씩 나아가면, 둘 사이가 더 편안해질 수 있습니다.",
+      },
+      {
+        point: "서로 배려하는 마음이 큰 힘이 됩니다",
+        description:
+          "두 분 모두 상대방을 이해하고 배려하려는 마음이 큽니다. 이 장점을 더 살리려면, 매주 한 번씩 서로의 고마운 점이나 좋았던 일을 직접 말로 표현해보세요. 이렇게 작은 칭찬과 감사가 쌓이면, 서로 더 가까워질 수 있습니다.",
+      },
+      {
+        point: "마음속 이야기를 자주 나누는 시간이 필요합니다",
+        description:
+          "두 분 모두 감정 표현이 조심스러운 편이라, 오해가 쌓일 수 있습니다. 매주 한 번 10분 동안만이라도 서로의 기분, 걱정, 바라는 점을 솔직하게 이야기하는 시간을 정해보세요. 이렇게 하면 서로를 더 잘 이해할 수 있습니다.",
       },
     ],
     comprehensive_conclusion: {
-      summary: "두 사람은 서로를 보완하며 함께 성장할 수 있는 관계입니다.",
-      walked_path: "협력과 이해를 바탕으로 한 관계",
-      continuous_practice: "지속적인 소통과 상호 존중",
+      summary:
+        "곤뇽독과 링선 커플은 서로 배려하고 조율하는 힘이 강한 관계입니다. 둘 다 균형 잡힌 성향을 가지고 있고, 서로를 이해하려는 노력이 잘 보입니다. 안정감을 추구하면서도, 시간이 지나면서 조금씩 변화와 설렘도 느낄 수 있는 건강한 관계입니다. 이런 모습이 앞으로도 두 사람의 관계를 오래 이어가게 해줄 수 있습니다.",
+      walked_path: `지금까지 두 분의 3년간 결혼 생활을 가상으로 시뮬레이션해봤습니다. 처음 1년은 각자 혼자만의 시간이 필요하거나, 돈을 쓸 때 고민이 많았고, 말수가 줄어드는 등 서로 다른 생각과 감정을 조율하는 데 어려움이 있었습니다. 집안일, 꿈, 미래에 대한 생각, 돈 문제 등에서 여러 번 갈등이 생겼지만, 서로 배려하고 양보하려는 모습도 보였습니다.
+  
+  2년차에는 서로의 취향과 생각이 다르다는 점을 인정하면서, 조금씩 더 가까워졌고, 함께 미래를 고민하는 시간도 늘었습니다. 3년차에는 서로를 더 깊이 이해하게 되었고, 관계를 위해 노력하는 것이 얼마나 중요한지 깨달았습니다. 갈등의 중심에는 '표현 방식'과 '작은 습관의 차이'가 있었고, 시너지의 중심에는 '서로를 믿고 응원하는 마음'이 있었습니다.`,
+      continuous_practice:
+        "결혼을 생각하기 전에, 각자 삶에서 가장 중요하다고 생각하는 것이 무엇인지 진지하게 고민해보세요. 돈, 가족, 일, 시간, 꿈에 대해 자신의 생각을 솔직하게 정리해보고, 서로에게도 솔직하게 말해보는 것이 좋습니다.\n\n또한 자신이 어떤 사람인지, 상대가 어떤 사람인지 더 깊이 이해하려고 노력해야 합니다. 평소 감정을 어떻게 표현하는지, 힘들 때 어떤 행동을 하는지, 스트레스를 어떻게 푸는지 서로에게 물어보고 대화를 나눠보세요. 이런 준비가 결혼 후에 생길 수 있는 오해나 다툼을 줄여줄 수 있습니다.",
       recommended_guide:
-        "서로의 차이를 인정하고 함께 성장하는 방향으로 나아가세요.",
+        "곤뇽독님은 안정감을 좋아하지만, 가끔은 새로운 생각이나 변화를 받아들이려고 해보세요. 하루에 한 가지라도 평소 하지 않던 작은 일을 시도해보고, 그 경험을 링선님과 나눠보는 것도 좋습니다. 또, 자신의 기분이나 생각을 짧게라도 말로 표현하는 연습을 꾸준히 해보세요.\n\n링선님은 자기 자신에게 조금 더 너그러워지려고 노력하세요. 실수나 부족한 점이 있더라도 스스로를 칭찬해보고, 잘한 일을 기록해보는 것도 좋습니다. 곤뇽독님이 새로운 것을 시도할 때 칭찬이나 응원을 해주면 두 분 모두 힘이 될 수 있습니다.\n\n마지막으로, 두 분 모두 일주일에 한 번씩은 같이 산책을 하거나, 좋아하는 음식을 먹으며 서로의 이야기를 들어주는 시간을 만들어보세요. 이런 작은 노력들이 모여, 서로 더 편안하고 행복한 관계를 만들 수 있습니다.",
     },
   },
+
   metadata: {
     male_name: "곤뇽독",
-    female_name: "곤뇽독",
-    male_phone: "010-1234-5678",
-    female_phone: "010-8765-4321",
-    total_dimensions_analyzed: 12,
-    total_stages: 2,
-    total_yearly_indicators: 1,
-    generated_at: "2024-01-15T10:30:00Z",
-    analysis_types: ["개인 성향 분석", "관계 시뮬레이션", "미래 예측"],
+    female_name: "링선",
+    male_phone: "01020516343",
+    female_phone: "01037023550",
+    total_dimensions_analyzed: 8,
+    total_stages: 12,
+    total_yearly_indicators: 3,
+    generated_at: "2025-10-29T10:13:57.275141",
+    analysis_types: [
+      "시나리오 흐름 (12개 스테이지)",
+      "관계 지표 (3년차)",
+      "개인 성향 분석 (남녀 각각)",
+      "상호작용 4영역 분석",
+      "관계 방향성 요약",
+      "주요 지표별 예측 (4개)",
+      "개인의 변화 (2명)",
+      "핵심 꽃길 포인트 (3개)",
+      "종합 결론 (4개 영역)",
+    ],
   },
 };

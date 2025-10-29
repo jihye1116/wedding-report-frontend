@@ -6,11 +6,11 @@ interface SliderComponentProps {
   title: string;
   leftLabel: string;
   rightLabel: string;
-  value: number;
+  value?: number;
   maxValue: number;
   indicatorColor: string; // 채움 배경색
   clampColor: string; // 인디케이터 내부색
-  description: string;
+  description?: string;
   scale?: number[];
   surfaceColor?: string; // 인디케이터 border와 동일해야 함
   origin?: Origin; // "center" | "left" (기본: "center")
@@ -29,7 +29,7 @@ export const SliderComponent: React.FC<SliderComponentProps> = ({
   title,
   leftLabel,
   rightLabel,
-  value,
+  value = 0,
   maxValue,
   indicatorColor,
   clampColor,

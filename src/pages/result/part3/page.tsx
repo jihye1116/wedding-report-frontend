@@ -5,12 +5,17 @@ import TransitionPage from "@/components/part3/TransitionPage";
 import YearlyIntro from "@/components/part3/YearlyIntro";
 import YearlySummary from "@/components/part3/YearlySummary";
 import { part3SimulationData } from "@/data/part3SimulationData";
+import { ReportData } from "@/types/api";
 
 interface Part3ResultPageProps {
   step: number;
+  reportData?: ReportData | null;
 }
 
-export default function Part3ResultPage({ step }: Part3ResultPageProps) {
+export default function Part3ResultPage({
+  step,
+  reportData,
+}: Part3ResultPageProps) {
   const stepData = part3SimulationData[step];
 
   const renderContent = () => {
@@ -18,15 +23,17 @@ export default function Part3ResultPage({ step }: Part3ResultPageProps) {
 
     switch (stepData.type) {
       case "initial-intro":
-        return <InitialIntro data={stepData.data} />;
+        return <InitialIntro data={stepData.data} reportData={reportData} />;
       case "intro":
-        return <YearlyIntro data={stepData.data} />;
+        return <YearlyIntro data={stepData.data} reportData={reportData} />;
       case "monthly":
-        return <MonthlySimulation data={stepData.data} />;
+        return (
+          <MonthlySimulation data={stepData.data} reportData={reportData} />
+        );
       case "summary":
-        return <YearlySummary data={stepData.data} />;
+        return <YearlySummary data={stepData.data} reportData={reportData} />;
       case "transition":
-        return <TransitionPage data={stepData.data} />;
+        return <TransitionPage data={stepData.data} reportData={reportData} />;
       default:
         return null;
     }
