@@ -206,7 +206,7 @@ interface ResultPageProps {
 
 const IntroPage = () => (
   <div className="wrapper flex flex-col gap-6 py-5 font-medium text-[#111111]">
-    <div className="flex items-center gap-2">
+    <div className="flex items-center gap-2 xl:pt-15">
       <p className="text-lg leading-snug font-bold whitespace-nowrap">
         2. 상호작용 4영역 시뮬레이션
       </p>
@@ -261,7 +261,7 @@ const ResultPage = ({ data, index }: ResultPageProps) => (
     {/* 상단 추가 UI - 첫 번째 데이터 페이지에만 */}
     {index === 1 && (
       <div className="wrapper pt-5">
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 xl:pt-15">
           <p className="text-lg leading-snug font-bold whitespace-nowrap">
             2. 상호작용 4영역 시뮬레이션
           </p>

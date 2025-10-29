@@ -4,12 +4,12 @@ export default function Part5ResultPage() {
   return (
     <main className="font-pretendard">
       <ReportHeader />
-      <h1 className="wrapper py-5 text-xl font-bold text-[#111111]">
+      <h1 className="wrapper py-5 text-xl font-bold text-[#111111] xl:pt-15">
         5. 종합 결론
       </h1>
       <article className="wrapper flex flex-col gap-7.5 py-5 leading-snug text-[#111111]">
         <section className="flex flex-col gap-5">
-          <div className="rounded-r-full bg-[#B3E5DA] py-2.5 text-center font-bold">
+          <div className="rounded-r-full bg-[#EDFFDB]/60 py-2.5 text-center font-bold">
             1. 걸어온 길
           </div>
           <p>
@@ -20,7 +20,7 @@ export default function Part5ResultPage() {
           </p>
         </section>
         <section className="flex flex-col gap-5">
-          <div className="rounded-r-full bg-linear-to-r from-[#EDFFDB] to-[#B3E5DA] py-2.5 text-center font-bold">
+          <div className="rounded-r-full bg-linear-to-r from-[#EDFFDB]/60 to-[#B3E5DA]/60 py-2.5 text-center font-bold">
             2. 지속적 실천 과제
           </div>
           <p>
@@ -43,12 +43,11 @@ export default function Part5ResultPage() {
         <section className="rounded-xl border border-[#9AD8CA] p-5">
           <p className="leading-relaxed whitespace-pre-wrap text-black">
             두 분의 관계는 이미 안정적인 생활 리듬을 가진 조율형 커플로
-            보입니다. {"\n"}이제는 조율의 기술보다 감정의 다양성을 회복하는
-            시기를 맞이할 가능성이 있습니다. {"\n"}관계의 견고함은
-            &apos;균형&apos;에서 생겼지만, 지속력은 &apos;감정의 순환&apos;에서
-            유지됩니다. {"\n"}작은 표현과 여유 있는 시간, 즉 감정이 머물 틈을
-            자주 만들어 보세요. {"\n"}그 여백이 두 분의 관계를 한층 더 깊고
-            부드럽게 만들어 줄 것입니다.
+            보입니다. 이제는 조율의 기술보다 감정의 다양성을 회복하는 시기를
+            맞이할 가능성이 있습니다. 관계의 견고함은 &apos;균형&apos;에서
+            생겼지만, 지속력은 &apos;감정의 순환&apos;에서 유지됩니다. 작은
+            표현과 여유 있는 시간, 즉 감정이 머물 틈을 자주 만들어 보세요. 그
+            여백이 두 분의 관계를 한층 더 깊고 부드럽게 만들어 줄 것입니다.
           </p>
         </section>
       </article>

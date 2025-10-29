@@ -16,7 +16,7 @@ export default function Part4ResultPage({ step }: Part4ResultPageProps) {
       <ReportHeader />
       {step === 1 && (
         <Fragment>
-          <h1 className="wrapper py-5 text-xl font-bold text-[#111111]">
+          <h1 className="wrapper py-5 text-xl font-bold text-[#111111] xl:pt-15">
             4. 주요 관계 지표 예측
           </h1>
           <div className="flex-3" />
@@ -28,11 +28,11 @@ export default function Part4ResultPage({ step }: Part4ResultPageProps) {
         </Fragment>
       )}
       {step === 2 && (
-        <article className="flex-1">
-          <h1 className="wrapper py-5 text-xl font-bold text-[#111111]">
+        <article className="wrapper flex-1">
+          <h1 className="py-5 text-xl font-bold text-[#111111] xl:pt-15">
             01 관계 방향성 요약
           </h1>
-          <section className="mx-10 my-5 rounded-xl border border-[#9AD8CA] p-5">
+          <section className="my-5 rounded-xl border border-[#9AD8CA] p-5 xl:mt-10">
             <p className="leading-snug whitespace-pre-wrap text-black">
               도현과 현서의 관계는 앞으로도 큰 불안정 없이 꾸준히 이어질
               가능성이 있습니다. 서로의 생활 리듬이 이미 조율되어 있고, 갈등이
@@ -51,10 +51,11 @@ export default function Part4ResultPage({ step }: Part4ResultPageProps) {
       )}
       {step === 3 && (
         <article className="flex-1">
-          <h1 className="wrapper py-5 text-xl font-bold text-[#111111]">
+          <h1 className="wrapper py-5 text-xl font-bold text-[#111111] xl:pt-15">
             02 주요 지표별 예측
           </h1>
-          <div className="wrapper flex flex-col gap-10 py-5">
+
+          <div className="wrapper grid grid-cols-1 gap-10 py-5 xl:mt-5 xl:grid-cols-4">
             <section className="flex flex-col gap-3 rounded-3xl border border-[#DCDCDC] p-5 text-black">
               <div className="flex items-center justify-center gap-1.5">
                 <h2 className="text-lg leading-relaxed font-bold">
@@ -73,7 +74,7 @@ export default function Part4ResultPage({ step }: Part4ResultPageProps) {
                 <h2 className="text-lg leading-relaxed font-bold">
                   정서 안정성
                 </h2>
-                <Tag level="high" />
+                <Tag level="medium" />
               </div>
               <p className="leading-snug">
                 감정의 폭이 크지 않고, 갈등 후에도 빠르게 균형을 회복할 수 있을
@@ -86,7 +87,7 @@ export default function Part4ResultPage({ step }: Part4ResultPageProps) {
                 <h2 className="text-lg leading-relaxed font-bold">
                   정서 안정성
                 </h2>
-                <Tag level="high" />
+                <Tag level="low" />
               </div>
               <p className="leading-snug">
                 감정의 폭이 크지 않고, 갈등 후에도 빠르게 균형을 회복할 수 있을
@@ -112,10 +113,10 @@ export default function Part4ResultPage({ step }: Part4ResultPageProps) {
       )}
       {step === 4 && (
         <article className="flex-1">
-          <h1 className="wrapper py-5 text-xl font-bold text-[#111111]">
+          <h1 className="wrapper py-5 text-xl font-bold text-[#111111] xl:pt-15">
             03 개인의 변화
           </h1>
-          <div className="wrapper flex flex-col gap-10 py-5">
+          <div className="wrapper flex flex-col gap-10 py-5 xl:mt-5">
             <section>
               <div className="flex items-end gap-3">
                 <Image src={Male} alt="남성" width={48} />
@@ -174,11 +175,11 @@ export default function Part4ResultPage({ step }: Part4ResultPageProps) {
         </article>
       )}
       {step === 5 && (
-        <article className="flex-1">
-          <h1 className="wrapper py-5 text-xl font-bold text-[#111111]">
+        <article className="wrapper">
+          <h1 className="py-5 text-xl font-bold text-[#111111] xl:pt-15">
             04 핵심 꽃길 포인트
           </h1>
-          <section className="mx-10 my-5 flex flex-col gap-7.5 rounded-xl border border-[#9AD8CA] p-5">
+          <section className="my-5 flex flex-col gap-7.5 rounded-xl border border-[#9AD8CA] p-5 xl:mt-10">
             <div className="flex flex-col gap-1 leading-snug text-black">
               <h2 className="font-bold">
                 1. 감정의 여백을 의식적으로 만들어 보세요.

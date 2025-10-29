@@ -8,7 +8,7 @@ interface TransitionPageProps {
 export default function TransitionPage({ data }: TransitionPageProps) {
   return (
     <Fragment>
-      <h1 className="wrapper py-5 text-xl font-bold text-[#111111]">
+      <h1 className="wrapper py-5 xl:pt-15 text-xl font-bold text-[#111111]">
         3. 36개월 신혼생활 시뮬레이션
       </h1>
       <div className="flex-5" />

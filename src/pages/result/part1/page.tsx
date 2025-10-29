@@ -11,7 +11,7 @@ const Page1 = () => (
   <article className="wrapper flex flex-1 flex-col font-medium text-[#111111]">
     <div className="flex items-center py-5 xl:py-10">
       <p className="text-xl leading-snug font-bold whitespace-nowrap">
-        1. 개인성향 분석
+        1. 개인 성향 분석
       </p>
     </div>
 
@@ -42,9 +42,9 @@ const Page1 = () => (
 
 const Page2 = () => (
   <article className="wrapper flex flex-1 flex-col gap-9 py-5 text-[#111111]">
-    <div className="flex items-center gap-2">
+    <div className="flex items-center gap-2 xl:pt-15">
       <p className="text-xl leading-snug font-bold whitespace-nowrap">
-        01. 개인성향 분석
+        01. 개인 성향 분석
       </p>
     </div>
 
@@ -140,7 +140,7 @@ const Page2 = () => (
 
 const Page3 = () => (
   <article className="wrapper flex-1 bg-white text-gray-900">
-    <div className="flex items-center xl:py-2">
+    <div className="flex items-center xl:pt-15 xl:pb-2">
       <p className="text-xl leading-snug font-bold whitespace-nowrap">
         01 정보처리 및 의사결정 방식
       </p>
@@ -203,7 +203,7 @@ const Page3 = () => (
 
 const Page4 = () => (
   <article className="wrapper flex-1 bg-white text-gray-900">
-    <div className="flex items-center xl:py-2">
+    <div className="flex items-center xl:pt-15 xl:pb-2">
       <p className="text-xl leading-snug font-bold whitespace-nowrap">
         01 정보처리 및 의사결정 방식
       </p>
@@ -266,7 +266,7 @@ const Page4 = () => (
 
 const Page5 = () => (
   <article className="wrapper flex-1 bg-white text-gray-900">
-    <div className="flex items-center xl:py-2">
+    <div className="flex items-center xl:pt-15 xl:pb-2">
       <p className="text-xl leading-snug font-bold whitespace-nowrap">
         02 동기 구조 및 자기조절
       </p>
@@ -327,7 +327,7 @@ const Page5 = () => (
 
 const Page6 = () => (
   <article className="wrapper flex-1 bg-white text-gray-900">
-    <div className="flex items-center xl:py-2">
+    <div className="flex items-center xl:pt-15 xl:pb-2">
       <p className="text-xl leading-snug font-bold whitespace-nowrap">
         02 동기 구조 및 자기조절
       </p>
@@ -388,7 +388,7 @@ const Page6 = () => (
 
 const Page7 = () => (
   <article className="wrapper flex-1 bg-white text-gray-900">
-    <div className="flex items-center xl:py-2">
+    <div className="flex items-center xl:pt-15 xl:pb-2">
       <p className="text-xl leading-snug font-bold whitespace-nowrap">
         03 외현적 행동 및 생활방식
       </p>
@@ -451,7 +451,7 @@ const Page7 = () => (
 
 const Page8 = () => (
   <article className="wrapper flex-1 bg-white text-gray-900">
-    <div className="flex items-center xl:py-2">
+    <div className="flex items-center xl:pt-15 xl:pb-2">
       <p className="text-xl leading-snug font-bold whitespace-nowrap">
         03 외현적 행동 및 생활방식
       </p>

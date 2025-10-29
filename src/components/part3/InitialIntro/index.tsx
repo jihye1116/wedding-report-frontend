@@ -8,7 +8,7 @@ interface InitialIntroProps {
 export default function InitialIntro({ data }: InitialIntroProps) {
   return (
     <Fragment>
-      <h1 className="wrapper py-5 text-xl font-bold text-[#111111]">
+      <h1 className="wrapper py-5 text-xl font-bold text-[#111111] xl:pt-15">
         {data.title}
       </h1>
       <article className="wrapper flex flex-col gap-5 py-5 leading-snug text-[#7E7E7E] xl:pt-10">
