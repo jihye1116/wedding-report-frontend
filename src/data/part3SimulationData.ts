@@ -18,6 +18,7 @@ export interface YearlySummaryData {
   year: number;
   chartTitle: string;
   barColor: string;
+  quarterlyScores?: { quarter: string; score: number }[];
   chartAnalysis: string[];
   summaryTitle: string;
   summaryContent: string[];

@@ -14,7 +14,14 @@ export default function YearlySummary({ data }: YearlySummaryProps) {
         </h2>
         <section className="flex flex-col items-center justify-center gap-7.5 2xl:flex-row">
           <div className="mx-auto w-[300px] shrink-0 lg:w-[360px] xl:w-[340px]">
-            <BarChart values={[10, 10, 10, 10]} barColor={data.barColor} />
+            <BarChart
+              values={
+                data.quarterlyScores?.map((score) => score.score) || [
+                  10, 10, 10, 10,
+                ]
+              }
+              barColor={data.barColor}
+            />
           </div>
           <div className="flex flex-1 flex-col gap-5 rounded-xl bg-[#F8F8F8] p-5">
             {data.chartAnalysis.map((p, i) => (
@@ -43,7 +50,7 @@ export default function YearlySummary({ data }: YearlySummaryProps) {
         </h3>
         <div className="space-y-1 text-center">
           {data.questions.map((q, i) => (
-            <div key={i}>{q}</div>
+            <div key={i}>• {q}</div>
           ))}
         </div>
       </section>
