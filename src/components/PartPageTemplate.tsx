@@ -203,16 +203,22 @@ export const PartPageTemplate = ({
                     ) => {
                       _addAnswer?.(questionId, answer);
 
-                      if (
-                        question.type === "rating" &&
-                        idx < currentQuestions.length - 1
-                      ) {
-                        setTimeout(() => {
-                          questionRefs.current[idx + 1]?.scrollIntoView({
-                            behavior: "smooth",
-                            block: "center",
-                          });
-                        }, 150);
+                      if (question.type === "rating") {
+                        if (idx < currentQuestions.length - 1) {
+                          setTimeout(() => {
+                            questionRefs.current[idx + 1]?.scrollIntoView({
+                              behavior: "smooth",
+                              block: "nearest",
+                            });
+                          }, 150);
+                        } else {
+                          setTimeout(() => {
+                            window.scrollTo({
+                              top: document.body.scrollHeight,
+                              behavior: "smooth",
+                            });
+                          }, 150);
+                        }
                       }
                     },
                   },
