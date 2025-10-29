@@ -13,6 +13,7 @@ import Part3ResultPage from "@/pages/result/part3/page";
 import Part4ResultPage from "@/pages/result/part4/page";
 import Part5ResultPage from "@/pages/result/part5/page";
 import { part3ResultStepAtom, part4ResultStepAtom } from "@/store/surveyStore";
+import { ReportData } from "@/types/api";
 
 type ResultPartStep =
   | "part1"
@@ -24,10 +25,12 @@ type ResultPartStep =
 
 interface ResultViewerPageProps {
   onBackToIntro: () => void;
+  reportData?: ReportData | null;
 }
 
 export default function ResultViewerPage({
   onBackToIntro,
+  reportData,
 }: ResultViewerPageProps) {
   const [part3Step, setPart3Step] = useAtom(part3ResultStepAtom);
   const [part4Step, setPart4Step] = useAtom(part4ResultStepAtom);

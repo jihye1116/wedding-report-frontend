@@ -1,12 +1,18 @@
 import { Navigator } from "@/components/Navigator";
 import { ReportHeader } from "@/components/ReportHeader";
+import { ReportData } from "@/types/api";
 
 interface Intro3PageProps {
   onNext: () => void;
   onBack: () => void;
+  reportData?: ReportData | null;
 }
 
-export default function Intro3Page({ onNext, onBack }: Intro3PageProps) {
+export default function Intro3Page({
+  onNext,
+  onBack,
+  reportData,
+}: Intro3PageProps) {
   const tocItems = [
     { id: "01", title: "개인 성향 분석" },
     { id: "02", title: "연애 유형" },

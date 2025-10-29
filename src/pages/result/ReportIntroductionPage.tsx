@@ -6,6 +6,8 @@ import Intro1Page from "./intro/Intro1Page";
 import Intro2Page from "./intro/Intro2Page";
 import Intro3Page from "./intro/Intro3Page";
 import ResultViewerPage from "./ResultViewerPage";
+import { ReportData } from "@/types/api";
+import { mockReportData } from "@/data/mockReportData";
 
 interface ReportIntroductionPageProps {
   resultId: string;
@@ -17,34 +19,31 @@ export default function ReportIntroductionPage({
   resultId,
 }: ReportIntroductionPageProps) {
   const [currentStep, setCurrentStep] = useState<IntroStep>("intro1");
-  const [reportData, setReportData] = useState<any>(null);
+  const [reportData, setReportData] = useState<ReportData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchReportData = async () => {
+    // MSW 대신 직접 목업 데이터 사용
+    const loadMockData = () => {
       try {
         setLoading(true);
-        const response = await fetch(`/api/report/${resultId}`);
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data = await response.json();
-        setReportData(data);
-        console.log("Report data loaded:", data);
+        console.log("Loading mock data for resultId:", resultId);
+
+        // 약간의 지연을 시뮬레이션
+        setTimeout(() => {
+          console.log("Mock data loaded:", mockReportData);
+          setReportData(mockReportData);
+          setLoading(false);
+        }, 500);
       } catch (err) {
-        console.error("Error fetching report data:", err);
-        setError(
-          err instanceof Error
-            ? err.message
-            : "데이터를 불러오는데 실패했습니다.",
-        );
-      } finally {
+        console.error("Error loading mock data:", err);
+        setError("목업 데이터를 불러오는데 실패했습니다.");
         setLoading(false);
       }
     };
 
-    fetchReportData();
+    loadMockData();
   }, [resultId]);
 
   const handleNext = () => {
@@ -102,113 +101,32 @@ export default function ReportIntroductionPage({
     );
   }
 
-  // 데이터가 로드되지 않은 경우
-  if (!reportData) {
-    return (
-      <div className="flex min-h-screen items-center justify-center">
-        <p className="text-lg">데이터를 찾을 수 없습니다.</p>
-      </div>
-    );
-  }
-
-  // 데이터 표시 (개발용)
-  if (process.env.NODE_ENV === "development") {
-    return (
-      <div className="p-8">
-        <h1 className="mb-4 text-2xl font-bold">MSW 테스트 - Report Data</h1>
-        <div className="mb-4">
-          <p>
-            <strong>Result ID:</strong> {resultId}
-          </p>
-          <p>
-            <strong>Success:</strong> {reportData.success ? "Yes" : "No"}
-          </p>
-          <p>
-            <strong>Message:</strong> {reportData.message}
-          </p>
-        </div>
-
-        <div className="mb-4">
-          <h2 className="mb-2 text-xl font-semibold">Personal Analyses</h2>
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-            <div className="rounded border p-4">
-              <h3 className="font-semibold">Male Profile</h3>
-              <p>
-                <strong>Name:</strong>{" "}
-                {reportData.personal_analyses?.male?.profile?.name}
-              </p>
-              <p>
-                <strong>Sections:</strong>{" "}
-                {reportData.personal_analyses?.male?.profile?.sections?.length}
-                개
-              </p>
-            </div>
-            <div className="rounded border p-4">
-              <h3 className="font-semibold">Female Profile</h3>
-              <p>
-                <strong>Name:</strong>{" "}
-                {reportData.personal_analyses?.female?.profile?.name}
-              </p>
-              <p>
-                <strong>Sections:</strong>{" "}
-                {
-                  reportData.personal_analyses?.female?.profile?.sections
-                    ?.length
-                }
-                개
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div className="mb-4">
-          <h2 className="mb-2 text-xl font-semibold">Scenario Flow</h2>
-          <p>
-            <strong>Total Stages:</strong>{" "}
-            {reportData.scenario_flow?.summary?.total_stages}
-          </p>
-          <p>
-            <strong>Conflict Count:</strong>{" "}
-            {reportData.scenario_flow?.summary?.conflict_count}
-          </p>
-          <p>
-            <strong>Excitement Count:</strong>{" "}
-            {reportData.scenario_flow?.summary?.excitement_count}
-          </p>
-        </div>
-
-        <div className="mb-4">
-          <h2 className="mb-2 text-xl font-semibold">Raw Data (JSON)</h2>
-          <pre className="max-h-96 overflow-auto rounded bg-gray-100 p-4 text-sm">
-            {JSON.stringify(reportData, null, 2)}
-          </pre>
-        </div>
-
-        <button
-          onClick={() => setCurrentStep("intro1")}
-          className="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
-        >
-          원래 페이지로 돌아가기
-        </button>
-      </div>
-    );
-  }
-
-  // 프로덕션에서는 기존 로직 사용
+  // 기존 로직 사용 (데이터는 하위 컴포넌트에 전달)
   if (currentStep === "intro1") {
-    return <Intro1Page onNext={handleNext} />;
+    return <Intro1Page onNext={handleNext} reportData={reportData} />;
   }
 
   if (currentStep === "intro2") {
-    return <Intro2Page onNext={handleNext} />;
+    return <Intro2Page onNext={handleNext} reportData={reportData} />;
   }
 
   if (currentStep === "intro3") {
-    return <Intro3Page onNext={handleNext} onBack={handleBack} />;
+    return (
+      <Intro3Page
+        onNext={handleNext}
+        onBack={handleBack}
+        reportData={reportData}
+      />
+    );
   }
 
   if (currentStep === "viewing_results") {
-    return <ResultViewerPage onBackToIntro={() => setCurrentStep("intro3")} />;
+    return (
+      <ResultViewerPage
+        onBackToIntro={() => setCurrentStep("intro3")}
+        reportData={reportData}
+      />
+    );
   }
 
   return null;

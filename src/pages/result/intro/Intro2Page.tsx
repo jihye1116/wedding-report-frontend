@@ -3,12 +3,14 @@ import Image from "next/image";
 import { NavigateButton } from "@/components/NavigateButton";
 import Couple from "@/assets/images/couple.png";
 import { ReportHeader } from "@/components/ReportHeader";
+import { ReportData } from "@/types/api";
 
 interface Intro2PageProps {
   onNext: () => void;
+  reportData?: ReportData | null;
 }
 
-export default function Intro2Page({ onNext }: Intro2PageProps) {
+export default function Intro2Page({ onNext, reportData }: Intro2PageProps) {
   return (
     <div className="relative h-dvh">
       <div className="absolute top-0 right-0 left-0 z-10 hidden xl:block">
@@ -53,9 +55,19 @@ export default function Intro2Page({ onNext }: Intro2PageProps) {
             </div>
 
             <article className="font-gangwon mt-3 text-lg leading-snug font-bold whitespace-pre-wrap text-[#111111]">
-              <p className="text-[#59847B]">남성이름</p>
-              <p className="text-[#59847B]">여성이름</p>
-              <p className="mt-3">만든 날짜</p>
+              <p className="text-[#59847B]">
+                {reportData?.metadata?.male_name || "남성이름"}
+              </p>
+              <p className="text-[#59847B]">
+                {reportData?.metadata?.female_name || "여성이름"}
+              </p>
+              <p className="mt-3">
+                {reportData?.metadata?.generated_at
+                  ? new Date(
+                      reportData.metadata.generated_at,
+                    ).toLocaleDateString("ko-KR")
+                  : "만든 날짜"}
+              </p>
             </article>
           </div>
         </div>
