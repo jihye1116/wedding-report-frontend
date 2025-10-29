@@ -231,15 +231,29 @@ const ResultPage = ({ data, index }: ResultPageProps) => (
 
 interface Part2ResultPageProps {
   currentPage: number;
-  reportData?: ReportData | null;
+  reportData: ReportData | null;
 }
 
 export default function Part2ResultPage({
   currentPage,
   reportData,
 }: Part2ResultPageProps) {
-  // reportData가 없으면 기본 데이터 사용
-  const interactionZones = reportData?.interaction_zones || [];
+  // reportData가 없으면 로딩 상태 표시
+  if (!reportData) {
+    return (
+      <div className="font-pretendard flex-1">
+        <ReportHeader />
+        <div className="flex-1 flex items-center justify-center">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-4"></div>
+            <p className="text-gray-600">데이터를 불러오는 중...</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  const interactionZones = reportData.interaction_zones || [];
 
   // pages를 동적으로 생성
   const pages = [
@@ -272,7 +286,8 @@ export default function Part2ResultPage({
   );
 }
 
-export const part2TotalPages = (reportData?: ReportData | null) => {
-  const interactionZones = reportData?.interaction_zones || [];
+export const part2TotalPages = (reportData: ReportData | null) => {
+  if (!reportData) return 1; // 기본적으로 intro 페이지만
+  const interactionZones = reportData.interaction_zones || [];
   return interactionZones.length + 1; // intro 페이지 + interaction zones
 };

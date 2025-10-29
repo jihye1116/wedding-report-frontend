@@ -51,7 +51,7 @@ export default function ResultViewerPage({
 
   // 전체 페이지 수 계산
   const totalResultPages =
-    part1TotalPages + part2TotalPages(reportData) + 21 + 5 + 1 + 1; // part1 + part2 + part3(21) + part4(5) + part5(1) + finish(1)
+    part1TotalPages + part2TotalPages(reportData || null) + 21 + 5 + 1 + 1; // part1 + part2 + part3(21) + part4(5) + part5(1) + finish(1)
 
   // 현재 전체 페이지 번호 계산
   const getCurrentGlobalPage = () => {
@@ -67,7 +67,7 @@ export default function ResultViewerPage({
       return globalPage + partPages.part2 + 1;
     }
 
-    globalPage += part2TotalPages(reportData);
+    globalPage += part2TotalPages(reportData || null);
 
     if (currentStep === "part3") {
       return globalPage + part3Step;
@@ -110,7 +110,7 @@ export default function ResultViewerPage({
     }
 
     if (currentStep === "part2") {
-      if (partPages.part2 < part2TotalPages(reportData) - 1) {
+      if (partPages.part2 < part2TotalPages(reportData || null) - 1) {
         handlePartPageChange("part2", partPages.part2 + 1);
         return;
       }
@@ -150,7 +150,7 @@ export default function ResultViewerPage({
       <div className="flex h-dvh flex-col">
         <Part1ResultPage
           currentPage={partPages.part1}
-          reportData={reportData}
+          reportData={reportData || null}
         />
         <Navigator
           onNext={handleNext}
@@ -169,7 +169,7 @@ export default function ResultViewerPage({
       <div className="flex h-dvh flex-col justify-between">
         <Part2ResultPage
           currentPage={partPages.part2}
-          reportData={reportData}
+          reportData={reportData || null}
         />
         <Navigator
           onNext={handleNext}
@@ -186,7 +186,7 @@ export default function ResultViewerPage({
   if (currentStep === "part3") {
     return (
       <div className="flex h-dvh flex-col justify-between">
-        <Part3ResultPage step={part3Step} reportData={reportData} />
+        <Part3ResultPage step={part3Step} reportData={reportData || null} />
         <Navigator
           onNext={() => {
             if (part3Step === 21) {

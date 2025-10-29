@@ -140,8 +140,7 @@ const Page2 = () => (
 );
 
 const Page3 = ({ reportData }: { reportData?: ReportData | null }) => {
-  const femaleName =
-    reportData?.personal_analyses?.female?.profile?.name || "갑순이";
+  const femaleName = reportData?.metadata?.female_name || "갑순이";
 
   // scaled_score를 슬라이더 값으로 변환 (-30 ~ +30 -> 0 ~ 30)
   const convertScaledScore = (scaledScore: number) => {
@@ -227,8 +226,7 @@ const Page3 = ({ reportData }: { reportData?: ReportData | null }) => {
 };
 
 const Page4 = ({ reportData }: { reportData?: ReportData | null }) => {
-  const maleName =
-    reportData?.personal_analyses?.male?.profile?.name || "갑돌이";
+  const maleName = reportData?.metadata?.male_name || "갑돌이";
 
   // scaled_score를 슬라이더 값으로 변환 (-30 ~ +30 -> 0 ~ 30)
   const convertScaledScore = (scaledScore: number) => {
@@ -314,8 +312,7 @@ const Page4 = ({ reportData }: { reportData?: ReportData | null }) => {
 };
 
 const Page5 = ({ reportData }: { reportData?: ReportData | null }) => {
-  const femaleName =
-    reportData?.personal_analyses?.female?.profile?.name || "갑순이";
+  const femaleName = reportData?.metadata?.female_name || "갑순이";
 
   // scaled_score를 슬라이더 값으로 변환 (-30 ~ +30 -> 0 ~ 30)
   const convertScaledScore = (scaledScore: number) => {
@@ -400,8 +397,7 @@ const Page5 = ({ reportData }: { reportData?: ReportData | null }) => {
 };
 
 const Page6 = ({ reportData }: { reportData?: ReportData | null }) => {
-  const maleName =
-    reportData?.personal_analyses?.male?.profile?.name || "갑돌이";
+  const maleName = reportData?.metadata?.male_name || "갑돌이";
 
   // scaled_score를 슬라이더 값으로 변환 (-30 ~ +30 -> 0 ~ 30)
   const convertScaledScore = (scaledScore: number) => {
@@ -486,8 +482,7 @@ const Page6 = ({ reportData }: { reportData?: ReportData | null }) => {
 };
 
 const Page7 = ({ reportData }: { reportData?: ReportData | null }) => {
-  const femaleName =
-    reportData?.personal_analyses?.female?.profile?.name || "갑순이";
+  const femaleName = reportData?.metadata?.female_name || "갑순이";
 
   // scaled_score를 슬라이더 값으로 변환 (-30 ~ +30 -> 0 ~ 30)
   const convertScaledScore = (scaledScore: number) => {
@@ -573,8 +568,7 @@ const Page7 = ({ reportData }: { reportData?: ReportData | null }) => {
 };
 
 const Page8 = ({ reportData }: { reportData?: ReportData | null }) => {
-  const maleName =
-    reportData?.personal_analyses?.male?.profile?.name || "갑돌이";
+  const maleName = reportData?.metadata?.male_name || "갑돌이";
 
   // scaled_score를 슬라이더 값으로 변환 (-30 ~ +30 -> 0 ~ 30)
   const convertScaledScore = (scaledScore: number) => {

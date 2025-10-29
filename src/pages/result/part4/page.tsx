@@ -16,10 +16,8 @@ export default function Part4ResultPage({
   step,
   reportData,
 }: Part4ResultPageProps) {
-  const maleName =
-    reportData?.personal_analyses?.male?.profile?.name || "갑돌이";
-  const femaleName =
-    reportData?.personal_analyses?.female?.profile?.name || "갑순이";
+  const maleName = reportData?.metadata?.male_name || "갑돌이";
+  const femaleName = reportData?.metadata?.female_name || "갑순이";
 
   return (
     <main className="font-pretendard flex flex-1 flex-col">

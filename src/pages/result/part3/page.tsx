@@ -5,12 +5,16 @@ import TransitionPage from "@/components/part3/TransitionPage";
 import YearlyIntro from "@/components/part3/YearlyIntro";
 import YearlySummary from "@/components/part3/YearlySummary";
 import { ReportData } from "@/types/api";
-import { mockReportData } from "@/data/mockReportData";
 
 // scenario_flow 데이터를 기반으로 시뮬레이션 데이터를 생성하는 함수
-const generateSimulationData = (reportData?: ReportData | null) => {
-  const scenarioFlow =
-    reportData?.scenario_flow || mockReportData.scenario_flow;
+const generateSimulationData = (reportData: ReportData | null) => {
+  if (!reportData?.scenario_flow) {
+    throw new Error(
+      "리포트 데이터가 없습니다. API에서 데이터를 불러오는 중입니다.",
+    );
+  }
+
+  const scenarioFlow = reportData.scenario_flow;
   const stages = scenarioFlow.stages;
   const summary = scenarioFlow.summary;
 
@@ -101,9 +105,9 @@ const generateSimulationData = (reportData?: ReportData | null) => {
   );
 
   // 1년차 요약 데이터 생성 - yearly_indicators 사용
-  const year1Indicator =
-    reportData?.yearly_indicators?.find((ind) => ind.year === 1) ||
-    mockReportData.yearly_indicators.find((ind) => ind.year === 1);
+  const year1Indicator = reportData?.yearly_indicators?.find(
+    (ind: any) => ind.year === 1,
+  );
 
   simulationData[7] = {
     type: "summary",
@@ -204,9 +208,9 @@ const generateSimulationData = (reportData?: ReportData | null) => {
   }
 
   // 2년차 요약 - yearly_indicators 사용
-  const year2Indicator =
-    reportData?.yearly_indicators?.find((ind) => ind.year === 2) ||
-    mockReportData.yearly_indicators.find((ind) => ind.year === 2);
+  const year2Indicator = reportData?.yearly_indicators?.find(
+    (ind: any) => ind.year === 2,
+  );
 
   simulationData[14] = {
     type: "summary",
@@ -309,9 +313,9 @@ const generateSimulationData = (reportData?: ReportData | null) => {
   }
 
   // 3년차 요약 - yearly_indicators 사용
-  const year3Indicator =
-    reportData?.yearly_indicators?.find((ind) => ind.year === 3) ||
-    mockReportData.yearly_indicators.find((ind) => ind.year === 3);
+  const year3Indicator = reportData?.yearly_indicators?.find(
+    (ind: any) => ind.year === 3,
+  );
 
   simulationData[21] = {
     type: "summary",
@@ -351,13 +355,28 @@ const generateSimulationData = (reportData?: ReportData | null) => {
 
 interface Part3ResultPageProps {
   step: number;
-  reportData?: ReportData | null;
+  reportData: ReportData | null;
 }
 
 export default function Part3ResultPage({
   step,
   reportData,
 }: Part3ResultPageProps) {
+  // reportData가 없으면 로딩 상태 표시
+  if (!reportData) {
+    return (
+      <main className="font-pretendard flex flex-1 flex-col">
+        <ReportHeader />
+        <div className="flex flex-1 items-center justify-center">
+          <div className="text-center">
+            <div className="mx-auto mb-4 h-8 w-8 animate-spin rounded-full border-b-2 border-blue-600"></div>
+            <p className="text-gray-600">데이터를 불러오는 중...</p>
+          </div>
+        </div>
+      </main>
+    );
+  }
+
   // 동적으로 생성된 시뮬레이션 데이터 사용
   const simulationData = generateSimulationData(reportData);
   const stepData = simulationData[step];

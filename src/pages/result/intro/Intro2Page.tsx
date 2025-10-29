@@ -11,6 +11,13 @@ interface Intro2PageProps {
 }
 
 export default function Intro2Page({ onNext, reportData }: Intro2PageProps) {
+  // 디버깅용 로그
+  console.log("Intro2Page reportData:", reportData);
+  console.log("metadata:", reportData?.metadata);
+  console.log("male_name:", reportData?.metadata?.male_name);
+  console.log("female_name:", reportData?.metadata?.female_name);
+  console.log("generated_at:", reportData?.metadata?.generated_at);
+
   return (
     <div className="relative h-dvh">
       <div className="absolute top-0 right-0 left-0 z-10 hidden xl:block">
@@ -56,16 +63,23 @@ export default function Intro2Page({ onNext, reportData }: Intro2PageProps) {
 
             <article className="font-gangwon mt-3 text-lg leading-snug font-bold whitespace-pre-wrap text-[#111111]">
               <p className="text-[#59847B]">
-                {reportData?.metadata?.male_name || "남성이름"}
+                {reportData?.metadata?.male_name || "곤뇽독"}
               </p>
               <p className="text-[#59847B]">
-                {reportData?.metadata?.female_name || "여성이름"}
+                {reportData?.metadata?.female_name || "링선"}
               </p>
               <p className="mt-3">
                 {reportData?.metadata?.generated_at
-                  ? new Date(
-                      reportData.metadata.generated_at,
-                    ).toLocaleDateString("ko-KR")
+                  ? (() => {
+                      try {
+                        return new Date(
+                          reportData.metadata.generated_at,
+                        ).toLocaleDateString("ko-KR");
+                      } catch (error) {
+                        console.error("날짜 파싱 에러:", error);
+                        return reportData.metadata.generated_at;
+                      }
+                    })()
                   : "만든 날짜"}
               </p>
             </article>

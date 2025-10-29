@@ -7,8 +7,8 @@ import Intro2Page from "./intro/Intro2Page";
 import Intro3Page from "./intro/Intro3Page";
 import ResultViewerPage from "./ResultViewerPage";
 import { ReportData } from "@/types/api";
-import { mockReportData } from "@/data/mockReportData";
 import { LoadingSpinner } from "@/components/LoadingSpinner";
+import { getReportData } from "@/utils/api";
 
 interface ReportIntroductionPageProps {
   resultId: string;
@@ -25,26 +25,29 @@ export default function ReportIntroductionPage({
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    // MSW 대신 직접 목업 데이터 사용
-    const loadMockData = () => {
+    const loadReportData = async () => {
       try {
         setLoading(true);
-        console.log("Loading mock data for resultId:", resultId);
+        setError(null);
+        console.log("Loading report data for resultId:", resultId);
 
-        // 약간의 지연을 시뮬레이션
-        setTimeout(() => {
-          console.log("Mock data loaded:", mockReportData);
-          setReportData(mockReportData);
-          setLoading(false);
-        }, 500);
+        // 실제 API 호출
+        const data = await getReportData(resultId);
+        console.log("API data loaded:", data);
+        setReportData(data);
+        setLoading(false);
       } catch (err) {
-        console.error("Error loading mock data:", err);
-        setError("목업 데이터를 불러오는데 실패했습니다.");
+        console.error("Error loading report data:", err);
+        setError(
+          err instanceof Error
+            ? err.message
+            : "리포트 데이터를 불러오는데 실패했습니다.",
+        );
         setLoading(false);
       }
     };
 
-    loadMockData();
+    loadReportData();
   }, [resultId]);
 
   const handleNext = () => {
