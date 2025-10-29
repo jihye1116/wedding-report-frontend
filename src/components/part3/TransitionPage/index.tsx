@@ -13,7 +13,7 @@ export default function TransitionPage({ data }: TransitionPageProps) {
       </h1>
       <div className="flex-5" />
       <section className="wrapper flex flex-col gap-7.5 py-5">
-        <span className="text-center text-lg font-medium leading-snug">
+        <span className="text-center text-lg leading-snug font-medium">
           “ {data.title} “
         </span>
         <span className="text-center leading-snug text-[#7E7E7E]">

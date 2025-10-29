@@ -32,13 +32,13 @@ export default function YearlySummary({ data }: YearlySummaryProps) {
         {data.summaryContent.map((p, i) => (
           <p
             key={i}
-            className="whitespace-pre-wrap font-medium leading-snug text-[#7E7E7E]"
+            className="leading-snug font-medium whitespace-pre-wrap text-[#7E7E7E]"
             dangerouslySetInnerHTML={{ __html: p }}
           />
         ))}
       </section>
       <section className="result-gradient flex flex-col gap-5 p-5">
-        <h3 className="text-center font-semibold leading-snug text-[#3EA38D]">
+        <h3 className="text-center leading-snug font-semibold text-[#3EA38D]">
           🧭 {data.year}년 차 부부를 위한 질문
         </h3>
         <div className="space-y-1 text-center">

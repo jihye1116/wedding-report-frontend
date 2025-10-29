@@ -12,7 +12,7 @@ export default function MonthlySimulation({ data }: MonthlySimulationProps) {
           {data.month}
         </h2>
         <div className="result-gradient flex flex-col items-center gap-2.5 rounded-[20px] px-2.5 py-5">
-          <span className="text-center font-medium leading-snug text-[#111111]">
+          <span className="text-center leading-snug font-medium text-[#111111]">
             {data.title}
           </span>
         </div>
@@ -23,11 +23,11 @@ export default function MonthlySimulation({ data }: MonthlySimulationProps) {
       </section>
       <section className="flex flex-col gap-5 rounded-xl bg-[#F8F8F8] p-5">
         <div className="border-l-4 border-[#6DD4BD]/50 pl-5">
-          <p className="whitespace-pre-wrap leading-relaxed">
+          <p className="leading-relaxed whitespace-pre-wrap">
             {data.conversation}
           </p>
         </div>
-        <p className="whitespace-pre-wrap font-semibold leading-relaxed">
+        <p className="leading-relaxed font-semibold whitespace-pre-wrap">
           {data.analysis}
         </p>
       </section>
