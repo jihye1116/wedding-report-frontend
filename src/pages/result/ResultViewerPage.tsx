@@ -251,7 +251,7 @@ export default function ResultViewerPage({
     return (
       <div className="flex h-dvh flex-col items-center justify-center">
         <div className="flex-2" />
-        <main className="wrapper flex flex-col gap-10 py-5 text-center leading-snug text-[#111111]">
+        <main className="wrapper flex w-full flex-col gap-10 py-5 text-center leading-snug text-[#111111]">
           <section className="flex flex-col gap-4 leading-snug">
             <p>
               &quot;행복한 결혼이란 두 영혼이 서로를 이해하고, 함께 성장하는
@@ -259,10 +259,21 @@ export default function ResultViewerPage({
             </p>
             <p className="text-lg">- 톨스토이</p>
           </section>
-          <Image src={CelebrationImage} alt="Celebration" className="mx-auto" />
+          {/* ㅁㄴㅇㅁㄴㅇ
+           */}
+
+          <div className="result-gradient flex h-70 w-full items-center justify-center">
+            <Image
+              src={CelebrationImage}
+              alt="Celebration"
+              className=""
+              width={185}
+              height={250}
+            />
+          </div>
         </main>
         <div className="flex-1" />
-        <footer className="flex w-full items-center justify-between p-10">
+        <footer className="wrapper flex w-full items-center justify-between p-10">
           <NavigateButton direction="left" onClick={handleBack} />
         </footer>
       </div>
