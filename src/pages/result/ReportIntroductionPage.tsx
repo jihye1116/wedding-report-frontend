@@ -8,6 +8,7 @@ import Intro3Page from "./intro/Intro3Page";
 import ResultViewerPage from "./ResultViewerPage";
 import { ReportData } from "@/types/api";
 import { mockReportData } from "@/data/mockReportData";
+import { LoadingSpinner } from "@/components/LoadingSpinner";
 
 interface ReportIntroductionPageProps {
   resultId: string;
@@ -75,10 +76,11 @@ export default function ReportIntroductionPage({
   // 로딩 상태
   if (loading) {
     return (
-      <div className="flex min-h-screen items-center justify-center">
-        <div className="text-center">
-          <div className="mx-auto h-32 w-32 animate-spin rounded-full border-b-2 border-gray-900"></div>
-          <p className="mt-4 text-lg">데이터를 불러오는 중...</p>
+      <div className="flex h-dvh items-center justify-center">
+        <div className="flex flex-col items-center gap-4 text-center text-lg text-[#E5E5E5]">
+          리포트를 불러오고 있습니다. <br />
+          잠시만 기다려 주세요...
+          <LoadingSpinner />
         </div>
       </div>
     );
