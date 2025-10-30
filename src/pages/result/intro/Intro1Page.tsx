@@ -29,18 +29,20 @@ export default function Intro1Page({ onNext }: Intro1PageProps) {
             꽃길 리포트가 <br /> 완성되었습니다!
           </h1>
           <article className="font-pretendard flex flex-col gap-4 leading-snug whitespace-pre-wrap text-[#111111]">
-            <p>리포트가 완성되었습니다. </p>
             <p>
-              [신혼생활 시뮬레이션 스토리북]프로젝트에 참여해주셔서
-              감사합니다.{" "}
+              이 리포트는 두 분의 관계가 앞으로 어떻게 자라고 변화해갈 수 있는지
+              미리 체험해보는 여정입니다.{" "}
             </p>
             <p>
-              접속하신 링크는 추후 삭제될 예정이니,
-              <br />
-              화면 캡쳐 또는 자체 인쇄 기능을 활용해 보관하시는 것을 권장합니다.
+              그 과정 속에서 서로를 이해하고, 함께의 리듬을 발견하는 인사이트가
+              되길 바랍니다.
+            </p>
+            <p>
+              ※ 링크는 30일 후 만료됩니다. 보관을 원하시면 화면 캡처 또는 인쇄
+              기능을 활용하여 별도 보관하시길 권장드립니다.
             </p>
 
-            <p>그럼, 확인해 볼까요?</p>
+            <p>이제 결과를 확인해 볼까요?</p>
           </article>
         </main>
         <div className="flex w-full justify-end py-10 xl:mt-auto">
