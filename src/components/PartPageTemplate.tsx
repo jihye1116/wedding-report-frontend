@@ -18,6 +18,7 @@ import { usePartNavigation } from "@/hooks/usePartNavigation";
 import { useSwipeNavigation } from "@/hooks/useSwipeNavigation";
 import { currentPageAtom, currentPartAtom } from "@/store/surveyStore";
 import { SurveyAnswer, SurveyPart, SurveyQuestion } from "@/types/survey";
+import toast from "react-hot-toast";
 
 interface PartPageTemplateProps {
   part: SurveyPart;
@@ -71,11 +72,6 @@ export const PartPageTemplate = ({
     onBack,
     currentPage: externalCurrentPage,
     onPageChange,
-  });
-
-  const swipeHandlers = useSwipeNavigation({
-    onSwipedLeft: handleNext,
-    onSwipedRight: handleBack,
   });
 
   const currentPage =
@@ -161,6 +157,17 @@ export const PartPageTemplate = ({
     : currentQuestions.every((question) =>
         _answers?.some((a) => a.questionId === question.id),
       );
+
+  const swipeHandlers = useSwipeNavigation({
+    onSwipedLeft: () => {
+      if (isIntroPage || allQuestionsAnswered) {
+        handleNext();
+      } else {
+        toast.error("모든 문항에 답변해주세요.");
+      }
+    },
+    onSwipedRight: handleBack,
+  });
 
   const getPartStartNumber = (partNumber: number) => {
     let startNumber = 0;
