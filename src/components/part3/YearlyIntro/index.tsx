@@ -8,7 +8,7 @@ interface YearlyIntroProps {
 export default function YearlyIntro({ data }: YearlyIntroProps) {
   return (
     <Fragment>
-      <h1 className="wrapper py-5 xl:pt-15 text-xl font-bold text-[#111111]">
+      <h1 className="wrapper py-5 text-xl font-bold text-[#111111] xl:pt-15">
         [{data.year}년차 시뮬레이션]
       </h1>
       <article className="wrapper flex flex-col gap-7.5 py-5 leading-snug text-[#7E7E7E]">
