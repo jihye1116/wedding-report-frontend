@@ -112,7 +112,7 @@ const SLIDER_CONFIG = {
       title: "3. 감정·의사 표현 스타일",
       leftLabel: "자기표현형",
       rightLabel: "적응배려형",
-      origin: "center" as const,
+      origin: "left" as const,
       maxValue: 30,
       indicatorColor: "#E2E2FD",
       clampColor: "#8A8ACD",
