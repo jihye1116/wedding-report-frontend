@@ -316,7 +316,7 @@ interface SliderSectionProps {
   genderName: string;
   sliderConfig: SliderConfigType[];
   defaultSummaryKey: string;
-  defaultSummaryText: string;
+  defaultSummaryText?: string;
 }
 
 const SliderSection = ({
@@ -386,7 +386,8 @@ const SliderSection = ({
         <SummaryBox
           text={
             detailedAnalysis?.[defaultSummaryKey]?.characteristicDefinition ||
-            defaultSummaryText
+            defaultSummaryText ||
+            ""
           }
         />
       </div>
@@ -406,7 +407,6 @@ const Page3 = ({ reportData }: { reportData?: ReportData | null }) => {
       genderName={femaleName}
       sliderConfig={SLIDER_CONFIG.section1}
       defaultSummaryKey="1-1"
-      defaultSummaryText="현재와 미래를 균형 있게 조화시키려는 성향"
     />
   );
 };
@@ -423,7 +423,6 @@ const Page4 = ({ reportData }: { reportData?: ReportData | null }) => {
       genderName={maleName}
       sliderConfig={SLIDER_CONFIG.section1}
       defaultSummaryKey="1-1"
-      defaultSummaryText="현재와 미래를 균형 있게 조화시키려는 성향"
     />
   );
 };
@@ -440,7 +439,6 @@ const Page5 = ({ reportData }: { reportData?: ReportData | null }) => {
       genderName={femaleName}
       sliderConfig={SLIDER_CONFIG.section2}
       defaultSummaryKey="2-1"
-      defaultSummaryText="안정적이고 예측 가능한 환경에서 안전감을 느끼는 성향"
     />
   );
 };
@@ -457,7 +455,6 @@ const Page6 = ({ reportData }: { reportData?: ReportData | null }) => {
       genderName={maleName}
       sliderConfig={SLIDER_CONFIG.section2}
       defaultSummaryKey="2-1"
-      defaultSummaryText="안정적이고 예측 가능한 환경에서 안전감을 느끼는 성향"
     />
   );
 };
@@ -474,7 +471,6 @@ const Page7 = ({ reportData }: { reportData?: ReportData | null }) => {
       genderName={femaleName}
       sliderConfig={SLIDER_CONFIG.section3}
       defaultSummaryKey="3-1"
-      defaultSummaryText="내향과 외향 사이에서 균형 있게 상황에 맞춰 유연하게 대응하는 성향"
     />
   );
 };
@@ -491,7 +487,6 @@ const Page8 = ({ reportData }: { reportData?: ReportData | null }) => {
       genderName={maleName}
       sliderConfig={SLIDER_CONFIG.section3}
       defaultSummaryKey="3-1"
-      defaultSummaryText="내향과 외향 사이에서 균형 있게 상황에 맞춰 유연하게 대응하는 성향"
     />
   );
 };
