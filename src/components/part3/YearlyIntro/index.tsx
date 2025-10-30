@@ -22,9 +22,13 @@ export default function YearlyIntro({ data }: YearlyIntroProps) {
           />
         </div>
         {data.subheading && <p>{data.subheading}</p>}
-        <ul className="list-disc space-y-1 pl-5 font-bold">
+        <ul className="list-disc space-y-1 pl-5">
           {data.points.map((point, index) => (
-            <li key={index} dangerouslySetInnerHTML={{ __html: point }} />
+            <li
+              key={index}
+              className="font-pretendard"
+              dangerouslySetInnerHTML={{ __html: point }}
+            />
           ))}
         </ul>
         {data.analysis.map((paragraph, index) => (

@@ -15,8 +15,8 @@ export const Tag = ({ level }: TagProps) => {
         : "bg-[#B9EBF5]";
 
   return (
-    <div className={cn("rounded-full px-2.5 py-1 leading-snug", color)}>
-      <span className="font-bold text-white">{levelText}</span>
+    <div className={cn("rounded-full px-2 py-[3px] leading-snug", color)}>
+      <span className="text-sm font-bold text-white">{levelText}</span>
     </div>
   );
 };
