@@ -15,7 +15,7 @@ export const AnswerButton = ({
   selected,
   onClick,
 }: AnswerButtonProps) => {
-  const blueColor = "#E2F1F5";
+  const blueColor = "#DBEEF2";
   const greenColor = "#CEEBCC";
 
   return (
@@ -23,10 +23,10 @@ export const AnswerButton = ({
       type="button"
       onClick={onClick}
       className={cn(
-        "flex items-center gap-3 rounded-xl bg-white px-4 py-2.5 outline-none focus:border-transparent focus:ring-0 focus:ring-offset-0 focus:outline-none focus-visible:outline-none active:outline-none",
+        "flex w-fit items-center gap-3 rounded-xl bg-white px-4 py-2.5 outline-none focus:border-transparent focus:ring-0 focus:ring-offset-0 focus:outline-none focus-visible:outline-none active:outline-none",
         selected
           ? color === "blue"
-            ? `border-2 border-[${blueColor}] -m-px shadow-[0_0_8px_rgba(219,238,242,0.8)]`
+            ? `border-2 border-[${blueColor}] -m-px shadow-[#DBEEF2]`
             : `border-2 border-[${greenColor}] -m-px shadow-[0_0_8px_rgba(206,235,204,0.8)]`
           : "border border-[#DCDCDC]",
       )}
