@@ -27,7 +27,9 @@ export default function MonthlySimulation({ data }: MonthlySimulationProps) {
         <div className="rounded-xl bg-[#F8F8F8] p-5">
           <div className="border-l-4 border-[#6DD4BD]/50 pl-2.5">
             <p className="leading-relaxed whitespace-pre-wrap">
-              {data.conversation?.replace(/^> /gm, "").replace(/\n\n+/g, "\n")}
+              {data.conversation
+                ?.replace(/^[>*]\s?/gm, "")
+                .replace(/\n\n+/g, "\n")}
             </p>
           </div>
         </div>

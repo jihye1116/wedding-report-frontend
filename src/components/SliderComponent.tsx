@@ -194,8 +194,8 @@ export const SliderComponent: React.FC<SliderComponentProps> = ({
               }}
             >
               {origin === "center"
-                ? Math.abs(clamp(ariaNow, ariaMin, ariaMax))
-                : clamp(ariaNow, ariaMin, ariaMax)}
+                ? Math.round(Math.abs(clamp(ariaNow, ariaMin, ariaMax)))
+                : Math.round(clamp(ariaNow, ariaMin, ariaMax))}
             </div>
           </div>
         </div>
