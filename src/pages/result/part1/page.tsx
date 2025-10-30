@@ -186,10 +186,11 @@ const Page3 = ({ reportData }: { reportData?: ReportData | null }) => {
             title="1. 사고의 시간 초점"
             leftLabel="현재지향형"
             rightLabel="미래지향형"
-            value={convertScaledScore(
+            origin="center"
+            value={
               reportData?.personal_analyses?.female?.score_analysis
-                ?.현재지향_미래지향?.scaled_score || 0,
-            )}
+                ?.현재지향_미래지향?.scaled_score || 0
+            }
             maxValue={30}
             indicatorColor="#E2F2FD"
             clampColor="#6EA3C7"
@@ -202,10 +203,11 @@ const Page3 = ({ reportData }: { reportData?: ReportData | null }) => {
             title="2. 사고 초점"
             leftLabel="논리·객관중심"
             rightLabel="감정·인간중심"
-            value={convertScaledScore(
+            origin="center"
+            value={
               reportData?.personal_analyses?.female?.score_analysis
-                ?.논리중심_감정중심?.scaled_score || 0,
-            )}
+                ?.논리중심_감정중심?.scaled_score || 0
+            }
             maxValue={30}
             indicatorColor="#DAFEE0"
             clampColor="#22c55e"
@@ -272,10 +274,11 @@ const Page4 = ({ reportData }: { reportData?: ReportData | null }) => {
             title="1. 사고의 시간 초점"
             leftLabel="현재지향형"
             rightLabel="미래지향형"
-            value={convertScaledScore(
+            origin="center"
+            value={
               reportData?.personal_analyses?.male?.score_analysis
-                ?.현재지향_미래지향?.scaled_score || 0,
-            )}
+                ?.현재지향_미래지향?.scaled_score || 0
+            }
             maxValue={30}
             indicatorColor="#E2F2FD"
             clampColor="#6EA3C7"
@@ -288,10 +291,11 @@ const Page4 = ({ reportData }: { reportData?: ReportData | null }) => {
             title="2. 사고 초점"
             leftLabel="논리·객관중심"
             rightLabel="감정·인간중심"
-            value={convertScaledScore(
+            origin="center"
+            value={
               reportData?.personal_analyses?.male?.score_analysis
-                ?.논리중심_감정중심?.scaled_score || 0,
-            )}
+                ?.논리중심_감정중심?.scaled_score || 0
+            }
             maxValue={30}
             indicatorColor="#DAFEE0"
             clampColor="#22c55e"
@@ -358,10 +362,11 @@ const Page5 = ({ reportData }: { reportData?: ReportData | null }) => {
             title="1. 변화나 위험을 대할 때의 행동 에너지 방향"
             leftLabel="안전지향"
             rightLabel="도전지향"
-            value={convertScaledScore(
+            origin="center"
+            value={
               reportData?.personal_analyses?.female?.score_analysis
-                ?.안정지향_도전지향?.scaled_score || 0,
-            )}
+                ?.안정지향_도전지향?.scaled_score || 0
+            }
             maxValue={30}
             indicatorColor="#FDE2E2"
             clampColor="#D68787"
@@ -374,10 +379,11 @@ const Page5 = ({ reportData }: { reportData?: ReportData | null }) => {
             title="2. 동기의 원천"
             leftLabel="외적동기"
             rightLabel="내적동기"
-            value={convertScaledScore(
+            origin="center"
+            value={
               reportData?.personal_analyses?.female?.score_analysis
-                ?.외적동기_내적동기?.scaled_score || 0,
-            )}
+                ?.외적동기_내적동기?.scaled_score || 0
+            }
             maxValue={30}
             indicatorColor="#EEE3FF"
             clampColor="#8E6CC2"
@@ -390,6 +396,7 @@ const Page5 = ({ reportData }: { reportData?: ReportData | null }) => {
             title="3. 자기조절과 실행 자율성"
             leftLabel="낮음"
             rightLabel="높음"
+            origin="left"
             value={convertScaledScore(
               reportData?.personal_analyses?.female?.score_analysis
                 ?.반응적_조절적?.scaled_score || 0,
@@ -461,10 +468,11 @@ const Page6 = ({ reportData }: { reportData?: ReportData | null }) => {
             title="1. 변화나 위험을 대할 때의 행동 에너지 방향"
             leftLabel="안전지향"
             rightLabel="도전지향"
-            value={convertScaledScore(
+            origin="center"
+            value={
               reportData?.personal_analyses?.male?.score_analysis
-                ?.안정지향_도전지향?.scaled_score || 0,
-            )}
+                ?.안정지향_도전지향?.scaled_score || 0
+            }
             maxValue={30}
             indicatorColor="#FDE2E2"
             clampColor="#D68787"
@@ -477,10 +485,11 @@ const Page6 = ({ reportData }: { reportData?: ReportData | null }) => {
             title="2. 동기의 원천"
             leftLabel="외적동기"
             rightLabel="내적동기"
-            value={convertScaledScore(
+            origin="center"
+            value={
               reportData?.personal_analyses?.male?.score_analysis
-                ?.외적동기_내적동기?.scaled_score || 0,
-            )}
+                ?.외적동기_내적동기?.scaled_score || 0
+            }
             maxValue={30}
             indicatorColor="#EEE3FF"
             clampColor="#8E6CC2"
@@ -493,6 +502,7 @@ const Page6 = ({ reportData }: { reportData?: ReportData | null }) => {
             title="3. 자기조절과 실행 자율성"
             leftLabel="낮음"
             rightLabel="높음"
+            origin="left"
             value={convertScaledScore(
               reportData?.personal_analyses?.male?.score_analysis?.반응적_조절적
                 ?.scaled_score || 0,
@@ -546,10 +556,11 @@ const Page7 = ({ reportData }: { reportData?: ReportData | null }) => {
             title="1. 대인 관계에서의 에너지 순환 패턴"
             leftLabel="내향형"
             rightLabel="외향형"
-            value={convertScaledScore(
+            origin="center"
+            value={
               reportData?.personal_analyses?.female?.score_analysis?.내향_외향
-                ?.scaled_score || 0,
-            )}
+                ?.scaled_score || 0
+            }
             maxValue={30}
             indicatorColor="#E2FAFD"
             clampColor="#94DEE8"
@@ -562,10 +573,11 @@ const Page7 = ({ reportData }: { reportData?: ReportData | null }) => {
             title="2. 일상 구조화 및 실행 방식"
             leftLabel="유연형"
             rightLabel="계획형"
-            value={convertScaledScore(
+            origin="center"
+            value={
               reportData?.personal_analyses?.female?.score_analysis?.유연_계획
-                ?.scaled_score || 0,
-            )}
+                ?.scaled_score || 0
+            }
             maxValue={30}
             indicatorColor="#E2FDF0"
             clampColor="#97CCB2"
@@ -579,10 +591,10 @@ const Page7 = ({ reportData }: { reportData?: ReportData | null }) => {
             title="3. 감정·의사 표현 스타일"
             leftLabel="자기표현형"
             rightLabel="적응배려형"
-            value={convertScaledScore(
+            value={
               reportData?.personal_analyses?.female?.score_analysis
-                ?.자기표현_적응배려?.scaled_score || 0,
-            )}
+                ?.자기표현_적응배려?.scaled_score || 0
+            }
             maxValue={30}
             indicatorColor="#E2E2FD"
             clampColor="#8A8ACD"
@@ -632,10 +644,11 @@ const Page8 = ({ reportData }: { reportData?: ReportData | null }) => {
             title="1. 대인 관계에서의 에너지 순환 패턴"
             leftLabel="내향형"
             rightLabel="외향형"
-            value={convertScaledScore(
+            origin="center"
+            value={
               reportData?.personal_analyses?.male?.score_analysis?.내향_외향
-                ?.scaled_score || 0,
-            )}
+                ?.scaled_score || 0
+            }
             maxValue={30}
             indicatorColor="#E2FAFD"
             clampColor="#94DEE8"
@@ -648,10 +661,11 @@ const Page8 = ({ reportData }: { reportData?: ReportData | null }) => {
             title="2. 일상 구조화 및 실행 방식"
             leftLabel="유연형"
             rightLabel="계획형"
-            value={convertScaledScore(
+            origin="center"
+            value={
               reportData?.personal_analyses?.male?.score_analysis?.유연_계획
-                ?.scaled_score || 0,
-            )}
+                ?.scaled_score || 0
+            }
             maxValue={30}
             indicatorColor="#E2FDF0"
             clampColor="#97CCB2"
@@ -661,14 +675,14 @@ const Page8 = ({ reportData }: { reportData?: ReportData | null }) => {
 
           {/* Section 3: 감정·의사 표현 스타일 */}
           <SliderComponent
-            origin="left"
+            origin="center"
             title="3. 감정·의사 표현 스타일"
             leftLabel="자기표현형"
             rightLabel="적응배려형"
-            value={convertScaledScore(
+            value={
               reportData?.personal_analyses?.male?.score_analysis
-                ?.자기표현_적응배려?.scaled_score || 0,
-            )}
+                ?.자기표현_적응배려?.scaled_score || 0
+            }
             maxValue={30}
             indicatorColor="#E2E2FD"
             clampColor="#8A8ACD"

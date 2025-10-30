@@ -193,7 +193,9 @@ export const SliderComponent: React.FC<SliderComponentProps> = ({
                 color: textColor,
               }}
             >
-              {clamp(ariaNow, ariaMin, ariaMax)}
+              {origin === "center"
+                ? Math.abs(clamp(ariaNow, ariaMin, ariaMax))
+                : clamp(ariaNow, ariaMin, ariaMax)}
             </div>
           </div>
         </div>
