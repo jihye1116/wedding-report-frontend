@@ -7,8 +7,144 @@ import Male from "@/assets/images/male.svg";
 import { ReportHeader } from "@/components/ReportHeader";
 import { SliderComponent } from "@/components/SliderComponent";
 import { SummaryBox } from "@/components/SummaryBox";
-import { ReportData } from "@/types/api";
+import { ReportData, DetailedAnalysis } from "@/types/api";
 import { reportDataAtom } from "@/store/surveyStore";
+
+// Constants
+const SLIDER_CONFIG = {
+  section1: [
+    {
+      title: "1. 사고의 시간 초점",
+      leftLabel: "현재지향형",
+      rightLabel: "미래지향형",
+      origin: "center" as const,
+      maxValue: 30,
+      indicatorColor: "#E2F2FD",
+      clampColor: "#6EA3C7",
+      dimensionKey: "현재지향_미래지향" as const,
+      analysisKey: "1-1" as const,
+    },
+    {
+      title: "2. 사고 초점",
+      leftLabel: "논리·객관중심",
+      rightLabel: "감정·인간중심",
+      origin: "center" as const,
+      maxValue: 30,
+      indicatorColor: "#DAFEE0",
+      clampColor: "#22c55e",
+      dimensionKey: "논리중심_감정중심" as const,
+      analysisKey: "1-2" as const,
+    },
+    {
+      title: "3. 정서 반응 민감도",
+      leftLabel: "반응적",
+      rightLabel: "조절적",
+      origin: "left" as const,
+      maxValue: 30,
+      indicatorColor: "#FEECDA",
+      clampColor: "#76634E",
+      dimensionKey: "반응적_조절적" as const,
+      analysisKey: "1-3" as const,
+      useConvertedScore: true,
+    },
+  ],
+  section2: [
+    {
+      title: "1. 변화나 위험을 대할 때의 행동 에너지 방향",
+      leftLabel: "안전지향",
+      rightLabel: "도전지향",
+      origin: "center" as const,
+      maxValue: 30,
+      indicatorColor: "#FDE2E2",
+      clampColor: "#D68787",
+      dimensionKey: "안정지향_도전지향" as const,
+      analysisKey: "2-1" as const,
+    },
+    {
+      title: "2. 동기의 원천",
+      leftLabel: "외적동기",
+      rightLabel: "내적동기",
+      origin: "center" as const,
+      maxValue: 30,
+      indicatorColor: "#EEE3FF",
+      clampColor: "#8E6CC2",
+      dimensionKey: "외적동기_내적동기" as const,
+      analysisKey: "2-2" as const,
+    },
+    {
+      title: "3. 자기조절과 실행 자율성",
+      leftLabel: "낮음",
+      rightLabel: "높음",
+      origin: "left" as const,
+      maxValue: 30,
+      indicatorColor: "#FEFBDA",
+      clampColor: "#C2BD91",
+      dimensionKey: "반응적_조절적" as const,
+      analysisKey: "2-3" as const,
+      useConvertedScore: true,
+      fallbackAnalysisKey: "1-3" as const,
+    },
+  ],
+  section3: [
+    {
+      title: "1. 대인 관계에서의 에너지 순환 패턴",
+      leftLabel: "내향형",
+      rightLabel: "외향형",
+      origin: "center" as const,
+      maxValue: 30,
+      indicatorColor: "#E2FAFD",
+      clampColor: "#94DEE8",
+      dimensionKey: "내향_외향" as const,
+      analysisKey: "3-1" as const,
+    },
+    {
+      title: "2. 일상 구조화 및 실행 방식",
+      leftLabel: "유연형",
+      rightLabel: "계획형",
+      origin: "center" as const,
+      maxValue: 30,
+      indicatorColor: "#E2FDF0",
+      clampColor: "#97CCB2",
+      dimensionKey: "유연_계획" as const,
+      analysisKey: "3-2" as const,
+    },
+    {
+      title: "3. 감정·의사 표현 스타일",
+      leftLabel: "자기표현형",
+      rightLabel: "적응배려형",
+      origin: "center" as const,
+      maxValue: 30,
+      indicatorColor: "#E2E2FD",
+      clampColor: "#8A8ACD",
+      dimensionKey: "자기표현_적응배려" as const,
+      analysisKey: "3-3" as const,
+    },
+  ],
+};
+
+// Utility Functions
+const convertScaledScore = (scaledScore: number): number => {
+  return Math.round((scaledScore + 30) / 2); // -30~+30을 0~30으로 변환
+};
+
+const getDescriptionText = (analysis: DetailedAnalysis | undefined): string => {
+  if (!analysis) return "";
+  return `${analysis.informationPerceptionMethod || ""} ${
+    analysis.informationPerceptionMethodReason || ""
+  } ${analysis.partnerPerception || ""}`.trim();
+};
+
+const getScoreValue = (
+  reportData: ReportData | null | undefined,
+  gender: "male" | "female",
+  dimensionKey: string,
+  useConvertedScore: boolean = false,
+): number => {
+  const score =
+    reportData?.personal_analyses?.[gender]?.score_analysis?.[dimensionKey]
+      ?.scaled_score || 0;
+  return useConvertedScore ? convertScaledScore(score) : score;
+};
 
 const Page1 = () => (
   <article className="wrapper flex flex-1 flex-col font-medium text-[#111111]">
@@ -30,15 +166,15 @@ const Page1 = () => (
         </p>
         <ol className="mt-2.5 text-gray-500">
           <li className="flex items-start gap-1">
-            <span className="flex-shrink-0">•</span>
+            <span className="shrink-0">•</span>
             <span>세상을 어떻게 인식하고 감정을 처리하는지</span>
           </li>
           <li className="flex items-start gap-1">
-            <span className="flex-shrink-0">•</span>
+            <span className="shrink-0">•</span>
             <span>어떤 가치와 동기가 나를 움직이게 하는지</span>
           </li>
           <li className="flex items-start gap-1">
-            <span className="flex-shrink-0">•</span>
+            <span className="shrink-0">•</span>
             <span>어떤 방식으로 일상을 살아가며 에너지를 회복하는지</span>
           </li>
         </ol>
@@ -157,549 +293,206 @@ const Page2 = () => (
   </article>
 );
 
-const Page3 = ({ reportData }: { reportData?: ReportData | null }) => {
-  const femaleName = reportData?.metadata?.female_name || "갑순이";
+// Reusable Slider Section Component
+type SliderConfigType = {
+  title: string;
+  leftLabel: string;
+  rightLabel: string;
+  origin: "left" | "center";
+  maxValue: number;
+  indicatorColor: string;
+  clampColor: string;
+  dimensionKey: string;
+  analysisKey: string;
+  useConvertedScore?: boolean;
+  fallbackAnalysisKey?: string;
+};
 
-  // scaled_score를 슬라이더 값으로 변환 (-30 ~ +30 -> 0 ~ 30)
-  const convertScaledScore = (scaledScore: number) => {
-    return Math.round((scaledScore + 30) / 2); // -30~+30을 0~30으로 변환
-  };
+interface SliderSectionProps {
+  title: string;
+  reportData: ReportData | null | undefined;
+  gender: "male" | "female";
+  genderIcon: string;
+  genderName: string;
+  sliderConfig: SliderConfigType[];
+  defaultSummaryKey: string;
+  defaultSummaryText: string;
+}
+
+const SliderSection = ({
+  title,
+  reportData,
+  gender,
+  genderIcon,
+  genderName,
+  sliderConfig,
+  defaultSummaryKey,
+  defaultSummaryText,
+}: SliderSectionProps) => {
+  const personalAnalysis = reportData?.personal_analyses?.[gender];
+  const detailedAnalysis = personalAnalysis?.detailed_analysis;
 
   return (
     <article className="wrapper flex-1 bg-white text-gray-900">
       <div className="flex items-center xl:pt-15 xl:pb-2">
         <p className="text-xl leading-snug font-bold whitespace-nowrap">
-          01 정보처리 및 의사결정 방식
+          {title}
         </p>
       </div>
       <div className="mt-5 flex flex-col gap-8">
-        {/* Header with user info */}
         <div className="flex items-end justify-end gap-3">
-          <span className="font-medium">{femaleName} 님</span>
-          <Image src={Female} alt="female" width={40} height={40} />
+          <span className="font-medium">{genderName} 님</span>
+          <Image src={genderIcon} alt={gender} width={40} height={40} />
         </div>
 
-        {/* Slider Sections */}
         <div className="space-y-10">
-          {/* Section 1: 사고의 시간 초점 */}
-          <SliderComponent
-            title="1. 사고의 시간 초점"
-            leftLabel="현재지향형"
-            rightLabel="미래지향형"
-            origin="center"
-            value={
-              reportData?.personal_analyses?.female?.score_analysis
-                ?.현재지향_미래지향?.scaled_score || 0
-            }
-            maxValue={30}
-            indicatorColor="#E2F2FD"
-            clampColor="#6EA3C7"
-            description={`${reportData?.personal_analyses?.female?.detailed_analysis?.["1-1"]?.informationPerceptionMethod || ""} ${reportData?.personal_analyses?.female?.detailed_analysis?.["1-1"]?.informationPerceptionMethodReason || ""} ${reportData?.personal_analyses?.female?.detailed_analysis?.["1-1"]?.partnerPerception || ""}`.trim()}
-          />
-          <hr className="mt-6 border-t border-gray-300" />
+          {sliderConfig.map((config, index) => {
+            const analysis = detailedAnalysis?.[config.analysisKey];
+            const fallbackAnalysis =
+              config.fallbackAnalysisKey &&
+              detailedAnalysis?.[config.fallbackAnalysisKey];
 
-          {/* Section 2: 사고 초점 */}
-          <SliderComponent
-            title="2. 사고 초점"
-            leftLabel="논리·객관중심"
-            rightLabel="감정·인간중심"
-            origin="center"
-            value={
-              reportData?.personal_analyses?.female?.score_analysis
-                ?.논리중심_감정중심?.scaled_score || 0
-            }
-            maxValue={30}
-            indicatorColor="#DAFEE0"
-            clampColor="#22c55e"
-            description={`${reportData?.personal_analyses?.female?.detailed_analysis?.["1-2"]?.informationPerceptionMethod || ""} ${reportData?.personal_analyses?.female?.detailed_analysis?.["1-2"]?.informationPerceptionMethodReason || ""} ${reportData?.personal_analyses?.female?.detailed_analysis?.["1-2"]?.partnerPerception || ""}`.trim()}
-          />
-          <hr className="mt-6 border-t border-gray-300" />
-
-          {/* Section 3: 정서 반응 민감도 */}
-          <SliderComponent
-            origin="left"
-            title="3. 정서 반응 민감도"
-            leftLabel="반응적"
-            rightLabel="조절적"
-            value={convertScaledScore(
-              reportData?.personal_analyses?.female?.score_analysis
-                ?.반응적_조절적?.scaled_score || 0,
-            )}
-            maxValue={30}
-            indicatorColor="#FEECDA"
-            clampColor="#76634E"
-            description={`${reportData?.personal_analyses?.female?.detailed_analysis?.["1-3"]?.informationPerceptionMethod || ""} ${reportData?.personal_analyses?.female?.detailed_analysis?.["1-3"]?.informationPerceptionMethodReason || ""} ${reportData?.personal_analyses?.female?.detailed_analysis?.["1-3"]?.partnerPerception || ""}`.trim()}
-          />
+            return (
+              <div key={config.analysisKey}>
+                <SliderComponent
+                  title={config.title}
+                  leftLabel={config.leftLabel}
+                  rightLabel={config.rightLabel}
+                  origin={config.origin}
+                  value={getScoreValue(
+                    reportData,
+                    gender,
+                    config.dimensionKey,
+                    config.useConvertedScore,
+                  )}
+                  maxValue={config.maxValue}
+                  indicatorColor={config.indicatorColor}
+                  clampColor={config.clampColor}
+                  description={
+                    getDescriptionText(analysis) ||
+                    (fallbackAnalysis
+                      ? getDescriptionText(fallbackAnalysis)
+                      : "")
+                  }
+                />
+                {index < sliderConfig.length - 1 && (
+                  <hr className="mt-6 border-t border-gray-300" />
+                )}
+              </div>
+            );
+          })}
         </div>
 
-        {/* Summary Box */}
         <SummaryBox
           text={
-            reportData?.personal_analyses?.female?.detailed_analysis?.["1-1"]
-              ?.characteristicDefinition ||
-            "현재와 미래를 균형 있게 조화시키려는 성향"
+            detailedAnalysis?.[defaultSummaryKey]?.characteristicDefinition ||
+            defaultSummaryText
           }
         />
       </div>
     </article>
+  );
+};
+
+const Page3 = ({ reportData }: { reportData?: ReportData | null }) => {
+  const femaleName = reportData?.metadata?.female_name || "갑순이";
+
+  return (
+    <SliderSection
+      title="01 정보처리 및 의사결정 방식"
+      reportData={reportData}
+      gender="female"
+      genderIcon={Female}
+      genderName={femaleName}
+      sliderConfig={SLIDER_CONFIG.section1}
+      defaultSummaryKey="1-1"
+      defaultSummaryText="현재와 미래를 균형 있게 조화시키려는 성향"
+    />
   );
 };
 
 const Page4 = ({ reportData }: { reportData?: ReportData | null }) => {
   const maleName = reportData?.metadata?.male_name || "갑돌이";
 
-  // scaled_score를 슬라이더 값으로 변환 (-30 ~ +30 -> 0 ~ 30)
-  const convertScaledScore = (scaledScore: number) => {
-    return Math.round((scaledScore + 30) / 2); // -30~+30을 0~30으로 변환
-  };
-
   return (
-    <article className="wrapper flex-1 bg-white text-gray-900">
-      <div className="flex items-center xl:pt-15 xl:pb-2">
-        <p className="text-xl leading-snug font-bold whitespace-nowrap">
-          01 정보처리 및 의사결정 방식
-        </p>
-      </div>
-      <div className="mt-5 flex flex-col gap-8">
-        {/* Header with user info */}
-        <div className="flex items-end justify-end gap-3">
-          <span className="font-medium">{maleName} 님</span>
-          <Image src={Male} alt="male" width={40} height={40} />
-        </div>
-
-        {/* Slider Sections */}
-        <div className="space-y-10">
-          {/* Section 1: 사고의 시간 초점 */}
-          <SliderComponent
-            title="1. 사고의 시간 초점"
-            leftLabel="현재지향형"
-            rightLabel="미래지향형"
-            origin="center"
-            value={
-              reportData?.personal_analyses?.male?.score_analysis
-                ?.현재지향_미래지향?.scaled_score || 0
-            }
-            maxValue={30}
-            indicatorColor="#E2F2FD"
-            clampColor="#6EA3C7"
-            description={`${reportData?.personal_analyses?.male?.detailed_analysis?.["1-1"]?.informationPerceptionMethod || ""} ${reportData?.personal_analyses?.male?.detailed_analysis?.["1-1"]?.informationPerceptionMethodReason || ""} ${reportData?.personal_analyses?.male?.detailed_analysis?.["1-1"]?.partnerPerception || ""}`.trim()}
-          />
-          <hr className="mt-6 border-t border-gray-300" />
-
-          {/* Section 2: 사고 초점 */}
-          <SliderComponent
-            title="2. 사고 초점"
-            leftLabel="논리·객관중심"
-            rightLabel="감정·인간중심"
-            origin="center"
-            value={
-              reportData?.personal_analyses?.male?.score_analysis
-                ?.논리중심_감정중심?.scaled_score || 0
-            }
-            maxValue={30}
-            indicatorColor="#DAFEE0"
-            clampColor="#22c55e"
-            description={`${reportData?.personal_analyses?.male?.detailed_analysis?.["1-2"]?.informationPerceptionMethod || ""} ${reportData?.personal_analyses?.male?.detailed_analysis?.["1-2"]?.informationPerceptionMethodReason || ""} ${reportData?.personal_analyses?.male?.detailed_analysis?.["1-2"]?.partnerPerception || ""}`.trim()}
-          />
-          <hr className="mt-6 border-t border-gray-300" />
-
-          {/* Section 3: 정서 반응 민감도 */}
-          <SliderComponent
-            origin="left"
-            title="3. 정서 반응 민감도"
-            leftLabel="반응적"
-            rightLabel="조절적"
-            value={convertScaledScore(
-              reportData?.personal_analyses?.male?.score_analysis?.반응적_조절적
-                ?.scaled_score || 0,
-            )}
-            maxValue={30}
-            indicatorColor="#FEECDA"
-            clampColor="#76634E"
-            description={`${reportData?.personal_analyses?.male?.detailed_analysis?.["1-3"]?.informationPerceptionMethod || ""} ${reportData?.personal_analyses?.male?.detailed_analysis?.["1-3"]?.informationPerceptionMethodReason || ""} ${reportData?.personal_analyses?.male?.detailed_analysis?.["1-3"]?.partnerPerception || ""}`.trim()}
-          />
-        </div>
-
-        {/* Summary Box */}
-        <SummaryBox
-          text={
-            reportData?.personal_analyses?.male?.detailed_analysis?.["1-2"]
-              ?.characteristicDefinition ||
-            "상황에 따라 논리와 감정을 균형 있게 고려하는 성향"
-          }
-        />
-      </div>
-    </article>
+    <SliderSection
+      title="01 정보처리 및 의사결정 방식"
+      reportData={reportData}
+      gender="male"
+      genderIcon={Male}
+      genderName={maleName}
+      sliderConfig={SLIDER_CONFIG.section1}
+      defaultSummaryKey="1-2"
+      defaultSummaryText="상황에 따라 논리와 감정을 균형 있게 고려하는 성향"
+    />
   );
 };
 
 const Page5 = ({ reportData }: { reportData?: ReportData | null }) => {
   const femaleName = reportData?.metadata?.female_name || "갑순이";
 
-  // scaled_score를 슬라이더 값으로 변환 (-30 ~ +30 -> 0 ~ 30)
-  const convertScaledScore = (scaledScore: number) => {
-    return Math.round((scaledScore + 30) / 2); // -30~+30을 0~30으로 변환
-  };
-
   return (
-    <article className="wrapper flex-1 bg-white text-gray-900">
-      <div className="flex items-center xl:pt-15 xl:pb-2">
-        <p className="text-xl leading-snug font-bold whitespace-nowrap">
-          02 동기 구조 및 자기조절
-        </p>
-      </div>
-      <div className="mt-5 flex flex-col gap-8">
-        {/* Header with user info */}
-        <div className="flex items-end justify-end gap-3">
-          <span className="font-medium">{femaleName} 님</span>
-          <Image src={Female} alt="female" width={40} height={40} />
-        </div>
-
-        {/* Slider Sections */}
-        <div className="space-y-10">
-          {/* Section 1: 변화나 위험을 대할 때의 행동 에너지 방향 */}
-          <SliderComponent
-            title="1. 변화나 위험을 대할 때의 행동 에너지 방향"
-            leftLabel="안전지향"
-            rightLabel="도전지향"
-            origin="center"
-            value={
-              reportData?.personal_analyses?.female?.score_analysis
-                ?.안정지향_도전지향?.scaled_score || 0
-            }
-            maxValue={30}
-            indicatorColor="#FDE2E2"
-            clampColor="#D68787"
-            description={`${reportData?.personal_analyses?.female?.detailed_analysis?.["2-1"]?.informationPerceptionMethod || ""} ${reportData?.personal_analyses?.female?.detailed_analysis?.["2-1"]?.informationPerceptionMethodReason || ""} ${reportData?.personal_analyses?.female?.detailed_analysis?.["2-1"]?.partnerPerception || ""}`.trim()}
-          />
-          <hr className="mt-6 border-t border-gray-300" />
-
-          {/* Section 2: 동기의 원천 */}
-          <SliderComponent
-            title="2. 동기의 원천"
-            leftLabel="외적동기"
-            rightLabel="내적동기"
-            origin="center"
-            value={
-              reportData?.personal_analyses?.female?.score_analysis
-                ?.외적동기_내적동기?.scaled_score || 0
-            }
-            maxValue={30}
-            indicatorColor="#EEE3FF"
-            clampColor="#8E6CC2"
-            description={`${reportData?.personal_analyses?.female?.detailed_analysis?.["2-2"]?.informationPerceptionMethod || ""} ${reportData?.personal_analyses?.female?.detailed_analysis?.["2-2"]?.informationPerceptionMethodReason || ""} ${reportData?.personal_analyses?.female?.detailed_analysis?.["2-2"]?.partnerPerception || ""}`.trim()}
-          />
-          <hr className="mt-6 border-t border-gray-300" />
-
-          {/* Section 3: 자기조절과 실행 자율성 */}
-          <SliderComponent
-            title="3. 자기조절과 실행 자율성"
-            leftLabel="낮음"
-            rightLabel="높음"
-            origin="left"
-            value={convertScaledScore(
-              reportData?.personal_analyses?.female?.score_analysis
-                ?.반응적_조절적?.scaled_score || 0,
-            )}
-            maxValue={30}
-            indicatorColor="#FEFBDA"
-            clampColor="#C2BD91"
-            description={
-              (
-                `${reportData?.personal_analyses?.female?.detailed_analysis?.["2-3"]?.informationPerceptionMethod || ""} ` +
-                `${reportData?.personal_analyses?.female?.detailed_analysis?.["2-3"]?.informationPerceptionMethodReason || ""} ` +
-                `${reportData?.personal_analyses?.female?.detailed_analysis?.["2-3"]?.partnerPerception || ""}`
-              ).trim() ||
-              (
-                `${reportData?.personal_analyses?.female?.detailed_analysis?.["1-3"]?.informationPerceptionMethod || ""} ` +
-                `${reportData?.personal_analyses?.female?.detailed_analysis?.["1-3"]?.informationPerceptionMethodReason || ""} ` +
-                `${reportData?.personal_analyses?.female?.detailed_analysis?.["1-3"]?.partnerPerception || ""}`
-              ).trim() ||
-              // 최종 폴백: 프로필 섹션의 dimension 설명 사용
-              reportData?.personal_analyses?.female?.profile?.sections?.find(
-                (s) =>
-                  s.section_name?.includes("동기") ||
-                  s.section_name?.includes("자기조절"),
-              )?.dimensions?.["반응적_조절적"]?.description ||
-              ""
-            }
-          />
-        </div>
-
-        {/* Summary Box */}
-        <SummaryBox
-          text={
-            reportData?.personal_analyses?.female?.detailed_analysis?.["2-2"]
-              ?.characteristicDefinition ||
-            "내적 동기와 외적 동기 사이에서 균형을 이루려는 성향"
-          }
-        />
-      </div>
-    </article>
+    <SliderSection
+      title="02 동기 구조 및 자기조절"
+      reportData={reportData}
+      gender="female"
+      genderIcon={Female}
+      genderName={femaleName}
+      sliderConfig={SLIDER_CONFIG.section2}
+      defaultSummaryKey="2-2"
+      defaultSummaryText="내적 동기와 외적 동기 사이에서 균형을 이루려는 성향"
+    />
   );
 };
 
 const Page6 = ({ reportData }: { reportData?: ReportData | null }) => {
   const maleName = reportData?.metadata?.male_name || "갑돌이";
 
-  // scaled_score를 슬라이더 값으로 변환 (-30 ~ +30 -> 0 ~ 30)
-  const convertScaledScore = (scaledScore: number) => {
-    return Math.round((scaledScore + 30) / 2); // -30~+30을 0~30으로 변환
-  };
-
   return (
-    <article className="wrapper flex-1 bg-white text-gray-900">
-      <div className="flex items-center xl:pt-15 xl:pb-2">
-        <p className="text-xl leading-snug font-bold whitespace-nowrap">
-          02 동기 구조 및 자기조절
-        </p>
-      </div>
-      <div className="mt-5 flex flex-col gap-8">
-        {/* Header with user info */}
-        <div className="flex items-end justify-end gap-3">
-          <span className="font-medium">{maleName} 님</span>
-          <Image src={Male} alt="male" width={40} height={40} />
-        </div>
-
-        {/* Slider Sections */}
-        <div className="space-y-10">
-          {/* Section 1: 변화나 위험을 대할 때의 행동 에너지 방향 */}
-          <SliderComponent
-            title="1. 변화나 위험을 대할 때의 행동 에너지 방향"
-            leftLabel="안전지향"
-            rightLabel="도전지향"
-            origin="center"
-            value={
-              reportData?.personal_analyses?.male?.score_analysis
-                ?.안정지향_도전지향?.scaled_score || 0
-            }
-            maxValue={30}
-            indicatorColor="#FDE2E2"
-            clampColor="#D68787"
-            description={`${reportData?.personal_analyses?.male?.detailed_analysis?.["2-1"]?.informationPerceptionMethod || ""} ${reportData?.personal_analyses?.male?.detailed_analysis?.["2-1"]?.informationPerceptionMethodReason || ""} ${reportData?.personal_analyses?.male?.detailed_analysis?.["2-1"]?.partnerPerception || ""}`.trim()}
-          />
-          <hr className="mt-6 border-t border-gray-300" />
-
-          {/* Section 2: 동기의 원천 */}
-          <SliderComponent
-            title="2. 동기의 원천"
-            leftLabel="외적동기"
-            rightLabel="내적동기"
-            origin="center"
-            value={
-              reportData?.personal_analyses?.male?.score_analysis
-                ?.외적동기_내적동기?.scaled_score || 0
-            }
-            maxValue={30}
-            indicatorColor="#EEE3FF"
-            clampColor="#8E6CC2"
-            description={`${reportData?.personal_analyses?.male?.detailed_analysis?.["2-2"]?.informationPerceptionMethod || ""} ${reportData?.personal_analyses?.male?.detailed_analysis?.["2-2"]?.informationPerceptionMethodReason || ""} ${reportData?.personal_analyses?.male?.detailed_analysis?.["2-2"]?.partnerPerception || ""}`.trim()}
-          />
-          <hr className="mt-6 border-t border-gray-300" />
-
-          {/* Section 3: 자기조절과 실행 자율성 */}
-          <SliderComponent
-            title="3. 자기조절과 실행 자율성"
-            leftLabel="낮음"
-            rightLabel="높음"
-            origin="left"
-            value={convertScaledScore(
-              reportData?.personal_analyses?.male?.score_analysis?.반응적_조절적
-                ?.scaled_score || 0,
-            )}
-            maxValue={30}
-            indicatorColor="#FEFBDA"
-            clampColor="#C2BD91"
-            description={`${reportData?.personal_analyses?.male?.detailed_analysis?.["2-3"]?.informationPerceptionMethod || ""} ${reportData?.personal_analyses?.male?.detailed_analysis?.["2-3"]?.informationPerceptionMethodReason || ""} ${reportData?.personal_analyses?.male?.detailed_analysis?.["2-3"]?.partnerPerception || ""}`.trim()}
-          />
-        </div>
-
-        {/* Summary Box */}
-        <SummaryBox
-          text={
-            reportData?.personal_analyses?.male?.detailed_analysis?.["2-1"]
-              ?.characteristicDefinition ||
-            "안정적이고 예측 가능한 환경에서 안전감을 느끼는 성향"
-          }
-        />
-      </div>
-    </article>
+    <SliderSection
+      title="02 동기 구조 및 자기조절"
+      reportData={reportData}
+      gender="male"
+      genderIcon={Male}
+      genderName={maleName}
+      sliderConfig={SLIDER_CONFIG.section2}
+      defaultSummaryKey="2-1"
+      defaultSummaryText="안정적이고 예측 가능한 환경에서 안전감을 느끼는 성향"
+    />
   );
 };
 
 const Page7 = ({ reportData }: { reportData?: ReportData | null }) => {
   const femaleName = reportData?.metadata?.female_name || "갑순이";
 
-  // scaled_score를 슬라이더 값으로 변환 (-30 ~ +30 -> 0 ~ 30)
-  const convertScaledScore = (scaledScore: number) => {
-    return Math.round((scaledScore + 30) / 2); // -30~+30을 0~30으로 변환
-  };
-
   return (
-    <article className="wrapper flex-1 bg-white text-gray-900">
-      <div className="flex items-center xl:pt-15 xl:pb-2">
-        <p className="text-xl leading-snug font-bold whitespace-nowrap">
-          03 외현적 행동 및 생활방식
-        </p>
-      </div>
-      <div className="mt-5 flex flex-col gap-8">
-        {/* Header with user info */}
-        <div className="flex items-end justify-end gap-3">
-          <span className="font-medium">{femaleName} 님</span>
-          <Image src={Female} alt="female" width={40} height={40} />
-        </div>
-
-        {/* Slider Sections */}
-        <div className="space-y-10">
-          {/* Section 1: 대인 관계에서의 에너지 순환 패턴 */}
-          <SliderComponent
-            title="1. 대인 관계에서의 에너지 순환 패턴"
-            leftLabel="내향형"
-            rightLabel="외향형"
-            origin="center"
-            value={
-              reportData?.personal_analyses?.female?.score_analysis?.내향_외향
-                ?.scaled_score || 0
-            }
-            maxValue={30}
-            indicatorColor="#E2FAFD"
-            clampColor="#94DEE8"
-            description={`${reportData?.personal_analyses?.female?.detailed_analysis?.["3-1"]?.informationPerceptionMethod || ""} ${reportData?.personal_analyses?.female?.detailed_analysis?.["3-1"]?.informationPerceptionMethodReason || ""} ${reportData?.personal_analyses?.female?.detailed_analysis?.["3-1"]?.partnerPerception || ""}`.trim()}
-          />
-          <hr className="mt-6 border-t border-gray-300" />
-
-          {/* Section 2: 일상 구조화 및 실행 방식 */}
-          <SliderComponent
-            title="2. 일상 구조화 및 실행 방식"
-            leftLabel="유연형"
-            rightLabel="계획형"
-            origin="center"
-            value={
-              reportData?.personal_analyses?.female?.score_analysis?.유연_계획
-                ?.scaled_score || 0
-            }
-            maxValue={30}
-            indicatorColor="#E2FDF0"
-            clampColor="#97CCB2"
-            description={`${reportData?.personal_analyses?.female?.detailed_analysis?.["3-2"]?.informationPerceptionMethod || ""} ${reportData?.personal_analyses?.female?.detailed_analysis?.["3-2"]?.informationPerceptionMethodReason || ""} ${reportData?.personal_analyses?.female?.detailed_analysis?.["3-2"]?.partnerPerception || ""}`.trim()}
-          />
-          <hr className="mt-6 border-t border-gray-300" />
-
-          {/* Section 3: 감정·의사 표현 스타일 */}
-          <SliderComponent
-            origin="left"
-            title="3. 감정·의사 표현 스타일"
-            leftLabel="자기표현형"
-            rightLabel="적응배려형"
-            value={
-              reportData?.personal_analyses?.female?.score_analysis
-                ?.자기표현_적응배려?.scaled_score || 0
-            }
-            maxValue={30}
-            indicatorColor="#E2E2FD"
-            clampColor="#8A8ACD"
-            description={`${reportData?.personal_analyses?.female?.detailed_analysis?.["3-3"]?.informationPerceptionMethod || ""} ${reportData?.personal_analyses?.female?.detailed_analysis?.["3-3"]?.informationPerceptionMethodReason || ""} ${reportData?.personal_analyses?.female?.detailed_analysis?.["3-3"]?.partnerPerception || ""}`.trim()}
-          />
-        </div>
-
-        {/* Summary Box */}
-        <SummaryBox
-          text={
-            reportData?.personal_analyses?.female?.detailed_analysis?.["3-2"]
-              ?.characteristicDefinition ||
-            "상황에 따라 유연하게 대처하고 계획과 즉흥 사이에서 균형을 이루는 성향"
-          }
-        />
-      </div>
-    </article>
+    <SliderSection
+      title="03 외현적 행동 및 생활방식"
+      reportData={reportData}
+      gender="female"
+      genderIcon={Female}
+      genderName={femaleName}
+      sliderConfig={SLIDER_CONFIG.section3}
+      defaultSummaryKey="3-2"
+      defaultSummaryText="상황에 따라 유연하게 대처하고 계획과 즉흥 사이에서 균형을 이루는 성향"
+    />
   );
 };
 
 const Page8 = ({ reportData }: { reportData?: ReportData | null }) => {
   const maleName = reportData?.metadata?.male_name || "갑돌이";
 
-  // scaled_score를 슬라이더 값으로 변환 (-30 ~ +30 -> 0 ~ 30)
-  const convertScaledScore = (scaledScore: number) => {
-    return Math.round((scaledScore + 30) / 2); // -30~+30을 0~30으로 변환
-  };
-
   return (
-    <article className="wrapper flex-1 bg-white text-gray-900">
-      <div className="flex items-center xl:pt-15 xl:pb-2">
-        <p className="text-xl leading-snug font-bold whitespace-nowrap">
-          03 외현적 행동 및 생활방식
-        </p>
-      </div>
-      <div className="mt-5 flex flex-col gap-8">
-        {/* Header with user info */}
-        <div className="flex items-end justify-end gap-3">
-          <span className="font-medium">{maleName} 님</span>
-          <Image src={Male} alt="male" width={40} height={40} />
-        </div>
-
-        {/* Slider Sections */}
-        <div className="space-y-10">
-          {/* Section 1: 대인 관계에서의 에너지 순환 패턴 */}
-          <SliderComponent
-            title="1. 대인 관계에서의 에너지 순환 패턴"
-            leftLabel="내향형"
-            rightLabel="외향형"
-            origin="center"
-            value={
-              reportData?.personal_analyses?.male?.score_analysis?.내향_외향
-                ?.scaled_score || 0
-            }
-            maxValue={30}
-            indicatorColor="#E2FAFD"
-            clampColor="#94DEE8"
-            description={`${reportData?.personal_analyses?.male?.detailed_analysis?.["3-1"]?.informationPerceptionMethod || ""} ${reportData?.personal_analyses?.male?.detailed_analysis?.["3-1"]?.informationPerceptionMethodReason || ""} ${reportData?.personal_analyses?.male?.detailed_analysis?.["3-1"]?.partnerPerception || ""}`.trim()}
-          />
-          <hr className="mt-6 border-t border-gray-300" />
-
-          {/* Section 2: 일상 구조화 및 실행 방식 */}
-          <SliderComponent
-            title="2. 일상 구조화 및 실행 방식"
-            leftLabel="유연형"
-            rightLabel="계획형"
-            origin="center"
-            value={
-              reportData?.personal_analyses?.male?.score_analysis?.유연_계획
-                ?.scaled_score || 0
-            }
-            maxValue={30}
-            indicatorColor="#E2FDF0"
-            clampColor="#97CCB2"
-            description={`${reportData?.personal_analyses?.male?.detailed_analysis?.["3-2"]?.informationPerceptionMethod || ""} ${reportData?.personal_analyses?.male?.detailed_analysis?.["3-2"]?.informationPerceptionMethodReason || ""} ${reportData?.personal_analyses?.male?.detailed_analysis?.["3-2"]?.partnerPerception || ""}`.trim()}
-          />
-          <hr className="mt-6 border-t border-gray-300" />
-
-          {/* Section 3: 감정·의사 표현 스타일 */}
-          <SliderComponent
-            origin="center"
-            title="3. 감정·의사 표현 스타일"
-            leftLabel="자기표현형"
-            rightLabel="적응배려형"
-            value={
-              reportData?.personal_analyses?.male?.score_analysis
-                ?.자기표현_적응배려?.scaled_score || 0
-            }
-            maxValue={30}
-            indicatorColor="#E2E2FD"
-            clampColor="#8A8ACD"
-            description={`${reportData?.personal_analyses?.male?.detailed_analysis?.["3-3"]?.informationPerceptionMethod || ""} ${reportData?.personal_analyses?.male?.detailed_analysis?.["3-3"]?.informationPerceptionMethodReason || ""} ${reportData?.personal_analyses?.male?.detailed_analysis?.["3-3"]?.partnerPerception || ""}`.trim()}
-          />
-        </div>
-
-        {/* Summary Box */}
-        <SummaryBox
-          text={
-            reportData?.personal_analyses?.male?.detailed_analysis?.["3-1"]
-              ?.characteristicDefinition ||
-            "내향과 외향 사이에서 균형 있게 상황에 맞춰 유연하게 대응하는 성향"
-          }
-        />
-      </div>
-    </article>
+    <SliderSection
+      title="03 외현적 행동 및 생활방식"
+      reportData={reportData}
+      gender="male"
+      genderIcon={Male}
+      genderName={maleName}
+      sliderConfig={SLIDER_CONFIG.section3}
+      defaultSummaryKey="3-1"
+      defaultSummaryText="내향과 외향 사이에서 균형 있게 상황에 맞춰 유연하게 대응하는 성향"
+    />
   );
 };
 

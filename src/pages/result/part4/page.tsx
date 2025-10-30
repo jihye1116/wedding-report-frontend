@@ -151,28 +151,40 @@ export default function Part4ResultPage({ step }: Part4ResultPageProps) {
             03 개인의 변화
           </h1>
           <div className="wrapper flex flex-col gap-10 py-5 xl:mt-5">
-            {reportData?.relationship_prediction?.personal_changes?.map(
-              (change, index) => {
+            {reportData?.relationship_prediction?.personal_changes
+              ?.slice()
+              .sort((a, b) => {
+                const aMale = a.name === maleName || a.name === "곤뇽독";
+                const bMale = b.name === maleName || b.name === "곤뇽독";
+                // 여성 우선: 남성이면 1, 여성이면 0으로 정렬
+                return Number(aMale) - Number(bMale);
+              })
+              .map((change, index) => {
                 const isMale =
                   change.name === maleName || change.name === "곤뇽독";
                 return (
                   <section key={index}>
                     <div
-                      className={`flex items-end gap-3 ${isMale ? "" : "justify-end"}`}
+                      className={`flex items-end gap-3 ${isMale ? "justify-end" : ""}`}
                     >
                       {isMale ? (
                         <>
-                          <Image src={Male} alt="남성" width={48} />
                           <p className="leading-loose font-semibold">
                             {change.name} 님의 변화
                           </p>
+                          <Image src={Male} alt="남성" width={48} />
                         </>
                       ) : (
                         <>
+                          <Image
+                            src={Female}
+                            alt="여성"
+                            width={48}
+                            className="rotate-y-180"
+                          />
                           <p className="leading-loose font-semibold">
                             {change.name} 님의 변화
                           </p>
-                          <Image src={Female} alt="여성" width={48} />
                         </>
                       )}
                     </div>
@@ -184,39 +196,9 @@ export default function Part4ResultPage({ step }: Part4ResultPageProps) {
                     </div>
                   </section>
                 );
-              },
-            ) || (
+              }) || (
               // 기본값 (데이터가 없을 때)
               <>
-                <section>
-                  <div className="flex items-end gap-3">
-                    <Image src={Male} alt="남성" width={48} />
-                    <p className="leading-loose font-semibold">
-                      {maleName} 님의 변화
-                    </p>
-                  </div>
-                  <div className="flex flex-col gap-5 bg-[#F8F8F8] p-5 leading-snug">
-                    <h2 className="text-lg font-semibold">
-                      '강해야 한다'는 무언의 압박에서 '흔들릴 수 있는 인간'으로
-                      자신을 수용
-                    </h2>
-                    <p>
-                      초기의 {maleName}은 실용적 사고, 문제 해결 중심의 대화가
-                      특징이었지만, 3년 차에서는 "당신은 피곤하겠다.", "말해줘서
-                      고마워." 같은 정서적 언어와 반응이 늘어났습니다.
-                    </p>
-                    <p>
-                      특히 자신의 불안(승진 후의 허무, 진로 회의 등)을 표현하고,
-                      {femaleName}의 공감을 수용하는 모습은 '약한 부분도 보여줄
-                      수 있는 관계'의 힘을 체험하고 있음을 보여줍니다.
-                    </p>
-                    <p>
-                      '강해야 한다'는 기대에서 벗어나, "흔들릴 수 있는
-                      인간"으로서의 자신을 수용하기 시작했으며, 이는 사회적
-                      관계에서도 더 깊은 인간관계를 가능케 하는 변화입니다.
-                    </p>
-                  </div>
-                </section>
                 <section>
                   <div className="flex items-end justify-end gap-3">
                     <p className="leading-loose font-semibold">
@@ -238,6 +220,35 @@ export default function Part4ResultPage({ step }: Part4ResultPageProps) {
                       특히 자신의 불안(승진 후의 허무, 진로 회의 등)을 표현하고,
                       {maleName}의 공감을 수용하는 모습은 '약한 부분도 보여줄 수
                       있는 관계'의 힘을 체험하고 있음을 보여줍니다.
+                    </p>
+                    <p>
+                      '강해야 한다'는 기대에서 벗어나, "흔들릴 수 있는
+                      인간"으로서의 자신을 수용하기 시작했으며, 이는 사회적
+                      관계에서도 더 깊은 인간관계를 가능케 하는 변화입니다.
+                    </p>
+                  </div>
+                </section>
+                <section>
+                  <div className="flex items-end gap-3">
+                    <Image src={Male} alt="남성" width={48} />
+                    <p className="leading-loose font-semibold">
+                      {maleName} 님의 변화
+                    </p>
+                  </div>
+                  <div className="flex flex-col gap-5 bg-[#F8F8F8] p-5 leading-snug">
+                    <h2 className="text-lg font-semibold">
+                      '강해야 한다'는 무언의 압박에서 '흔들릴 수 있는 인간'으로
+                      자신을 수용
+                    </h2>
+                    <p>
+                      초기의 {maleName}은 실용적 사고, 문제 해결 중심의 대화가
+                      특징이었지만, 3년 차에서는 "당신은 피곤하겠다.", "말해줘서
+                      고마워." 같은 정서적 언어와 반응이 늘어났습니다.
+                    </p>
+                    <p>
+                      특히 자신의 불안(승진 후의 허무, 진로 회의 등)을 표현하고,
+                      {femaleName}의 공감을 수용하는 모습은 '약한 부분도 보여줄
+                      수 있는 관계'의 힘을 체험하고 있음을 보여줍니다.
                     </p>
                     <p>
                       '강해야 한다'는 기대에서 벗어나, "흔들릴 수 있는
