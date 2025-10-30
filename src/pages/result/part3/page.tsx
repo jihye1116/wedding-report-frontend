@@ -1,3 +1,5 @@
+import { useAtom } from "jotai";
+
 import { ReportHeader } from "@/components/ReportHeader";
 import InitialIntro from "@/components/part3/InitialIntro";
 import MonthlySimulation from "@/components/part3/MonthlySimulation";
@@ -5,6 +7,7 @@ import TransitionPage from "@/components/part3/TransitionPage";
 import YearlyIntro from "@/components/part3/YearlyIntro";
 import YearlySummary from "@/components/part3/YearlySummary";
 import { ReportData } from "@/types/api";
+import { reportDataAtom } from "@/store/surveyStore";
 
 // scenario_flow 데이터를 기반으로 시뮬레이션 데이터를 생성하는 함수
 const generateSimulationData = (reportData: ReportData | null) => {
@@ -355,13 +358,10 @@ const generateSimulationData = (reportData: ReportData | null) => {
 
 interface Part3ResultPageProps {
   step: number;
-  reportData: ReportData | null;
 }
 
-export default function Part3ResultPage({
-  step,
-  reportData,
-}: Part3ResultPageProps) {
+export default function Part3ResultPage({ step }: Part3ResultPageProps) {
+  const [reportData] = useAtom(reportDataAtom);
   // reportData가 없으면 로딩 상태 표시
   if (!reportData) {
     return (

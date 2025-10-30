@@ -1,6 +1,7 @@
 import { atom } from "jotai";
 
 import { SurveyAnswer } from "@/types/survey";
+import { ReportData } from "@/types/api";
 
 // 답변 상태를 전역으로 관리
 export const answersAtom = atom<SurveyAnswer[]>([]);
@@ -27,3 +28,6 @@ export const introDataAtom = atom({
 export const part3ResultStepAtom = atom<number>(1);
 // Part4 Result 페이지 step 상태 전역 관리
 export const part4ResultStepAtom = atom<number>(1);
+
+// 리포트 데이터 전역 관리
+export const reportDataAtom = atom<ReportData | null>(null);

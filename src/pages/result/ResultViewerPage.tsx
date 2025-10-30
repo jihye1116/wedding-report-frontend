@@ -12,7 +12,11 @@ import Part2ResultPage, { part2TotalPages } from "@/pages/result/part2/page";
 import Part3ResultPage from "@/pages/result/part3/page";
 import Part4ResultPage from "@/pages/result/part4/page";
 import Part5ResultPage from "@/pages/result/part5/page";
-import { part3ResultStepAtom, part4ResultStepAtom } from "@/store/surveyStore";
+import {
+  part3ResultStepAtom,
+  part4ResultStepAtom,
+  reportDataAtom,
+} from "@/store/surveyStore";
 import { ReportData } from "@/types/api";
 
 type ResultPartStep =
@@ -25,13 +29,12 @@ type ResultPartStep =
 
 interface ResultViewerPageProps {
   onBackToIntro: () => void;
-  reportData?: ReportData | null;
 }
 
 export default function ResultViewerPage({
   onBackToIntro,
-  reportData,
 }: ResultViewerPageProps) {
+  const [reportData] = useAtom(reportDataAtom);
   const [part3Step, setPart3Step] = useAtom(part3ResultStepAtom);
   const [part4Step, setPart4Step] = useAtom(part4ResultStepAtom);
   const [currentStep, setCurrentStep] = useState<ResultPartStep>("part1");
@@ -148,10 +151,7 @@ export default function ResultViewerPage({
   if (currentStep === "part1") {
     return (
       <div className="flex h-dvh flex-col">
-        <Part1ResultPage
-          currentPage={partPages.part1}
-          reportData={reportData || null}
-        />
+        <Part1ResultPage currentPage={partPages.part1} />
         <Navigator
           onNext={handleNext}
           onBack={handleBack}
@@ -167,10 +167,7 @@ export default function ResultViewerPage({
   if (currentStep === "part2") {
     return (
       <div className="flex h-dvh flex-col justify-between">
-        <Part2ResultPage
-          currentPage={partPages.part2}
-          reportData={reportData || null}
-        />
+        <Part2ResultPage currentPage={partPages.part2} />
         <Navigator
           onNext={handleNext}
           onBack={handleBack}
@@ -186,7 +183,7 @@ export default function ResultViewerPage({
   if (currentStep === "part3") {
     return (
       <div className="flex h-dvh flex-col justify-between">
-        <Part3ResultPage step={part3Step} reportData={reportData || null} />
+        <Part3ResultPage step={part3Step} />
         <Navigator
           onNext={() => {
             if (part3Step === 21) {
@@ -215,7 +212,7 @@ export default function ResultViewerPage({
   if (currentStep === "part4") {
     return (
       <div className="flex h-dvh flex-col justify-between">
-        <Part4ResultPage step={part4Step} reportData={reportData} />
+        <Part4ResultPage step={part4Step} />
         <Navigator
           onNext={() => {
             if (part4Step === 5) {
@@ -244,7 +241,7 @@ export default function ResultViewerPage({
   if (currentStep === "part5") {
     return (
       <div className="flex h-dvh flex-col justify-between">
-        <Part5ResultPage reportData={reportData} />
+        <Part5ResultPage />
         <Navigator
           onNext={handleNext}
           onBack={handleBack}

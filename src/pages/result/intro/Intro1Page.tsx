@@ -7,10 +7,9 @@ import { ReportData } from "@/types/api";
 
 interface Intro1PageProps {
   onNext: () => void;
-  reportData?: ReportData | null;
 }
 
-export default function Intro1Page({ onNext, reportData }: Intro1PageProps) {
+export default function Intro1Page({ onNext }: Intro1PageProps) {
   return (
     <main className="flex h-dvh flex-col">
       <div className="hidden xl:block">

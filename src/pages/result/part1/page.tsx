@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useAtom } from "jotai";
 
 import Female from "@/assets/images/female.svg";
 import Graph from "@/assets/images/graph.png";
@@ -7,6 +8,7 @@ import { ReportHeader } from "@/components/ReportHeader";
 import { SliderComponent } from "@/components/SliderComponent";
 import { SummaryBox } from "@/components/SummaryBox";
 import { ReportData } from "@/types/api";
+import { reportDataAtom } from "@/store/surveyStore";
 
 const Page1 = () => (
   <article className="wrapper flex flex-1 flex-col font-medium text-[#111111]">
@@ -667,13 +669,10 @@ export const part1TotalPages = 8; // Page1부터 Page8까지 총 8페이지
 
 interface Part1ResultPageProps {
   currentPage: number;
-  reportData?: ReportData | null;
 }
 
-export default function Part1ResultPage({
-  currentPage,
-  reportData,
-}: Part1ResultPageProps) {
+export default function Part1ResultPage({ currentPage }: Part1ResultPageProps) {
+  const [reportData] = useAtom(reportDataAtom);
   const pages = createPages(reportData);
 
   return (

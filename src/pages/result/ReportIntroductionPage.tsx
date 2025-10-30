@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useAtom } from "jotai";
 
 import Intro1Page from "./intro/Intro1Page";
 import Intro2Page from "./intro/Intro2Page";
@@ -9,6 +10,7 @@ import ResultViewerPage from "./ResultViewerPage";
 import { ReportData } from "@/types/api";
 import { LoadingSpinner } from "@/components/LoadingSpinner";
 import { getReportData } from "@/utils/api";
+import { reportDataAtom } from "@/store/surveyStore";
 
 interface ReportIntroductionPageProps {
   resultId: string;
@@ -20,7 +22,7 @@ export default function ReportIntroductionPage({
   resultId,
 }: ReportIntroductionPageProps) {
   const [currentStep, setCurrentStep] = useState<IntroStep>("intro1");
-  const [reportData, setReportData] = useState<ReportData | null>(null);
+  const [reportData, setReportData] = useAtom(reportDataAtom);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -106,32 +108,21 @@ export default function ReportIntroductionPage({
     );
   }
 
-  // 기존 로직 사용 (데이터는 하위 컴포넌트에 전달)
+  // 기존 로직 사용 (데이터는 전역 상태에서 가져옴)
   if (currentStep === "intro1") {
-    return <Intro1Page onNext={handleNext} reportData={reportData} />;
+    return <Intro1Page onNext={handleNext} />;
   }
 
   if (currentStep === "intro2") {
-    return <Intro2Page onNext={handleNext} reportData={reportData} />;
+    return <Intro2Page onNext={handleNext} />;
   }
 
   if (currentStep === "intro3") {
-    return (
-      <Intro3Page
-        onNext={handleNext}
-        onBack={handleBack}
-        reportData={reportData}
-      />
-    );
+    return <Intro3Page onNext={handleNext} onBack={handleBack} />;
   }
 
   if (currentStep === "viewing_results") {
-    return (
-      <ResultViewerPage
-        onBackToIntro={() => setCurrentStep("intro3")}
-        reportData={reportData}
-      />
-    );
+    return <ResultViewerPage onBackToIntro={() => setCurrentStep("intro3")} />;
   }
 
   return null;

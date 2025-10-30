@@ -1,21 +1,20 @@
 import Image from "next/image";
 import { Fragment } from "react";
+import { useAtom } from "jotai";
 
 import Female from "@/assets/images/female.svg";
 import Male from "@/assets/images/male.svg";
 import { ReportHeader } from "@/components/ReportHeader";
 import { Tag } from "@/components/Tag";
 import { ReportData } from "@/types/api";
+import { reportDataAtom } from "@/store/surveyStore";
 
 interface Part4ResultPageProps {
   step: number;
-  reportData?: ReportData | null;
 }
 
-export default function Part4ResultPage({
-  step,
-  reportData,
-}: Part4ResultPageProps) {
+export default function Part4ResultPage({ step }: Part4ResultPageProps) {
+  const [reportData] = useAtom(reportDataAtom);
   const maleName = reportData?.metadata?.male_name || "갑돌이";
   const femaleName = reportData?.metadata?.female_name || "갑순이";
 

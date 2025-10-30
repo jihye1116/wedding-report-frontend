@@ -1,3 +1,5 @@
+import { useAtom } from "jotai";
+
 import { ReportHeader } from "@/components/ReportHeader";
 import Badge from "./Badge";
 import WhenBox from "./WhenBox";
@@ -8,6 +10,7 @@ import Female from "@/assets/images/female.svg";
 import Male from "@/assets/images/male.svg";
 import EmpathyQuadrant from "@/components/EmpathyQuadrant";
 import { ReportData } from "@/types/api";
+import { reportDataAtom } from "@/store/surveyStore";
 /*
   Part 2: 공감 기반 시너지 (Positive Resonance)
   - 페이지 총 4장 구성
@@ -231,21 +234,18 @@ const ResultPage = ({ data, index }: ResultPageProps) => (
 
 interface Part2ResultPageProps {
   currentPage: number;
-  reportData: ReportData | null;
 }
 
-export default function Part2ResultPage({
-  currentPage,
-  reportData,
-}: Part2ResultPageProps) {
+export default function Part2ResultPage({ currentPage }: Part2ResultPageProps) {
+  const [reportData] = useAtom(reportDataAtom);
   // reportData가 없으면 로딩 상태 표시
   if (!reportData) {
     return (
       <div className="font-pretendard flex-1">
         <ReportHeader />
-        <div className="flex-1 flex items-center justify-center">
+        <div className="flex flex-1 items-center justify-center">
           <div className="text-center">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-4"></div>
+            <div className="mx-auto mb-4 h-8 w-8 animate-spin rounded-full border-b-2 border-blue-600"></div>
             <p className="text-gray-600">데이터를 불러오는 중...</p>
           </div>
         </div>

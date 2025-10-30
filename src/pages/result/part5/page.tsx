@@ -1,11 +1,13 @@
+import { useAtom } from "jotai";
+
 import { ReportHeader } from "@/components/ReportHeader";
 import { ReportData } from "@/types/api";
+import { reportDataAtom } from "@/store/surveyStore";
 
-interface Part5ResultPageProps {
-  reportData?: ReportData | null;
-}
+interface Part5ResultPageProps {}
 
-export default function Part5ResultPage({ reportData }: Part5ResultPageProps) {
+export default function Part5ResultPage({}: Part5ResultPageProps) {
+  const [reportData] = useAtom(reportDataAtom);
   const comprehensiveData =
     reportData?.relationship_prediction?.comprehensive_conclusion;
 

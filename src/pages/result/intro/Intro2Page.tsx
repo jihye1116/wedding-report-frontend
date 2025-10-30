@@ -1,16 +1,19 @@
 import Image from "next/image";
 
+import { useAtom } from "jotai";
+
 import { NavigateButton } from "@/components/NavigateButton";
 import Couple from "@/assets/images/couple.png";
 import { ReportHeader } from "@/components/ReportHeader";
-import { ReportData } from "@/types/api";
+import { reportDataAtom } from "@/store/surveyStore";
 
 interface Intro2PageProps {
   onNext: () => void;
-  reportData?: ReportData | null;
 }
 
-export default function Intro2Page({ onNext, reportData }: Intro2PageProps) {
+export default function Intro2Page({ onNext }: Intro2PageProps) {
+  const [reportData] = useAtom(reportDataAtom);
+
   // 디버깅용 로그
   console.log("Intro2Page reportData:", reportData);
   console.log("metadata:", reportData?.metadata);
