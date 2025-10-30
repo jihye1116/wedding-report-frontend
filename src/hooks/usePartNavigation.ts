@@ -47,7 +47,7 @@ export const usePartNavigation = ({
       }
     } else {
       // 현재 파트의 마지막 페이지에서 다음 파트로 이동
-      console.log("Moving to next part:", part.partNumber + 1);
+      // console.log("Moving to next part:", part.partNumber + 1);
       if (onNext) {
         onNext();
       }
@@ -64,7 +64,7 @@ export const usePartNavigation = ({
       }
     } else {
       // 현재 파트의 첫 페이지에서 이전 파트로 이동
-      console.log("Moving to previous part:", part.partNumber - 1);
+      // console.log("Moving to previous part:", part.partNumber - 1);
       if (onBack) {
         onBack();
       }

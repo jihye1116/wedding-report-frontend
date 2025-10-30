@@ -14,13 +14,6 @@ interface Intro2PageProps {
 export default function Intro2Page({ onNext }: Intro2PageProps) {
   const [reportData] = useAtom(reportDataAtom);
 
-  // 디버깅용 로그
-  console.log("Intro2Page reportData:", reportData);
-  console.log("metadata:", reportData?.metadata);
-  console.log("male_name:", reportData?.metadata?.male_name);
-  console.log("female_name:", reportData?.metadata?.female_name);
-  console.log("generated_at:", reportData?.metadata?.generated_at);
-
   return (
     <div className="relative h-dvh">
       <div className="absolute top-0 right-0 left-0 z-10 hidden xl:block">

@@ -5,7 +5,7 @@ interface MonthlySimulationProps {
 }
 
 export default function MonthlySimulation({ data }: MonthlySimulationProps) {
-  console.log("conversation:", data.conversation);
+  // console.log("conversation:", data.conversation);
   return (
     <article className="wrapper flex flex-col gap-7.5 py-5 leading-snug">
       <section className="flex flex-col gap-5">
