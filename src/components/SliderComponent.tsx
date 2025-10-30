@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useLayoutEffect, useRef, useState } from "react";
 
 type Origin = "center" | "left";
+type ZeroBias = "left" | "right";
 
 interface SliderComponentProps {
   title: string;
@@ -15,15 +16,14 @@ interface SliderComponentProps {
   surfaceColor?: string; // 인디케이터 border와 동일해야 함
   origin?: Origin; // "center" | "left" (기본: "center")
   showCenterLine?: boolean; // 강제로 중앙선 노출/비노출 제어(기본: origin에 따라 자동)
+  zeroBias?: ZeroBias; // 값=0일 때 진행방향(기본: "right")
 }
 
 /**
- * v4.0
- * - origin="center": 양극 경향형 (-max~+max), 중앙 기준으로 채움
- * - origin="left"  : 단일 경향형 (0~max), 0 기준으로 채움
- * - 인디케이터 border=surfaceColor
- * - 인디케이터는 트랙 밖으로 나가지 않음
- * - 텍스트 색 자동 대비
+ * v4.4
+ * - 방향 반대로 붙이기: 오른쪽 진행(→)이면 인디케이터의 '왼쪽 면'이 기준선에 닿도록, 왼쪽 진행(←)이면 '오른쪽 면'이 닿도록.
+ * - 0값 방향 zeroBias로 제어(기본 "right").
+ * - 작은 값(예: 1)에서 반갈림 방지: 트랙 실측 기반으로 트림 폭을 min(OUTER/2, 실제 채움폭)으로 제한.
  */
 export const SliderComponent: React.FC<SliderComponentProps> = ({
   title,
@@ -38,30 +38,31 @@ export const SliderComponent: React.FC<SliderComponentProps> = ({
   origin = "center",
   showCenterLine,
   scale,
+  zeroBias = "right",
 }) => {
   // ===== 디자인 상수 =====
   const TRACK_H = 40; // px
   const BORDER_W = 4; // px
   const INDICATOR_OUTER = TRACK_H;
   const INDICATOR_INNER = INDICATOR_OUTER - BORDER_W * 2;
-  const INDICATOR_RADIUS = INDICATOR_OUTER / 2; // 추가: 반지름
+
+  // ===== 측정 =====
+  const trackRef = useRef<HTMLDivElement | null>(null);
+  const [trackW, setTrackW] = useState<number>(0);
+
+  useLayoutEffect(() => {
+    if (!trackRef.current) return;
+    const el = trackRef.current;
+    const update = () => setTrackW(el.clientWidth);
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
 
   // ===== 유틸 =====
   const clamp = (n: number, min: number, max: number) =>
     Math.max(min, Math.min(n, max));
-
-  const hexToRgb = (hex: string) => {
-    const m = hex.replace("#", "");
-    const v =
-      m.length === 3
-        ? m.split("").map((c) => parseInt(c + c, 16))
-        : [
-            parseInt(m.slice(0, 2), 16),
-            parseInt(m.slice(2, 4), 16),
-            parseInt(m.slice(4, 6), 16),
-          ];
-    return { r: v[0] ?? 255, g: v[1] ?? 255, b: v[2] ?? 255 };
-  };
 
   const textColor = "white";
 
@@ -105,8 +106,31 @@ export const SliderComponent: React.FC<SliderComponentProps> = ({
     fillWidthPct = ratio * 100;
   }
 
-  // 인디케이터 위치: 좌측 모서리 기준, 트랙 너비 - 외경 범위 안
-  const indicatorCenter = `clamp(${INDICATOR_RADIUS}px, calc(${(ratio * 100).toFixed(4)}%), calc(100% - ${INDICATOR_RADIUS}px))`;
+  // ===== 위치 CSS/방향 =====
+  const posPct = ratio * 100;
+
+  // 진행 방향 판단
+  // center: 음수=왼쪽, 양수=오른쪽, 0은 zeroBias
+  // left  : 0→+값(오른쪽), 0은 zeroBias
+  const goesRight =
+    origin === "center"
+      ? ariaNow > 0
+        ? true
+        : ariaNow < 0
+          ? false
+          : zeroBias === "right"
+      : ariaNow > 0
+        ? true
+        : ariaNow < 0
+          ? false
+          : zeroBias === "right";
+
+  // 인디케이터를 채움 내부에 붙이되, 진행 방향의 '반대쪽 면'이 기준선에 닿도록
+  // - goesRight=true  => 인디케이터 '왼쪽 면'이 pos에 닿음 => left = pos% - OUTER
+  // - goesRight=false => 인디케이터 '오른쪽 면'이 pos에 닿음 => left = pos%
+  const indicatorLeftCss = goesRight
+    ? `clamp(0px, calc(${posPct.toFixed(4)}% - ${INDICATOR_OUTER}px), calc(100% - ${INDICATOR_OUTER}px))`
+    : `clamp(0px, ${posPct.toFixed(4)}%, calc(100% - ${INDICATOR_OUTER}px))`;
 
   // 중앙선 노출 여부(기본: center에서만 표시)
   const showMidLine = showCenterLine ?? origin === "center";
@@ -145,8 +169,8 @@ export const SliderComponent: React.FC<SliderComponentProps> = ({
         </div>
 
         {/* Track */}
-
         <div
+          ref={trackRef}
           className="relative overflow-hidden rounded-full ring-1 ring-gray-200 select-none"
           style={{ height: TRACK_H, backgroundColor: surfaceColor }}
         >
@@ -161,6 +185,32 @@ export const SliderComponent: React.FC<SliderComponentProps> = ({
             aria-hidden
           />
 
+          {/* 채움 트림(인디케이터가 보이도록 막대를 일부 덜 채워 보이게 처리) */}
+          {trackW > 0 &&
+            (() => {
+              const posPx = (posPct / 100) * trackW;
+              const fillPx = (fillWidthPct / 100) * trackW;
+              // 작은 값에서 반갈림 방지: 트림 폭을 실제 채움 폭 이내로 제한
+              const trimW = Math.min(INDICATOR_OUTER / 2, Math.max(0, fillPx));
+              const leftPx = goesRight
+                ? Math.max(0, Math.min(trackW - trimW, posPx - trimW)) // → 진행: 기준선 왼쪽으로 trim
+                : Math.max(0, Math.min(trackW - trimW, posPx)); // ← 진행: 기준선 오른쪽으로 trim
+              return (
+                <div
+                  className="absolute top-0"
+                  style={{
+                    left: leftPx,
+                    width: trimW,
+                    height: TRACK_H,
+                    backgroundColor: surfaceColor,
+                    pointerEvents: "none",
+                    zIndex: 1, // 채움 위, 인디케이터 아래
+                  }}
+                  aria-hidden
+                />
+              );
+            })()}
+
           {/* 중앙 기준선 (center 타입에서만 기본 노출) */}
           {showMidLine && (
             <div
@@ -173,12 +223,10 @@ export const SliderComponent: React.FC<SliderComponentProps> = ({
           <div
             className="absolute top-0"
             style={{
-              left: indicatorCenter, // 중심 좌표
-              transform: "translateX(-50%)", // 중심 정렬
+              left: indicatorLeftCss,
               width: INDICATOR_OUTER,
               height: INDICATOR_OUTER,
-              // (선택) 서브픽셀 깜빡임 줄이기
-              // willChange: "left, transform",
+              zIndex: 2,
             }}
             aria-hidden
           >
