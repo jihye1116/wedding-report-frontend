@@ -19,7 +19,7 @@ const Page1 = () => (
     </div>
 
     <div className="flex flex-1 flex-col gap-10 py-5 xl:py-10">
-      <h3 className="text-lg">
+      <h3 className="text-center text-lg">
         "함께 잘 살기 위한 첫걸음, 나를 이해하는 것부터"
       </h3>
       <div>
