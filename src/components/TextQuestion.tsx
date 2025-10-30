@@ -50,6 +50,9 @@ export function TextQuestion({
             alt={`Question ${globalQuestionNumber} illustration`}
             className="object-contain"
             fill
+            sizes="(max-width: 768px) 100vw, 768px"
+            quality={80}
+            priority={idx === 0}
           />
         </div>
       )}
