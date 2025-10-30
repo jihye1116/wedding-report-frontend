@@ -44,7 +44,11 @@ export default function Intro1Page({ onNext }: Intro1PageProps) {
           </article>
         </main>
         <div className="flex w-full justify-end py-10 xl:mt-auto">
-          <StartButton onClick={onNext} text="리포트 보기" />
+          <StartButton
+            onClick={onNext}
+            text="리포트 보기"
+            className="font-pretendard"
+          />
         </div>
       </div>
     </main>
