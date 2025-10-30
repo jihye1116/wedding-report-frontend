@@ -7,6 +7,7 @@ import { useState } from "react";
 import CelebrationImage from "@/assets/images/celebration.png";
 import { NavigateButton } from "@/components/NavigateButton";
 import { Navigator } from "@/components/Navigator";
+import { useSwipeNavigation } from "@/hooks/useSwipeNavigation";
 import Part1ResultPage, { part1TotalPages } from "@/pages/result/part1/page";
 import Part2ResultPage, { part2TotalPages } from "@/pages/result/part2/page";
 import Part3ResultPage from "@/pages/result/part3/page";
@@ -148,9 +149,52 @@ export default function ResultViewerPage({
     }
   };
 
+  const onSwipedLeft = () => {
+    if (currentStep === "part3") {
+      if (part3Step === 21) {
+        handleNext();
+      } else {
+        setPart3Step((prev) => prev + 1);
+      }
+      window.scrollTo({ top: 0 });
+    } else if (currentStep === "part4") {
+      if (part4Step === 5) {
+        handleNext();
+      } else {
+        setPart4Step((prev) => prev + 1);
+      }
+      window.scrollTo({ top: 0 });
+    } else if (currentStep !== "finish") {
+      handleNext();
+    }
+  };
+
+  const onSwipedRight = () => {
+    if (currentStep === "part3") {
+      if (part3Step === 1) {
+        handleBack();
+      } else {
+        setPart3Step((prev) => prev - 1);
+      }
+    } else if (currentStep === "part4") {
+      if (part4Step === 1) {
+        handleBack();
+      } else {
+        setPart4Step((prev) => prev - 1);
+      }
+    } else {
+      handleBack();
+    }
+  };
+
+  const swipeHandlers = useSwipeNavigation({
+    onSwipedLeft,
+    onSwipedRight,
+  });
+
   if (currentStep === "part1") {
     return (
-      <div className="flex h-dvh flex-col">
+      <div {...swipeHandlers} className="flex h-dvh flex-col">
         <Part1ResultPage currentPage={partPages.part1} />
         <Navigator
           onNext={handleNext}
@@ -166,7 +210,7 @@ export default function ResultViewerPage({
 
   if (currentStep === "part2") {
     return (
-      <div className="flex h-dvh flex-col justify-between">
+      <div {...swipeHandlers} className="flex h-dvh flex-col justify-between">
         <Part2ResultPage currentPage={partPages.part2} />
         <Navigator
           onNext={handleNext}
@@ -182,7 +226,7 @@ export default function ResultViewerPage({
 
   if (currentStep === "part3") {
     return (
-      <div className="flex h-dvh flex-col justify-between">
+      <div {...swipeHandlers} className="flex h-dvh flex-col justify-between">
         <Part3ResultPage step={part3Step} />
         <Navigator
           onNext={() => {
@@ -211,7 +255,7 @@ export default function ResultViewerPage({
 
   if (currentStep === "part4") {
     return (
-      <div className="flex h-dvh flex-col justify-between">
+      <div {...swipeHandlers} className="flex h-dvh flex-col justify-between">
         <Part4ResultPage step={part4Step} />
         <Navigator
           onNext={() => {
@@ -240,7 +284,7 @@ export default function ResultViewerPage({
 
   if (currentStep === "part5") {
     return (
-      <div className="flex h-dvh flex-col justify-between">
+      <div {...swipeHandlers} className="flex h-dvh flex-col justify-between">
         <Part5ResultPage />
         <Navigator
           onNext={handleNext}
@@ -256,7 +300,10 @@ export default function ResultViewerPage({
 
   if (currentStep === "finish") {
     return (
-      <div className="flex h-dvh flex-col items-center justify-center">
+      <div
+        {...swipeHandlers}
+        className="flex h-dvh flex-col items-center justify-center"
+      >
         <div className="flex-2" />
         <main className="wrapper flex w-full flex-col gap-10 py-5 text-center leading-snug text-[#111111]">
           <section className="flex flex-col gap-4 leading-snug">

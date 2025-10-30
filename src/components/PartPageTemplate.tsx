@@ -2,19 +2,20 @@
 
 import { useSetAtom } from "jotai";
 import {
+  cloneElement,
+  ReactElement,
   ReactNode,
   useEffect,
   useMemo,
-  useState,
   useRef,
-  cloneElement,
-  ReactElement,
+  useState,
 } from "react";
 
 import { Navigator } from "@/components/Navigator";
 import { ProgressBar } from "@/components/ProgressBar";
 import { detailedSurveyData } from "@/data";
 import { usePartNavigation } from "@/hooks/usePartNavigation";
+import { useSwipeNavigation } from "@/hooks/useSwipeNavigation";
 import { currentPageAtom, currentPartAtom } from "@/store/surveyStore";
 import { SurveyAnswer, SurveyPart, SurveyQuestion } from "@/types/survey";
 
@@ -70,6 +71,11 @@ export const PartPageTemplate = ({
     onBack,
     currentPage: externalCurrentPage,
     onPageChange,
+  });
+
+  const swipeHandlers = useSwipeNavigation({
+    onSwipedLeft: handleNext,
+    onSwipedRight: handleBack,
   });
 
   const currentPage =
@@ -173,7 +179,7 @@ export const PartPageTemplate = ({
   };
 
   return (
-    <div className="flex min-h-screen flex-col">
+    <div {...swipeHandlers} className="flex min-h-screen flex-col">
       <main className="flex-1">
         {isIntroPage ? (
           introComponent

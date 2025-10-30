@@ -1,16 +1,17 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { useAtom } from "jotai";
+import { useEffect,useState } from "react";
+
+import { LoadingSpinner } from "@/components/LoadingSpinner";
+import { reportDataAtom } from "@/store/surveyStore";
+import { ReportData } from "@/types/api";
+import { getReportData } from "@/utils/api";
 
 import Intro1Page from "./intro/Intro1Page";
 import Intro2Page from "./intro/Intro2Page";
 import Intro3Page from "./intro/Intro3Page";
 import ResultViewerPage from "./ResultViewerPage";
-import { ReportData } from "@/types/api";
-import { LoadingSpinner } from "@/components/LoadingSpinner";
-import { getReportData } from "@/utils/api";
-import { reportDataAtom } from "@/store/surveyStore";
 
 interface ReportIntroductionPageProps {
   resultId: string;
