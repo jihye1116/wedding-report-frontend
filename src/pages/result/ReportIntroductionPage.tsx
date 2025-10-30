@@ -1,11 +1,10 @@
 "use client";
 
 import { useAtom } from "jotai";
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
 
 import { LoadingSpinner } from "@/components/LoadingSpinner";
 import { reportDataAtom } from "@/store/surveyStore";
-import { ReportData } from "@/types/api";
 import { getReportData } from "@/utils/api";
 
 import Intro1Page from "./intro/Intro1Page";
@@ -105,6 +104,16 @@ export default function ReportIntroductionPage({
             다시 시도
           </button>
         </div>
+      </div>
+    );
+  }
+
+  if (!reportData) {
+    return (
+      <div className="flex min-h-screen items-center justify-center">
+        <p className="text-lg text-red-500">
+          리포트 데이터를 찾을 수 없습니다.
+        </p>
       </div>
     );
   }
