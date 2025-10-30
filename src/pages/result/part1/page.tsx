@@ -193,7 +193,7 @@ const Page3 = ({ reportData }: { reportData?: ReportData | null }) => {
             maxValue={30}
             indicatorColor="#E2F2FD"
             clampColor="#6EA3C7"
-            description="현재 드러난 사실과 미래에 일어날 가능성 모두에 관심을 가지는 성향을 갖고 있습니다. 구체적인 데이터와 전체적인 패턴을 모두 고려하며, 상황을 해석할 때 '지금 무엇이 중요한가?'와 '앞으로 어떻게 변할 수 있을까?'라는 질문을 자연스럽게 떠올립니다."
+            description={`${reportData?.personal_analyses?.female?.detailed_analysis?.["1-1"]?.informationPerceptionMethod || ""} ${reportData?.personal_analyses?.female?.detailed_analysis?.["1-1"]?.informationPerceptionMethodReason || ""} ${reportData?.personal_analyses?.female?.detailed_analysis?.["1-1"]?.partnerPerception || ""}`.trim()}
           />
           <hr className="mt-6 border-t border-gray-300" />
 
@@ -209,7 +209,7 @@ const Page3 = ({ reportData }: { reportData?: ReportData | null }) => {
             maxValue={30}
             indicatorColor="#DAFEE0"
             clampColor="#22c55e"
-            description="논리와 감정을 모두 고려해 상황에 맞게 유연하게 판단하는 성향을 갖고 있습니다. 현재 사실과 미래 가능성 어느 쪽에도 치우치지 않고 균형 있게 상황을 바라보며, 구체적 데이터와 패턴, 의미를 모두 함께 고려합니다."
+            description={`${reportData?.personal_analyses?.female?.detailed_analysis?.["1-2"]?.informationPerceptionMethod || ""} ${reportData?.personal_analyses?.female?.detailed_analysis?.["1-2"]?.informationPerceptionMethodReason || ""} ${reportData?.personal_analyses?.female?.detailed_analysis?.["1-2"]?.partnerPerception || ""}`.trim()}
           />
           <hr className="mt-6 border-t border-gray-300" />
 
@@ -226,7 +226,7 @@ const Page3 = ({ reportData }: { reportData?: ReportData | null }) => {
             maxValue={30}
             indicatorColor="#FEECDA"
             clampColor="#76634E"
-            description="감정을 잘 조절하며 침착하게 대응하는 성향을 갖고 있습니다. 현재 드러난 사실에 주목하여 신속하고 명확하게 상황을 파악하며, 논리적으로 문제에 접근하는 능력이 뛰어납니다."
+            description={`${reportData?.personal_analyses?.female?.detailed_analysis?.["1-3"]?.informationPerceptionMethod || ""} ${reportData?.personal_analyses?.female?.detailed_analysis?.["1-3"]?.informationPerceptionMethodReason || ""} ${reportData?.personal_analyses?.female?.detailed_analysis?.["1-3"]?.partnerPerception || ""}`.trim()}
           />
         </div>
 
@@ -279,7 +279,7 @@ const Page4 = ({ reportData }: { reportData?: ReportData | null }) => {
             maxValue={30}
             indicatorColor="#E2F2FD"
             clampColor="#6EA3C7"
-            description="현재 드러난 사실과 미래에 일어날 가능성 모두에 관심을 가지는 성향을 갖고 있습니다. 구체적인 데이터와 전체적인 패턴을 모두 고려하며, 상황을 해석할 때 '지금 무엇이 중요한가?'와 '앞으로 어떻게 변할 수 있을까?'라는 질문을 자연스럽게 떠올립니다."
+            description={`${reportData?.personal_analyses?.male?.detailed_analysis?.["1-1"]?.informationPerceptionMethod || ""} ${reportData?.personal_analyses?.male?.detailed_analysis?.["1-1"]?.informationPerceptionMethodReason || ""} ${reportData?.personal_analyses?.male?.detailed_analysis?.["1-1"]?.partnerPerception || ""}`.trim()}
           />
           <hr className="mt-6 border-t border-gray-300" />
 
@@ -295,7 +295,7 @@ const Page4 = ({ reportData }: { reportData?: ReportData | null }) => {
             maxValue={30}
             indicatorColor="#DAFEE0"
             clampColor="#22c55e"
-            description="논리와 감정을 모두 고려해 상황에 맞게 유연하게 판단하는 성향을 갖고 있습니다. 현재 사실과 미래 가능성 어느 쪽에도 치우치지 않고 균형 있게 상황을 바라보며, 구체적 데이터와 패턴, 의미를 모두 함께 고려합니다."
+            description={`${reportData?.personal_analyses?.male?.detailed_analysis?.["1-2"]?.informationPerceptionMethod || ""} ${reportData?.personal_analyses?.male?.detailed_analysis?.["1-2"]?.informationPerceptionMethodReason || ""} ${reportData?.personal_analyses?.male?.detailed_analysis?.["1-2"]?.partnerPerception || ""}`.trim()}
           />
           <hr className="mt-6 border-t border-gray-300" />
 
@@ -312,7 +312,7 @@ const Page4 = ({ reportData }: { reportData?: ReportData | null }) => {
             maxValue={30}
             indicatorColor="#FEECDA"
             clampColor="#76634E"
-            description="감정을 잘 조절하며 침착하게 대응하는 성향을 갖고 있습니다. 현재 드러난 사실에 주목하여 신속하고 명확하게 상황을 파악하며, 논리적으로 문제에 접근하는 능력이 뛰어납니다."
+            description={`${reportData?.personal_analyses?.male?.detailed_analysis?.["1-3"]?.informationPerceptionMethod || ""} ${reportData?.personal_analyses?.male?.detailed_analysis?.["1-3"]?.informationPerceptionMethodReason || ""} ${reportData?.personal_analyses?.male?.detailed_analysis?.["1-3"]?.partnerPerception || ""}`.trim()}
           />
         </div>
 
@@ -365,7 +365,7 @@ const Page5 = ({ reportData }: { reportData?: ReportData | null }) => {
             maxValue={30}
             indicatorColor="#FDE2E2"
             clampColor="#D68787"
-            description="안정과 도전 사이에서 균형을 이루는 성향을 갖고 있습니다. 상황에 따라 신중하게 판단하며, 위험을 회피하기보다는 도전과 가능성에 반응하며 움직이는 성향이 있습니다. 변화가 예고될 때 위축되기보다는, 그 안에서 기회와 의미를 탐색하고 실행으로 옮기려는 동기를 갖고 있습니다."
+            description={`${reportData?.personal_analyses?.female?.detailed_analysis?.["2-1"]?.informationPerceptionMethod || ""} ${reportData?.personal_analyses?.female?.detailed_analysis?.["2-1"]?.informationPerceptionMethodReason || ""} ${reportData?.personal_analyses?.female?.detailed_analysis?.["2-1"]?.partnerPerception || ""}`.trim()}
           />
           <hr className="mt-6 border-t border-gray-300" />
 
@@ -381,7 +381,7 @@ const Page5 = ({ reportData }: { reportData?: ReportData | null }) => {
             maxValue={30}
             indicatorColor="#EEE3FF"
             clampColor="#8E6CC2"
-            description="내면에서 비롯된 직관, 영감, 의미 추구가 강한 동기 요인이 됩니다. 타인의 인정이나 기대보다는 내면의 방향성을 따르고자 하는 힘이 강하며, 주체적으로 움직이면서도 주변의 기대나 기준을 완전히 무시하지 않는 유연한 태도를 지닙니다."
+            description={`${reportData?.personal_analyses?.female?.detailed_analysis?.["2-2"]?.informationPerceptionMethod || ""} ${reportData?.personal_analyses?.female?.detailed_analysis?.["2-2"]?.informationPerceptionMethodReason || ""} ${reportData?.personal_analyses?.female?.detailed_analysis?.["2-2"]?.partnerPerception || ""}`.trim()}
           />
           <hr className="mt-6 border-t border-gray-300" />
 
@@ -397,7 +397,25 @@ const Page5 = ({ reportData }: { reportData?: ReportData | null }) => {
             maxValue={30}
             indicatorColor="#FEFBDA"
             clampColor="#C2BD91"
-            description="자신이 설정한 목표를 스스로 계획하고 실천할 수 있는 실행 자율성이 높은 편입니다. 단지 아이디어나 의도를 갖는 데 그치지 않고, 그것을 구체적인 행동으로 전환하고 유지하는 능력을 가지고 있습니다. 스스로 동기를 조절하고 방향을 정하며, 일정한 흐름으로 목표를 끝까지 추진할 수 있는 심리적 자기관리력이 강점입니다."
+            description={
+              (
+                `${reportData?.personal_analyses?.female?.detailed_analysis?.["2-3"]?.informationPerceptionMethod || ""} ` +
+                `${reportData?.personal_analyses?.female?.detailed_analysis?.["2-3"]?.informationPerceptionMethodReason || ""} ` +
+                `${reportData?.personal_analyses?.female?.detailed_analysis?.["2-3"]?.partnerPerception || ""}`
+              ).trim() ||
+              (
+                `${reportData?.personal_analyses?.female?.detailed_analysis?.["1-3"]?.informationPerceptionMethod || ""} ` +
+                `${reportData?.personal_analyses?.female?.detailed_analysis?.["1-3"]?.informationPerceptionMethodReason || ""} ` +
+                `${reportData?.personal_analyses?.female?.detailed_analysis?.["1-3"]?.partnerPerception || ""}`
+              ).trim() ||
+              // 최종 폴백: 프로필 섹션의 dimension 설명 사용
+              reportData?.personal_analyses?.female?.profile?.sections?.find(
+                (s) =>
+                  s.section_name?.includes("동기") ||
+                  s.section_name?.includes("자기조절"),
+              )?.dimensions?.["반응적_조절적"]?.description ||
+              ""
+            }
           />
         </div>
 
@@ -450,7 +468,7 @@ const Page6 = ({ reportData }: { reportData?: ReportData | null }) => {
             maxValue={30}
             indicatorColor="#FDE2E2"
             clampColor="#D68787"
-            description="안정과 도전 사이에서 균형을 이루는 성향을 갖고 있습니다. 상황에 따라 신중하게 판단하며, 위험을 회피하기보다는 도전과 가능성에 반응하며 움직이는 성향이 있습니다. 변화가 예고될 때 위축되기보다는, 그 안에서 기회와 의미를 탐색하고 실행으로 옮기려는 동기를 갖고 있습니다."
+            description={`${reportData?.personal_analyses?.male?.detailed_analysis?.["2-1"]?.informationPerceptionMethod || ""} ${reportData?.personal_analyses?.male?.detailed_analysis?.["2-1"]?.informationPerceptionMethodReason || ""} ${reportData?.personal_analyses?.male?.detailed_analysis?.["2-1"]?.partnerPerception || ""}`.trim()}
           />
           <hr className="mt-6 border-t border-gray-300" />
 
@@ -466,7 +484,7 @@ const Page6 = ({ reportData }: { reportData?: ReportData | null }) => {
             maxValue={30}
             indicatorColor="#EEE3FF"
             clampColor="#8E6CC2"
-            description="내면에서 비롯된 직관, 영감, 의미 추구가 강한 동기 요인이 됩니다. 타인의 인정이나 기대보다는 내면의 방향성을 따르고자 하는 힘이 강하며, 주체적으로 움직이면서도 주변의 기대나 기준을 완전히 무시하지 않는 유연한 태도를 지닙니다."
+            description={`${reportData?.personal_analyses?.male?.detailed_analysis?.["2-2"]?.informationPerceptionMethod || ""} ${reportData?.personal_analyses?.male?.detailed_analysis?.["2-2"]?.informationPerceptionMethodReason || ""} ${reportData?.personal_analyses?.male?.detailed_analysis?.["2-2"]?.partnerPerception || ""}`.trim()}
           />
           <hr className="mt-6 border-t border-gray-300" />
 
@@ -482,7 +500,7 @@ const Page6 = ({ reportData }: { reportData?: ReportData | null }) => {
             maxValue={30}
             indicatorColor="#FEFBDA"
             clampColor="#C2BD91"
-            description="자신이 설정한 목표를 스스로 계획하고 실천할 수 있는 실행 자율성이 높은 편입니다. 단지 아이디어나 의도를 갖는 데 그치지 않고, 그것을 구체적인 행동으로 전환하고 유지하는 능력을 가지고 있습니다. 스스로 동기를 조절하고 방향을 정하며, 일정한 흐름으로 목표를 끝까지 추진할 수 있는 심리적 자기관리력이 강점입니다."
+            description={`${reportData?.personal_analyses?.male?.detailed_analysis?.["2-3"]?.informationPerceptionMethod || ""} ${reportData?.personal_analyses?.male?.detailed_analysis?.["2-3"]?.informationPerceptionMethodReason || ""} ${reportData?.personal_analyses?.male?.detailed_analysis?.["2-3"]?.partnerPerception || ""}`.trim()}
           />
         </div>
 
@@ -535,7 +553,7 @@ const Page7 = ({ reportData }: { reportData?: ReportData | null }) => {
             maxValue={30}
             indicatorColor="#E2FAFD"
             clampColor="#94DEE8"
-            description="내향과 외향 사이에서 균형을 이루는 성향을 갖고 있습니다. 상황에 따라 혼자만의 시간을 즐기기도 하고, 다른 사람들과의 상호작용에서 에너지를 얻기도 합니다. 조용한 환경에서 깊이 생각하는 것을 좋아하면서도, 필요할 때는 활발하게 소통하는 능력을 가지고 있습니다."
+            description={`${reportData?.personal_analyses?.female?.detailed_analysis?.["3-1"]?.informationPerceptionMethod || ""} ${reportData?.personal_analyses?.female?.detailed_analysis?.["3-1"]?.informationPerceptionMethodReason || ""} ${reportData?.personal_analyses?.female?.detailed_analysis?.["3-1"]?.partnerPerception || ""}`.trim()}
           />
           <hr className="mt-6 border-t border-gray-300" />
 
@@ -551,7 +569,7 @@ const Page7 = ({ reportData }: { reportData?: ReportData | null }) => {
             maxValue={30}
             indicatorColor="#E2FDF0"
             clampColor="#97CCB2"
-            description="유연함과 계획성 사이에서 균형을 이루는 성향을 갖고 있습니다. 상황에 따라 미리 계획을 세우기도 하고, 그때그때 유연하게 대응하기도 합니다. 구조화된 일상을 선호하면서도 예상치 못한 변화에 적응할 수 있는 능력을 가지고 있습니다."
+            description={`${reportData?.personal_analyses?.female?.detailed_analysis?.["3-2"]?.informationPerceptionMethod || ""} ${reportData?.personal_analyses?.female?.detailed_analysis?.["3-2"]?.informationPerceptionMethodReason || ""} ${reportData?.personal_analyses?.female?.detailed_analysis?.["3-2"]?.partnerPerception || ""}`.trim()}
           />
           <hr className="mt-6 border-t border-gray-300" />
 
@@ -568,7 +586,7 @@ const Page7 = ({ reportData }: { reportData?: ReportData | null }) => {
             maxValue={30}
             indicatorColor="#E2E2FD"
             clampColor="#8A8ACD"
-            description="상대를 배려하되 필요시 의견을 표현하는 스타일을 갖고 있습니다. 조화롭게 관계를 유지하면서도 자신의 생각과 감정을 적절히 전달할 수 있는 능력을 가지고 있습니다. 상대방의 입장을 고려하면서도 진정성 있는 소통을 추구합니다."
+            description={`${reportData?.personal_analyses?.female?.detailed_analysis?.["3-3"]?.informationPerceptionMethod || ""} ${reportData?.personal_analyses?.female?.detailed_analysis?.["3-3"]?.informationPerceptionMethodReason || ""} ${reportData?.personal_analyses?.female?.detailed_analysis?.["3-3"]?.partnerPerception || ""}`.trim()}
           />
         </div>
 
@@ -621,7 +639,7 @@ const Page8 = ({ reportData }: { reportData?: ReportData | null }) => {
             maxValue={30}
             indicatorColor="#E2FAFD"
             clampColor="#94DEE8"
-            description="내향과 외향 사이에서 균형을 이루는 성향을 갖고 있습니다. 상황에 따라 혼자만의 시간을 즐기기도 하고, 다른 사람들과의 상호작용에서 에너지를 얻기도 합니다. 조용한 환경에서 깊이 생각하는 것을 좋아하면서도, 필요할 때는 활발하게 소통하는 능력을 가지고 있습니다."
+            description={`${reportData?.personal_analyses?.male?.detailed_analysis?.["3-1"]?.informationPerceptionMethod || ""} ${reportData?.personal_analyses?.male?.detailed_analysis?.["3-1"]?.informationPerceptionMethodReason || ""} ${reportData?.personal_analyses?.male?.detailed_analysis?.["3-1"]?.partnerPerception || ""}`.trim()}
           />
           <hr className="mt-6 border-t border-gray-300" />
 
@@ -637,7 +655,7 @@ const Page8 = ({ reportData }: { reportData?: ReportData | null }) => {
             maxValue={30}
             indicatorColor="#E2FDF0"
             clampColor="#97CCB2"
-            description="유연함과 계획성 사이에서 균형을 이루는 성향을 갖고 있습니다. 상황에 따라 미리 계획을 세우기도 하고, 그때그때 유연하게 대응하기도 합니다. 구조화된 일상을 선호하면서도 예상치 못한 변화에 적응할 수 있는 능력을 가지고 있습니다."
+            description={`${reportData?.personal_analyses?.male?.detailed_analysis?.["3-2"]?.informationPerceptionMethod || ""} ${reportData?.personal_analyses?.male?.detailed_analysis?.["3-2"]?.informationPerceptionMethodReason || ""} ${reportData?.personal_analyses?.male?.detailed_analysis?.["3-2"]?.partnerPerception || ""}`.trim()}
           />
           <hr className="mt-6 border-t border-gray-300" />
 
@@ -654,7 +672,7 @@ const Page8 = ({ reportData }: { reportData?: ReportData | null }) => {
             maxValue={30}
             indicatorColor="#E2E2FD"
             clampColor="#8A8ACD"
-            description="상대를 배려하되 필요시 의견을 표현하는 스타일을 갖고 있습니다. 조화롭게 관계를 유지하면서도 자신의 생각과 감정을 적절히 전달할 수 있는 능력을 가지고 있습니다. 상대방의 입장을 고려하면서도 진정성 있는 소통을 추구합니다."
+            description={`${reportData?.personal_analyses?.male?.detailed_analysis?.["3-3"]?.informationPerceptionMethod || ""} ${reportData?.personal_analyses?.male?.detailed_analysis?.["3-3"]?.informationPerceptionMethodReason || ""} ${reportData?.personal_analyses?.male?.detailed_analysis?.["3-3"]?.partnerPerception || ""}`.trim()}
           />
         </div>
 
