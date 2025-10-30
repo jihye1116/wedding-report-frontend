@@ -28,9 +28,18 @@ const Page1 = () => (
           살펴보겠습니다.
         </p>
         <ol className="mt-2.5 text-gray-500">
-          <li>• 세상을 어떻게 인식하고 감정을 처리하는지</li>
-          <li>• 어떤 가치와 동기가 나를 움직이게 하는지</li>
-          <li>• 어떤 방식으로 일상을 살아가며 에너지를 회복하는지</li>
+          <li className="flex items-start gap-1">
+            <span className="flex-shrink-0">•</span>
+            <span>세상을 어떻게 인식하고 감정을 처리하는지</span>
+          </li>
+          <li className="flex items-start gap-1">
+            <span className="flex-shrink-0">•</span>
+            <span>어떤 가치와 동기가 나를 움직이게 하는지</span>
+          </li>
+          <li className="flex items-start gap-1">
+            <span className="flex-shrink-0">•</span>
+            <span>어떤 방식으로 일상을 살아가며 에너지를 회복하는지</span>
+          </li>
         </ol>
       </div>
       <p className="text-gray-500">
