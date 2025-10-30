@@ -55,7 +55,7 @@ export default function ResultViewerPage({
 
   // 전체 페이지 수 계산
   const totalResultPages =
-    part1TotalPages + part2TotalPages(reportData || null) + 21 + 5 + 1 + 1; // part1 + part2 + part3(21) + part4(5) + part5(1) + finish(1)
+    part1TotalPages + part2TotalPages(reportData || null) + 21 + 5 + 1; // part1 + part2 + part3(21) + part4(5) + part5(1)
 
   // 현재 전체 페이지 번호 계산
   const getCurrentGlobalPage = () => {
@@ -92,7 +92,7 @@ export default function ResultViewerPage({
     globalPage += 1;
 
     if (currentStep === "finish") {
-      return globalPage + 1;
+      return totalResultPages; // finish 페이지는 총 페이지 수와 동일하게 표시
     }
 
     return 1;

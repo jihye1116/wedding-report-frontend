@@ -205,8 +205,8 @@ const ResultPage = ({ data, index }: ResultPageProps) => (
       />
       <h3 className="text-gray-500">{data.subtitle}</h3>
 
-      <p className="text-gray-500">{data.description}</p>
-      <p>{data.mainParagraph}</p>
+      <p className="text-gray-500">{data.mainParagraph}</p>
+      <p>{data.description}</p>
       <div>
         <p className="text-lg font-semibold">✳️ 주요 특징 3가지</p>
       </div>
