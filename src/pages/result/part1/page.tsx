@@ -234,7 +234,7 @@ const Page2 = () => (
         <p className="text-center">
           나는 세상을 어떻게 바라보고, 어떤 기준과 방식으로 판단하고 반응하는가?
         </p>
-        <p className="text-sm text-gray-500">
+        <p className="text-gray-500">
           이 영역은{" "}
           <span className="font-bold">
             {" "}
