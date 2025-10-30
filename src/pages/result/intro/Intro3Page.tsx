@@ -1,6 +1,5 @@
 import { Navigator } from "@/components/Navigator";
 import { ReportHeader } from "@/components/ReportHeader";
-import { ReportData } from "@/types/api";
 
 interface Intro3PageProps {
   onNext: () => void;

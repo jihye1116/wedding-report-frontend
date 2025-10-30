@@ -51,8 +51,8 @@ const Page2 = () => (
       </p>
     </div>
 
-    <div className="mt-8 space-y-6">
-      <div className="text-sm text-gray-500">
+    <div className="mt-2 space-y-6">
+      <div className="text-gray-500">
         지금부터 소개할 세 가지 성향 영역은, 함께하는 삶을 조금 더 편안하고
         유연하게 만들어줄 ‘관계의 기반’을 여는 열쇠입니다.
       </div>

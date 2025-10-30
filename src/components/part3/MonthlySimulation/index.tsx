@@ -22,7 +22,7 @@ export default function MonthlySimulation({ data }: MonthlySimulationProps) {
         <p className="whitespace-pre-wrap">{data.situation}</p>
       </section>
       <section className="flex flex-col gap-5 rounded-xl bg-[#F8F8F8] p-5">
-        <div className="border-l-4 border-[#6DD4BD]/50 pl-5">
+        <div className="border-l-4 border-[#6DD4BD]/50 pl-2.5">
           <p className="leading-relaxed whitespace-pre-wrap">
             {data.conversation}
           </p>

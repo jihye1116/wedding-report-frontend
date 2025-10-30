@@ -139,7 +139,7 @@ export const SliderComponent: React.FC<SliderComponentProps> = ({
 
       <div className="flex flex-col gap-3">
         {/* Labels */}
-        <div className="flex items-center justify-between text-[13px]">
+        <div className="flex items-center justify-between text-sm">
           <span className="truncate">{leftLabel}</span>
           <span className="truncate">{rightLabel}</span>
         </div>
