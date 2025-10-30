@@ -185,7 +185,7 @@ const ResultPage = ({ data, index }: ResultPageProps) => (
           </p>
         </div>
 
-        <p className="mt-5 text-gray-500">
+        <p className="mt-5 mb-13 text-gray-500">
           이 Interaction Zone은 크게 다음의 네 가지 유형으로 나뉘어 이해할 수
           있습니다. 이 네 가지 Interaction Zone은 각각 긍정적 잠재력과 리스크를
           동시에 품고 있습니다. 중요한 것은 자신과 상대의 성향을 정확히
