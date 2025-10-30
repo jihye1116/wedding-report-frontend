@@ -316,7 +316,7 @@ interface SliderSectionProps {
   genderName: string;
   sliderConfig: SliderConfigType[];
   defaultSummaryKey: string;
-  defaultSummaryText?: string;
+  characteristicDefinition?: string;
 }
 
 const SliderSection = ({
@@ -327,7 +327,7 @@ const SliderSection = ({
   genderName,
   sliderConfig,
   defaultSummaryKey,
-  defaultSummaryText,
+  characteristicDefinition,
 }: SliderSectionProps) => {
   const personalAnalysis = reportData?.personal_analyses?.[gender];
   const detailedAnalysis = personalAnalysis?.detailed_analysis;
@@ -386,7 +386,7 @@ const SliderSection = ({
         <SummaryBox
           text={
             detailedAnalysis?.[defaultSummaryKey]?.characteristicDefinition ||
-            defaultSummaryText ||
+            characteristicDefinition ||
             ""
           }
         />
