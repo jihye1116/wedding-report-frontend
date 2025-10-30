@@ -40,7 +40,7 @@ const SLIDER_CONFIG = {
       leftLabel: "반응적",
       rightLabel: "조절적",
       origin: "left" as const,
-      maxValue: 30,
+      maxValue: 100,
       indicatorColor: "#FEECDA",
       clampColor: "#76634E",
       dimensionKey: "반응적_조절적" as const,
@@ -76,7 +76,7 @@ const SLIDER_CONFIG = {
       leftLabel: "낮음",
       rightLabel: "높음",
       origin: "left" as const,
-      maxValue: 30,
+      maxValue: 100,
       indicatorColor: "#FEFBDA",
       clampColor: "#C2BD91",
       dimensionKey: "반응적_조절적" as const,
@@ -113,7 +113,7 @@ const SLIDER_CONFIG = {
       leftLabel: "자기표현형",
       rightLabel: "적응배려형",
       origin: "left" as const,
-      maxValue: 30,
+      maxValue: 100,
       indicatorColor: "#E2E2FD",
       clampColor: "#8A8ACD",
       dimensionKey: "자기표현_적응배려" as const,
@@ -422,8 +422,8 @@ const Page4 = ({ reportData }: { reportData?: ReportData | null }) => {
       genderIcon={Male}
       genderName={maleName}
       sliderConfig={SLIDER_CONFIG.section1}
-      defaultSummaryKey="1-2"
-      defaultSummaryText="상황에 따라 논리와 감정을 균형 있게 고려하는 성향"
+      defaultSummaryKey="1-1"
+      defaultSummaryText="현재와 미래를 균형 있게 조화시키려는 성향"
     />
   );
 };
@@ -439,8 +439,8 @@ const Page5 = ({ reportData }: { reportData?: ReportData | null }) => {
       genderIcon={Female}
       genderName={femaleName}
       sliderConfig={SLIDER_CONFIG.section2}
-      defaultSummaryKey="2-2"
-      defaultSummaryText="내적 동기와 외적 동기 사이에서 균형을 이루려는 성향"
+      defaultSummaryKey="2-1"
+      defaultSummaryText="안정적이고 예측 가능한 환경에서 안전감을 느끼는 성향"
     />
   );
 };
@@ -473,8 +473,8 @@ const Page7 = ({ reportData }: { reportData?: ReportData | null }) => {
       genderIcon={Female}
       genderName={femaleName}
       sliderConfig={SLIDER_CONFIG.section3}
-      defaultSummaryKey="3-2"
-      defaultSummaryText="상황에 따라 유연하게 대처하고 계획과 즉흥 사이에서 균형을 이루는 성향"
+      defaultSummaryKey="3-1"
+      defaultSummaryText="내향과 외향 사이에서 균형 있게 상황에 맞춰 유연하게 대응하는 성향"
     />
   );
 };
