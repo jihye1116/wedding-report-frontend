@@ -11,6 +11,7 @@ import { Navigator } from "@/components/Navigator";
 import { SelectionCircle } from "@/components/SelectionCircle";
 import { StartButton } from "@/components/StartButton";
 import { useIntroduction } from "@/hooks/useIntroduction";
+import { useSwipeNavigation } from "@/hooks/useSwipeNavigation";
 
 interface IntroductionPageProps {
   onNext: () => void;
@@ -153,8 +154,38 @@ const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
     });
   };
 
+  const onSwipedLeft = () => {
+    switch (step) {
+      case 0:
+        handleNext();
+        break;
+      case 1:
+        handleNextFromStep1();
+        break;
+      case 2:
+        handleNextFromStep2();
+        break;
+      case 3:
+        handleNextFromStep3();
+        break;
+      default:
+        break;
+    }
+  };
+
+  const onSwipedRight = () => {
+    if (step > 0) {
+      handleBack();
+    }
+  };
+
+  const swipeHandlers = useSwipeNavigation({
+    onSwipedLeft,
+    onSwipedRight,
+  });
+
   return (
-    <div className="flex h-dvh flex-col">
+    <div {...swipeHandlers} className="flex h-dvh flex-col">
       <Image
         className="mx-auto pt-8 pb-5 xl:mt-20"
         src={Logo}

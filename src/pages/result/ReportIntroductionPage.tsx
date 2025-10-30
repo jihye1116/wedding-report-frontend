@@ -8,6 +8,7 @@ import { reportDataAtom } from "@/store/surveyStore";
 import { ReportData } from "@/types/api";
 import { getReportData } from "@/utils/api";
 
+import { useSwipeNavigation } from "@/hooks/useSwipeNavigation";
 import Intro1Page from "./intro/Intro1Page";
 import Intro2Page from "./intro/Intro2Page";
 import Intro3Page from "./intro/Intro3Page";
@@ -51,7 +52,7 @@ export default function ReportIntroductionPage({
     };
 
     loadReportData();
-  }, [resultId]);
+  }, [resultId, setReportData]);
 
   const handleNext = () => {
     const steps: IntroStep[] = [
@@ -78,6 +79,11 @@ export default function ReportIntroductionPage({
       setCurrentStep(steps[currentIndex - 1]);
     }
   };
+
+  const swipeHandlers = useSwipeNavigation({
+    onSwipedLeft: handleNext,
+    onSwipedRight: handleBack,
+  });
 
   // 로딩 상태
   if (loading) {
@@ -111,15 +117,27 @@ export default function ReportIntroductionPage({
 
   // 기존 로직 사용 (데이터는 전역 상태에서 가져옴)
   if (currentStep === "intro1") {
-    return <Intro1Page onNext={handleNext} />;
+    return (
+      <div {...swipeHandlers}>
+        <Intro1Page onNext={handleNext} />
+      </div>
+    );
   }
 
   if (currentStep === "intro2") {
-    return <Intro2Page onNext={handleNext} />;
+    return (
+      <div {...swipeHandlers}>
+        <Intro2Page onNext={handleNext} />
+      </div>
+    );
   }
 
   if (currentStep === "intro3") {
-    return <Intro3Page onNext={handleNext} onBack={handleBack} />;
+    return (
+      <div {...swipeHandlers}>
+        <Intro3Page onNext={handleNext} onBack={handleBack} />
+      </div>
+    );
   }
 
   if (currentStep === "viewing_results") {
