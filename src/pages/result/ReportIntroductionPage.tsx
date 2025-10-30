@@ -1,7 +1,7 @@
 "use client";
 
 import { useAtom } from "jotai";
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
 
 import { LoadingSpinner } from "@/components/LoadingSpinner";
 import { reportDataAtom } from "@/store/surveyStore";
@@ -33,11 +33,11 @@ export default function ReportIntroductionPage({
       try {
         setLoading(true);
         setError(null);
-        console.log("Loading report data for resultId:", resultId);
+        // console.log("Loading report data for resultId:", resultId);
 
         // 실제 API 호출
         const data = await getReportData(resultId);
-        console.log("API data loaded:", data);
+        // console.log("API data loaded:", data);
         setReportData(data);
         setLoading(false);
       } catch (err) {

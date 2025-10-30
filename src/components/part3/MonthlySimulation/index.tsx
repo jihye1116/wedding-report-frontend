@@ -5,6 +5,7 @@ interface MonthlySimulationProps {
 }
 
 export default function MonthlySimulation({ data }: MonthlySimulationProps) {
+  console.log("conversation:", data.conversation);
   return (
     <article className="wrapper flex flex-col gap-7.5 py-5 leading-snug">
       <section className="flex flex-col gap-5">
@@ -24,7 +25,7 @@ export default function MonthlySimulation({ data }: MonthlySimulationProps) {
       <section className="flex flex-col gap-5 rounded-xl bg-[#F8F8F8] p-5">
         <div className="border-l-4 border-[#6DD4BD]/50 pl-2.5">
           <p className="leading-relaxed whitespace-pre-wrap">
-            {data.conversation}
+            {data.conversation?.replace(/^> /gm, "").replace(/\n\n+/g, "\n")}
           </p>
         </div>
         <p className="leading-relaxed font-semibold whitespace-pre-wrap">

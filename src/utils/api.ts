@@ -55,9 +55,9 @@ export async function getReportData(surveyId: string): Promise<ReportData> {
       process.env.NEXT_PUBLIC_API_BASE_URL ||
       "https://d2bcc927f405.ngrok-free.app";
     const url = `${baseUrl}/survey/admin/surveys/${surveyId}`;
-    console.log("API 호출 URL:", url);
-    console.log("Survey ID:", surveyId);
-    console.log("Base URL:", baseUrl);
+    // console.log("API 호출 URL:", url);
+    // console.log("Survey ID:", surveyId);
+    // console.log("Base URL:", baseUrl);
 
     const response = await fetch(url, {
       method: "GET",
@@ -67,10 +67,10 @@ export async function getReportData(surveyId: string): Promise<ReportData> {
       // Content-Type 헤더 제거 - GET 요청에서는 불필요하고 CORS preflight를 유발함
     });
 
-    console.log("API 응답 상태:", response.status, response.statusText);
-    console.log("API 응답 헤더:", response.headers.get("content-type"));
-    console.log("응답 URL:", response.url);
-    console.log("리다이렉트 여부:", response.redirected);
+    // console.log("API 응답 상태:", response.status, response.statusText);
+    // console.log("API 응답 헤더:", response.headers.get("content-type"));
+    // console.log("응답 URL:", response.url);
+    // console.log("리다이렉트 여부:", response.redirected);
 
     if (!response.ok) {
       // 응답이 HTML인지 확인
@@ -108,11 +108,11 @@ export async function getReportData(surveyId: string): Promise<ReportData> {
     }
 
     const result: any = await response.json();
-    console.log("API response:", result);
+    // console.log("API response:", result);
 
     // API 응답 구조 확인 및 데이터 추출
     if (result.survey && result.survey.analysisResult) {
-      console.log("survey.analysisResult 구조:", result.survey.analysisResult);
+      // console.log("survey.analysisResult 구조:", result.survey.analysisResult);
 
       // createdAt을 metadata.generated_at으로 매핑
       const analysisResult = result.survey.analysisResult;
