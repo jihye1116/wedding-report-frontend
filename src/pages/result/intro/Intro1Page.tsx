@@ -28,7 +28,7 @@ export default function Intro1Page({ onNext }: Intro1PageProps) {
           <h1 className="text-center text-2xl font-medium text-[#111111]">
             꽃길 리포트가 <br /> 완성되었습니다!
           </h1>
-          <article className="flex flex-col gap-4 leading-snug whitespace-pre-wrap text-[#111111]">
+          <article className="font-pretendard flex flex-col gap-4 leading-snug whitespace-pre-wrap text-[#111111]">
             <p>리포트가 완성되었습니다. </p>
             <p>
               [신혼생활 시뮬레이션 스토리북]프로젝트에 참여해주셔서

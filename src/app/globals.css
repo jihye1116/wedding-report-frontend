@@ -188,3 +188,14 @@ span {
 .wrapper {
   @apply px-10 xl:px-120;
 }
+
+.responsive-break::after {
+  content: " ";
+  white-space: pre;
+}
+
+@media (max-width: 600px) {
+  .responsive-break::after {
+    content: "\A";
+  }
+}
