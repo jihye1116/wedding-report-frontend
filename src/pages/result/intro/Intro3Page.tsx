@@ -10,7 +10,7 @@ interface Intro3PageProps {
 export default function Intro3Page({ onNext, onBack }: Intro3PageProps) {
   const tocItems = [
     { id: "01", title: "개인 성향 분석" },
-    { id: "02", title: "연애 유형" },
+    { id: "02", title: "상호작용 4영역 분석" },
     { id: "03", title: "36개월 신혼 생활 시뮬레이션" },
     { id: "04", title: "주요 관계 지표 예측" },
     { id: "05", title: "종합 결론" },
