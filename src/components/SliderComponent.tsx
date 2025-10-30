@@ -211,7 +211,7 @@ export const SliderComponent: React.FC<SliderComponentProps> = ({
       </div>
 
       {/* Description */}
-      <p className="text-sm leading-relaxed text-gray-600">{description}</p>
+      <p className="leading-relaxed">{description}</p>
 
       {/* ARIA */}
       <div
