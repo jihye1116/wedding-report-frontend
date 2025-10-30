@@ -125,12 +125,17 @@ export const SliderComponent: React.FC<SliderComponentProps> = ({
           ? false
           : zeroBias === "right";
 
+  // 0일 때(center) 완전 중앙 정렬
+  const isZeroCenter = origin === "center" && ariaNow === 0;
+
   // 인디케이터를 채움 내부에 붙이되, 진행 방향의 '반대쪽 면'이 기준선에 닿도록
   // - goesRight=true  => 인디케이터 '왼쪽 면'이 pos에 닿음 => left = pos% - OUTER
   // - goesRight=false => 인디케이터 '오른쪽 면'이 pos에 닿음 => left = pos%
-  const indicatorLeftCss = goesRight
-    ? `clamp(0px, calc(${posPct.toFixed(4)}% - ${INDICATOR_OUTER}px), calc(100% - ${INDICATOR_OUTER}px))`
-    : `clamp(0px, ${posPct.toFixed(4)}%, calc(100% - ${INDICATOR_OUTER}px))`;
+  const indicatorLeftCss = isZeroCenter
+    ? `clamp(0px, calc(50% - ${INDICATOR_OUTER / 2}px), calc(100% - ${INDICATOR_OUTER}px))`
+    : goesRight
+      ? `clamp(0px, calc(${posPct.toFixed(4)}% - ${INDICATOR_OUTER}px), calc(100% - ${INDICATOR_OUTER}px))`
+      : `clamp(0px, ${posPct.toFixed(4)}%, calc(100% - ${INDICATOR_OUTER}px))`;
 
   // 중앙선 노출 여부(기본: center에서만 표시)
   const showMidLine = showCenterLine ?? origin === "center";

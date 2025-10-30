@@ -220,7 +220,7 @@ const Page2 = () => (
           </li>
         </ol>
       </div>
-      <div className="flex flex-col gap-4 2xl:flex-row 2xl:justify-center">
+      <div className="mt-8 flex flex-col gap-4 2xl:flex-row 2xl:justify-center">
         <div className="flex justify-center gap-2.5">
           <Image src={Female} alt="female" width={100} height={100} />
           <Image src={Male} alt="male" width={100} height={100} />
