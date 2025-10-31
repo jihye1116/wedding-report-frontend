@@ -59,18 +59,22 @@ export default function FinishPage() {
       };
       console.log(requestData);
 
-      // 백엔드에 제출
-      const result = await submitSurvey(requestData);
+      // 백엔드에 제출 (응답을 기다리지 않음 - fire and forget)
+      submitSurvey(requestData).catch((err) => {
+        // 에러는 콘솔에만 로그하고 사용자에게는 영향 없음
+        console.error("설문 제출 중 에러:", err);
+      });
 
+      // 응답을 기다리지 않고 바로 완료 화면 표시
       setSurveyResult({
-        survey_id: result.survey_id,
-        is_complete: result.is_complete,
-        message: result.message,
+        survey_id: "pending",
+        is_complete: false,
+        message: "설문이 제출되었습니다.",
       });
       setIsSubmitted(true);
+      setIsSubmitting(false);
     } catch (err) {
       setError(err instanceof Error ? err.message : "제출에 실패했습니다.");
-    } finally {
       setIsSubmitting(false);
     }
   };
