@@ -1,5 +1,5 @@
-import Image from "next/image";
 import { useAtom } from "jotai";
+import Image from "next/image";
 
 import Female from "@/assets/images/female.svg";
 import Graph from "@/assets/images/graph.png";
@@ -7,8 +7,8 @@ import Male from "@/assets/images/male.svg";
 import { ReportHeader } from "@/components/ReportHeader";
 import { SliderComponent } from "@/components/SliderComponent";
 import { SummaryBox } from "@/components/SummaryBox";
-import { ReportData, DetailedAnalysis } from "@/types/api";
 import { reportDataAtom } from "@/store/surveyStore";
+import { DetailedAnalysis, ReportData } from "@/types/api";
 
 // Constants
 const SLIDER_CONFIG = {
@@ -39,8 +39,8 @@ const SLIDER_CONFIG = {
       title: "3. 정서 반응 민감도",
       leftLabel: "반응적",
       rightLabel: "조절적",
-      origin: "left" as const,
-      maxValue: 100,
+      origin: "center" as const,
+      maxValue: 30,
       indicatorColor: "#FEECDA",
       clampColor: "#76634E",
       dimensionKey: "반응적_조절적" as const,
@@ -75,8 +75,8 @@ const SLIDER_CONFIG = {
       title: "3. 자기조절과 실행 자율성",
       leftLabel: "낮음",
       rightLabel: "높음",
-      origin: "left" as const,
-      maxValue: 100,
+      origin: "center" as const,
+      maxValue: 30,
       indicatorColor: "#FEFBDA",
       clampColor: "#C2BD91",
       dimensionKey: "반응적_조절적" as const,
@@ -174,8 +174,8 @@ const Page1 = () => (
           것입니다.
         </p>
         <p className="text-gray-500">
-          내가 "논리적"이라고 생각하는 부분이 상대에게는 "감정적으로 차가운
-          태도"로 느껴질 수도 있죠.
+          내가 &quot;논리적&quot;이라고 생각하는 부분이 상대에게는
+          &quot;감정적으로 차가운 태도&quot;로 느껴질 수도 있죠.
         </p>
         <p className="text-gray-500">
           두 사람의 성향이 어떻게 다르고, 서로가 서로를 어떻게 바라보는지

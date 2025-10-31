@@ -1,13 +1,14 @@
 import { useAtom } from "jotai";
 
-import { ReportHeader } from "@/components/ReportHeader";
 import InitialIntro from "@/components/part3/InitialIntro";
 import MonthlySimulation from "@/components/part3/MonthlySimulation";
 import TransitionPage from "@/components/part3/TransitionPage";
 import YearlyIntro from "@/components/part3/YearlyIntro";
 import YearlySummary from "@/components/part3/YearlySummary";
-import { ReportData } from "@/types/api";
+import { ReportHeader } from "@/components/ReportHeader";
+import type { SimulationStep } from "@/data/part3SimulationData";
 import { reportDataAtom } from "@/store/surveyStore";
+import { ReportData } from "@/types/api";
 
 // scenario_flow 데이터를 기반으로 시뮬레이션 데이터를 생성하는 함수
 const generateSimulationData = (reportData: ReportData | null) => {
@@ -19,10 +20,12 @@ const generateSimulationData = (reportData: ReportData | null) => {
 
   const scenarioFlow = reportData.scenario_flow;
   const stages = scenarioFlow.stages;
-  const summary = scenarioFlow.summary;
+  // const summary = scenarioFlow.summary;
 
   // 기존 플로우 구조를 유지하면서 데이터만 동적으로 생성
-  const simulationData: { [step: number]: any } = {
+  const simulationData: {
+    [step: number]: SimulationStep;
+  } = {
     1: {
       type: "initial-intro",
       data: {
@@ -102,14 +105,22 @@ const generateSimulationData = (reportData: ReportData | null) => {
   }
 
   // 연도별 요약 데이터 생성
-  const conflictStages = stages.filter((stage) => stage.outcome === "conflict");
-  const excitementStages = stages.filter(
-    (stage) => stage.outcome === "excitement",
-  );
+  // const conflictStages = stages.filter((stage) => stage.outcome === "conflict");
+  // const excitementStages = stages.filter(
+  //   (stage) => stage.outcome === "excitement",
+  // );
 
   // 1년차 요약 데이터 생성 - yearly_indicators 사용
   const year1Indicator = reportData?.yearly_indicators?.find(
-    (ind: any) => ind.year === 1,
+    (ind: {
+      year: number;
+      indicator_name?: string;
+      quarterly_scores?: Array<{ quarter: string; score: number }>;
+      graph_interpretation?: string;
+      title?: string;
+      description?: string;
+      questions?: string[];
+    }) => ind.year === 1,
   );
 
   simulationData[7] = {
@@ -212,7 +223,15 @@ const generateSimulationData = (reportData: ReportData | null) => {
 
   // 2년차 요약 - yearly_indicators 사용
   const year2Indicator = reportData?.yearly_indicators?.find(
-    (ind: any) => ind.year === 2,
+    (ind: {
+      year: number;
+      indicator_name?: string;
+      quarterly_scores?: Array<{ quarter: string; score: number }>;
+      graph_interpretation?: string;
+      title?: string;
+      description?: string;
+      questions?: string[];
+    }) => ind.year === 2,
   );
 
   simulationData[14] = {
@@ -317,7 +336,15 @@ const generateSimulationData = (reportData: ReportData | null) => {
 
   // 3년차 요약 - yearly_indicators 사용
   const year3Indicator = reportData?.yearly_indicators?.find(
-    (ind: any) => ind.year === 3,
+    (ind: {
+      year: number;
+      indicator_name?: string;
+      quarterly_scores?: Array<{ quarter: string; score: number }>;
+      graph_interpretation?: string;
+      title?: string;
+      description?: string;
+      questions?: string[];
+    }) => ind.year === 3,
   );
 
   simulationData[21] = {

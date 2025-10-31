@@ -1,10 +1,9 @@
 import { useAtom } from "jotai";
 
 import { ReportHeader } from "@/components/ReportHeader";
-import { ReportData } from "@/types/api";
 import { reportDataAtom } from "@/store/surveyStore";
 
-interface Part5ResultPageProps {}
+type Part5ResultPageProps = object;
 
 export default function Part5ResultPage({}: Part5ResultPageProps) {
   const [reportData] = useAtom(reportDataAtom);

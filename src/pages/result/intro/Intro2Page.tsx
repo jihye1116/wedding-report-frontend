@@ -1,9 +1,8 @@
+import { useAtom } from "jotai";
 import Image from "next/image";
 
-import { useAtom } from "jotai";
-
-import { NavigateButton } from "@/components/NavigateButton";
 import Couple from "@/assets/images/couple.png";
+import { NavigateButton } from "@/components/NavigateButton";
 import { ReportHeader } from "@/components/ReportHeader";
 import { reportDataAtom } from "@/store/surveyStore";
 

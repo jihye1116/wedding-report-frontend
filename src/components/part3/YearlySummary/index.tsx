@@ -1,5 +1,5 @@
-import { YearlySummaryData } from "@/data/part3SimulationData";
 import { BarChart } from "@/components/BarChart";
+import { YearlySummaryData } from "@/data/part3SimulationData";
 
 interface YearlySummaryProps {
   data: YearlySummaryData;

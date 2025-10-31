@@ -18,7 +18,6 @@ import {
   part4ResultStepAtom,
   reportDataAtom,
 } from "@/store/surveyStore";
-import { ReportData } from "@/types/api";
 
 type ResultPartStep =
   | "part1"

@@ -1,4 +1,5 @@
 import { Fragment } from "react/jsx-runtime";
+
 import { InitialIntroData } from "@/data/part3SimulationData";
 
 interface InitialIntroProps {

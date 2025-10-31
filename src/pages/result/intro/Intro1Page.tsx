@@ -1,9 +1,8 @@
 import Image from "next/image";
 
 import Logo from "@/assets/icons/logo.svg";
-import { StartButton } from "@/components/StartButton";
 import { ReportHeader } from "@/components/ReportHeader";
-import { ReportData } from "@/types/api";
+import { StartButton } from "@/components/StartButton";
 
 interface Intro1PageProps {
   onNext: () => void;

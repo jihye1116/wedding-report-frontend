@@ -13,7 +13,7 @@ interface UsePartNavigationProps {
 
 export const usePartNavigation = ({
   part,
-  questionsPerPage = 5,
+
   onNext,
   onBack,
   currentPage: externalCurrentPage,

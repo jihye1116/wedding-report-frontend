@@ -1,8 +1,8 @@
 import {
   ApiErrorResponse,
+  ReportData,
   SubmitSurveyRequest,
   SubmitSurveyResponse,
-  ReportData,
 } from "@/types/api";
 
 // 환경변수에서 API URL을 가져옵니다. 없으면 기본값 사용
@@ -92,7 +92,7 @@ export async function getReportData(surveyId: string): Promise<ReportData> {
             : "리포트 데이터를 불러오는데 실패했습니다.";
 
         throw new Error(errorMessage);
-      } catch (jsonError) {
+      } catch {
         throw new Error(
           `API 호출 실패 (${response.status}): ${response.statusText}`,
         );
@@ -107,7 +107,10 @@ export async function getReportData(surveyId: string): Promise<ReportData> {
       throw new Error("서버가 JSON이 아닌 응답을 반환했습니다.");
     }
 
-    const result: any = await response.json();
+    const result: {
+      survey?: { analysisResult: ReportData };
+      createdAt?: string;
+    } & ReportData = await response.json();
     console.log("API response:", result);
 
     // API 응답 구조 확인 및 데이터 추출

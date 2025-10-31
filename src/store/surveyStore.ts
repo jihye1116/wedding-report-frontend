@@ -1,7 +1,7 @@
 import { atom } from "jotai";
 
-import { SurveyAnswer } from "@/types/survey";
 import { ReportData } from "@/types/api";
+import { SurveyAnswer } from "@/types/survey";
 
 // 답변 상태를 전역으로 관리
 export const answersAtom = atom<SurveyAnswer[]>([]);

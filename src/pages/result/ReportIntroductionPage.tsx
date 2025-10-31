@@ -4,10 +4,10 @@ import { useAtom } from "jotai";
 import { useEffect, useState } from "react";
 
 import { LoadingSpinner } from "@/components/LoadingSpinner";
+import { useSwipeNavigation } from "@/hooks/useSwipeNavigation";
 import { reportDataAtom } from "@/store/surveyStore";
 import { getReportData } from "@/utils/api";
 
-import { useSwipeNavigation } from "@/hooks/useSwipeNavigation";
 import Intro1Page from "./intro/Intro1Page";
 import Intro2Page from "./intro/Intro2Page";
 import Intro3Page from "./intro/Intro3Page";

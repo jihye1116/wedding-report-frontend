@@ -10,6 +10,7 @@ import {
   useRef,
   useState,
 } from "react";
+import toast from "react-hot-toast";
 
 import { Navigator } from "@/components/Navigator";
 import { ProgressBar } from "@/components/ProgressBar";
@@ -18,7 +19,6 @@ import { usePartNavigation } from "@/hooks/usePartNavigation";
 import { useSwipeNavigation } from "@/hooks/useSwipeNavigation";
 import { currentPageAtom, currentPartAtom } from "@/store/surveyStore";
 import { SurveyAnswer, SurveyPart, SurveyQuestion } from "@/types/survey";
-import toast from "react-hot-toast";
 
 interface PartPageTemplateProps {
   part: SurveyPart;

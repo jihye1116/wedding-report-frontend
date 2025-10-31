@@ -1,12 +1,11 @@
+import { useAtom } from "jotai";
 import Image from "next/image";
 import { Fragment } from "react";
-import { useAtom } from "jotai";
 
 import Female from "@/assets/images/female.svg";
 import Male from "@/assets/images/male.svg";
 import { ReportHeader } from "@/components/ReportHeader";
 import { Tag } from "@/components/Tag";
-import { ReportData } from "@/types/api";
 import { reportDataAtom } from "@/store/surveyStore";
 
 interface Part4ResultPageProps {
@@ -208,23 +207,26 @@ export default function Part4ResultPage({ step }: Part4ResultPageProps) {
                   </div>
                   <div className="flex flex-col gap-5 bg-[#F8F8F8] p-5 leading-snug">
                     <h2 className="text-lg font-semibold">
-                      '강해야 한다'는 무언의 압박에서 '흔들릴 수 있는 인간'으로
-                      자신을 수용
+                      &apos;강해야 한다&apos;는 무언의 압박에서 &apos;흔들릴 수
+                      있는 인간&apos;으로 자신을 수용
                     </h2>
                     <p>
                       초기의 {femaleName}은 실용적 사고, 문제 해결 중심의 대화가
-                      특징이었지만, 3년 차에서는 "당신은 피곤하겠다.", "말해줘서
-                      고마워." 같은 정서적 언어와 반응이 늘어났습니다.
+                      특징이었지만, 3년 차에서는 &quot;당신은 피곤하겠다.&quot;,
+                      &quot;말해줘서 고마워.&quot; 같은 정서적 언어와 반응이
+                      늘어났습니다.
                     </p>
                     <p>
                       특히 자신의 불안(승진 후의 허무, 진로 회의 등)을 표현하고,
-                      {maleName}의 공감을 수용하는 모습은 '약한 부분도 보여줄 수
-                      있는 관계'의 힘을 체험하고 있음을 보여줍니다.
+                      {maleName}의 공감을 수용하는 모습은 &apos;약한 부분도
+                      보여줄 수 있는 관계&apos;의 힘을 체험하고 있음을
+                      보여줍니다.
                     </p>
                     <p>
-                      '강해야 한다'는 기대에서 벗어나, "흔들릴 수 있는
-                      인간"으로서의 자신을 수용하기 시작했으며, 이는 사회적
-                      관계에서도 더 깊은 인간관계를 가능케 하는 변화입니다.
+                      &apos;강해야 한다&apos;는 기대에서 벗어나, &quot;흔들릴 수
+                      있는 인간&quot;으로서의 자신을 수용하기 시작했으며, 이는
+                      사회적 관계에서도 더 깊은 인간관계를 가능케 하는
+                      변화입니다.
                     </p>
                   </div>
                 </section>
@@ -237,23 +239,26 @@ export default function Part4ResultPage({ step }: Part4ResultPageProps) {
                   </div>
                   <div className="flex flex-col gap-5 bg-[#F8F8F8] p-5 leading-snug">
                     <h2 className="text-lg font-semibold">
-                      '강해야 한다'는 무언의 압박에서 '흔들릴 수 있는 인간'으로
-                      자신을 수용
+                      &apos;강해야 한다&apos;는 무언의 압박에서 &apos;흔들릴 수
+                      있는 인간&apos;으로 자신을 수용
                     </h2>
                     <p>
                       초기의 {maleName}은 실용적 사고, 문제 해결 중심의 대화가
-                      특징이었지만, 3년 차에서는 "당신은 피곤하겠다.", "말해줘서
-                      고마워." 같은 정서적 언어와 반응이 늘어났습니다.
+                      특징이었지만, 3년 차에서는 &quot;당신은 피곤하겠다.&quot;,
+                      &quot;말해줘서 고마워.&quot; 같은 정서적 언어와 반응이
+                      늘어났습니다.
                     </p>
                     <p>
                       특히 자신의 불안(승진 후의 허무, 진로 회의 등)을 표현하고,
-                      {femaleName}의 공감을 수용하는 모습은 '약한 부분도 보여줄
-                      수 있는 관계'의 힘을 체험하고 있음을 보여줍니다.
+                      {femaleName}의 공감을 수용하는 모습은 &apos;약한 부분도
+                      보여줄 수 있는 관계&apos;의 힘을 체험하고 있음을
+                      보여줍니다.
                     </p>
                     <p>
-                      '강해야 한다'는 기대에서 벗어나, "흔들릴 수 있는
-                      인간"으로서의 자신을 수용하기 시작했으며, 이는 사회적
-                      관계에서도 더 깊은 인간관계를 가능케 하는 변화입니다.
+                      &apos;강해야 한다&apos;는 기대에서 벗어나, &quot;흔들릴 수
+                      있는 인간&quot;으로서의 자신을 수용하기 시작했으며, 이는
+                      사회적 관계에서도 더 깊은 인간관계를 가능케 하는
+                      변화입니다.
                     </p>
                   </div>
                 </section>
@@ -295,7 +300,7 @@ export default function Part4ResultPage({ step }: Part4ResultPageProps) {
                 </div>
                 <div className="flex flex-col gap-1 leading-snug text-black">
                   <h2 className="font-bold">
-                    2. '함께 쉬는 리듬'을 새로 만들어 보세요.
+                    2. &apos;함께 쉬는 리듬&apos;을 새로 만들어 보세요.
                   </h2>
                   <p>
                     일정한 생활 구조 안에서도 의도적으로 멈추는 시간을 계획하면
@@ -304,7 +309,7 @@ export default function Part4ResultPage({ step }: Part4ResultPageProps) {
                 </div>
                 <div className="flex flex-col gap-1 leading-snug text-black">
                   <h2 className="font-bold">
-                    3. 감정을 '작은 표현'으로 나눠 보세요.
+                    3. 감정을 &apos;작은 표현&apos;으로 나눠 보세요.
                   </h2>
                   <p>
                     감사, 유머, 짧은 안부 같은 미세한 표현이 관계의 활력을

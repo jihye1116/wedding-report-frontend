@@ -1,5 +1,5 @@
-import Image from "next/image";
 import { useAtom } from "jotai";
+import Image from "next/image";
 
 import Logo from "@/assets/icons/logo.svg";
 import { reportDataAtom } from "@/store/surveyStore";

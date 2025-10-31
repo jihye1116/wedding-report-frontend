@@ -1,4 +1,5 @@
 import { Fragment } from "react/jsx-runtime";
+
 import { TransitionData } from "@/data/part3SimulationData";
 
 interface TransitionPageProps {

@@ -1,24 +1,26 @@
 import { useAtom } from "jotai";
-
-import { ReportHeader } from "@/components/ReportHeader";
-import Badge from "./Badge";
-import WhenBox from "./WhenBox";
 import Image from "next/image";
-import InteractionZone from "@/assets/images/interaction-zone.png";
-import FourSection from "@/assets/images/four-section.png";
+
 import Female from "@/assets/images/female.svg";
+import InteractionZone from "@/assets/images/interaction-zone.png";
 import Male from "@/assets/images/male.svg";
 import EmpathyQuadrant from "@/components/EmpathyQuadrant";
-import { ReportData } from "@/types/api";
+import { ReportHeader } from "@/components/ReportHeader";
 import { reportDataAtom } from "@/store/surveyStore";
-/*
-  Part 2: 공감 기반 시너지 (Positive Resonance)
-  - 페이지 총 4장 구성
-  - 스타일은 Part1의 Page2/Page3와 톤앤매너를 맞춤
-*/
+import { ReportData } from "@/types/api";
+
+import Badge from "./Badge";
+import WhenBox from "./WhenBox";
+
+interface InteractionZoneType {
+  zoneType: string;
+  description: string;
+  characteristics: string[];
+  timeline_impact: Record<string, string>;
+}
 
 // interaction_zones 데이터를 part2 형식으로 변환하는 함수
-const transformInteractionZone = (zone: any) => {
+const transformInteractionZone = (zone: InteractionZoneType) => {
   const zoneTypeMapping = {
     "공감 기반 시너지": {
       badgeText: "공감 기반 시너지",
