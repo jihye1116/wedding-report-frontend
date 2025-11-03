@@ -11,6 +11,7 @@ import { reportDataAtom } from "@/store/surveyStore";
 import { DetailedAnalysis, ReportData } from "@/types/api";
 
 // Constants
+
 const SLIDER_CONFIG = {
   section1: [
     {
@@ -403,13 +404,26 @@ const SliderSection = ({
           })}
         </div>
 
-        <SummaryBox
-          text={
-            detailedAnalysis?.[defaultSummaryKey]?.characteristicDefinition ||
-            characteristicDefinition ||
-            ""
-          }
-        />
+        {(() => {
+          const pa = personalAnalysis;
+          const summaryText = defaultSummaryKey.startsWith("1")
+            ? pa?.thinking_judgment_summary
+            : defaultSummaryKey.startsWith("2")
+              ? pa?.motivation_energy_summary
+              : pa?.behavior_expression_summary;
+
+          return (
+            <SummaryBox
+              text={
+                summaryText ||
+                detailedAnalysis?.[defaultSummaryKey]
+                  ?.characteristicDefinition ||
+                characteristicDefinition ||
+                ""
+              }
+            />
+          );
+        })()}
       </div>
     </article>
   );

@@ -82,6 +82,10 @@ export interface PersonalAnalysis {
   profile: Profile;
   score_analysis: Record<string, ScoreAnalysis>;
   detailed_analysis: Record<string, DetailedAnalysis>;
+  // Optional high-level summaries (per API)
+  thinking_judgment_summary?: string;
+  motivation_energy_summary?: string;
+  behavior_expression_summary?: string;
 }
 
 export interface InteractionZone {

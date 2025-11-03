@@ -5,8 +5,6 @@ interface MonthlySimulationProps {
 }
 
 export default function MonthlySimulation({ data }: MonthlySimulationProps) {
-  console.log("data:", data.conversation);
-  // console.log("conversation:", data.conversation);
   const escapeHtml = (s: string) =>
     s.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;");
 
