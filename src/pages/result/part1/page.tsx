@@ -46,7 +46,7 @@ const SLIDER_CONFIG = {
       clampColor: "#76634E",
       dimensionKey: "반응적_조절적" as const,
       analysisKey: "1-3" as const,
-      useConvertedScore: true,
+      // 0~100 스케일이므로 변환 불필요
     },
   ],
   section2: [
@@ -80,9 +80,9 @@ const SLIDER_CONFIG = {
       maxValue: 100,
       indicatorColor: "#FEFBDA",
       clampColor: "#C2BD91",
-      dimensionKey: "반응적_조절적" as const,
+      dimensionKey: "자율성" as const,
       analysisKey: "2-3" as const,
-      useConvertedScore: true,
+      // 0~100 스케일이므로 변환 불필요
       fallbackAnalysisKey: "1-3" as const,
     },
   ],
@@ -369,6 +369,14 @@ const SliderSection = ({
         <div className="space-y-10">
           {sliderConfig.map((config, index) => {
             const analysis = detailedAnalysis?.[config.analysisKey];
+            const scoreObj =
+              personalAnalysis?.score_analysis?.[config.dimensionKey];
+            const valueForSlider = getScoreValue(
+              reportData,
+              gender,
+              config.dimensionKey,
+              config.useConvertedScore,
+            );
             const fallbackAnalysis =
               config.fallbackAnalysisKey &&
               detailedAnalysis?.[config.fallbackAnalysisKey];
@@ -380,12 +388,7 @@ const SliderSection = ({
                   leftLabel={config.leftLabel}
                   rightLabel={config.rightLabel}
                   origin={config.origin}
-                  value={getScoreValue(
-                    reportData,
-                    gender,
-                    config.dimensionKey,
-                    config.useConvertedScore,
-                  )}
+                  value={valueForSlider}
                   maxValue={config.maxValue}
                   indicatorColor={config.indicatorColor}
                   clampColor={config.clampColor}

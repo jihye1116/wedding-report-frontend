@@ -87,7 +87,9 @@ export const SliderComponent: React.FC<SliderComponentProps> = ({
     ariaNow = signed;
 
     // near-zero(±nearZeroThreshold) 구간 보정: 시각적으로 너무 어색한 중앙 부근을 최소 거리만큼 띄워서 표시
-    const isNearZero = Math.abs(signed) <= nearZeroThreshold;
+    // 0은 보정하지 않음. 0.5 미만은 0으로 스냅, 0.5~threshold만 보정
+    const isNearZero =
+      Math.abs(signed) >= 0.5 && Math.abs(signed) <= nearZeroThreshold;
     const biasDir =
       Math.abs(signed) < 0.5
         ? zeroBias === "right"
