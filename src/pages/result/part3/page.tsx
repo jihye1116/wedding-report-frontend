@@ -22,6 +22,21 @@ const generateSimulationData = (reportData: ReportData | null) => {
   const stages = scenarioFlow.stages;
   // const summary = scenarioFlow.summary;
 
+  // indicator_type 기반 색상 매핑
+  const getBarColor = (
+    indicatorType?: string,
+    defaultColor: string = "#B3D4F5",
+  ) => {
+    if (indicatorType === "tension") return "#B3D4F5";
+    if (indicatorType === "connection") return "#67E4C8";
+    if (indicatorType === "resilience") return "#FFC0C1";
+    return defaultColor;
+  };
+
+  // description을 문단 단위 배열로 변환
+  const toParagraphs = (text?: string) =>
+    text ? text.split(/\r?\n\s*\r?\n/).map((t) => t.trim()).filter(Boolean) : undefined;
+
   // 기존 플로우 구조를 유지하면서 데이터만 동적으로 생성
   const simulationData: {
     [step: number]: SimulationStep;
@@ -107,6 +122,7 @@ const generateSimulationData = (reportData: ReportData | null) => {
   const year1Indicator = reportData?.yearly_indicators?.find(
     (ind: {
       year: number;
+      indicator_type?: string;
       indicator_name?: string;
       quarterly_scores?: Array<{ quarter: string; score: number }>;
       graph_interpretation?: string;
@@ -116,12 +132,17 @@ const generateSimulationData = (reportData: ReportData | null) => {
     }) => ind.year === 1,
   );
 
+  const year1SummaryContent =
+    toParagraphs(year1Indicator?.description) || [
+      "결혼 초기에는 대화가 자연스럽고, 감정의 결도 비슷하게 맞아떨어진다는 느낌을 받기 쉽습니다.",
+    ];
+
   simulationData[7] = {
     type: "summary",
     data: {
       year: 1,
       chartTitle: year1Indicator?.indicator_name || "긴장도",
-      barColor: "#B3D4F5",
+      barColor: getBarColor(year1Indicator?.indicator_type, "#B3D4F5"),
       quarterlyScores: year1Indicator?.quarterly_scores || [
         { quarter: "Q1", score: 7.2 },
         { quarter: "Q2", score: 7.2 },
@@ -131,14 +152,9 @@ const generateSimulationData = (reportData: ReportData | null) => {
       chartAnalysis: [
         year1Indicator?.graph_interpretation ||
           "1년 차에는 서로에 대한 이해와 기대 사이에서 작은 마찰이 일어납니다.",
-        "결혼 생활에서 긴장이 생기는 것은 누구나 겪는 자연스러운 흐름입니다. <b>긴장의 파형</b>을 함께 이해하고 넘어서는 경험은 관계를 더욱 견고하게 만듭니다.",
       ],
       summaryTitle: year1Indicator?.title || "서로에게 리듬을 맞춰가는 첫 1년",
-      summaryContent: [
-        year1Indicator?.description ||
-          "결혼 초기에는 대화가 자연스럽고, 감정의 결도 비슷하게 맞아떨어진다는 느낌을 받기 쉽습니다.",
-        '같은 공간에 있는데 엇갈리는 감정, 같은 주제를 두고 다른 속도로 반응하는 상황이 반복되면서 <b>"이상하게 어긋난다"</b>는 느낌이 생길 수 있습니다.',
-      ],
+      summaryContent: year1SummaryContent,
       questions: year1Indicator?.questions || [
         "• 우리는 요즘 무엇에 가장 많은 에너지를 쓰고 있는가?",
         "• 서로의 불안과 피로를 같은 방향에서 보고 있는가?",
@@ -213,6 +229,7 @@ const generateSimulationData = (reportData: ReportData | null) => {
   const year2Indicator = reportData?.yearly_indicators?.find(
     (ind: {
       year: number;
+      indicator_type?: string;
       indicator_name?: string;
       quarterly_scores?: Array<{ quarter: string; score: number }>;
       graph_interpretation?: string;
@@ -222,12 +239,17 @@ const generateSimulationData = (reportData: ReportData | null) => {
     }) => ind.year === 2,
   );
 
+  const year2SummaryContent =
+    toParagraphs(year2Indicator?.description) || [
+      "결혼 첫해가 서로의 차이를 발견하고 조율하는 시간이었다면, 두 번째 해에는 조금 더 깊은 질문이 찾아옵니다.",
+    ];
+
   simulationData[14] = {
     type: "summary",
     data: {
       year: 2,
       chartTitle: year2Indicator?.indicator_name || "정서 연결도",
-      barColor: "#67E4C8",
+      barColor: getBarColor(year2Indicator?.indicator_type, "#67E4C8"),
       quarterlyScores: year2Indicator?.quarterly_scores || [
         { quarter: "Q1", score: 7.8 },
         { quarter: "Q2", score: 6.7 },
@@ -237,14 +259,9 @@ const generateSimulationData = (reportData: ReportData | null) => {
       chartAnalysis: [
         year2Indicator?.graph_interpretation ||
           "2년 차가 되면 반복되는 갈등과 현실적 압박을 통과하며, 서로의 불안·상처·한계를 더 자주 접하게 됩니다.",
-        '갈등과 압박을 회피하지 않고 대화하고 회복한 경험들이 쌓이면서, 정서 연결은 점차 수직적으로 깊어지기 시작합니다. 이 시기를 <b>"관계의 전환점"</b>이라 부를 수 있습니다.',
       ],
       summaryTitle: year2Indicator?.title || "정체성의 균형을 찾아가는 2년차",
-      summaryContent: [
-        year2Indicator?.description ||
-          "결혼 첫해가 서로의 차이를 발견하고 조율하는 시간이었다면, 두 번째 해에는 조금 더 깊은 질문이 찾아옵니다.",
-        "둘 다 말하지 않는 것이 배려라고 생각한 적이 있었습니다. 속삭이는 논리적으로 &quot;이해된다&quot;며 감정을 억눌렀고, 슥삭이는 &quot;괜찮다&quot;는 말을 액면 그대로 받아들였습니다. 하지만 침묵은 평화가 아니라 시한폭탄이었습니다.",
-      ],
+      summaryContent: year2SummaryContent,
       questions: year2Indicator?.questions || [
         "• 2년 동안 내가 가장 많이 양보한 부분은 무엇이고, 그것이 지속 가능한가?",
         "• 나는 상대방의 성공을 진심으로 응원하고 있는가, 아니면 조건부로 지지하고 있는가?",
@@ -321,6 +338,7 @@ const generateSimulationData = (reportData: ReportData | null) => {
   const year3Indicator = reportData?.yearly_indicators?.find(
     (ind: {
       year: number;
+      indicator_type?: string;
       indicator_name?: string;
       quarterly_scores?: Array<{ quarter: string; score: number }>;
       graph_interpretation?: string;
@@ -330,12 +348,17 @@ const generateSimulationData = (reportData: ReportData | null) => {
     }) => ind.year === 3,
   );
 
+  const year3SummaryContent =
+    toParagraphs(year3Indicator?.description) || [
+      "결혼 3년차는 삶이 가장 바쁘고 무거운 과제가 몰려드는 시기입니다.",
+    ];
+
   simulationData[21] = {
     type: "summary",
     data: {
       year: 3,
       chartTitle: year3Indicator?.indicator_name || "관계 회복 탄력성",
-      barColor: "#FFC0C1",
+      barColor: getBarColor(year3Indicator?.indicator_type, "#FFC0C1"),
       quarterlyScores: year3Indicator?.quarterly_scores || [
         { quarter: "Q1", score: 7.9 },
         { quarter: "Q2", score: 7.8 },
@@ -345,15 +368,10 @@ const generateSimulationData = (reportData: ReportData | null) => {
       chartAnalysis: [
         year3Indicator?.graph_interpretation ||
           "3년 차에 접어들면서, 두 사람은 싸움이 아니라 '회복의 방식'에 주목하기 시작합니다.",
-        "관계 회복 탄력성은 갈등이나 위기 이후, 관계가 얼마나 빠르고 건강하게 회복되는지를 나타내는 지표입니다. 감정의 골을 다루고 상호 이해를 회복하는 과정에서 나타나는 심리적·정서적 회복 능력을 의미합니다.",
       ],
       summaryTitle:
         year3Indicator?.title || "평생 관계를 지탱할 힘을 만드는 3년차",
-      summaryContent: [
-        year3Indicator?.description ||
-          "결혼 3년차는 삶이 가장 바쁘고 무거운 과제가 몰려드는 시기입니다.",
-        "3년차는 부부가 진정한 독립성과 주도권을 확립한 전환점이었습니다.\n주거라는 큰 결정을 앞두고, 두 사람은 더 이상 서로에게만 부딪히는 데 그치지 않고 외부 압력(양가 부모님의 상반된 조언)과 내부 갈등(햇살/감성 vs 역세권/편의)을 동시에 마주했습니다.",
-      ],
+      summaryContent: year3SummaryContent,
       questions: year3Indicator?.questions || [
         "• 최근 내린 중요한 결정들을 돌아볼 때, 우리 둘 다 납득하고 있나요?",
         "• 우리의 가치관과 목표가 여전히 일치하고 있나요?",
