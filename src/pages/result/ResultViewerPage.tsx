@@ -2,7 +2,7 @@
 
 import { useAtom } from "jotai";
 import Image from "next/image";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 import CelebrationImage from "@/assets/images/celebration.png";
 import { NavigateButton } from "@/components/NavigateButton";
@@ -42,6 +42,53 @@ export default function ResultViewerPage({
     part1: 0,
     part2: 0,
   });
+
+  const quotes = [
+    {
+      text: "행복한 결혼이란 두 영혼이 서로를 이해하고, 함께 성장하는 여정이다.",
+      author: "톨스토이",
+    },
+    {
+      text: "사랑은 완벽한 사람을 찾는 것이 아니라, 불완전함 속에서도 함께 자라나는 법을 배우는 일이다.",
+      author: "앙드레 지드(André Gide)",
+    },
+    {
+      text: "결혼은 ‘나’와 ‘너’가 사라지는 게 아니라, 두 개의 세계가 천천히 맞물리는 과정이다.",
+      author: "빅터 프랭클(Viktor Frankl)",
+    },
+    {
+      text: "좋은 관계란 충돌이 없는 것이 아니라, 충돌 속에서도 서로를 잃지 않는 것이다.",
+      author: "에스더 페렐(Esther Perel)",
+    },
+    {
+      text: "사랑은 감정의 절정이 아니라, 매일의 선택이다.",
+      author: "어니스트 헤밍웨이(Ernest Hemingway)",
+    },
+    {
+      text: "결혼은 사랑을 시험하는 제도가 아니라, 사랑이 자라나는 환경이다.",
+      author: "꽃길만 걷자",
+    },
+    {
+      text: "두 사람이 진짜로 가까워지는 순간은, 서로의 상처를 보았을 때 도망치지 않았을 때다.",
+      author: "브레네 브라운(Brené Brown)",
+    },
+    {
+      text: "결혼이란 서로를 바꾸는 일이 아니라, 함께 진화하는 일이다.",
+      author: "꽃길만 걷자",
+    },
+    {
+      text: "결혼이란 서로를 구속하는 약속이 아니라, 함께 성장하겠다는 약속이다.",
+      author: "지그문트 바우만(Zygmunt Bauman)",
+    },
+    {
+      text: "우리는 완벽한 사랑을 찾는 것이 아니라, 서로를 통해 완성되어 가는 사랑을 만든다.",
+      author: "R.M. 드레이크(R.M. Drake)",
+    },
+  ];
+
+  const randomQuote = useMemo(() => {
+    return quotes[Math.floor(Math.random() * quotes.length)];
+  }, []);
 
   const steps: ResultPartStep[] = [
     "part1",
@@ -306,11 +353,8 @@ export default function ResultViewerPage({
         <div className="flex-2" />
         <main className="wrapper flex w-full flex-col gap-10 py-5 text-center leading-snug text-[#111111]">
           <section className="flex flex-col gap-4 leading-snug">
-            <p>
-              &quot;행복한 결혼이란 두 영혼이 서로를 이해하고, 함께 성장하는
-              여정이다.&quot;
-            </p>
-            <p className="text-lg">- 톨스토이</p>
+            <p>&quot;{randomQuote.text}&quot;</p>
+            <p className="text-lg">- {randomQuote.author}</p>
           </section>
           {/* ㅁㄴㅇㅁㄴㅇ
            */}
