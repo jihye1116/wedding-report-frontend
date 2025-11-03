@@ -81,16 +81,20 @@ export const SliderComponent: React.FC<SliderComponentProps> = ({
     ariaMax = maxValue;
     ariaNow = signed;
 
+    // 라운딩 기준(0.5 미만은 0으로 스냅)으로 중앙 정렬 스냅
+    const layoutSigned = Math.abs(signed) < 0.5 ? 0 : signed;
+
     // 위치 비율(0~1): -max -> 0, 0 -> 0.5, +max -> 1
-    ratio = maxValue === 0 ? 0.5 : (signed + maxValue) / (2 * maxValue);
+    ratio = maxValue === 0 ? 0.5 : (layoutSigned + maxValue) / (2 * maxValue);
 
     // 중앙에서 인디케이터까지 거리(0~1)
-    const distanceRatio = maxValue === 0 ? 0 : Math.abs(signed) / maxValue;
+    const distanceRatio =
+      maxValue === 0 ? 0 : Math.abs(layoutSigned) / maxValue;
     // 트랙 폭 기준 0~50%
     const distancePct = distanceRatio * 50;
 
     // 중앙 → 인디케이터 방향으로만 채움
-    fillLeft = signed >= 0 ? "50%" : `calc(50% - ${distancePct}%)`;
+    fillLeft = layoutSigned >= 0 ? "50%" : `calc(50% - ${distancePct}%)`;
     fillWidthPct = distancePct;
   } else {
     // origin === "left" : 0 ~ maxValue
@@ -114,7 +118,7 @@ export const SliderComponent: React.FC<SliderComponentProps> = ({
   // left  : 0→+값(오른쪽), 0은 zeroBias
   const goesRight =
     origin === "center"
-      ? ariaNow > 0
+      ? (Math.abs(ariaNow) < 0.5 ? zeroBias === "right" : ariaNow > 0)
         ? true
         : ariaNow < 0
           ? false
@@ -126,11 +130,12 @@ export const SliderComponent: React.FC<SliderComponentProps> = ({
           : zeroBias === "right";
 
   // 0일 때(center) 완전 중앙 정렬
-  const isZeroCenter = origin === "center" && ariaNow === 0;
+  const isZeroCenter = origin === "center" && Math.abs(ariaNow) < 0.5;
 
   // 인디케이터를 채움 내부에 붙이되, 진행 방향의 '반대쪽 면'이 기준선에 닿도록
   // - goesRight=true  => 인디케이터 '왼쪽 면'이 pos에 닿음 => left = pos% - OUTER
   // - goesRight=false => 인디케이터 '오른쪽 면'이 pos에 닿음 => left = pos%
+
   const indicatorLeftCss: string | number = isZeroCenter
     ? trackW > 0
       ? clamp(
