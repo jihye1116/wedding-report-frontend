@@ -113,7 +113,7 @@ const SLIDER_CONFIG = {
       leftLabel: "자기표현형",
       rightLabel: "적응배려형",
       origin: "left" as const,
-      maxValue: 100,
+      maxValue: 30,
       indicatorColor: "#E2E2FD",
       clampColor: "#8A8ACD",
       dimensionKey: "자기표현_적응배려" as const,
@@ -202,23 +202,8 @@ const Page2 = () => (
     <div className="mt-2 space-y-6">
       <div>
         <p className="text-gray-500">
-          우리는 사람의 성향을 세 겹의 구조로 분석합니다. 가장 안쪽부터 순서대로
-          살펴보겠습니다.
+          우리는 사람의 성향을 세 겹의 구조로 탐구합니다.
         </p>
-        <ol className="mt-2.5 text-gray-500">
-          <li className="flex items-start gap-1">
-            <span className="shrink-0">•</span>
-            <span>세상을 어떻게 인식하고 감정을 처리하는지</span>
-          </li>
-          <li className="flex items-start gap-1">
-            <span className="shrink-0">•</span>
-            <span>어떤 가치와 동기가 나를 움직이게 하는지</span>
-          </li>
-          <li className="flex items-start gap-1">
-            <span className="shrink-0">•</span>
-            <span>어떤 방식으로 일상을 살아가며 에너지를 회복하는지</span>
-          </li>
-        </ol>
       </div>
       <div className="mt-8 flex flex-col gap-4 2xl:flex-row 2xl:justify-center">
         <div className="flex justify-center gap-2.5">
