@@ -12,14 +12,13 @@ export default function YearlySummary({ data }: YearlySummaryProps) {
         <h2 className="text-center text-lg font-bold text-[#111111]">
           {data.chartTitle}
         </h2>
+        {data.chartInterpretation && (
+          <p
+            className="text-sm whitespace-pre-wrap text-[#7E7E7E]"
+            dangerouslySetInnerHTML={{ __html: data.chartInterpretation }}
+          />
+        )}
         <section className="flex flex-col items-center justify-center gap-7.5 2xl:flex-row">
-          {data.chartInterpretation && (
-            <p
-              className="text-sm whitespace-pre-wrap text-[#7E7E7E]"
-              dangerouslySetInnerHTML={{ __html: data.chartInterpretation }}
-            />
-          )}
-
           <div className="mx-auto flex w-full shrink-0 flex-col gap-2 lg:w-[360px] xl:w-[340px]">
             <BarChart
               values={

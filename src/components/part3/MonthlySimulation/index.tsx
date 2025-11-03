@@ -59,6 +59,22 @@ export default function MonthlySimulation({ data }: MonthlySimulationProps) {
     });
     return htmlBlocks.join("\n");
   };
+
+  // Render conversation without block-level markdown (no blockquote/list),
+  // but keep inline markdown like **bold**, *italic*, `code`, and links.
+  const renderConversationInline = (src?: string) => {
+    if (!src) return "";
+    // collapse multiple blank lines to a single newline
+    const norm = src.replace(/\r\n/g, "\n").replace(/\n{2,}/g, "\n");
+    const lines = norm
+      .split("\n")
+      // keep literal "\\>" as ">"
+      .map((l) => l.replace(/^\\>(\s?)/, ">$1"))
+      // strip leading blockquote marker ">"
+      .map((l) => l.replace(/^>\s?/, "").trim());
+    const para = lines.map((l) => renderInline(escapeHtml(l))).join("<br />");
+    return `<p class=\"leading-relaxed\">${para}<\/p>`;
+  };
   return (
     <article className="wrapper flex flex-col gap-7.5 py-5 leading-snug">
       <section className="flex flex-col gap-5">
@@ -83,7 +99,7 @@ export default function MonthlySimulation({ data }: MonthlySimulationProps) {
               <div
                 className="prose prose-sm max-w-none"
                 dangerouslySetInnerHTML={{
-                  __html: renderMarkdownBasic(data.conversation),
+                  __html: renderConversationInline(data.conversation),
                 }}
               />
             </div>
