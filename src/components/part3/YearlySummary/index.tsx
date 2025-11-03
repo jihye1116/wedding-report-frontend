@@ -15,7 +15,7 @@ export default function YearlySummary({ data }: YearlySummaryProps) {
         <section className="flex flex-col items-center justify-center gap-7.5 2xl:flex-row">
           {data.chartInterpretation && (
             <p
-              className="text-center text-sm whitespace-pre-wrap text-[#7E7E7E]"
+              className="text-sm whitespace-pre-wrap text-[#7E7E7E]"
               dangerouslySetInnerHTML={{ __html: data.chartInterpretation }}
             />
           )}

@@ -49,7 +49,12 @@ export default function MonthlySimulation({ data }: MonthlySimulationProps) {
         return `<ul class="list-disc pl-5 space-y-1">${items}<\/ul>`;
       }
       // paragraph with line breaks
-      const para = lines.map((l) => renderInline(escapeHtml(l))).join("<br />");
+      // Support escaped blockquote marker: a line starting with "\>" should render as
+      // a literal ">" and NOT be treated as a blockquote.
+      const para = lines
+        .map((l) => l.replace(/^\\>(\s?)/, ">$1"))
+        .map((l) => renderInline(escapeHtml(l)))
+        .join("<br />");
       return `<p class="leading-relaxed">${para}<\/p>`;
     });
     return htmlBlocks.join("\n");
@@ -74,13 +79,14 @@ export default function MonthlySimulation({ data }: MonthlySimulationProps) {
       <section className="flex flex-col gap-5">
         <div className="rounded-xl bg-[#F8F8F8] p-5">
           <div className="">
-            {/* <div className="border-l-4 border-[#6DD4BD]/50 pl-2.5"> */}
-            <div
-              className="prose prose-sm max-w-none"
-              dangerouslySetInnerHTML={{
-                __html: renderMarkdownBasic(data.conversation),
-              }}
-            />
+            <div className="border-l-4 border-[#6DD4BD]/50 pl-2.5">
+              <div
+                className="prose prose-sm max-w-none"
+                dangerouslySetInnerHTML={{
+                  __html: renderMarkdownBasic(data.conversation),
+                }}
+              />
+            </div>
           </div>
         </div>
         <p className="leading-relaxed whitespace-pre-wrap">{data.analysis}</p>

@@ -154,9 +154,13 @@ const generateSimulationData = (reportData: ReportData | null) => {
         { quarter: "Q4", score: 4.2 },
       ],
       chartInterpretation:
-        year1Indicator?.graph_interpretation ||
-        "1년 차에는 서로에 대한 이해와 기대 사이에서 작은 마찰이 일어납니다.",
-      chartAnalysis: [year1Indicator?.graph_interpretation2 || ""],
+        "1년 차는 서로에 대한 이해와 기대 사이에서 작은 마찰이 일어나기 쉬운 시기입니다. 큰 싸움은 아니지만, ‘기대와 다른 방식’에서 오는 잔잔한 긴장이 누적될 수 있습니다. <br/><br/> 결혼 생활에서 긴장이 생기는 것은 누구나 겪는 자연스러운 흐름이며, <span class='font-bold'>낯선 긴장의 파형</span>을 함께 이해하고 넘어서려 할 때 관계는 더욱 견고해 집니다.",
+      chartAnalysis: [
+        (year1Indicator?.graph_interpretation || "") +
+          "" +
+          (year1Indicator?.graph_interpretation2 || "") ||
+          "1년 차에는 서로에 대한 이해와 기대 사이에서 작은 마찰이 일어납니다.",
+      ],
       summaryTitle: year1Indicator?.title || "서로에게 리듬을 맞춰가는 첫 1년",
       summaryContent: year1SummaryContent,
       questions: year1Indicator?.questions || [
@@ -260,9 +264,13 @@ const generateSimulationData = (reportData: ReportData | null) => {
         { quarter: "Q4", score: 7.6 },
       ],
       chartInterpretation:
-        year2Indicator?.graph_interpretation ||
-        "2년 차가 되면 반복되는 갈등과 현실적 압박을 통과하며, 서로의 불안·상처·한계를 더 자주 접하게 됩니다.",
-      chartAnalysis: [year2Indicator?.graph_interpretation2 || ""],
+        "2년 차가 되면 반복되는 갈등과 현실적 압박을 통과하며, 서로의<span class='font-bold'>불안·상처·한계</span>를 더 자주 접할 수 있습니다. 이때는 ‘가깝지만 상처받기 쉬운’ 상태이기도 합니다. <br/>  <br/>갈등과 압박을 회피하지 않고 대화하고 회복한 경험들이 쌓이면서, 정서 연결은 표면적 친밀도를 넘어서 수직적으로도 깊어지기 시작합니다. ",
+      chartAnalysis: [
+        (year2Indicator?.graph_interpretation || "") +
+          "" +
+          (year2Indicator?.graph_interpretation2 || "") ||
+          "2년 차가 되면 반복되는 갈등과 현실적 압박을 통과하며, 서로의 불안·상처·한계를 더 자주 접하게 됩니다.",
+      ],
       summaryTitle: year2Indicator?.title || "정체성의 균형을 찾아가는 2년차",
       summaryContent: year2SummaryContent,
       questions: year2Indicator?.questions || [
@@ -368,9 +376,14 @@ const generateSimulationData = (reportData: ReportData | null) => {
         { quarter: "Q4", score: 8.7 },
       ],
       chartInterpretation:
-        year3Indicator?.graph_interpretation ||
-        "3년 차에 접어들면서, 두 사람은 싸움이 아니라 '회복의 방식'에 주목하기 시작합니다.",
-      chartAnalysis: [year3Indicator?.graph_interpretation2 || ""],
+        "관계 회복 탄력성은 갈등이나 위기 이후 관계가 얼마나 빠르고 건강하게 회복되는지를 나타내는 지표입니다. 이는 감정의 골을 다루고 상호 이해를 회복하는 과정에서 나타나는 심리적·정서적 회복 능력을 의미합니다. <br/><br/> 3년 차는 그동안의 시행착오를 바탕으로 회복 탄력성을 한 단계 더 높일 수 있는 시기이며, 높은 회복 탄력성은 부부가 앞으로 오랜 시간 행복하게 살아갈 수 있는 중요한 기반이 됩니다.",
+
+      chartAnalysis: [
+        (year3Indicator?.graph_interpretation || "") +
+          "" +
+          (year3Indicator?.graph_interpretation2 || "") ||
+          "3년 차에 접어들면서, 두 사람은 싸움이 아니라 '회복의 방식'에 주목하기 시작합니다.",
+      ],
       summaryTitle:
         year3Indicator?.title || "평생 관계를 지탱할 힘을 만드는 3년차",
       summaryContent: year3SummaryContent,
