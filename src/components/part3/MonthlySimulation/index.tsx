@@ -71,7 +71,9 @@ export default function MonthlySimulation({ data }: MonthlySimulationProps) {
       // keep literal "\\>" as ">"
       .map((l) => l.replace(/^\\>(\s?)/, ">$1"))
       // strip leading blockquote marker ">"
-      .map((l) => l.replace(/^>\s?/, "").trim());
+      .map((l) => l.replace(/^>\s?/, "").trim())
+      // drop empty lines to avoid double <br /> when there are multiple blanks
+      .filter((l) => l.length > 0);
     const para = lines.map((l) => renderInline(escapeHtml(l))).join("<br />");
     return `<p class=\"leading-relaxed\">${para}<\/p>`;
   };
