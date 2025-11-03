@@ -19,6 +19,7 @@ export interface YearlySummaryData {
   chartTitle: string;
   barColor: string;
   quarterlyScores?: { quarter: string; score: number }[];
+  chartInterpretation?: string; // 그래프 상단 회색 텍스트
   chartAnalysis: string[];
   summaryTitle: string;
   summaryContent: string[];

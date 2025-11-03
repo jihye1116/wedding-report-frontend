@@ -73,7 +73,8 @@ export default function MonthlySimulation({ data }: MonthlySimulationProps) {
       </section>
       <section className="flex flex-col gap-5">
         <div className="rounded-xl bg-[#F8F8F8] p-5">
-          <div className="border-l-4 border-[#6DD4BD]/50 pl-2.5">
+          <div className="">
+            {/* <div className="border-l-4 border-[#6DD4BD]/50 pl-2.5"> */}
             <div
               className="prose prose-sm max-w-none"
               dangerouslySetInnerHTML={{

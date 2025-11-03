@@ -35,7 +35,12 @@ const generateSimulationData = (reportData: ReportData | null) => {
 
   // description을 문단 단위 배열로 변환
   const toParagraphs = (text?: string) =>
-    text ? text.split(/\r?\n\s*\r?\n/).map((t) => t.trim()).filter(Boolean) : undefined;
+    text
+      ? text
+          .split(/\r?\n\s*\r?\n/)
+          .map((t) => t.trim())
+          .filter(Boolean)
+      : undefined;
 
   // 기존 플로우 구조를 유지하면서 데이터만 동적으로 생성
   const simulationData: {
@@ -132,10 +137,9 @@ const generateSimulationData = (reportData: ReportData | null) => {
     }) => ind.year === 1,
   );
 
-  const year1SummaryContent =
-    toParagraphs(year1Indicator?.description) || [
-      "결혼 초기에는 대화가 자연스럽고, 감정의 결도 비슷하게 맞아떨어진다는 느낌을 받기 쉽습니다.",
-    ];
+  const year1SummaryContent = toParagraphs(year1Indicator?.description) || [
+    "결혼 초기에는 대화가 자연스럽고, 감정의 결도 비슷하게 맞아떨어진다는 느낌을 받기 쉽습니다.",
+  ];
 
   simulationData[7] = {
     type: "summary",
@@ -149,10 +153,10 @@ const generateSimulationData = (reportData: ReportData | null) => {
         { quarter: "Q3", score: 6.2 },
         { quarter: "Q4", score: 4.2 },
       ],
-      chartAnalysis: [
+      chartInterpretation:
         year1Indicator?.graph_interpretation ||
-          "1년 차에는 서로에 대한 이해와 기대 사이에서 작은 마찰이 일어납니다.",
-      ],
+        "1년 차에는 서로에 대한 이해와 기대 사이에서 작은 마찰이 일어납니다.",
+      chartAnalysis: [year1Indicator?.graph_interpretation2 || ""],
       summaryTitle: year1Indicator?.title || "서로에게 리듬을 맞춰가는 첫 1년",
       summaryContent: year1SummaryContent,
       questions: year1Indicator?.questions || [
@@ -239,10 +243,9 @@ const generateSimulationData = (reportData: ReportData | null) => {
     }) => ind.year === 2,
   );
 
-  const year2SummaryContent =
-    toParagraphs(year2Indicator?.description) || [
-      "결혼 첫해가 서로의 차이를 발견하고 조율하는 시간이었다면, 두 번째 해에는 조금 더 깊은 질문이 찾아옵니다.",
-    ];
+  const year2SummaryContent = toParagraphs(year2Indicator?.description) || [
+    "결혼 첫해가 서로의 차이를 발견하고 조율하는 시간이었다면, 두 번째 해에는 조금 더 깊은 질문이 찾아옵니다.",
+  ];
 
   simulationData[14] = {
     type: "summary",
@@ -256,10 +259,10 @@ const generateSimulationData = (reportData: ReportData | null) => {
         { quarter: "Q3", score: 8.3 },
         { quarter: "Q4", score: 7.6 },
       ],
-      chartAnalysis: [
+      chartInterpretation:
         year2Indicator?.graph_interpretation ||
-          "2년 차가 되면 반복되는 갈등과 현실적 압박을 통과하며, 서로의 불안·상처·한계를 더 자주 접하게 됩니다.",
-      ],
+        "2년 차가 되면 반복되는 갈등과 현실적 압박을 통과하며, 서로의 불안·상처·한계를 더 자주 접하게 됩니다.",
+      chartAnalysis: [year2Indicator?.graph_interpretation2 || ""],
       summaryTitle: year2Indicator?.title || "정체성의 균형을 찾아가는 2년차",
       summaryContent: year2SummaryContent,
       questions: year2Indicator?.questions || [
@@ -348,10 +351,9 @@ const generateSimulationData = (reportData: ReportData | null) => {
     }) => ind.year === 3,
   );
 
-  const year3SummaryContent =
-    toParagraphs(year3Indicator?.description) || [
-      "결혼 3년차는 삶이 가장 바쁘고 무거운 과제가 몰려드는 시기입니다.",
-    ];
+  const year3SummaryContent = toParagraphs(year3Indicator?.description) || [
+    "결혼 3년차는 삶이 가장 바쁘고 무거운 과제가 몰려드는 시기입니다.",
+  ];
 
   simulationData[21] = {
     type: "summary",
@@ -365,10 +367,10 @@ const generateSimulationData = (reportData: ReportData | null) => {
         { quarter: "Q3", score: 9.1 },
         { quarter: "Q4", score: 8.7 },
       ],
-      chartAnalysis: [
+      chartInterpretation:
         year3Indicator?.graph_interpretation ||
-          "3년 차에 접어들면서, 두 사람은 싸움이 아니라 '회복의 방식'에 주목하기 시작합니다.",
-      ],
+        "3년 차에 접어들면서, 두 사람은 싸움이 아니라 '회복의 방식'에 주목하기 시작합니다.",
+      chartAnalysis: [year3Indicator?.graph_interpretation2 || ""],
       summaryTitle:
         year3Indicator?.title || "평생 관계를 지탱할 힘을 만드는 3년차",
       summaryContent: year3SummaryContent,

@@ -110,6 +110,7 @@ export interface YearlyIndicator {
   indicator_name: string;
   quarterly_scores: QuarterlyScore[];
   graph_interpretation: string;
+  graph_interpretation2?: string;
   title: string;
   description: string;
   questions: string[];

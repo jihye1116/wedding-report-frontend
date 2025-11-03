@@ -13,7 +13,14 @@ export default function YearlySummary({ data }: YearlySummaryProps) {
           {data.chartTitle}
         </h2>
         <section className="flex flex-col items-center justify-center gap-7.5 2xl:flex-row">
-          <div className="mx-auto w-[300px] shrink-0 lg:w-[360px] xl:w-[340px]">
+          {data.chartInterpretation && (
+            <p
+              className="text-center text-sm whitespace-pre-wrap text-[#7E7E7E]"
+              dangerouslySetInnerHTML={{ __html: data.chartInterpretation }}
+            />
+          )}
+
+          <div className="mx-auto flex w-full shrink-0 flex-col gap-2 lg:w-[360px] xl:w-[340px]">
             <BarChart
               values={
                 data.quarterlyScores?.map((score) => score.score) || [
