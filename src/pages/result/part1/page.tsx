@@ -14,7 +14,7 @@ import { DetailedAnalysis, ReportData } from "@/types/api";
 const SLIDER_CONFIG = {
   section1: [
     {
-      title: "1. 사고의 시간 초점",
+      title: "1-1. 정보 인식 방식",
       leftLabel: "현재지향형",
       rightLabel: "미래지향형",
       origin: "center" as const,
@@ -25,7 +25,7 @@ const SLIDER_CONFIG = {
       analysisKey: "1-1" as const,
     },
     {
-      title: "2. 사고 초점",
+      title: "1-2. 의사 결정 기준",
       leftLabel: "논리·객관중심",
       rightLabel: "감정·인간중심",
       origin: "center" as const,
@@ -36,9 +36,9 @@ const SLIDER_CONFIG = {
       analysisKey: "1-2" as const,
     },
     {
-      title: "3. 정서 반응 민감도",
-      leftLabel: "반응적",
-      rightLabel: "조절적",
+      title: "1-3. 정서 반응 민감도",
+      leftLabel: "둔감형",
+      rightLabel: "민감형",
       origin: "left" as const,
       maxValue: 100,
       indicatorColor: "#FEECDA",
@@ -50,7 +50,7 @@ const SLIDER_CONFIG = {
   ],
   section2: [
     {
-      title: "1. 변화나 위험을 대할 때의 행동 에너지 방향",
+      title: "2-1. 동기 방향",
       leftLabel: "안전지향",
       rightLabel: "도전지향",
       origin: "center" as const,
@@ -61,7 +61,7 @@ const SLIDER_CONFIG = {
       analysisKey: "2-1" as const,
     },
     {
-      title: "2. 동기의 원천",
+      title: "2-2. 동기 유발 원천",
       leftLabel: "외적동기",
       rightLabel: "내적동기",
       origin: "center" as const,
@@ -72,7 +72,7 @@ const SLIDER_CONFIG = {
       analysisKey: "2-2" as const,
     },
     {
-      title: "3. 자기조절과 실행 자율성",
+      title: "2-3. 목표 실행 자율성",
       leftLabel: "낮음",
       rightLabel: "높음",
       origin: "left" as const,
@@ -87,7 +87,7 @@ const SLIDER_CONFIG = {
   ],
   section3: [
     {
-      title: "1. 대인 관계에서의 에너지 순환 패턴",
+      title: "3-1. 에너지 방향",
       leftLabel: "내향형",
       rightLabel: "외향형",
       origin: "center" as const,
@@ -98,7 +98,7 @@ const SLIDER_CONFIG = {
       analysisKey: "3-1" as const,
     },
     {
-      title: "2. 일상 구조화 및 실행 방식",
+      title: "3-2. 실행방식 선호도",
       leftLabel: "유연형",
       rightLabel: "계획형",
       origin: "center" as const,
@@ -109,7 +109,7 @@ const SLIDER_CONFIG = {
       analysisKey: "3-2" as const,
     },
     {
-      title: "3. 감정·의사 표현 스타일",
+      title: "3-3. 의사표현 성향",
       leftLabel: "자기표현형",
       rightLabel: "적응배려형",
       origin: "center" as const,
