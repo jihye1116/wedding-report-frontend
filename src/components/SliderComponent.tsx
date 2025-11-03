@@ -133,12 +133,10 @@ export const SliderComponent: React.FC<SliderComponentProps> = ({
   // - goesRight=false => 인디케이터 '오른쪽 면'이 pos에 닿음 => left = pos%
   const indicatorLeftCss: string | number = isZeroCenter
     ? trackW > 0
-      ? Math.round(
-          clamp(
-            trackW / 2 - INDICATOR_OUTER / 2,
-            0,
-            Math.max(0, trackW - INDICATOR_OUTER),
-          ),
+      ? clamp(
+          trackW / 2 - INDICATOR_OUTER / 2,
+          0,
+          Math.max(0, trackW - INDICATOR_OUTER),
         )
       : `clamp(0px, calc(50% - ${INDICATOR_OUTER / 2}px), calc(100% - ${INDICATOR_OUTER}px))`
     : goesRight
