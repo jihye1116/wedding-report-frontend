@@ -17,6 +17,9 @@ interface SliderComponentProps {
   origin?: Origin; // "center" | "left" (기본: "center")
   showCenterLine?: boolean; // 강제로 중앙선 노출/비노출 제어(기본: origin에 따라 자동)
   zeroBias?: ZeroBias; // 값=0일 때 진행방향(기본: "right")
+  // near-zero(±threshold) 구간에서 최소 시각적 거리 보정
+  nearZeroThreshold?: number; // 기본: 3 (center/-max~+max 스케일에서 사용)
+  nearZeroMinDistancePct?: number; // 기본: 6 (% of half track, 0~50)
 }
 
 /**
@@ -39,6 +42,8 @@ export const SliderComponent: React.FC<SliderComponentProps> = ({
   showCenterLine,
   scale,
   zeroBias = "right",
+  nearZeroThreshold = 3,
+  nearZeroMinDistancePct = 6,
 }) => {
   // ===== 디자인 상수 =====
   const TRACK_H = 40; // px
@@ -81,8 +86,13 @@ export const SliderComponent: React.FC<SliderComponentProps> = ({
     ariaMax = maxValue;
     ariaNow = signed;
 
-    // 라운딩 기준(0.5 미만은 0으로 스냅)으로 중앙 정렬 스냅
-    const layoutSigned = Math.abs(signed) < 0.5 ? 0 : signed;
+    // near-zero(±nearZeroThreshold) 구간 보정: 시각적으로 너무 어색한 중앙 부근을 최소 거리만큼 띄워서 표시
+    const isNearZero = Math.abs(signed) <= nearZeroThreshold;
+    const biasDir = Math.abs(signed) < 0.5 ? (zeroBias === "right" ? 1 : -1) : Math.sign(signed) || (zeroBias === "right" ? 1 : -1);
+    const minDistanceRatio = Math.max(0, Math.min(1, nearZeroMinDistancePct / 50)); // distancePct는 0~50 범위(절반 트랙)
+    const boostedSigned = biasDir * (minDistanceRatio * maxValue);
+    // 라운딩 기준(0.5 미만은 0으로 스냅) + near-zero 보정
+    const layoutSigned = isNearZero ? boostedSigned : Math.abs(signed) < 0.5 ? 0 : signed;
 
     // 위치 비율(0~1): -max -> 0, 0 -> 0.5, +max -> 1
     ratio = maxValue === 0 ? 0.5 : (layoutSigned + maxValue) / (2 * maxValue);
@@ -91,7 +101,7 @@ export const SliderComponent: React.FC<SliderComponentProps> = ({
     const distanceRatio =
       maxValue === 0 ? 0 : Math.abs(layoutSigned) / maxValue;
     // 트랙 폭 기준 0~50%
-    const distancePct = distanceRatio * 50;
+    const distancePct = Math.max(distanceRatio * 50, isNearZero ? nearZeroMinDistancePct : 0);
 
     // 중앙 → 인디케이터 방향으로만 채움
     fillLeft = layoutSigned >= 0 ? "50%" : `calc(50% - ${distancePct}%)`;
@@ -136,6 +146,8 @@ export const SliderComponent: React.FC<SliderComponentProps> = ({
   // - goesRight=true  => 인디케이터 '왼쪽 면'이 pos에 닿음 => left = pos% - OUTER
   // - goesRight=false => 인디케이터 '오른쪽 면'이 pos에 닿음 => left = pos%
 
+  const ATTACH_OFFSET_PX = 2; // 진행 방향 쪽으로 살짝 더 붙여 보이게 하는 오프셋
+
   const indicatorLeftCss: string | number = isZeroCenter
     ? trackW > 0
       ? clamp(
@@ -145,8 +157,10 @@ export const SliderComponent: React.FC<SliderComponentProps> = ({
         )
       : `clamp(0px, calc(50% - ${INDICATOR_OUTER / 2}px), calc(100% - ${INDICATOR_OUTER}px))`
     : goesRight
-      ? `clamp(0px, calc(${posPct.toFixed(4)}% - ${INDICATOR_OUTER}px), calc(100% - ${INDICATOR_OUTER}px))`
-      : `clamp(0px, ${posPct.toFixed(4)}%, calc(100% - ${INDICATOR_OUTER}px))`;
+      ? `clamp(0px, calc(${posPct.toFixed(
+          4,
+        )}% - ${INDICATOR_OUTER - ATTACH_OFFSET_PX}px), calc(100% - ${INDICATOR_OUTER}px))`
+      : `clamp(0px, calc(${posPct.toFixed(4)}% - ${ATTACH_OFFSET_PX}px), calc(100% - ${INDICATOR_OUTER}px))`;
   const indicatorTransformCss = undefined;
 
   // 중앙선 노출 여부(기본: center에서만 표시)
@@ -207,8 +221,12 @@ export const SliderComponent: React.FC<SliderComponentProps> = ({
             (() => {
               const posPx = (posPct / 100) * trackW;
               const fillPx = (fillWidthPct / 100) * trackW;
-              // 작은 값에서 반갈림 방지: 트림 폭을 실제 채움 폭 이내로 제한
-              const trimW = Math.min(INDICATOR_OUTER / 2, Math.max(0, fillPx));
+              // 작은 값에서 채움이 완전히 사라지지 않도록 최소 가시 폭을 남김
+              const MIN_VISIBLE_FILL_PX = 3;
+              const trimW = Math.min(
+                INDICATOR_OUTER / 2,
+                Math.max(0, fillPx - MIN_VISIBLE_FILL_PX),
+              );
               const leftPx = goesRight
                 ? Math.max(0, Math.min(trackW - trimW, posPx - trimW)) // → 진행: 기준선 왼쪽으로 trim
                 : Math.max(0, Math.min(trackW - trimW, posPx)); // ← 진행: 기준선 오른쪽으로 trim
