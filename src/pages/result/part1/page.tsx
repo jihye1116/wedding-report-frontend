@@ -282,7 +282,7 @@ const Page2 = () => (
         </div>
       </div>
       {/*  */}
-      <div className="flex flex-col gap-3 rounded-xl bg-gray-100 p-4">
+      <div className="flex flex-col gap-3 rounded-xl bg-gray-100 p-4 text-base">
         <div>
           <p className="text-lg font-semibold">외현적 행동 및 생활양식</p>
           <p className="text-gray-500">Living Rhythm</p>
