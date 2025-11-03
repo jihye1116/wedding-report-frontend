@@ -27,8 +27,8 @@ export default function Part4ResultPage({ step }: Part4ResultPageProps) {
           </h1>
           <div className="flex-3" />
           <p className="wrapper py-5 text-center text-lg font-medium text-[#111111]">
-            &quot; 서로의 리듬이 안정되면, 관계의 방향성은 자연히 드러납니다.
-            &quot;
+            관계는 서로를 따라 성장하고, <br />
+            오늘의 이해가 내일의 신뢰로 이어집니다.
           </p>
           <div className="flex-5" />
         </Fragment>

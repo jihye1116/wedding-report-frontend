@@ -18,20 +18,23 @@ export default function YearlyIntro({ data }: YearlyIntroProps) {
             {data.year}년 차
           </div>
           <p
-            className="border-t border-[#B3E5DA] py-5"
+            className="border-t border-[#B3E5DA] pt-5"
             dangerouslySetInnerHTML={{ __html: data.description }}
           />
         </div>
         {data.subheading && <p>{data.subheading}</p>}
-        <ul className="list-disc space-y-1 pl-5">
-          {data.points.map((point, index) => (
-            <li
-              key={index}
-              className="font-pretendard"
-              dangerouslySetInnerHTML={{ __html: point }}
-            />
-          ))}
-        </ul>
+        {data.points && (
+          <ul className="list-disc space-y-1 pl-5">
+            {data.points.map((point, index) => (
+              <li
+                key={index}
+                className="font-pretendard"
+                dangerouslySetInnerHTML={{ __html: point }}
+              />
+            ))}
+          </ul>
+        )}
+
         {data.analysis.map((paragraph, index) => (
           <p key={index} dangerouslySetInnerHTML={{ __html: paragraph }} />
         ))}
