@@ -88,11 +88,23 @@ export const SliderComponent: React.FC<SliderComponentProps> = ({
 
     // near-zero(±nearZeroThreshold) 구간 보정: 시각적으로 너무 어색한 중앙 부근을 최소 거리만큼 띄워서 표시
     const isNearZero = Math.abs(signed) <= nearZeroThreshold;
-    const biasDir = Math.abs(signed) < 0.5 ? (zeroBias === "right" ? 1 : -1) : Math.sign(signed) || (zeroBias === "right" ? 1 : -1);
-    const minDistanceRatio = Math.max(0, Math.min(1, nearZeroMinDistancePct / 50)); // distancePct는 0~50 범위(절반 트랙)
+    const biasDir =
+      Math.abs(signed) < 0.5
+        ? zeroBias === "right"
+          ? 1
+          : -1
+        : Math.sign(signed) || (zeroBias === "right" ? 1 : -1);
+    const minDistanceRatio = Math.max(
+      0,
+      Math.min(1, nearZeroMinDistancePct / 50),
+    ); // distancePct는 0~50 범위(절반 트랙)
     const boostedSigned = biasDir * (minDistanceRatio * maxValue);
     // 라운딩 기준(0.5 미만은 0으로 스냅) + near-zero 보정
-    const layoutSigned = isNearZero ? boostedSigned : Math.abs(signed) < 0.5 ? 0 : signed;
+    const layoutSigned = isNearZero
+      ? boostedSigned
+      : Math.abs(signed) < 0.5
+        ? 0
+        : signed;
 
     // 위치 비율(0~1): -max -> 0, 0 -> 0.5, +max -> 1
     ratio = maxValue === 0 ? 0.5 : (layoutSigned + maxValue) / (2 * maxValue);
@@ -101,7 +113,10 @@ export const SliderComponent: React.FC<SliderComponentProps> = ({
     const distanceRatio =
       maxValue === 0 ? 0 : Math.abs(layoutSigned) / maxValue;
     // 트랙 폭 기준 0~50%
-    const distancePct = Math.max(distanceRatio * 50, isNearZero ? nearZeroMinDistancePct : 0);
+    const distancePct = Math.max(
+      distanceRatio * 50,
+      isNearZero ? nearZeroMinDistancePct : 0,
+    );
 
     // 중앙 → 인디케이터 방향으로만 채움
     fillLeft = layoutSigned >= 0 ? "50%" : `calc(50% - ${distancePct}%)`;
