@@ -57,7 +57,7 @@ export default function Part4ResultPage({ step }: Part4ResultPageProps) {
             02 주요 지표별 예측
           </h1>
 
-          <div className="wrapper grid grid-cols-1 gap-10 py-5 xl:mt-5 xl:grid-cols-4">
+          <div className="wrapper grid grid-cols-1 gap-10 py-5 md:gap-5 xl:mt-5 xl:grid-cols-4 2xl:gap-[2%]">
             {indicatorPredictions.length > 0 ? (
               indicatorPredictions.map((indicator, index) => {
                 const getTagLevel = (level: string) => {
