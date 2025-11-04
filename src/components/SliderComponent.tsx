@@ -70,6 +70,9 @@ export const SliderComponent: React.FC<SliderComponentProps> = ({
     Math.max(min, Math.min(n, max));
 
   const textColor = "white";
+  // 디바이스 픽셀 스냅(소수점 반올림으로 인한 1px 흔들림 방지)
+  const dpr = typeof window !== "undefined" ? window.devicePixelRatio || 1 : 1;
+  const snapPx = (px: number) => Math.round(px * dpr) / dpr;
 
   // ===== 값/비율 계산 =====
   let ratio = 0; // 0~1, 인디케이터 위치 비율(좌->우)
@@ -139,6 +142,7 @@ export const SliderComponent: React.FC<SliderComponentProps> = ({
 
   // ===== 위치 CSS/방향 =====
   const posPct = ratio * 100;
+  const posPxAll = (posPct / 100) * trackW; // 트랙 너비 기준 절대 위치(px)
 
   // 진행 방향 판단
   // center: 음수=왼쪽, 양수=오른쪽, 0은 zeroBias
@@ -163,22 +167,44 @@ export const SliderComponent: React.FC<SliderComponentProps> = ({
   // - goesRight=true  => 인디케이터 '왼쪽 면'이 pos에 닿음 => left = pos% - OUTER
   // - goesRight=false => 인디케이터 '오른쪽 면'이 pos에 닿음 => left = pos%
 
-  const ATTACH_OFFSET_PX = 2; // 진행 방향 쪽으로 살짝 더 붙여 보이게 하는 오프셋
+  const ATTACH_OFFSET_PX = 0; // 미세 공백 제거(중앙선/채움과의 간극 최소화)
 
-  const indicatorLeftCss: string | number = isZeroCenter
-    ? trackW > 0
-      ? clamp(
+  const indicatorLeftCss: string | number = (() => {
+    // 트랙 실제 너비를 알고 있을 때는 px로 고정하여 서브픽셀 흔들림 방지
+    if (trackW > 0) {
+      if (isZeroCenter) {
+        const centered = clamp(
           trackW / 2 - INDICATOR_OUTER / 2,
           0,
           Math.max(0, trackW - INDICATOR_OUTER),
-        )
-      : `clamp(0px, calc(50% - ${INDICATOR_OUTER / 2}px), calc(100% - ${INDICATOR_OUTER}px))`
-    : goesRight
-      ? `clamp(0px, calc(${posPct.toFixed(
-          4,
-        )}% - ${INDICATOR_OUTER - ATTACH_OFFSET_PX}px), calc(100% - ${INDICATOR_OUTER}px))`
+        );
+        return snapPx(centered);
+      }
+      if (goesRight) {
+        const leftPx = clamp(
+          posPxAll - (INDICATOR_OUTER - ATTACH_OFFSET_PX),
+          0,
+          Math.max(0, trackW - INDICATOR_OUTER),
+        );
+        return snapPx(leftPx);
+      } else {
+        const leftPx = clamp(
+          posPxAll - ATTACH_OFFSET_PX,
+          0,
+          Math.max(0, trackW - INDICATOR_OUTER),
+        );
+        return snapPx(leftPx);
+      }
+    }
+    // SSR/초기 측정 전에는 기존 % calc 로 대체
+    return goesRight
+      ? `clamp(0px, calc(${posPct.toFixed(4)}% - ${INDICATOR_OUTER - ATTACH_OFFSET_PX}px), calc(100% - ${INDICATOR_OUTER}px))`
       : `clamp(0px, calc(${posPct.toFixed(4)}% - ${ATTACH_OFFSET_PX}px), calc(100% - ${INDICATOR_OUTER}px))`;
+  })();
   const indicatorTransformCss = undefined;
+
+  // 중앙선 위치도 트랙 실측 기반으로 픽셀 스냅하여 0.5px 오차 제거
+  const centerLineLeftPx = trackW > 0 ? snapPx(trackW / 2 - 0.5) : undefined;
 
   // 중앙선 노출 여부(기본: center에서만 표시)
   const showMidLine = showCenterLine ?? origin === "center";
@@ -236,17 +262,18 @@ export const SliderComponent: React.FC<SliderComponentProps> = ({
           {/* 채움 트림(인디케이터가 보이도록 막대를 일부 덜 채워 보이게 처리) */}
           {trackW > 0 &&
             (() => {
-              const posPx = (posPct / 100) * trackW;
               const fillPx = (fillWidthPct / 100) * trackW;
               // 작은 값에서 채움이 완전히 사라지지 않도록 최소 가시 폭을 남김
               const MIN_VISIBLE_FILL_PX = 3;
-              const trimW = Math.min(
+              const trimWRaw = Math.min(
                 INDICATOR_OUTER / 2,
                 Math.max(0, fillPx - MIN_VISIBLE_FILL_PX),
               );
-              const leftPx = goesRight
-                ? Math.max(0, Math.min(trackW - trimW, posPx - trimW)) // → 진행: 기준선 왼쪽으로 trim
-                : Math.max(0, Math.min(trackW - trimW, posPx)); // ← 진행: 기준선 오른쪽으로 trim
+              const trimW = snapPx(trimWRaw);
+              const leftRaw = goesRight
+                ? Math.max(0, Math.min(trackW - trimW, posPxAll - trimW)) // → 진행: 기준선 왼쪽으로 trim
+                : Math.max(0, Math.min(trackW - trimW, posPxAll)); // ← 진행: 기준선 오른쪽으로 trim
+              const leftPx = snapPx(leftRaw);
               return (
                 <div
                   className="absolute top-0"
@@ -267,6 +294,7 @@ export const SliderComponent: React.FC<SliderComponentProps> = ({
           {showMidLine && (
             <div
               className="absolute top-0 left-1/2 h-full w-px bg-gray-200"
+              style={{ left: centerLineLeftPx }}
               aria-hidden
             />
           )}
