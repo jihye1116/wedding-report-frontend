@@ -18,8 +18,8 @@ export default function YearlySummary({ data }: YearlySummaryProps) {
             dangerouslySetInnerHTML={{ __html: data.chartInterpretation }}
           />
         )}
-        <section className="flex flex-col items-center justify-center gap-7.5 2xl:flex-row">
-          <div className="mx-auto flex w-full shrink-0 flex-col gap-2 lg:w-[360px] xl:w-[340px]">
+        <section className="flex flex-col items-center justify-center gap-7.5 xl:flex-row xl:items-stretch">
+          <div className="lg:w:[360px] mx-auto flex w-full shrink-0 flex-col gap-2 xl:w-[340px]">
             <BarChart
               values={
                 data.quarterlyScores?.map((score) => score.score) || [
@@ -27,13 +27,14 @@ export default function YearlySummary({ data }: YearlySummaryProps) {
                 ]
               }
               barColor={data.barColor}
+              className="xl:h-full"
             />
           </div>
-          <div className="flex flex-1 flex-col gap-5 rounded-xl bg-[#F8F8F8] p-5">
+          <div className="flex flex-1 flex-col gap-3 rounded-xl bg-[#F8F8F8] p-5 xl:justify-center xl:py-[30px]">
             {data.chartAnalysis.map((p, i) => (
               <p
                 key={i}
-                className="whitespace-pre-wrap"
+                className="leading-snug whitespace-pre-wrap"
                 dangerouslySetInnerHTML={{ __html: p }}
               />
             ))}

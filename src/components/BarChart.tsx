@@ -1,11 +1,19 @@
+import { cn } from "@/utils/cn";
+
 interface BarChartProps {
   values: Array<number>;
   barColor: string;
+  className?: string;
 }
 
-export function BarChart({ values, barColor }: BarChartProps) {
+export function BarChart({ values, barColor, className }: BarChartProps) {
   return (
-    <div className="rounded-3xl border border-[#DCDCDC] bg-white px-2 py-6">
+    <div
+      className={cn(
+        "rounded-3xl border border-[#DCDCDC] bg-white px-2 py-6",
+        className,
+      )}
+    >
       <div className="relative flex flex-col gap-1">
         {Array.from({ length: 6 }, (_, i) => {
           const value = (5 - i) * 2;
@@ -19,7 +27,7 @@ export function BarChart({ values, barColor }: BarChartProps) {
           );
         })}
 
-        <div className="absolute mt-2.5 ml-7 flex h-[145px] w-[calc(100%-1.75rem)] items-end justify-evenly">
+        <div className="absolute mt-2.5 ml-7 flex h-[145px] w-[calc(100%-1.75rem)] items-end justify-evenly xl:h-full">
           {values.map((value, index) => (
             <div key={index} className="flex flex-col gap-1.25">
               <div
