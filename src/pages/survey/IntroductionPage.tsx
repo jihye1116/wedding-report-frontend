@@ -10,6 +10,7 @@ import { InputField } from "@/components/InputField";
 import { Navigator } from "@/components/Navigator";
 import { SelectionCircle } from "@/components/SelectionCircle";
 import { StartButton } from "@/components/StartButton";
+import { ActionButton } from "@/components/ActionButton"; // Import ActionButton
 import { useIntroduction } from "@/hooks/useIntroduction";
 import { useSwipeNavigation } from "@/hooks/useSwipeNavigation";
 
@@ -230,7 +231,11 @@ const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
           </main>
           <div className="wrapper flex h-full flex-col justify-end py-10">
             <div className="flex justify-end">
-              <StartButton onClick={handleNextFromAuth} disabled={!isAuthStepComplete} />
+              <ActionButton
+                onClick={handleNextFromAuth}
+                disabled={!isAuthStepComplete}
+                text="인증하기"
+              />
             </div>
           </div>
         </div>
