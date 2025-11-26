@@ -40,13 +40,12 @@ export function RatingQuestion({
         {globalQuestionNumber}. {question.question}
       </h2>
       {imageUrl && (
-        <div className="relative mb-6 flex aspect-square w-full justify-center">
+        <div className="relative mx-auto mb-6 flex aspect-square w-full max-w-[500px] items-center justify-center">
           <Image
             src={imageUrl}
             alt={`Question ${globalQuestionNumber} illustration`}
             className="object-contain"
             fill
-            sizes="(max-width: 768px) 100vw, 768px"
             quality={80}
             priority={idx === 0}
           />

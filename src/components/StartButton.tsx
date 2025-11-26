@@ -7,18 +7,26 @@ interface StartButtonProps {
   onClick: () => void;
   text?: string;
   className?: string;
+  disabled?: boolean;
 }
 
 export const StartButton = ({
   onClick,
   text = "기본 정보 입력",
   className,
+  disabled = false,
 }: StartButtonProps) => {
   return (
     <button
       type="button"
-      className="flex cursor-pointer items-center gap-2 rounded-lg bg-[#6DD4BD] p-2.5 pl-5 outline-black"
+      className={cn(
+        "flex cursor-pointer items-center gap-2 rounded-lg bg-[#6DD4BD] p-2.5 pl-5 outline-black",
+        {
+          "bg-gray-300 cursor-not-allowed": disabled,
+        },
+      )}
       onClick={onClick}
+      disabled={disabled}
     >
       <span
         className={cn(

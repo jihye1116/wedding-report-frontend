@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Fragment, useRef } from "react";
+import { Fragment, useRef, useState } from "react";
 import toast from "react-hot-toast";
 
 import Logo from "@/assets/icons/logo.svg";
@@ -19,6 +19,9 @@ interface IntroductionPageProps {
 
 const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
   const { step, setStep, introData, setIntroData } = useIntroduction();
+  const [authCode, setAuthCode] = useState("");
+
+  const authCodeRef = useRef<HTMLInputElement>(null);
 
   const {
     agreeAll,
@@ -48,15 +51,20 @@ const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
     return phone && phone.length === 11 && /^[0-9]{11}$/.test(phone);
   };
 
+  const isValidAuthCode = (code: string) => {
+    return code.trim().length > 0;
+  };
+
   // 각 step별 완료 여부
-  const isStep1Complete = !!(
+  const isAuthStepComplete = isValidAuthCode(authCode);
+  const isStep2Complete = !!(
     name &&
     partnerName &&
     isValidPhoneNumber(phoneNumber) &&
     isValidPhoneNumber(partnerPhoneNumber)
   );
-  const isStep2Complete = !!agreePrivacy;
-  const isStep3Complete = !!(relationshipDuration && gender);
+  const isStep3Complete = !!agreePrivacy;
+  const isStep4Complete = !!(relationshipDuration && gender);
 
   // input refs
   const nameRef = useRef<HTMLInputElement>(null);
@@ -64,11 +72,21 @@ const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
   const phoneNumberRef = useRef<HTMLInputElement>(null);
   const partnerPhoneNumberRef = useRef<HTMLInputElement>(null);
 
-  const handleNext = () => {
+  const handleNextStep = () => {
     setStep((prev) => prev + 1);
   };
 
-  const handleNextFromStep1 = () => {
+  const handleNextFromAuth = () => {
+    if (!isValidAuthCode(authCode)) {
+      authCodeRef.current?.focus();
+      toast.error("인증 코드를 입력해주세요.");
+      return;
+    }
+    // 인증 코드 확인 로직 (현재는 단순히 다음 스텝으로 이동)
+    handleNextStep();
+  };
+
+  const handleNextFromStep2 = () => {
     if (!name) {
       nameRef.current?.focus();
       toast.error("이름을 입력해주세요.");
@@ -97,18 +115,18 @@ const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
       }
       return;
     }
-    handleNext();
+    handleNextStep();
   };
 
-  const handleNextFromStep2 = () => {
+  const handleNextFromStep3 = () => {
     if (!agreePrivacy) {
       toast.error("개인정보 처리방침 동의를 해주세요.");
       return;
     }
-    handleNext();
+    handleNextStep();
   };
 
-  const handleNextFromStep3 = () => {
+  const handleNextFromStep4 = () => {
     if (!relationshipDuration) {
       toast.error("연애 기간을 선택해주세요.");
       return;
@@ -157,16 +175,19 @@ const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
   const onSwipedLeft = () => {
     switch (step) {
       case 0:
-        handleNext();
+        handleNextFromAuth();
         break;
-      case 1:
-        handleNextFromStep1();
+      case 1: // Previous step 0
+        handleNextStep();
         break;
-      case 2:
+      case 2: // Previous step 1
         handleNextFromStep2();
         break;
-      case 3:
+      case 3: // Previous step 2
         handleNextFromStep3();
+        break;
+      case 4: // Previous step 3
+        handleNextFromStep4();
         break;
       default:
         break;
@@ -194,6 +215,27 @@ const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
         height={100}
       />
       {step === 0 && (
+        <div className="flex flex-1 flex-col">
+          <main className="wrapper flex flex-col items-center justify-center gap-5 py-5 text-[#111111] flex-grow">
+            <h1 className="text-center text-3xl font-bold">인증 코드 입력</h1>
+            <p className="text-center text-base">전달 받으신 코드를 입력해주세요.</p>
+            <InputField
+              ref={authCodeRef}
+              name="authCode"
+              value={authCode}
+              onChange={(fieldName, value) => setAuthCode(value)}
+              placeholder="인증 코드 입력"
+              type="text"
+            />
+          </main>
+          <div className="wrapper flex h-full flex-col justify-end py-10">
+            <div className="flex justify-end">
+              <StartButton onClick={handleNextFromAuth} disabled={!isAuthStepComplete} />
+            </div>
+          </div>
+        </div>
+      )}
+      {step === 1 && (
         <Fragment>
           <main className="wrapper flex flex-col gap-10 py-5">
             <h1 className="text-center text-3xl font-medium text-[#111111] xl:my-10">
@@ -230,12 +272,12 @@ const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
           </main>
           <div className="wrapper flex h-full flex-col justify-end py-10">
             <div className="flex justify-end">
-              <StartButton onClick={handleNext} />
+              <StartButton onClick={handleNextStep} />
             </div>
           </div>
         </Fragment>
       )}
-      {step === 1 && (
+      {step === 2 && (
         <div className="flex flex-1 flex-col">
           <main className="wrapper flex flex-col gap-6 py-5 text-[#111111]">
             <section className="flex flex-col gap-4">
@@ -302,13 +344,13 @@ const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
           </main>
           <div className="flex-1" />
           <Navigator
-            onNext={handleNextFromStep1}
+            onNext={handleNextFromStep2}
             onBack={handleBack}
-            canProceed={isStep1Complete}
+            canProceed={isStep2Complete}
           />
         </div>
       )}
-      {step === 2 && (
+      {step === 3 && (
         <div className="flex flex-1 flex-col">
           <main className="wrapper flex flex-col gap-5 py-5 leading-snug text-[#111111]">
             <h2 className="font-medium">
@@ -404,13 +446,13 @@ const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
           </main>
           <div className="flex-1" />
           <Navigator
-            onNext={handleNextFromStep2}
+            onNext={handleNextFromStep3}
             onBack={handleBack}
-            canProceed={isStep2Complete}
+            canProceed={isStep3Complete}
           />
         </div>
       )}
-      {step === 3 && (
+      {step === 4 && (
         <div className="flex flex-1 flex-col">
           <main className="wrapper flex flex-col gap-10 py-5 leading-snug text-[#111111]">
             <section className="flex flex-col gap-5">
@@ -476,9 +518,9 @@ const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
           </main>
           <div className="flex-1" />
           <Navigator
-            onNext={handleNextFromStep3}
+            onNext={handleNextFromStep4}
             onBack={handleBack}
-            canProceed={isStep3Complete}
+            canProceed={isStep4Complete}
           />
         </div>
       )}
