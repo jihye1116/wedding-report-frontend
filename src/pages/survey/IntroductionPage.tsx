@@ -245,7 +245,7 @@ const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
                   isError
                     ? "border-[#FF6666] text-[#FF6666] placeholder-[#FF6666] focus:border-[#FF6666]"
                     : "border-gray-300 focus:border-black"
-                } h-12 h-15 w-full border outline-none lg:max-w-100`}
+                } h-12 w-full border outline-none lg:max-w-100`}
                 style={{
                   borderRadius: "12px",
                   textAlign: "center",
