@@ -6,13 +6,14 @@ import toast from "react-hot-toast";
 
 import Logo from "@/assets/icons/logo.svg";
 import { AnswerButton } from "@/components/AnswerButton";
-import { InputField } from "@/components/InputField";
 import { Navigator } from "@/components/Navigator";
 import { SelectionCircle } from "@/components/SelectionCircle";
 import { StartButton } from "@/components/StartButton";
 import { ActionButton } from "@/components/ActionButton"; // Import ActionButton
 import { useIntroduction } from "@/hooks/useIntroduction";
 import { useSwipeNavigation } from "@/hooks/useSwipeNavigation";
+import { InputField } from "@/components/InputField";
+import { useAccessCode } from "@/utils/api";
 
 interface IntroductionPageProps {
   onNext: () => void;
@@ -21,8 +22,12 @@ interface IntroductionPageProps {
 const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
   const { step, setStep, introData, setIntroData } = useIntroduction();
   const [authCode, setAuthCode] = useState("");
+  const [isError, setIsError] = useState(false);
+  const [authLoading, setAuthLoading] = useState(false);
 
   const authCodeRef = useRef<HTMLInputElement>(null);
+
+  // 인증 코드는 5자리 (예: LOVE1)
 
   const {
     agreeAll,
@@ -52,12 +57,7 @@ const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
     return phone && phone.length === 11 && /^[0-9]{11}$/.test(phone);
   };
 
-  const isValidAuthCode = (code: string) => {
-    return code.trim().length > 0;
-  };
-
-  // 각 step별 완료 여부
-  const isAuthStepComplete = isValidAuthCode(authCode);
+  const isAuthStepComplete = authCode.length === 5;
   const isStep2Complete = !!(
     name &&
     partnerName &&
@@ -77,14 +77,26 @@ const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
     setStep((prev) => prev + 1);
   };
 
-  const handleNextFromAuth = () => {
-    if (!isValidAuthCode(authCode)) {
-      authCodeRef.current?.focus();
-      toast.error("인증 코드를 입력해주세요.");
-      return;
+  const handleNextFromAuth = async () => {
+    if (!isAuthStepComplete || authLoading) return;
+    setIsError(false);
+    setAuthLoading(true);
+    try {
+      const { success, message } = await useAccessCode(authCode);
+      if (!success) {
+        setIsError(true);
+        toast.error(message || "인증 코드가 유효하지 않습니다.");
+        return;
+      }
+      toast.success("인증이 완료되었습니다.");
+      handleNextStep();
+    } catch (e) {
+      setIsError(true);
+      const msg = e instanceof Error ? e.message : "인증 중 오류가 발생했습니다.";
+      toast.error(msg);
+    } finally {
+      setAuthLoading(false);
     }
-    // 인증 코드 확인 로직 (현재는 단순히 다음 스텝으로 이동)
-    handleNextStep();
   };
 
   const handleNextFromStep2 = () => {
@@ -212,30 +224,60 @@ const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
         className="mx-auto pt-8 pb-5 xl:mt-20"
         src={Logo}
         alt="Logo"
-        width={100}
-        height={100}
+        height={70}
       />
       {step === 0 && (
         <div className="flex flex-1 flex-col">
-          <main className="wrapper flex flex-col items-center justify-center gap-5 py-5 text-[#111111] flex-grow">
-            <h1 className="text-center text-3xl font-bold">인증 코드 입력</h1>
+          <main className="wrapper flex flex-col items-center justify-center gap-5 py-5 text-[#111111] grow ">
+            <h1 className="text-center text-2xl font-bold">인증 코드 입력</h1>
             <p className="text-center text-base">전달 받으신 코드를 입력해주세요.</p>
-            <InputField
-              ref={authCodeRef}
-              name="authCode"
-              value={authCode}
-              onChange={(fieldName, value) => setAuthCode(value)}
-              placeholder="인증 코드 입력"
-              type="text"
-            />
+            <div className="flex flex-col items-center gap-2 w-full">
+              <input
+                ref={authCodeRef}
+                type="text"
+                placeholder="코드 입력"
+                maxLength={5}
+                value={authCode}
+                onChange={(e) => {
+                  setAuthCode(e.target.value);
+                  setIsError(false);
+                }}
+                className={
+                  `${
+                    isError
+                      ? "border-[#FF6666] text-[#FF6666] placeholder-[#FF6666] focus:border-[#FF6666]"
+                      : "border-gray-300 focus:border-black"
+                  } h-12 w-full border outline-none`
+                }
+                style={{
+                  borderRadius: "12px",
+                  textAlign: "center",
+                  fontSize: "14px",
+                  padding: "20px 12px",
+                  letterSpacing: authCode ? "10px" : undefined,
+                }}
+              />
+              {isError && (
+                <p
+                  style={{
+                    color: "#FF6666",
+                  }}
+                >
+                  코드가 일치하지 않습니다. 다시 확인해 주세요.
+                </p>
+              )}
+            </div>
+            <div className=" flex   justify-end w-full">
+              <ActionButton
+                onClick={handleNextFromAuth}
+                disabled={!isAuthStepComplete || authLoading}
+                text={authLoading ? "인증 중..." : "인증하기"}
+              />
+              </div>
           </main>
           <div className="wrapper flex h-full flex-col justify-end py-10">
             <div className="flex justify-end">
-              <ActionButton
-                onClick={handleNextFromAuth}
-                disabled={!isAuthStepComplete}
-                text="인증하기"
-              />
+            
             </div>
           </div>
         </div>

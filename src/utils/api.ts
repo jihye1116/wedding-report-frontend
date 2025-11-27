@@ -146,3 +146,52 @@ export async function getReportData(surveyId: string): Promise<ReportData> {
     throw new Error("네트워크 오류가 발생했습니다.");
   }
 }
+
+/**
+ * 액세스 코드를 사용 처리합니다.
+ * - 코드 유효성 검증
+ * - 사용 카운트 증가
+ * - 최대 사용 도달 시 자동 비활성화
+ * 주의: 한 번만 호출하세요.
+ */
+export async function useAccessCode(code: string): Promise<{ success: boolean; message?: string }> {
+  try {
+    // Use Next.js proxy to avoid CORS: call relative path
+    const response = await fetch(`/api/access-codes/use`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ code }),
+    });
+
+    if (!response.ok) {
+      // 에러 응답 처리 (detail 또는 message 추출)
+      let errorMessage = "코드 사용에 실패했습니다.";
+      try {
+        const errorData: ApiErrorResponse & { message?: string } = await response.json();
+        errorMessage =
+          typeof errorData.detail === "string"
+            ? errorData.detail
+            : errorData.message || errorMessage;
+      } catch {
+        // 응답이 JSON이 아닐 수 있음
+      }
+      throw new Error(errorMessage);
+    }
+
+    // 성공 응답 처리
+    try {
+      const data = (await response.json()) as { success?: boolean; message?: string };
+      return { success: data.success ?? true, message: data.message };
+    } catch {
+      // 본문이 없거나 성공만 의미하는 경우
+      return { success: true };
+    }
+  } catch (error) {
+    if (error instanceof Error) {
+      throw error;
+    }
+    throw new Error("네트워크 오류가 발생했습니다.");
+  }
+}

@@ -17,10 +17,10 @@ export const ActionButton = ({
     <button
       type="button"
       className={cn(
-        "flex cursor-pointer items-center gap-2 rounded-lg bg-[#6DD4BD] p-2.5 pl-5 outline-black",
-        {
-          "bg-gray-300 cursor-not-allowed": disabled,
-        },
+        "flex items-center gap-2 rounded-lg py-2.5 px-5 outline-black",
+        disabled
+          ? "bg-gray-300 cursor-not-allowed opacity-60"
+          : "bg-[#6DD4BD] cursor-pointer",
       )}
       onClick={onClick}
       disabled={disabled}
