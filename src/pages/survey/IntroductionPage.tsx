@@ -88,6 +88,7 @@ const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
     setIsError(false);
     setAuthLoading(true);
     try {
+      // const { success, message } = await verifyAccessCode("EJOQ5656");
       const { success, message } = await verifyAccessCode(authCode);
       if (!success) {
         setIsError(true);
@@ -214,7 +215,7 @@ const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
   return (
     <div {...swipeHandlers} className="flex h-dvh flex-col">
       <Image
-        className="mx-auto pt-8 pb-5 xl:mt-20"
+        className="mx-auto pt-8 pb-5 xl:mt-20 xl:w-[382px] xl:pt-0 xl:pb-15"
         src={Logo}
         alt="Logo"
         height={70}
@@ -222,10 +223,12 @@ const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
       {step === 0 && (
         <div className="flex flex-1 flex-col">
           <main className="wrapper flex grow flex-col items-center justify-center gap-5 py-5 text-[#111111]">
-            <h1 className="text-center text-2xl font-bold">인증 코드 입력</h1>
-            <p className="text-center text-base">
-              전달 받으신 코드를 입력해주세요.
-            </p>
+            <div>
+              <h1 className="text-center text-xl font-bold">인증 코드 입력</h1>
+              <p className="mt-3 text-center text-base">
+                전달 받으신 코드를 입력해주세요.
+              </p>
+            </div>
             <div className="flex w-full flex-col items-center gap-2">
               <input
                 ref={authCodeRef}
@@ -242,7 +245,7 @@ const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
                   isError
                     ? "border-[#FF6666] text-[#FF6666] placeholder-[#FF6666] focus:border-[#FF6666]"
                     : "border-gray-300 focus:border-black"
-                } h-12 w-full border outline-none`}
+                } h-12 h-15 w-full border outline-none lg:max-w-100`}
                 style={{
                   borderRadius: "12px",
                   textAlign: "center",
@@ -261,7 +264,7 @@ const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
                 </p>
               )}
             </div>
-            <div className="flex w-full justify-end">
+            <div className="mt-2.5 flex w-full justify-end lg:mt-5 lg:justify-center">
               <ActionButton
                 onClick={handleNextFromAuth}
                 disabled={!isAuthStepComplete || authLoading}
@@ -308,7 +311,7 @@ const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
                     backgroundPosition: "left center",
                   }}
                 />
-                <div className="pt-[15px] pb-5">
+                <div className="pt-[15px] pb-5 xl:px-[25%]">
                   <p className="text-center font-medium">[테스트 상세 안내]</p>
                   <div className="mt-3 flex flex-col gap-2">
                     <div className="flex items-center gap-1">
@@ -389,7 +392,7 @@ const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
               </div>
             </article>
           </main>
-          <div className="wrapper flex h-full flex-col justify-end py-10">
+          <div className="wrapper flex h-full flex-col justify-end py-10 xl:mt-30">
             <div className="flex justify-end">
               <StartButton onClick={handleNextStep} />
             </div>
@@ -533,7 +536,7 @@ const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
             {/* 연애 기간 입력 */}
             <section className="flex flex-col gap-6">
               <h2 className="text-xl font-bold">3. 연애 기간</h2>
-              <h2 className="text-xl font-bold">
+              <h2 className="font-medium">
                 몇 년째 연애중 인가요?<span className="text-[#FF6666]">*</span>
               </h2>
               <div className="flex w-fit flex-col gap-4">

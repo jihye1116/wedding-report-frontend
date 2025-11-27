@@ -6,9 +6,10 @@ export default function Part2Intro() {
   return (
     <div className="wrapper mx-auto">
       <Image
-        className="mx-auto py-5 xl:mt-15 xl:mb-10"
+        className="mx-auto w-[70px] py-5 xl:mt-15 xl:mb-10 xl:w-[100px]"
         src={Logo}
         alt="Logo"
+        width={70}
         height={70}
       />
 
