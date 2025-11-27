@@ -20,8 +20,7 @@ export default function Intro1Page({ onNext }: Intro1PageProps) {
           className="mx-auto py-5 xl:mt-15"
           src={Logo}
           alt="Logo"
-          width={100}
-          height={100}
+          height={70}
         />
         <main className="flex w-full flex-col gap-10 py-5">
           <h1 className="text-center text-2xl font-medium text-[#111111]">
