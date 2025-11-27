@@ -154,13 +154,16 @@ export async function getReportData(surveyId: string): Promise<ReportData> {
  * - 최대 사용 도달 시 자동 비활성화
  * 주의: 한 번만 호출하세요.
  */
-export async function useAccessCode(code: string): Promise<{ success: boolean; message?: string }> {
+export async function verifyAccessCode(code: string): Promise<{
+  success: boolean;
+  message?: string;
+}> {
   try {
-    // Use Next.js proxy to avoid CORS: call relative path
-    const response = await fetch(`/api/access-codes/use`, {
+    const response = await fetch(`${API_BASE_URL}/survey/access-codes/use`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "ngrok-skip-browser-warning": "true",
       },
       body: JSON.stringify({ code }),
     });
@@ -169,7 +172,8 @@ export async function useAccessCode(code: string): Promise<{ success: boolean; m
       // 에러 응답 처리 (detail 또는 message 추출)
       let errorMessage = "코드 사용에 실패했습니다.";
       try {
-        const errorData: ApiErrorResponse & { message?: string } = await response.json();
+        const errorData: ApiErrorResponse & { message?: string } =
+          await response.json();
         errorMessage =
           typeof errorData.detail === "string"
             ? errorData.detail
@@ -182,7 +186,10 @@ export async function useAccessCode(code: string): Promise<{ success: boolean; m
 
     // 성공 응답 처리
     try {
-      const data = (await response.json()) as { success?: boolean; message?: string };
+      const data = (await response.json()) as {
+        success?: boolean;
+        message?: string;
+      };
       return { success: data.success ?? true, message: data.message };
     } catch {
       // 본문이 없거나 성공만 의미하는 경우

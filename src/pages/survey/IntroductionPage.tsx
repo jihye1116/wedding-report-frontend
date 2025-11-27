@@ -5,15 +5,15 @@ import { Fragment, useRef, useState } from "react";
 import toast from "react-hot-toast";
 
 import Logo from "@/assets/icons/logo.svg";
+import { ActionButton } from "@/components/ActionButton";
 import { AnswerButton } from "@/components/AnswerButton";
+import { InputField } from "@/components/InputField";
 import { Navigator } from "@/components/Navigator";
 import { SelectionCircle } from "@/components/SelectionCircle";
 import { StartButton } from "@/components/StartButton";
-import { ActionButton } from "@/components/ActionButton"; // Import ActionButton
 import { useIntroduction } from "@/hooks/useIntroduction";
 import { useSwipeNavigation } from "@/hooks/useSwipeNavigation";
-import { InputField } from "@/components/InputField";
-import { useAccessCode } from "@/utils/api";
+import { verifyAccessCode } from "@/utils/api";
 
 interface IntroductionPageProps {
   onNext: () => void;
@@ -82,7 +82,8 @@ const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
     setIsError(false);
     setAuthLoading(true);
     try {
-      const { success, message } = await useAccessCode(authCode);
+      const { success, message } = await verifyAccessCode("TSBT8843");
+      // const { success, message } = await verifyAccessCode(authCode);
       if (!success) {
         setIsError(true);
         toast.error(message || "인증 코드가 유효하지 않습니다.");
@@ -92,7 +93,8 @@ const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
       handleNextStep();
     } catch (e) {
       setIsError(true);
-      const msg = e instanceof Error ? e.message : "인증 중 오류가 발생했습니다.";
+      const msg =
+        e instanceof Error ? e.message : "인증 중 오류가 발생했습니다.";
       toast.error(msg);
     } finally {
       setAuthLoading(false);
@@ -228,27 +230,28 @@ const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
       />
       {step === 0 && (
         <div className="flex flex-1 flex-col">
-          <main className="wrapper flex flex-col items-center justify-center gap-5 py-5 text-[#111111] grow ">
+          <main className="wrapper flex grow flex-col items-center justify-center gap-5 py-5 text-[#111111]">
             <h1 className="text-center text-2xl font-bold">인증 코드 입력</h1>
-            <p className="text-center text-base">전달 받으신 코드를 입력해주세요.</p>
-            <div className="flex flex-col items-center gap-2 w-full">
+            <p className="text-center text-base">
+              전달 받으신 코드를 입력해주세요.
+            </p>
+            <div className="flex w-full flex-col items-center gap-2">
               <input
                 ref={authCodeRef}
                 type="text"
                 placeholder="코드 입력"
                 maxLength={5}
+                // maxLength={5}
                 value={authCode}
                 onChange={(e) => {
                   setAuthCode(e.target.value);
                   setIsError(false);
                 }}
-                className={
-                  `${
-                    isError
-                      ? "border-[#FF6666] text-[#FF6666] placeholder-[#FF6666] focus:border-[#FF6666]"
-                      : "border-gray-300 focus:border-black"
-                  } h-12 w-full border outline-none`
-                }
+                className={`${
+                  isError
+                    ? "border-[#FF6666] text-[#FF6666] placeholder-[#FF6666] focus:border-[#FF6666]"
+                    : "border-gray-300 focus:border-black"
+                } h-12 w-full border outline-none`}
                 style={{
                   borderRadius: "12px",
                   textAlign: "center",
@@ -267,54 +270,40 @@ const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
                 </p>
               )}
             </div>
-            <div className=" flex   justify-end w-full">
+            <div className="flex w-full justify-end">
               <ActionButton
                 onClick={handleNextFromAuth}
                 disabled={!isAuthStepComplete || authLoading}
                 text={authLoading ? "인증 중..." : "인증하기"}
               />
-              </div>
+            </div>
           </main>
           <div className="wrapper flex h-full flex-col justify-end py-10">
-            <div className="flex justify-end">
-            
-            </div>
+            <div className="flex justify-end"></div>
           </div>
         </div>
       )}
       {step === 1 && (
         <Fragment>
           <main className="wrapper flex flex-col gap-10 py-5">
-            <h1 className="text-center text-3xl font-medium text-[#111111] xl:my-10">
-              꽃길 리포트 설문
-            </h1>
+            <div>
+              <h1 className="text-center text-3xl font-medium text-[#111111]">
+                우리 커플의 꽃길은?
+              </h1>
+              <h2 className="mt-2 text-center font-medium text-[#111111]">
+                두 사람이 함께 걷는 길, 더 잘 이해하기
+              </h2>
+            </div>
             <article className="flex flex-col gap-4 leading-snug whitespace-pre-wrap text-[#111111]">
               <p>안녕하세요! 😊</p>
               <p>
-                [신혼생활 시뮬레이션 스토리북] 서비스에 참여해 주셔서
-                감사합니다.
+                지금부터 두 분의 성향을 함께 살펴보고, 앞으로의 관계 흐름을
+                예측해보는 결혼 시뮬레이션이 시작됩니다.
               </p>
               <p>
-                이 설문은 총 120문항으로, 두 분의 성향을 분석하기 위한 기초
-                자료로 활용됩니다. 이 설문을 바탕으로 상호작용 형태와 결혼
-                생활을 예측해 리포트로 제공합니다. 설문은 본인과 파트너, 두
-                사람이 각각 참여하는 형태입니다.
-                <span className="font-medium">
-                  (각각 참여하기 위해, 이 링크를 파트너에게도 전달해 주시면
-                  됩니다!)
-                </span>
+                먼저 서로의 성향, 감정 반응, 생활 리듬을 살펴보는 심리/가치관
+                테스트가 진행됩니다.
               </p>
-              <p>설문은 크게 두 가지로 이루어져 있습니다.</p>
-              <p>✔️ 나에 대한 질문 {"\n"}✔️ 파트너에 대한 질문</p>
-              <p>
-                각 문항마다 나 혹은 파트너의 성향을 가장 잘 나타내는 선택지를
-                골라주세요. 가볍게 마음이 가는대로 선택해 주시면 됩니다.
-              </p>
-              <p>
-                설문을 모두 완료하시면, 결과 리포트는 적어주신 전화번호로 URL
-                형태로 발송됩니다. (평일 기준 약 48시간 소요)
-              </p>
-              <p>그럼, 시작해 볼까요?</p>
             </article>
           </main>
           <div className="wrapper flex h-full flex-col justify-end py-10">

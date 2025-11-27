@@ -12,7 +12,7 @@ interface StartButtonProps {
 
 export const StartButton = ({
   onClick,
-  text = "기본 정보 입력",
+  text = "설문 시작하기",
   className,
   disabled = false,
 }: StartButtonProps) => {
