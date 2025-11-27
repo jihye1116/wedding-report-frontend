@@ -4,7 +4,9 @@ import { useAtom } from "jotai";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
+import Logo from "@/assets/icons/logo.svg";
 import CelebrationImage from "@/assets/images/celebration.png";
+import PalmPathImage from "@/assets/images/palmpath.png";
 import { LoadingSpinner } from "@/components/LoadingSpinner";
 import { answersAtom, introDataAtom } from "@/store/surveyStore";
 import { submitSurvey } from "@/utils/api";
@@ -81,7 +83,6 @@ export default function FinishPage() {
 
   useEffect(() => {
     handleSubmit();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (isSubmitting) {
@@ -115,26 +116,57 @@ export default function FinishPage() {
 
   if (isSubmitted && surveyResult) {
     return (
-      <div className="flex h-dvh items-center justify-center">
-        <main className="wrapper flex w-full flex-col gap-10 py-5 text-center leading-snug text-[#111111]">
-          <h1 className="text-2xl font-bold">제출되었습니다 🌸</h1>
+      <div className="flex h-dvh flex-col">
+        <Image
+          className="mx-auto py-5 xl:mt-15 xl:mb-10"
+          src={Logo}
+          alt="Logo"
+          height={70}
+        />
 
-          <div className="result-gradient flex h-70 w-full items-center justify-center">
-            <Image
-              src={CelebrationImage}
-              alt="Celebration"
-              className=""
-              width={185}
-              height={250}
-            />
-          </div>
+        <main className="wrapper flex flex-1 flex-col items-center justify-center gap-8 py-5 text-center leading-snug text-[#111111]">
+          <h1 className="text-2xl font-medium">제출 완료 🌸</h1>
 
-          <div className="flex flex-col gap-2">
-            <p className="mt-4">
-              리포트 작업이 완료되면 문자 발송 예정이며, 영업일 기준 최대 2일
-              소요될 수 있습니다.
+          <p className="text-base font-medium">
+            설문이 성공적으로 제출되었습니다.
+          </p>
+
+          <div className="flex flex-col gap-3 text-left text-sm">
+            <p className="flex items-start gap-2">
+              <span>✉️</span>
+              <span>
+                리포트 작업이 완료되면 등록하신
+                <br />
+                휴대전화 번호로 문자를 보내드립니다.
+              </span>
+            </p>
+            <p className="flex items-start gap-2">
+              <span>🕐</span>
+              <span>
+                두 분 모두 설문을 완료하신 시점으로부터
+                <br />
+                최대 1시간 이내에 리포트가 발송됩니다.
+              </span>
             </p>
           </div>
+
+          <button
+            onClick={() =>
+              window.open(
+                "https://apps.apple.com/kr/app/palmpath/id6740755393",
+                "_blank",
+              )
+            }
+            className="mt-4 flex items-center justify-between gap-2 rounded-lg bg-[#6DD4BD] px-5 py-2.5 text-sm font-medium text-white"
+          >
+            <span className="text-left">
+              기다리는 동안 심심하다면
+              <br />
+              손금 궁합 보러가기 &gt;&gt;
+            </span>
+            <Image src={PalmPathImage} alt="손금" width={70} height={70} />
+          </button>
+          <div className="h-[100px]"></div>
         </main>
       </div>
     );
