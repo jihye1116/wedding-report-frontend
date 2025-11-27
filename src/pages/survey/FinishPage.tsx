@@ -5,7 +5,6 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 
 import Logo from "@/assets/icons/logo.svg";
-import CelebrationImage from "@/assets/images/celebration.png";
 import PalmPathImage from "@/assets/images/palmpath.png";
 import { LoadingSpinner } from "@/components/LoadingSpinner";
 import { answersAtom, introDataAtom } from "@/store/surveyStore";
@@ -124,19 +123,20 @@ export default function FinishPage() {
           height={70}
         />
 
-        <main className="wrapper flex flex-1 flex-col items-center justify-center gap-8 py-5 text-center leading-snug text-[#111111]">
-          <h1 className="text-2xl font-medium">제출 완료 🌸</h1>
+        <main className="wrapper flex w-full flex-1 flex-col items-center justify-center gap-8 py-5 text-center leading-snug text-[#111111]">
+          <div>
+            <h1 className="text-2xl font-medium">제출 완료 🌸</h1>
+            <p className="mt-4 text-base font-medium">
+              설문이 성공적으로 제출되었습니다.
+            </p>
+          </div>
 
-          <p className="text-base font-medium">
-            설문이 성공적으로 제출되었습니다.
-          </p>
-
-          <div className="flex flex-col gap-3 text-left text-sm">
+          <div className="flex w-full flex-col gap-3 text-left text-sm">
             <p className="flex items-start gap-2">
               <span>✉️</span>
               <span>
                 리포트 작업이 완료되면 등록하신
-                <br />
+                <br className="xl:hidden" />
                 휴대전화 번호로 문자를 보내드립니다.
               </span>
             </p>
@@ -144,7 +144,7 @@ export default function FinishPage() {
               <span>🕐</span>
               <span>
                 두 분 모두 설문을 완료하신 시점으로부터
-                <br />
+                <br className="xl:hidden" />
                 최대 1시간 이내에 리포트가 발송됩니다.
               </span>
             </p>
@@ -157,7 +157,7 @@ export default function FinishPage() {
                 "_blank",
               )
             }
-            className="mt-4 flex items-center justify-between gap-2 rounded-lg bg-[#6DD4BD] px-5 py-2.5 text-sm font-medium text-white"
+            className="mt-4 flex w-full items-center justify-between gap-2 rounded-lg bg-[#6DD4BD] px-5 py-2.5 text-sm font-medium text-white xl:max-w-[500px]"
           >
             <span className="text-left">
               기다리는 동안 심심하다면
