@@ -4,7 +4,12 @@ import Image from "next/image";
 import { Fragment, useRef, useState } from "react";
 import toast from "react-hot-toast";
 
+import CommentIcon from "@/assets/icons/comment.svg";
+import EditIcon from "@/assets/icons/edit.svg";
+import FavoriteIcon from "@/assets/icons/favorite.svg";
 import Logo from "@/assets/icons/logo.svg";
+import PersonIcon from "@/assets/icons/person.svg";
+import ScheduleIcon from "@/assets/icons/schedule.svg";
 import { ActionButton } from "@/components/ActionButton";
 import { AnswerButton } from "@/components/AnswerButton";
 import { InputField } from "@/components/InputField";
@@ -24,6 +29,7 @@ const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
   const [authCode, setAuthCode] = useState("");
   const [isError, setIsError] = useState(false);
   const [authLoading, setAuthLoading] = useState(false);
+  const [partnerGender, setPartnerGender] = useState<string>("");
 
   const authCodeRef = useRef<HTMLInputElement>(null);
 
@@ -82,8 +88,7 @@ const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
     setIsError(false);
     setAuthLoading(true);
     try {
-      const { success, message } = await verifyAccessCode("TSBT8843");
-      // const { success, message } = await verifyAccessCode(authCode);
+      const { success, message } = await verifyAccessCode(authCode);
       if (!success) {
         setIsError(true);
         toast.error(message || "인증 코드가 유효하지 않습니다.");
@@ -130,24 +135,16 @@ const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
       }
       return;
     }
-    handleNextStep();
-  };
-
-  const handleNextFromStep3 = () => {
-    if (!agreePrivacy) {
-      toast.error("개인정보 처리방침 동의를 해주세요.");
+    if (!gender) {
+      toast.error("성별을 선택해주세요.");
       return;
     }
-    handleNextStep();
-  };
-
-  const handleNextFromStep4 = () => {
     if (!relationshipDuration) {
       toast.error("연애 기간을 선택해주세요.");
       return;
     }
-    if (!gender) {
-      toast.error("성별을 선택해주세요.");
+    if (!agreePrivacy) {
+      toast.error("개인정보 처리방침 동의를 해주세요.");
       return;
     }
     onNext();
@@ -192,17 +189,11 @@ const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
       case 0:
         handleNextFromAuth();
         break;
-      case 1: // Previous step 0
+      case 1:
         handleNextStep();
         break;
-      case 2: // Previous step 1
+      case 2:
         handleNextFromStep2();
-        break;
-      case 3: // Previous step 2
-        handleNextFromStep3();
-        break;
-      case 4: // Previous step 3
-        handleNextFromStep4();
         break;
       default:
         break;
@@ -304,6 +295,98 @@ const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
                 먼저 서로의 성향, 감정 반응, 생활 리듬을 살펴보는 심리/가치관
                 테스트가 진행됩니다.
               </p>
+              {/* 아래에 사진과 동일한 부분 퍼블리싱.  */}
+              <div className="mt-4 flex flex-col gap-3">
+                {/* 상단 민트색 점선 구분선*/}
+                <div
+                  className="w-full"
+                  style={{
+                    height: 2,
+                    backgroundImage:
+                      "repeating-linear-gradient(90deg, rgba(109,212,189,0.8) 0, rgba(109,212,189,0.8) 8px, transparent 8px, transparent 20px)",
+                    backgroundRepeat: "repeat-x",
+                    backgroundPosition: "left center",
+                  }}
+                />
+                <div className="pt-[15px] pb-5">
+                  <p className="text-center font-medium">[테스트 상세 안내]</p>
+                  <div className="mt-3 flex flex-col gap-2">
+                    <div className="flex items-center gap-1">
+                      <Image
+                        src={EditIcon}
+                        alt="총 문항"
+                        width={24}
+                        height={24}
+                      />
+                      <span className="text-sm">총 120문항</span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <Image
+                        src={ScheduleIcon}
+                        alt="소요 시간"
+                        width={24}
+                        height={24}
+                      />
+                      <span className="text-sm">약 2~30분 소요</span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <Image
+                        src={CommentIcon}
+                        alt="질문 구성"
+                        width={24}
+                        height={24}
+                      />
+                      <span className="text-sm">질문 구성</span>
+                    </div>
+                    <div className="flex items-center gap-2 rounded-lg border border-[#DCDCDC] px-3 py-3.5">
+                      <Image
+                        src={PersonIcon}
+                        alt="나에 대한 질문"
+                        width={24}
+                        height={24}
+                      />
+                      <span className="text-sm">나에 대한 질문</span>
+                    </div>
+                    <div className="flex items-center gap-2 rounded-lg border border-[#DCDCDC] px-3 py-3.5">
+                      <Image
+                        src={FavoriteIcon}
+                        alt="파트너에 대한 질문"
+                        width={24}
+                        height={24}
+                      />
+                      <span className="text-sm">파트너에 대한 질문</span>
+                    </div>
+                  </div>
+                  <p className="mt-3 text-sm font-medium">
+                    ※두 분 모두 각각 참여해야 하므로, 파트너에게도 링크를 공유해
+                    주세요!
+                  </p>
+                </div>
+                {/* 하단 민트색 점선 구분선*/}
+                <div
+                  className="w-full"
+                  style={{
+                    height: 2,
+                    backgroundImage:
+                      "repeating-linear-gradient(90deg, rgba(109,212,189,0.8) 0, rgba(109,212,189,0.8) 8px, transparent 8px, transparent 20px)",
+                    backgroundRepeat: "repeat-x",
+                    backgroundPosition: "left center",
+                  }}
+                />
+                <p className="text-sm">
+                  <span
+                    className="underline"
+                    style={{
+                      textDecorationColor: "rgba(109,212,189,0.4)",
+                      textDecorationThickness: "8px",
+                      textUnderlineOffset: "-2px",
+                    }}
+                  >
+                    편하게 집중할 수 있는 시간과 공간에서 진행해 주시면
+                    좋습니다.
+                  </span>
+                </p>
+              </div>
             </article>
           </main>
           <div className="wrapper flex h-full flex-col justify-end py-10">
@@ -315,184 +398,142 @@ const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
       )}
       {step === 2 && (
         <div className="flex flex-1 flex-col">
-          <main className="wrapper flex flex-col gap-6 py-5 text-[#111111]">
-            <section className="flex flex-col gap-4">
-              <label className="leading-snug font-medium">
-                이름을 적어주세요<span className="text-[#FF6666]">*</span>
-              </label>
-              <InputField
-                ref={nameRef}
-                name="name"
-                value={name}
-                onChange={(fieldName, value) =>
-                  setIntroData({ ...introData, name: value })
-                }
-                placeholder="본인의 이름(별칭) 입력"
-              />
-            </section>
-            <section className="flex flex-col gap-4">
-              <label className="leading-snug font-medium">
-                내 파트너의 이름을 적어주세요
-                <span className="text-[#FF6666]">*</span>
-              </label>
-              <InputField
-                ref={partnerNameRef}
-                name="partnerName"
-                value={partnerName}
-                onChange={(fieldName, value) =>
-                  setIntroData({ ...introData, partnerName: value })
-                }
-                placeholder="내 파트너의 이름(별칭) 입력"
-              />
-            </section>
-            <section className="flex flex-col gap-4">
-              <label className="leading-snug font-medium">
-                내 휴대전화 번호를 적어주세요
-                <span className="text-[#FF6666]">*</span>
-              </label>
-              <InputField
-                ref={phoneNumberRef}
-                name="phoneNumber"
-                value={phoneNumber}
-                onChange={handlePhoneNumberChange}
-                placeholder="내 휴대전화 번호 11자리 입력(숫자만)"
-                type="tel"
-              />
-            </section>
-            <section className="flex flex-col gap-4">
-              <label className="leading-snug font-medium">
-                내 파트너의 휴대전화 번호를 적어주세요
-                <span className="text-[#FF6666]">*</span>
-              </label>
-              <InputField
-                ref={partnerPhoneNumberRef}
-                name="partnerPhoneNumber"
-                value={partnerPhoneNumber}
-                onChange={handlePartnerPhoneNumberChange}
-                placeholder="파트너의 휴대전화 번호 11자리 입력(숫자만)"
-                type="tel"
-              />
-            </section>
-            <p className="pt-1 text-sm leading-snug">
-              ※이름과 휴대전화 번호를 정확히 입력하셔야 데이터 매칭이
-              가능합니다.
-            </p>
-          </main>
-          <div className="flex-1" />
-          <Navigator
-            onNext={handleNextFromStep2}
-            onBack={handleBack}
-            canProceed={isStep2Complete}
-          />
-        </div>
-      )}
-      {step === 3 && (
-        <div className="flex flex-1 flex-col">
-          <main className="wrapper flex flex-col gap-5 py-5 leading-snug text-[#111111]">
-            <h2 className="font-medium">
-              개인정보 처리방침 동의<span className="text-[#FF6666]">*</span>
-            </h2>
-            <p className="text-sm">
-              본 설문은 응답자의 성향 분석을 통해 요청하신 보고서를 작성하기
-              위한 목적으로 진행됩니다. 설문 참여 과정에서 수집된 개인정보는
-              보고서 작성 완료 후 즉시 익명 처리되며, 익명화된 데이터는 향후
-              연구 및 AI 학습 목적으로 활용될 수 있습니다.
-            </p>
-            <section className="flex items-center gap-2.5 border-b border-[#DCDCDC] pb-3">
-              <SelectionCircle
-                size="sm"
-                selected={agreeAll}
-                onClick={handleAgreeAll}
-              />
-              <p className="text-sm font-bold">전체동의(선택사항 포함)</p>
-            </section>
-            <section className="flex flex-col gap-4.5">
-              <div className="flex items-center gap-2.5">
-                <SelectionCircle
-                  size="sm"
-                  selected={agreePrivacy}
-                  onClick={handleAgreePrivacy}
+          <main className="wrapper flex flex-col gap-10 overflow-y-auto py-5 pt-10 leading-snug text-[#111111]">
+            {/* 나의 정보 입력 */}
+            <section className="flex flex-col gap-6">
+              <h2 className="text-xl font-bold">1. 나의 정보</h2>
+              <div className="flex flex-col gap-4">
+                <label className="leading-snug font-medium">
+                  이름을 적어주세요<span className="text-[#FF6666]">*</span>
+                </label>
+                <InputField
+                  ref={nameRef}
+                  name="name"
+                  value={name}
+                  onChange={(fieldName, value) =>
+                    setIntroData({ ...introData, name: value })
+                  }
+                  placeholder="본인의 이름(별칭) 입력"
                 />
-                <p className="text-sm">(필수) 개인정보 처리방침 동의</p>
               </div>
-              <div className="flex flex-col gap-3 text-sm whitespace-pre-wrap">
-                <p>(주)후아는 다음과 같이 개인정보를 수집·이용합니다.</p>
-                <div>
-                  <p>1. 수집하는 개인정보 항목</p>
-                  <ul className="mt-1 list-disc space-y-0.5 pl-5">
-                    <li>이름, 성별, 전화번호</li>
-                    <li>
-                      설문 응답자가 자발적으로 제공하는 추가 정보 (예: A, B 등
-                      응답 항목 내 자율 기재 내용)
-                    </li>
-                  </ul>
-                </div>
-                <div>
-                  <p>2. 개인정보 수집 및 이용 목적</p>
-                  <ul className="mt-1 list-disc space-y-0.5 pl-5">
-                    <li>
-                      결혼 시뮬레이션 리포트 작성 및 개인 맞춤형 리포트 제공
-                    </li>
-                    <li>
-                      설문 응답 결과 분석 및 서비스 품질 개선을 위한 연구 활용
-                    </li>
-                    <li>AI 모델 학습을 위한 비식별화된 데이터 분석</li>
-                  </ul>
-                </div>
-                <div>
-                  <p>3. 개인정보 보유 및 이용 기간</p>
-                  <ul className="mt-1 list-disc space-y-0.5 pl-5">
-                    <li>
-                      개인정보는 수집일로부터 최대 1년간 보관 후, 즉시
-                      파기합니다.
-                    </li>
-                    <li>
-                      단, 관계 법령에 따라 보존이 필요한 경우 해당 기간 동안
-                      안전하게 보관합니다.
-                    </li>
-                  </ul>
-                </div>
-                <div>
-                  <p>4. 동의를 거부할 권리</p>
-                  <ul className="mt-1 list-disc space-y-0.5 pl-5">
-                    <li>
-                      귀하는 개인정보 제공에 동의하지 않을 권리가 있습니다.
-                    </li>
-                    <li>
-                      다만, 필수 항목에 동의하지 않을 경우 서비스 제공(결혼
-                      시뮬레이션 리포트 작성)이 제한될 수 있습니다.
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </section>
-            <section className="flex flex-col gap-4.5">
-              <div className="flex items-center gap-2.5">
-                <SelectionCircle
-                  size="sm"
-                  selected={event_promotion_agree}
-                  onClick={handleAgreeEventPromotion}
+              <div className="flex flex-col gap-4">
+                <label className="leading-snug font-medium">
+                  내 휴대전화 번호를 적어주세요
+                  <span className="text-[#FF6666]">*</span>
+                </label>
+                <InputField
+                  ref={phoneNumberRef}
+                  name="phoneNumber"
+                  value={phoneNumber}
+                  onChange={handlePhoneNumberChange}
+                  placeholder="내 휴대전화 번호 11자리 입력(숫자만)"
+                  type="tel"
                 />
-                <p className="text-sm">(선택) 마케팅 정보 수신 동의</p>
               </div>
-              <p className="text-sm">
-                (주)후아의 서비스, 이벤트, 프로모션 등 마케팅 정보 발송
+              <div className="flex flex-col gap-4">
+                <label className="leading-snug font-medium">
+                  성별을 선택해주세요<span className="text-[#FF6666]">*</span>
+                </label>
+                <div className="flex gap-4">
+                  {[
+                    {
+                      label: "A",
+                      text: "여성",
+                      value: "female",
+                      color: "blue" as const,
+                    },
+                    {
+                      label: "B",
+                      text: "남성",
+                      value: "male",
+                      color: "green" as const,
+                    },
+                  ].map((option) => (
+                    <AnswerButton
+                      key={option.value}
+                      label={option.label}
+                      text={option.text}
+                      color={option.color}
+                      selected={gender === option.value}
+                      onClick={() =>
+                        setIntroData({ ...introData, gender: option.value })
+                      }
+                    />
+                  ))}
+                </div>
+              </div>
+              <h2 className="text-xl font-bold">2. 파트너의 정보</h2>
+
+              <div className="flex flex-col gap-4">
+                <label className="leading-snug font-medium">
+                  내 파트너의 이름을 적어주세요
+                  <span className="text-[#FF6666]">*</span>
+                </label>
+                <InputField
+                  ref={partnerNameRef}
+                  name="partnerName"
+                  value={partnerName}
+                  onChange={(fieldName, value) =>
+                    setIntroData({ ...introData, partnerName: value })
+                  }
+                  placeholder="내 파트너의 이름(별칭) 입력"
+                />
+              </div>
+              <div className="flex flex-col gap-4">
+                <label className="leading-snug font-medium">
+                  내 파트너의 휴대전화 번호를 적어주세요
+                  <span className="text-[#FF6666]">*</span>
+                </label>
+                <InputField
+                  ref={partnerPhoneNumberRef}
+                  name="partnerPhoneNumber"
+                  value={partnerPhoneNumber}
+                  onChange={handlePartnerPhoneNumberChange}
+                  placeholder="파트너의 휴대전화 번호 11자리 입력(숫자만)"
+                  type="tel"
+                />
+              </div>
+              <div className="flex flex-col gap-4">
+                <label className="leading-snug font-medium">
+                  파트너의 성별을 선택해주세요
+                </label>
+                <div className="flex gap-4">
+                  {[
+                    {
+                      label: "A",
+                      text: "여성",
+                      value: "female",
+                      color: "blue" as const,
+                    },
+                    {
+                      label: "B",
+                      text: "남성",
+                      value: "male",
+                      color: "green" as const,
+                    },
+                  ].map((option) => (
+                    <AnswerButton
+                      key={option.value}
+                      label={option.label}
+                      text={option.text}
+                      color={option.color}
+                      selected={partnerGender === option.value}
+                      onClick={() => setPartnerGender(option.value)}
+                    />
+                  ))}
+                </div>
+              </div>
+              <p className="pt-1 text-sm leading-snug font-medium">
+                ※두 분의 설문 결과가 정확히 연결되어야 리포트 발송이 가능합니다.
+                이름과 휴대전화 번호를 다시 한 번 확인하고 다음 단계로 넘어가
+                주세요!
               </p>
             </section>
-          </main>
-          <div className="flex-1" />
-          <Navigator
-            onNext={handleNextFromStep3}
-            onBack={handleBack}
-            canProceed={isStep3Complete}
-          />
-        </div>
-      )}
-      {step === 4 && (
-        <div className="flex flex-1 flex-col">
-          <main className="wrapper flex flex-col gap-10 py-5 leading-snug text-[#111111]">
-            <section className="flex flex-col gap-5">
-              <h2 className="font-medium">
+
+            {/* 연애 기간 입력 */}
+            <section className="flex flex-col gap-6">
+              <h2 className="text-xl font-bold">3. 연애 기간</h2>
+              <h2 className="text-xl font-bold">
                 몇 년째 연애중 인가요?<span className="text-[#FF6666]">*</span>
               </h2>
               <div className="flex w-fit flex-col gap-4">
@@ -519,44 +560,106 @@ const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
                 ))}
               </div>
             </section>
+
+            {/* 개인정보 처리방침 동의 */}
             <section className="flex flex-col gap-5">
-              <h2 className="font-medium">
-                성별을 선택해주세요<span className="text-[#FF6666]">*</span>
+              <h2 className="text-xl font-bold">
+                개인정보 처리방침 동의<span className="text-[#FF6666]">*</span>
               </h2>
-              <div className="flex w-fit flex-col gap-4">
-                {[
-                  {
-                    label: "A",
-                    text: "여성",
-                    value: "female",
-                    color: "blue" as const,
-                  },
-                  {
-                    label: "B",
-                    text: "남성",
-                    value: "male",
-                    color: "green" as const,
-                  },
-                ].map((option) => (
-                  <AnswerButton
-                    key={option.value}
-                    label={option.label}
-                    text={option.text}
-                    color={option.color}
-                    selected={gender === option.value}
-                    onClick={() =>
-                      setIntroData({ ...introData, gender: option.value })
-                    }
+              <p className="text-sm">
+                본 설문은 응답자의 성향 분석을 통해 요청하신 보고서를 작성하기
+                위한 목적으로 진행됩니다. 설문 참여 과정에서 수집된 개인정보는
+                보고서 작성 완료 후 즉시 익명 처리되며, 익명화된 데이터는 향후
+                연구 및 AI 학습 목적으로 활용될 수 있습니다.
+              </p>
+              <div className="flex items-center gap-2.5 border-b border-[#DCDCDC] pb-3">
+                <SelectionCircle
+                  size="sm"
+                  selected={agreeAll}
+                  onClick={handleAgreeAll}
+                />
+                <p className="text-sm font-bold">전체동의(선택사항 포함)</p>
+              </div>
+              <div className="flex flex-col gap-4.5">
+                <div className="flex items-center gap-2.5">
+                  <SelectionCircle
+                    size="sm"
+                    selected={agreePrivacy}
+                    onClick={handleAgreePrivacy}
                   />
-                ))}
+                  <p className="text-sm">(필수) 개인정보 처리방침 동의</p>
+                </div>
+                <div className="flex flex-col gap-3 text-sm whitespace-pre-wrap">
+                  <p>(주)후아는 다음과 같이 개인정보를 수집·이용합니다.</p>
+                  <div>
+                    <p>1. 수집하는 개인정보 항목</p>
+                    <ul className="mt-1 list-disc space-y-0.5 pl-5">
+                      <li>이름, 성별, 전화번호</li>
+                      <li>
+                        설문 응답자가 자발적으로 제공하는 추가 정보 (예: A, B 등
+                        응답 항목 내 자율 기재 내용)
+                      </li>
+                    </ul>
+                  </div>
+                  <div>
+                    <p>2. 개인정보 수집 및 이용 목적</p>
+                    <ul className="mt-1 list-disc space-y-0.5 pl-5">
+                      <li>
+                        결혼 시뮬레이션 리포트 작성 및 개인 맞춤형 리포트 제공
+                      </li>
+                      <li>
+                        설문 응답 결과 분석 및 서비스 품질 개선을 위한 연구 활용
+                      </li>
+                      <li>AI 모델 학습을 위한 비식별화된 데이터 분석</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <p>3. 개인정보 보유 및 이용 기간</p>
+                    <ul className="mt-1 list-disc space-y-0.5 pl-5">
+                      <li>
+                        개인정보는 수집일로부터 최대 1년간 보관 후, 즉시
+                        파기합니다.
+                      </li>
+                      <li>
+                        단, 관계 법령에 따라 보존이 필요한 경우 해당 기간 동안
+                        안전하게 보관합니다.
+                      </li>
+                    </ul>
+                  </div>
+                  <div>
+                    <p>4. 동의를 거부할 권리</p>
+                    <ul className="mt-1 list-disc space-y-0.5 pl-5">
+                      <li>
+                        귀하는 개인정보 제공에 동의하지 않을 권리가 있습니다.
+                      </li>
+                      <li>
+                        다만, 필수 항목에 동의하지 않을 경우 서비스 제공(결혼
+                        시뮬레이션 리포트 작성)이 제한될 수 있습니다.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div className="flex flex-col gap-4.5">
+                <div className="flex items-center gap-2.5">
+                  <SelectionCircle
+                    size="sm"
+                    selected={event_promotion_agree}
+                    onClick={handleAgreeEventPromotion}
+                  />
+                  <p className="text-sm">(선택) 마케팅 정보 수신 동의</p>
+                </div>
+                <p className="text-sm">
+                  (주)후아의 서비스, 이벤트, 프로모션 등 마케팅 정보 발송
+                </p>
               </div>
             </section>
           </main>
           <div className="flex-1" />
           <Navigator
-            onNext={handleNextFromStep4}
+            onNext={handleNextFromStep2}
             onBack={handleBack}
-            canProceed={isStep4Complete}
+            canProceed={isStep2Complete && isStep3Complete && isStep4Complete}
           />
         </div>
       )}
