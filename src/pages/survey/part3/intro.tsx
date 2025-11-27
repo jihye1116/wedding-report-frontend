@@ -9,23 +9,43 @@ export default function Part3Intro() {
         className="mx-auto py-5 xl:mt-15 xl:mb-10"
         src={Logo}
         alt="Logo"
-        width={100}
-        height={100}
+        height={70}
       />
-      <h1 className="py-5 text-xl font-bold xl:mt-15">
-        Part 3. 우리의 생활 리듬(연애 ↔ 결혼 상상)
-      </h1>
-      <section className="flex flex-col gap-5 py-5 leading-snug text-[#111111]">
-        <p>이제는 함께하는 삶의 장면을 상상해 보는 시간입니다.</p>
-        <p>연애 중이라면 지금의 생활 패턴과 대화 방식을,</p>
-        <p>결혼을 상상한다면 함께 살게 되었을 때의 모습을 떠올려 주세요.</p>
-        <p>“나는 이렇게 할 것 같다.”</p>
-        <p>“이런 상황이 되면 이렇게 느낄 것 같다.”</p>
-        <p>이런 식으로 현실적이면서도 자연스럽게 상상해 주시면 됩니다.</p>
-        <p>
-          이 단계는 두 사람의 생활 리듬과 가치관이 어떻게 어우러질지 살펴보기
-          위한 과정입니다.
-        </p>
+
+      <section className="mt-5 flex flex-col gap-4 py-5">
+        <div className="rounded-2xl border border-[#AAAAAA] bg-white p-5">
+          <h2 className="text-lg font-bold text-[#AAAAAA]">
+            1. 내가 보는 나
+            <span className="text-base font-medium">(45문항)</span>
+          </h2>
+        </div>
+
+        <div className="rounded-2xl border border-[#AAAAAA] bg-white p-5">
+          <h2 className="text-lg font-bold text-[#AAAAAA]">
+            2. 내가 보는 파트너
+            <span className="text-base font-medium">(45문항)</span>
+          </h2>
+        </div>
+
+        <div className="rounded-2xl border-2 border-[#6DD4BD] bg-white p-5">
+          <h2 className="mb-5 text-xl font-bold text-[#111111]">
+            3. 일상 생활 리듬
+            <span className="text-base font-medium">(18문항)</span>
+          </h2>
+          <p className="mb-3 text-sm leading-relaxed text-[#111111]">
+            이제 두 분이 함께 만들어갈 미래의 장면을 상상해 볼까요?
+          </p>
+          <p className="flex items-start gap-1 text-sm leading-relaxed text-[#111111]">
+            <span>평소의 모습을 떠올리며 답해 주시면 됩니다.</span>
+          </p>
+        </div>
+
+        <div className="rounded-2xl border border-[#AAAAAA] bg-white p-5">
+          <h2 className="text-lg font-bold text-[#AAAAAA]">
+            4. 삶의 가치관
+            <span className="text-base font-medium">(주관식 12문항)</span>
+          </h2>
+        </div>
       </section>
     </div>
   );
