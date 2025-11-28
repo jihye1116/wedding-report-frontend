@@ -130,9 +130,9 @@ const convertScaledScore = (scaledScore: number): number => {
 
 const getDescriptionText = (analysis: DetailedAnalysis | undefined): string => {
   if (!analysis) return "";
-  return `${analysis.informationPerceptionMethod || ""}\n${
+  return `${analysis.informationPerceptionMethod || ""}\n\n${
     analysis.informationPerceptionMethodReason || ""
-  }\n${analysis.partnerPerception || ""}`.trim();
+  }\n\n${analysis.partnerPerception || ""}`.trim();
 };
 
 const getScoreValue = (
