@@ -185,6 +185,11 @@ span {
   word-break: keep-all;
 }
 
+p,
+span {
+  white-space: pre-wrap;
+}
+
 .wrapper {
   @apply px-10 xl:px-120;
 }
