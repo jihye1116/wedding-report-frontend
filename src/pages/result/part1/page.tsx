@@ -130,9 +130,9 @@ const convertScaledScore = (scaledScore: number): number => {
 
 const getDescriptionText = (analysis: DetailedAnalysis | undefined): string => {
   if (!analysis) return "";
-  return `${analysis.informationPerceptionMethod || ""} ${
+  return `${analysis.informationPerceptionMethod || ""}\n\n${
     analysis.informationPerceptionMethodReason || ""
-  } ${analysis.partnerPerception || ""}`.trim();
+  }\n\n${analysis.partnerPerception || ""}`.trim();
 };
 
 const getScoreValue = (
@@ -420,8 +420,8 @@ const SliderSection = ({
               text={
                 summaryText ||
                 detailedAnalysis?.[defaultSummaryKey]
-                  ?.characteristicDefinition ||
-                characteristicDefinition ||
+                  ?.characteristicDefinition + "\n" ||
+                characteristicDefinition + "\n" ||
                 ""
               }
             />
