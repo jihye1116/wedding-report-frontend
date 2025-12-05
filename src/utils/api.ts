@@ -111,7 +111,7 @@ export async function getReportData(surveyId: string): Promise<ReportData> {
       survey?: { analysisResult: ReportData };
       createdAt?: string;
     } & ReportData = await response.json();
-    console.log("API response:", result);
+    // console.log("API response:", result);
 
     // API 응답 구조 확인 및 데이터 추출
     if (result.survey && result.survey.analysisResult) {
