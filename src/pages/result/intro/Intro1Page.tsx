@@ -17,7 +17,7 @@ export default function Intro1Page({ onNext }: Intro1PageProps) {
       <div className="wrapper flex h-full flex-col items-center justify-center">
         <div className="hidden xl:block"></div>
         <Image
-          className="mx-auto py-5 xl:mt-15"
+          className="mx-auto py-5 xl:mt-15 xl:w-[382px]"
           src={Logo}
           alt="Logo"
           height={70}

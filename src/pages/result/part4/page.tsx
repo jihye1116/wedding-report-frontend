@@ -14,8 +14,13 @@ interface Part4ResultPageProps {
 
 export default function Part4ResultPage({ step }: Part4ResultPageProps) {
   const [reportData] = useAtom(reportDataAtom);
-  const maleName = reportData?.metadata?.male_name || "갑돌이";
-  const femaleName = reportData?.metadata?.female_name || "갑순이";
+  const normalizeName = (name?: string) =>
+    (name || "").replace(/님$/, "").trim();
+
+  const maleNameRaw = reportData?.metadata?.male_name || "갑돌이";
+  const femaleNameRaw = reportData?.metadata?.female_name || "갑순이";
+  const maleName = normalizeName(maleNameRaw);
+  const femaleName = normalizeName(femaleNameRaw);
   const relationshipPrediction = reportData?.relationship_prediction;
   const indicatorPredictions =
     relationshipPrediction?.indicator_predictions ?? [];
@@ -106,13 +111,19 @@ export default function Part4ResultPage({ step }: Part4ResultPageProps) {
               personalChanges
                 .slice()
                 .sort((a, b) => {
-                  const aMale = a.name === maleName;
-                  const bMale = b.name === maleName;
+                  const aMale = normalizeName(a.name) === maleName;
+                  const bMale = normalizeName(b.name) === maleName;
                   // 여성 우선: 남성이면 1, 여성이면 0으로 정렬
                   return Number(aMale) - Number(bMale);
                 })
                 .map((change, index) => {
-                  const isMale = change.name === maleName;
+                  const isMale = normalizeName(change.name) === maleName;
+                  const isFemale = normalizeName(change.name) === femaleName;
+                  const displayName = isMale
+                    ? maleNameRaw
+                    : isFemale
+                      ? femaleNameRaw
+                      : change.name;
                   return (
                     <section key={index}>
                       <div
@@ -121,7 +132,7 @@ export default function Part4ResultPage({ step }: Part4ResultPageProps) {
                         {isMale ? (
                           <>
                             <p className="leading-loose font-semibold">
-                              {change.name} 님의 변화
+                              {displayName} 님의 변화
                             </p>
                             <Image src={Male} alt="남성" width={48} />
                           </>
@@ -134,7 +145,7 @@ export default function Part4ResultPage({ step }: Part4ResultPageProps) {
                               className="rotate-y-180"
                             />
                             <p className="leading-loose font-semibold">
-                              {change.name} 님의 변화
+                              {displayName} 님의 변화
                             </p>
                           </>
                         )}

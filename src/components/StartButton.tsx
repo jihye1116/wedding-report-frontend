@@ -20,8 +20,8 @@ export const StartButton = ({
     <button
       type="button"
       className={cn(
-        "flex cursor-pointer items-center gap-2 rounded-lg bg-[#6DD4BD] p-2.5 pl-5 outline-black",
-        disabled && "cursor-not-allowed bg-gray-300",
+        "flex cursor-pointer items-center gap-2 rounded-lg p-2.5 pl-5 outline-black",
+        disabled ? "cursor-not-allowed bg-gray-300" : "bg-[#6DD4BD]",
       )}
       onClick={onClick}
       disabled={disabled}
