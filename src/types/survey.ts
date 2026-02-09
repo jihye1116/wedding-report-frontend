@@ -7,6 +7,8 @@ export interface SurveyQuestion {
   subCategory?: string;
   type?: QuestionType;
   options?: string[];
+  weight: number;
+  direction: "reverse" | "forward";
   image?: string | { male: string; female: string };
 }
 
