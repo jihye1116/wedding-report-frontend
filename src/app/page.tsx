@@ -80,6 +80,7 @@ function SurveyPage() {
       [part]: page,
     }));
     // 앞으로 갈 때만 스크롤을 최상단으로 이동
+    console.log("isBackward:", isBackward);
     if (!isBackward) {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
