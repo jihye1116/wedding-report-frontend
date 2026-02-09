@@ -28,7 +28,7 @@ export default function Intro2Page({ onNext }: Intro2PageProps) {
           </p>
 
           {/* 표지 (바깥 레이아웃에서 중앙 정렬) */}
-          <div className="mx-auto h-full xl:h-auto xl:w-full">
+          <div className="mx-auto xl:w-full">
             <div className="mt-15 w-full">
               <div className="font-gangwon font-bold text-emerald-700">
                 {/* '신혼생활' | '시뮬레이션' 두 기둥 */}
@@ -82,7 +82,7 @@ export default function Intro2Page({ onNext }: Intro2PageProps) {
         </div>
 
         {/* 버튼은 그대로 하단 고정 느낌 (xl에서 mt-auto로 바닥으로) */}
-        <div className="mt-20 flex w-full justify-end pb-10 xl:mt-auto">
+        <div className="fixed right-0 bottom-0 left-0 flex justify-end px-10 pb-10 xl:mt-auto xl:px-120">
           <NavigateButton direction="right" onClick={onNext} color={"green"} />
         </div>
       </div>
