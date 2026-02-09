@@ -57,12 +57,9 @@ export const PartPageTemplate = ({
   const setCurrentPart = useSetAtom(currentPartAtom);
   const setCurrentPage = useSetAtom(currentPageAtom);
 
-  // [수정] 배열 대신 Map을 사용하여 Ref 관리 (Render phase 에러 방지)
-  // 초기값을 null로 두고 callback에서 초기화하는 것보다, 안정성을 위해 빈 Map으로 초기화
   const itemsRef = useRef<Map<number, HTMLDivElement>>(new Map());
+  const headerRef = useRef<HTMLDivElement>(null);
   const navigatorRef = useRef<HTMLDivElement>(null);
-
-  const GAP_SIZE = 64;
 
   const {
     currentPage: internalCurrentPage,
@@ -145,7 +142,7 @@ export const PartPageTemplate = ({
       }
     }
     return result;
-  }, [part.questions, questionsPerPage, shuffleSeed, shuffleQuestions]); // 의존성 추가
+  }, [part.questions, questionsPerPage, shuffleSeed, shuffleQuestions]);
 
   const currentQuestions = useMemo(() => {
     if (isIntroPage) return [];
@@ -178,62 +175,62 @@ export const PartPageTemplate = ({
   };
 
   /**
-   * 고정 스크롤 로직 (Map Ref 사용)
+   * [Bottom-Align Scroll Logic]
+   * 전략: 다음 질문의 "바닥(Bottom)"을 화면 하단 100px 위치로 끌어올린다.
+   * 효과: 질문의 상단 시작점과는 무관하게, '답변 버튼'이 무조건 화면에 들어오게 됨.
    */
-  const scrollFixedAmount = useCallback(
+  const scrollToNext16p = useCallback(
     (currentIndex: number) => {
-      // requestAnimationFrame을 사용하여 렌더링 완료 후 실행 보장
-      requestAnimationFrame(() => {
-        // 1. 마지막 질문인 경우
-        if (currentIndex === currentQuestions.length - 1) {
+      // 1. 박자감: 클릭 후 0.2초 멍 때리기 (사용자가 "눌렀다"는 인식을 하는 시간)
+      setTimeout(() => {
+        const nextNode = itemsRef.current.get(currentIndex + 1);
+
+        if (nextNode) {
+          // 다음 질문의 위치 정보
+          const rect = nextNode.getBoundingClientRect();
+
+          // 문서 전체 기준, 다음 질문의 바닥(Bottom) 절대 좌표
+          const absoluteBottom = window.scrollY + rect.bottom;
+
+          // 현재 뷰포트(화면)의 높이
+          const viewportHeight = window.innerHeight;
+
+          // 목표: 질문의 바닥이 화면 바닥에서 100px 위에 오도록 설정
+          // 계산: (절대 바닥 좌표) - (화면 높이 - 100px)
+          const BOTTOM_OFFSET = 100;
+          const targetScrollPosition =
+            absoluteBottom - (viewportHeight - BOTTOM_OFFSET);
+
+          window.scrollTo({
+            top: targetScrollPosition,
+            behavior: "smooth",
+          });
+        } else if (currentIndex === currentQuestions.length - 1) {
+          // 마지막 질문인 경우, 다음 페이지 버튼(네비게이터)이 화면 중앙에 오도록
           navigatorRef.current?.scrollIntoView({
             behavior: "smooth",
-            block: "start",
-          });
-          return;
-        }
-
-        // 2. 일반 질문 높이 기준 계산
-        let standardStep = 0;
-
-        // Map에서 DOM 요소 찾기
-        const nodes = itemsRef.current;
-
-        // 이미지가 없는 질문의 인덱스를 찾음
-        const standardQuestionIndex = currentQuestions.findIndex(
-          (q) => !q.image,
-        );
-        const standardNode = nodes.get(standardQuestionIndex);
-
-        if (standardNode) {
-          standardStep = standardNode.offsetHeight + GAP_SIZE;
-        } else {
-          // fallback: 현재 질문 높이 사용
-          const currentNode = nodes.get(currentIndex);
-          if (currentNode) {
-            standardStep = currentNode.offsetHeight + GAP_SIZE;
-          }
-        }
-
-        if (standardStep > 0) {
-          window.scrollBy({
-            top: standardStep,
-            behavior: "smooth",
+            block: "center",
           });
         }
-      });
+      }, 200); // 0.2초 딜레이
     },
-    [currentQuestions, GAP_SIZE],
+    [currentQuestions.length],
   );
 
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="flex min-h-screen flex-col bg-slate-50">
       <main className="flex-1">
         {isIntroPage ? (
           introComponent
         ) : (
           <div className="wrapper">
-            <ProgressBar />
+            {/* Header (ProgressBar) */}
+            <div
+              ref={headerRef}
+              className="sticky top-0 z-20 bg-slate-50 pt-2 pb-2 transition-all"
+            >
+              <ProgressBar />
+            </div>
 
             <div className="mx-auto flex max-w-3xl flex-col gap-16 py-10">
               {currentQuestions.map((question, idx) => {
@@ -257,7 +254,8 @@ export const PartPageTemplate = ({
                       answer: string | number,
                     ) => {
                       _addAnswer?.(questionId, answer);
-                      scrollFixedAmount(idx);
+                      // 스크롤 트리거
+                      scrollToNext16p(idx);
                     },
                   },
                 );
@@ -265,7 +263,6 @@ export const PartPageTemplate = ({
                 return (
                   <div
                     key={question.id}
-                    // [수정] Map에 Ref 저장 (렌더링 중 읽기 방지)
                     ref={(node) => {
                       if (node) {
                         itemsRef.current.set(idx, node);
