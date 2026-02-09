@@ -17,7 +17,6 @@ import { Navigator } from "@/components/Navigator";
 import { SelectionCircle } from "@/components/SelectionCircle";
 import { StartButton } from "@/components/StartButton";
 import { useIntroduction } from "@/hooks/useIntroduction";
-import { useSwipeNavigation } from "@/hooks/useSwipeNavigation";
 import { verifyAccessCode } from "@/utils/api";
 
 interface IntroductionPageProps {
@@ -207,13 +206,8 @@ const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
     }
   };
 
-  const swipeHandlers = useSwipeNavigation({
-    onSwipedLeft,
-    onSwipedRight,
-  });
-
   return (
-    <div {...swipeHandlers} className="flex h-dvh flex-col">
+    <div className="flex h-dvh flex-col">
       <Image
         className="mx-auto pt-8 pb-5 xl:mt-20 xl:w-[382px] xl:pt-0 xl:pb-15"
         src={Logo}

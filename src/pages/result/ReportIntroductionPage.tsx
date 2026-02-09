@@ -4,7 +4,6 @@ import { useAtom } from "jotai";
 import { useEffect, useState } from "react";
 
 import { LoadingSpinner } from "@/components/LoadingSpinner";
-import { useSwipeNavigation } from "@/hooks/useSwipeNavigation";
 import { reportDataAtom } from "@/store/surveyStore";
 import { getReportData } from "@/utils/api";
 
@@ -79,11 +78,6 @@ export default function ReportIntroductionPage({
     }
   };
 
-  const swipeHandlers = useSwipeNavigation({
-    onSwipedLeft: handleNext,
-    onSwipedRight: handleBack,
-  });
-
   // 로딩 상태
   if (loading) {
     return (
@@ -127,7 +121,7 @@ export default function ReportIntroductionPage({
   // 기존 로직 사용 (데이터는 전역 상태에서 가져옴)
   if (currentStep === "intro1") {
     return (
-      <div {...swipeHandlers}>
+      <div>
         <Intro1Page onNext={handleNext} />
       </div>
     );
@@ -135,7 +129,7 @@ export default function ReportIntroductionPage({
 
   if (currentStep === "intro2") {
     return (
-      <div {...swipeHandlers}>
+      <div>
         <Intro2Page onNext={handleNext} />
       </div>
     );
@@ -143,7 +137,7 @@ export default function ReportIntroductionPage({
 
   if (currentStep === "intro3") {
     return (
-      <div {...swipeHandlers}>
+      <div>
         <Intro3Page onNext={handleNext} onBack={handleBack} />
       </div>
     );

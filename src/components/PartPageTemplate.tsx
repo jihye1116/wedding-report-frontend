@@ -16,7 +16,6 @@ import { Navigator } from "@/components/Navigator";
 import { ProgressBar } from "@/components/ProgressBar";
 import { detailedSurveyData } from "@/data";
 import { usePartNavigation } from "@/hooks/usePartNavigation";
-import { useSwipeNavigation } from "@/hooks/useSwipeNavigation";
 import { currentPageAtom, currentPartAtom } from "@/store/surveyStore";
 import { SurveyAnswer, SurveyPart, SurveyQuestion } from "@/types/survey";
 
@@ -158,17 +157,6 @@ export const PartPageTemplate = ({
         _answers?.some((a) => a.questionId === question.id),
       );
 
-  const swipeHandlers = useSwipeNavigation({
-    onSwipedLeft: () => {
-      if (isIntroPage || allQuestionsAnswered) {
-        handleNext();
-      } else {
-        toast.error("모든 문항에 답변해주세요.");
-      }
-    },
-    onSwipedRight: handleBack,
-  });
-
   const getPartStartNumber = (partNumber: number) => {
     let startNumber = 0;
     for (let i = 0; i < partNumber - 1; i++) {
@@ -186,7 +174,7 @@ export const PartPageTemplate = ({
   };
 
   return (
-    <div {...swipeHandlers} className="flex min-h-screen flex-col">
+    <div className="flex min-h-screen flex-col">
       <main className="flex-1">
         {isIntroPage ? (
           introComponent
