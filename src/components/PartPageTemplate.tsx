@@ -218,7 +218,7 @@ export const PartPageTemplate = ({
   );
 
   return (
-    <div className="flex min-h-screen flex-col bg-slate-50">
+    <div className="flex min-h-screen flex-col">
       <main className="flex-1">
         {isIntroPage ? (
           introComponent
@@ -227,7 +227,7 @@ export const PartPageTemplate = ({
             {/* Header (ProgressBar) */}
             <div
               ref={headerRef}
-              className="sticky top-0 z-20 bg-slate-50 pt-2 pb-2 transition-all"
+              className="sticky top-0 z-20 pt-2 pb-2 transition-all"
             >
               <ProgressBar />
             </div>
