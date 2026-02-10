@@ -32,7 +32,12 @@ export function ProgressBar({ className }: ProgressBarProps) {
   // intro 페이지(0)가 아닌 경우에만 추가
   if (currentPage > 0) {
     const currentPartData = detailedSurveyData.parts[currentPart - 1];
-    const questionsPerPage = currentPartData.partNumber === 4 ? 4 : 5;
+    let questionsPerPage = 5;
+    if (currentPartData.partNumber === 3) {
+      questionsPerPage = 6;
+    } else if (currentPartData.partNumber === 4) {
+      questionsPerPage = 4;
+    }
     // 현재 페이지까지 보여진 문항 수 (intro 페이지 제외)
     completedQuestions += Math.min(
       currentPage * questionsPerPage,

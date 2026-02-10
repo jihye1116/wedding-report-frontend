@@ -142,6 +142,9 @@ export const PartPageTemplate = ({
       }
     }
     return result;
+
+    // 테스트 후 주석 제거
+    // return [...part.questions];
   }, [part.questions, questionsPerPage, shuffleSeed, shuffleQuestions]);
 
   const currentQuestions = useMemo(() => {

@@ -4,20 +4,21 @@ export const detailedSurveyData: SurveyData = {
   parts: [
     {
       partNumber: 1,
-      title: "Part 1: 기본 성격 특성",
+      title: "Part 1: 내가 보는 나",
       description:
         "정보처리 및 의사결정, 동기 구조 및 자기조절, 외현적 행동 및 생활 방식, MMPI 기반 보조 지표",
-      totalQuestions: 45,
-      totalPages: 10,
+      totalQuestions: 48,
+      totalPages: 11,
       questions: [
-        // 정보처리 및 의사결정 (1-12번)
         {
           id: 1,
           question:
-            "나는 문제를 볼 때 당장의 결과보다 앞으로 어떤 변화가 생길지를 더 생각한다.",
+            "나는 불확실한 미래를 위해 현재를 희생하기보다, 지금 이 순간의 행복을 누리는 것이 더 현명하다고 생각한다.",
           category: "정보처리 및 의사결정",
           subCategory: "현재중심 ↔ 미래지향",
           type: "rating",
+          weight: 1.2,
+          direction: "reverse",
           image: {
             male: "/images/man/M1_1.png",
             female: "/images/woman/W1_1.png",
@@ -26,25 +27,32 @@ export const detailedSurveyData: SurveyData = {
         {
           id: 2,
           question:
-            "나는 계획을 세울 때 구체적인 내일보다 장기적인 그림을 먼저 그리는 편이다.",
+            "나는 미리 계획을 짜두는 것보다, 그때그때 상황과 기분에 따라 즉흥적으로 행동하는 것이 더 편하다.",
           category: "정보처리 및 의사결정",
           subCategory: "현재중심 ↔ 미래지향",
           type: "rating",
+          weight: 1,
+          direction: "reverse",
         },
         {
           id: 3,
           question:
-            "나는 '지금 중요한 일'보다 '앞으로 도움이 될 일'을 우선순위에 두는 편이다.",
+            "나는 ‘지금 중요한 일’보다 ‘앞으로 도움이 될 일’을 우선순위에 두는 편이다.",
           category: "정보처리 및 의사결정",
           subCategory: "현재중심 ↔ 미래지향",
           type: "rating",
+          weight: 1.2,
+          direction: "forward",
         },
         {
           id: 4,
-          question: "나는 변화 가능성을 상상하며 계획을 수정하는 편이다.",
+          question:
+            "나는 오늘 내가 하는 일들이 5년 뒤, 10년 뒤의 내 모습에 어떤 영향을 줄지 자주 떠올린다.",
           category: "정보처리 및 의사결정",
           subCategory: "현재중심 ↔ 미래지향",
           type: "rating",
+          weight: 1,
+          direction: "forward",
         },
         {
           id: 5,
@@ -52,6 +60,8 @@ export const detailedSurveyData: SurveyData = {
           category: "정보처리 및 의사결정",
           subCategory: "논리·객관중심 ↔ 감정·인간중심",
           type: "rating",
+          weight: 1.2,
+          direction: "reverse",
         },
         {
           id: 6,
@@ -60,6 +70,8 @@ export const detailedSurveyData: SurveyData = {
           category: "정보처리 및 의사결정",
           subCategory: "논리·객관중심 ↔ 감정·인간중심",
           type: "rating",
+          weight: 1,
+          direction: "reverse",
           image: {
             male: "/images/man/M1_6.png",
             female: "/images/woman/W1_6.png",
@@ -68,41 +80,52 @@ export const detailedSurveyData: SurveyData = {
         {
           id: 7,
           question:
-            "나는 논리적으로 맞지 않으면 감정이 이해돼도 쉽게 수용하지 않는다.",
+            "문제를 해결할 때, 논리적인 정답보다 사람의 마음을 다치지 않게 하는 것이 더 중요하다.",
           category: "정보처리 및 의사결정",
           subCategory: "논리·객관중심 ↔ 감정·인간중심",
           type: "rating",
+          weight: 1.2,
+          direction: "forward",
         },
         {
           id: 8,
           question:
-            "나는 문제를 해결할 때 사람의 기분보다 해결 과정의 효율성을 중시한다.",
+            "나는 일이 아무리 잘 되어도, 그 과정에서 사람들과 사이가 나빠진다면 실패한 것이라고 본다.",
           category: "정보처리 및 의사결정",
           subCategory: "논리·객관중심 ↔ 감정·인간중심",
           type: "rating",
+          weight: 1,
+          direction: "forward",
         },
         {
           id: 9,
+          question:
+            "나는 이것저것 복잡하게 따지기보다, 딱 들 때의 느낌과 직감을 믿고 행동하는 편이다.",
+          category: "정보처리 및 의사결정",
+          subCategory: "반응적 ↔ 조절적",
+          type: "rating",
+          weight: 1.2,
+          direction: "reverse",
+        },
+        {
+          id: 10,
           question:
             "나는 감정이 생기면 한동안 그 감정이 머릿속에서 쉽게 사라지지 않는다.",
           category: "정보처리 및 의사결정",
           subCategory: "반응적 ↔ 조절적",
           type: "rating",
-        },
-        {
-          id: 10,
-          question: "나는 기분이 흔들릴 때도 겉으로는 차분하게 행동하려 한다.",
-          category: "정보처리 및 의사결정",
-          subCategory: "반응적 ↔ 조절적",
-          type: "rating",
+          weight: 1,
+          direction: "reverse",
         },
         {
           id: 11,
           question:
-            "나는 스트레스가 생겨도 감정보다 상황 해결에 먼저 집중하려 한다.",
+            "나는 화가 나거나 급한 일이 생겨도, 바로 움직이지 않고 잠시 멈춰 생각한다.",
           category: "정보처리 및 의사결정",
           subCategory: "반응적 ↔ 조절적",
           type: "rating",
+          weight: 1,
+          direction: "forward",
           image: {
             male: "/images/man/M1_11.png",
             female: "/images/woman/W1_11.png",
@@ -111,41 +134,50 @@ export const detailedSurveyData: SurveyData = {
         {
           id: 12,
           question:
-            "나는 감정이 올라와도 한 박자 쉬고 정리한 뒤에 반응하려 한다.",
+            "나는 스트레스가 생겨도 감정보다 상황 해결에 먼저 집중하려 한다.",
           category: "정보처리 및 의사결정",
           subCategory: "반응적 ↔ 조절적",
           type: "rating",
+          weight: 1.2,
+          direction: "forward",
         },
-
-        // 동기 구조 및 자기조절 (13-24번)
         {
           id: 13,
+          question: "나는 변화가 생기면 흥미롭기보다 불편함을 먼저 느낀다.",
+          category: "동기 구조 및 자기조절",
+          subCategory: "안정지향 ↔ 도전지향",
+          type: "rating",
+          weight: 1,
+          direction: "reverse",
+        },
+        {
+          id: 14,
+          question:
+            "나는 큰 성과를 위해 위험을 감수하기보다, 적더라도 확실한 결과를 얻는 쪽을 택하겠다.",
+          category: "동기 구조 및 자기조절",
+          subCategory: "안정지향 ↔ 도전지향",
+          type: "rating",
+          weight: 1.2,
+          direction: "reverse",
+        },
+        {
+          id: 15,
           question:
             "불확실한 일이라도 흥미가 생기면 도전해보고 싶다는 생각이 든다.",
           category: "동기 구조 및 자기조절",
           subCategory: "안정지향 ↔ 도전지향",
           type: "rating",
+          weight: 1.2,
+          direction: "forward",
         },
         {
-          id: 14,
-          question: "변화가 생기면 불편하기보다 흥미를 느끼는 편이다.",
-          category: "동기 구조 및 자기조절",
-          subCategory: "안정지향 ↔ 도전지향",
-          type: "rating",
-        },
-        {
-          id: 15,
+          id: 16,
           question: "새로운 환경에 적응하는 과정을 즐기는 편이다.",
           category: "동기 구조 및 자기조절",
           subCategory: "안정지향 ↔ 도전지향",
           type: "rating",
-        },
-        {
-          id: 16,
-          question: "모르는 일이라도 배우면서 해보는 게 좋다고 생각한다.",
-          category: "동기 구조 및 자기조절",
-          subCategory: "안정지향 ↔ 도전지향",
-          type: "rating",
+          weight: 1,
+          direction: "forward",
           image: {
             male: "/images/man/M2_4.png",
             female: "/images/woman/W2_4.png",
@@ -153,17 +185,23 @@ export const detailedSurveyData: SurveyData = {
         },
         {
           id: 17,
-          question: "누군가의 칭찬이나 인정보다 스스로 만족할 때 더 뿌듯하다.",
+          question:
+            "나는 일의 의미보다, 결과로 주어지는 현실적인 보상(돈, 스펙)이 더 중요하다.",
           category: "동기 구조 및 자기조절",
           subCategory: "외적동기 ↔ 내적동기",
           type: "rating",
+          weight: 1.2,
+          direction: "reverse",
         },
         {
           id: 18,
-          question: "결과보다 내가 의미 있다고 느끼는 과정을 더 중시한다.",
+          question:
+            "나는 혼자 만족하는 것보다, 남들이 인정해주는 결과가 진짜 가치 있다고 본다.",
           category: "동기 구조 및 자기조절",
           subCategory: "외적동기 ↔ 내적동기",
           type: "rating",
+          weight: 1,
+          direction: "reverse",
         },
         {
           id: 19,
@@ -172,20 +210,27 @@ export const detailedSurveyData: SurveyData = {
           category: "동기 구조 및 자기조절",
           subCategory: "외적동기 ↔ 내적동기",
           type: "rating",
+          weight: 1.2,
+          direction: "forward",
         },
         {
           id: 20,
-          question: "내가 하는 일에 의미가 있어야 열정이 생긴다.",
+          question: "결과보다 내가 의미 있다고 느끼는 과정을 더 중시한다.",
           category: "동기 구조 및 자기조절",
           subCategory: "외적동기 ↔ 내적동기",
           type: "rating",
+          weight: 1,
+          direction: "forward",
         },
         {
           id: 21,
-          question: "계획을 세울 때 주변의 의견보다 내 판단을 우선한다.",
+          question:
+            "나는 '알아서 해'라는 막연한 자유보다, '무엇을 해야 할지' 명확히 정해주는 상황이 더 편하다.",
           category: "동기 구조 및 자기조절",
           subCategory: "목표실행 자율성 낮음 ↔ 높음",
           type: "rating",
+          weight: 1.2,
+          direction: "reverse",
           image: {
             male: "/images/man/M2_9.png",
             female: "/images/woman/W2_9.png",
@@ -193,42 +238,51 @@ export const detailedSurveyData: SurveyData = {
         },
         {
           id: 22,
+          question:
+            "나는 혼자 판단해서 끝내기보다, 중간중간 확인을 받고 피드백을 듣는 것을 선호한다.",
+          category: "동기 구조 및 자기조절",
+          subCategory: "목표실행 자율성 낮음 ↔ 높음",
+          type: "rating",
+          weight: 1,
+          direction: "reverse",
+        },
+        {
+          id: 23,
           question: "누가 시켜서가 아니라 스스로 필요하다고 느껴야 움직인다.",
           category: "동기 구조 및 자기조절",
           subCategory: "목표실행 자율성 낮음 ↔ 높음",
           type: "rating",
-        },
-        {
-          id: 23,
-          question: "결정을 내릴 때 내 의지와 판단이 중심이 된다.",
-          category: "동기 구조 및 자기조절",
-          subCategory: "목표실행 자율성 낮음 ↔ 높음",
-          type: "rating",
+          weight: 1.2,
+          direction: "forward",
         },
         {
           id: 24,
-          question: "스스로 세운 목표라면 어려워도 끝까지 해보려 한다.",
+          question: "계획을 세울 때 주변의 의견보다 내 판단을 우선한다.",
           category: "동기 구조 및 자기조절",
           subCategory: "목표실행 자율성 낮음 ↔ 높음",
           type: "rating",
+          weight: 1,
+          direction: "forward",
         },
-
-        // 외현적 행동 및 생활 방식 (25-36번)
         {
           id: 25,
           question:
-            "새로운 사람들과의 만남에서 대화가 자연스럽게 이어지는 편이다.",
+            "아무리 친하고 좋아하는 사람들과 놀더라도, 일정 시간이 지나면 집에 가서 쉬고 싶다는 생각이 강하게 든다.",
           category: "외현적 행동 및 생활 방식",
           subCategory: "내향 ↔ 외향",
           type: "rating",
+          weight: 1,
+          direction: "reverse",
         },
         {
           id: 26,
           question:
-            "내가 말하는 내용을 다른 사람들이 잘 이해할 수 있도록 명확하게 표현한다.",
+            "나에게 진정한 휴식이란, 사람들을 만나러 나가는 게 아니라 집에서 온전히 혼자만의 시간을 보내는 것이다.",
           category: "외현적 행동 및 생활 방식",
           subCategory: "내향 ↔ 외향",
           type: "rating",
+          weight: 1.2,
+          direction: "reverse",
           image: {
             male: "/images/man/M3_2.png",
             female: "/images/woman/W3_2.png",
@@ -236,42 +290,52 @@ export const detailedSurveyData: SurveyData = {
         },
         {
           id: 27,
-          question:
-            "나는 사람들과의 대화를 통해 서로 다른 의견을 조율하는 데 능숙하다.",
-          category: "외현적 행동 및 생활 방식",
-          subCategory: "내향 ↔ 외향",
-          type: "rating",
-        },
-        {
-          id: 28,
           question: "주말에는 혼자 있기보다 사람을 만나며 시간을 보내고 싶다.",
           category: "외현적 행동 및 생활 방식",
           subCategory: "내향 ↔ 외향",
           type: "rating",
+          weight: 1,
+          direction: "forward",
+        },
+        {
+          id: 28,
+          question:
+            "사람들과의 만남은 나에게 피로감을 주기보다 오히려 삶의 활력을 불어넣어 준다.",
+          category: "외현적 행동 및 생활 방식",
+          subCategory: "내향 ↔ 외향",
+          type: "rating",
+          weight: 1.2,
+          direction: "forward",
         },
         {
           id: 29,
           question:
-            "나는 일정이 틀어지거나 예상대로 되지 않아도 여유롭게 받아들이는 편이다.",
+            "미리 결정을 해버리면, 나중에 더 좋은 선택지가 생겼을 때 바꾸기 힘들까 봐 망설여진다.",
           category: "외현적 행동 및 생활 방식",
           subCategory: "유연 ↔ 계획",
           type: "rating",
+          weight: 1,
+          direction: "reverse",
         },
         {
           id: 30,
-          question:
-            "나는 갑작스러운 변화가 생겨도 오히려 재미있다고 느낄 때가 있다.",
-          category: "외현적 행동 및 생활 방식",
-          subCategory: "유연 ↔ 계획",
-          type: "rating",
-        },
-        {
-          id: 31,
           question:
             "나는 미리 정한 일정보다 그날의 흐름에 따라 움직이는 걸 더 편하게 느낀다.",
           category: "외현적 행동 및 생활 방식",
           subCategory: "유연 ↔ 계획",
           type: "rating",
+          weight: 1.2,
+          direction: "reverse",
+        },
+        {
+          id: 31,
+          question:
+            "나는 선택을 미룰 수 있는 상황에서도 미리 결정을 내려두는 걸 좋아하는 편이다.",
+          category: "외현적 행동 및 생활 방식",
+          subCategory: "유연 ↔ 계획",
+          type: "rating",
+          weight: 1,
+          direction: "forward",
           image: {
             male: "/images/man/M3_7.png",
             female: "/images/woman/W3_7.png",
@@ -280,51 +344,63 @@ export const detailedSurveyData: SurveyData = {
         {
           id: 32,
           question:
-            "나는 선택을 미룰 수 있는 상황에서도 미리 결정을 내려두는 걸 좋아하는 편이다.",
+            "나는 하루를 시작할 때, 대략적으로라도 오늘 무엇을 할지 머릿속에 정리가 되어 있어야 마음이 편하다.",
           category: "외현적 행동 및 생활 방식",
           subCategory: "유연 ↔ 계획",
           type: "rating",
+          weight: 1.2,
+          direction: "forward",
         },
         {
           id: 33,
-          question: "불편한 일이 있어도 분위기를 깨지 않으려 참는 편이다.",
-          category: "외현적 행동 및 생활 방식",
-          subCategory: "자기표현 ↔ 적응배려형",
-          type: "rating",
-        },
-        {
-          id: 34,
-          question: "상대가 기분 나빠할까 봐 말을 돌려서 표현하는 편이다.",
-          category: "외현적 행동 및 생활 방식",
-          subCategory: "자기표현 ↔ 적응배려형",
-          type: "rating",
-        },
-        {
-          id: 35,
           question: "감정이 생기면 그때그때 솔직하게 드러내는 편이다.",
           category: "외현적 행동 및 생활 방식",
           subCategory: "자기표현 ↔ 적응배려형",
           type: "rating",
+          weight: 1,
+          direction: "reverse",
         },
         {
-          id: 36,
-          question: "사람들과 이야기할 때 내 의견보다는 분위기를 먼저 살핀다.",
+          id: 34,
+          question:
+            "나는 남에게 맞추느라 에너지를 쓰기보다, 내 감정과 생각에 더 집중하는 편이다.",
           category: "외현적 행동 및 생활 방식",
           subCategory: "자기표현 ↔ 적응배려형",
           type: "rating",
+          weight: 1.2,
+          direction: "reverse",
+        },
+        {
+          id: 35,
+          question: "불편한 일이 있어도 분위기를 깨지 않으려 참는 편이다.",
+          category: "외현적 행동 및 생활 방식",
+          subCategory: "자기표현 ↔ 적응배려형",
+          type: "rating",
+          weight: 1,
+          direction: "forward",
+        },
+        {
+          id: 36,
+          question:
+            "갈등을 만들기보다는 상황에 맞춰 원만하게 넘어가는 것을 택한다.",
+          category: "외현적 행동 및 생활 방식",
+          subCategory: "자기표현 ↔ 적응배려형",
+          type: "rating",
+          weight: 1.2,
+          direction: "forward",
           image: {
             male: "/images/man/M3_12.png",
             female: "/images/woman/W3_12.png",
           },
         },
-
-        // MMPI 기반 보조 지표 (37-45번)
         {
           id: 37,
           question: "감정이 가라앉는 날이 종종 있고, 그럴 때는 집중이 어렵다.",
           category: "MMPI 기반 보조 지표",
           subCategory: "정서 안정성 (침체적 ↔ 안정적)",
           type: "rating",
+          weight: 1,
+          direction: "reverse",
         },
         {
           id: 38,
@@ -332,6 +408,8 @@ export const detailedSurveyData: SurveyData = {
           category: "MMPI 기반 보조 지표",
           subCategory: "정서 안정성 (침체적 ↔ 안정적)",
           type: "rating",
+          weight: 1.2,
+          direction: "reverse",
         },
         {
           id: 39,
@@ -339,13 +417,17 @@ export const detailedSurveyData: SurveyData = {
           category: "MMPI 기반 보조 지표",
           subCategory: "정서 안정성 (침체적 ↔ 안정적)",
           type: "rating",
+          weight: 1.2,
+          direction: "forward",
         },
         {
           id: 40,
           question: "사람을 처음 만날 때 쉽게 믿기보다는 시간을 두고 본다.",
           category: "MMPI 기반 보조 지표",
-          subCategory: "신뢰 경향 (경계적 ↔ 수용적)",
+          subCategory: "정서 안정성 (침체적 ↔ 안정적)",
           type: "rating",
+          weight: 1,
+          direction: "forward",
         },
         {
           id: 41,
@@ -353,6 +435,8 @@ export const detailedSurveyData: SurveyData = {
           category: "MMPI 기반 보조 지표",
           subCategory: "신뢰 경향 (경계적 ↔ 수용적)",
           type: "rating",
+          weight: 1,
+          direction: "reverse",
           image: {
             male: "/images/man/M6_5.png",
             female: "/images/woman/W6_5.png",
@@ -364,22 +448,28 @@ export const detailedSurveyData: SurveyData = {
           category: "MMPI 기반 보조 지표",
           subCategory: "신뢰 경향 (경계적 ↔ 수용적)",
           type: "rating",
+          weight: 1.2,
+          direction: "reverse",
         },
         {
           id: 43,
           question:
             "나는 실수 자체보다, 그걸 다른 사람이 어떻게 볼지 더 신경 쓰는 편이다.",
           category: "MMPI 기반 보조 지표",
-          subCategory: "불안·완벽주의 (불안·통제형 ↔ 여유·수용형)",
+          subCategory: "신뢰 경향 (경계적 ↔ 수용적)",
           type: "rating",
+          weight: 1,
+          direction: "forward",
         },
         {
           id: 44,
           question:
             "나는 무언가를 시작할 때, '제대로 해내야 한다'는 압박감을 자주 느낀다.",
           category: "MMPI 기반 보조 지표",
-          subCategory: "불안·완벽주의 (불안·통제형 ↔ 여유·수용형)",
+          subCategory: "신뢰 경향 (경계적 ↔ 수용적)",
           type: "rating",
+          weight: 1.2,
+          direction: "forward",
         },
         {
           id: 45,
@@ -388,435 +478,545 @@ export const detailedSurveyData: SurveyData = {
           category: "MMPI 기반 보조 지표",
           subCategory: "불안·완벽주의 (불안·통제형 ↔ 여유·수용형)",
           type: "rating",
+          weight: 1.2,
+          direction: "reverse",
+        },
+        {
+          id: 46,
+          question:
+            "나는 무언가를 시작할 때, '반드시 완벽하게 해내야 한다'는 압박감 때문에 숨이 막힐 때가 있다.",
+          category: "MMPI 기반 보조 지표",
+          subCategory: "불안·완벽주의 (불안·통제형 ↔ 여유·수용형)",
+          type: "rating",
+          weight: 1,
+          direction: "reverse",
+        },
+        {
+          id: 47,
+          question:
+            "나는 디테일에 집착해서 시간을 끄는 것보다, 부족하더라도 일단 매듭을 짓고 끝내는 것을 선호한다.",
+          category: "MMPI 기반 보조 지표",
+          subCategory: "불안·완벽주의 (불안·통제형 ↔ 여유·수용형)",
+          type: "rating",
+          weight: 1,
+          direction: "forward",
+        },
+        {
+          id: 48,
+          question:
+            "계획대로 되지 않더라도 '그럴 수 있지' 하고 대수롭지 않게 넘기는 편이다.",
+          category: "MMPI 기반 보조 지표",
+          subCategory: "불안·완벽주의 (불안·통제형 ↔ 여유·수용형)",
+          type: "rating",
+          weight: 1.2,
+          direction: "forward",
         },
       ],
     },
     {
       partNumber: 2,
-      title: "Part 2: 심화 성격 특성",
+      title: "Part 2: 내가 보는 파트너",
       description:
         "정보처리 및 의사결정, 동기 구조 및 자기조절, 외현적 행동 및 생활 방식, MMPI 기반 보조 지표 (심화)",
-      totalQuestions: 45,
-      totalPages: 10,
+      totalQuestions: 48,
+      totalPages: 11,
       questions: [
-        // 정보처리 및 의사결정 (46-57번) - 심화
         {
-          id: 46,
+          id: 49,
           question:
-            "내 파트너는 문제를 볼 때 당장의 결과보다 앞으로 어떤 변화가 생길지를 더 생각한다.",
+            "내 파트너는 미래를 위해 현재를 희생하기보다 지금의 행복을 중시한다.",
           category: "정보처리 및 의사결정",
           subCategory: "현재중심 ↔ 미래지향",
           type: "rating",
+          weight: 1.2,
+          direction: "reverse",
           image: {
             male: "/images/woman/W1_1.png",
             female: "/images/man/M1_1.png",
           },
         },
         {
-          id: 47,
-          question:
-            "내 파트너는 계획을 세울 때 구체적인 내일보다 장기적인 그림을 먼저 그리는 편이다.",
-          category: "정보처리 및 의사결정",
-          subCategory: "현재중심 ↔ 미래지향",
-          type: "rating",
-        },
-        {
-          id: 48,
-          question:
-            "내 파트너는 '지금 중요한 일'보다 '앞으로 도움이 될 일'을 우선순위에 두는 편이다.",
-          category: "정보처리 및 의사결정",
-          subCategory: "현재중심 ↔ 미래지향",
-          type: "rating",
-        },
-        {
-          id: 49,
-          question:
-            "내 파트너는 변화 가능성을 상상하며 계획을 수정하는 편이다.",
-          category: "정보처리 및 의사결정",
-          subCategory: "현재중심 ↔ 미래지향",
-          type: "rating",
-        },
-        {
           id: 50,
-          question:
-            "내 파트너는 상황을 판단할 때 감정보다 구조와 원리를 먼저 본다.",
+          question: "내 파트너는 계획보다 즉흥적으로 움직이는 게 더 편하다.",
           category: "정보처리 및 의사결정",
-          subCategory: "논리·객관중심 ↔ 감정·인간중심",
+          subCategory: "현재중심 ↔ 미래지향",
           type: "rating",
+          weight: 1,
+          direction: "reverse",
         },
         {
           id: 51,
           question:
-            "내 파트너는 다른 사람의 감정보다 사실관계를 우선으로 이해하려 한다.",
+            "내 파트너는 당장 중요한 일보다 미래에 도움이 될 일을 우선한다.",
+          category: "정보처리 및 의사결정",
+          subCategory: "현재중심 ↔ 미래지향",
+          type: "rating",
+          weight: 1.2,
+          direction: "forward",
+        },
+        {
+          id: 52,
+          question:
+            "내 파트너는 현재의 선택이 먼 미래에 미칠 영향을 자주 생각한다.",
+          category: "정보처리 및 의사결정",
+          subCategory: "현재중심 ↔ 미래지향",
+          type: "rating",
+          weight: 1,
+          direction: "forward",
+        },
+        {
+          id: 53,
+          question: "내 파트너는 감정보다 구조와 원리로 상황을 판단한다.",
           category: "정보처리 및 의사결정",
           subCategory: "논리·객관중심 ↔ 감정·인간중심",
           type: "rating",
+          weight: 1.2,
+          direction: "reverse",
+        },
+        {
+          id: 54,
+          question: "내 파트너는 감정보다 사실관계를 먼저 이해하려 한다.",
+          category: "정보처리 및 의사결정",
+          subCategory: "논리·객관중심 ↔ 감정·인간중심",
+          type: "rating",
+          weight: 1,
+          direction: "reverse",
           image: {
             male: "/images/woman/W1_6.png",
             female: "/images/man/M1_6.png",
           },
         },
         {
-          id: 52,
-          question:
-            "내 파트너는 논리적으로 맞지 않으면 감정이 이해돼도 쉽게 수용하지 않는다.",
-          category: "정보처리 및 의사결정",
-          subCategory: "논리·객관중심 ↔ 감정·인간중심",
-          type: "rating",
-        },
-        {
-          id: 53,
-          question:
-            "내 파트너는 문제를 해결할 때 사람의 기분보다 해결 과정의 효율성을 중시한다.",
-          category: "정보처리 및 의사결정",
-          subCategory: "논리·객관중심 ↔ 감정·인간중심",
-          type: "rating",
-        },
-        {
-          id: 54,
-          question:
-            "내 파트너는 감정이 생기면 한동안 그 기분이 머릿속에서 오래 남아 있는 편이다.",
-          category: "정보처리 및 의사결정",
-          subCategory: "반응적 ↔ 조절적",
-          type: "rating",
-        },
-        {
           id: 55,
           question:
-            "내 파트너는 기분이 흔들릴 때도 겉으로는 최대한 평소처럼 행동하려는 편이다.",
+            "내 파트너는 정답보다 사람의 마음을 지키는 걸 더 중요하게 여긴다.",
           category: "정보처리 및 의사결정",
-          subCategory: "반응적 ↔ 조절적",
+          subCategory: "논리·객관중심 ↔ 감정·인간중심",
           type: "rating",
+          weight: 1.2,
+          direction: "forward",
         },
         {
           id: 56,
           question:
-            "내 파트너는 스트레스가 생겨도 일단 상황을 정리하거나 해결하는 데 먼저 집중하는 편이다.",
+            "내 파트너는 관계가 나빠지면 결과가 좋아도 실패라 생각한다.",
+          category: "정보처리 및 의사결정",
+          subCategory: "논리·객관중심 ↔ 감정·인간중심",
+          type: "rating",
+          weight: 1,
+          direction: "forward",
+        },
+        {
+          id: 57,
+          question: "내 파트너는 깊이 따지기보다 직감에 따라 행동한다.",
           category: "정보처리 및 의사결정",
           subCategory: "반응적 ↔ 조절적",
           type: "rating",
+          weight: 1.2,
+          direction: "reverse",
+        },
+        {
+          id: 58,
+          question: "내 파트너는 한 번 생긴 감정을 오래 붙잡는 편이다.",
+          category: "정보처리 및 의사결정",
+          subCategory: "반응적 ↔ 조절적",
+          type: "rating",
+          weight: 1,
+          direction: "reverse",
+        },
+        {
+          id: 59,
+          question: "내 파트너는 급해도 잠시 멈춰 생각한 뒤 움직인다.",
+          category: "정보처리 및 의사결정",
+          subCategory: "반응적 ↔ 조절적",
+          type: "rating",
+          weight: 1,
+          direction: "forward",
           image: {
             male: "/images/woman/W1_11.png",
             female: "/images/man/M1_11.png",
           },
         },
         {
-          id: 57,
-          question:
-            "내 파트너는 감정이 올라와도 바로 반응하기보다 한 템포 쉬고 정리하려는 편이다.",
+          id: 60,
+          question: "내 파트너는 스트레스 상황에서도 감정보다 해결을 우선한다.",
           category: "정보처리 및 의사결정",
           subCategory: "반응적 ↔ 조절적",
           type: "rating",
-        },
-
-        // 동기 구조 및 자기조절 (58-69번) - 심화
-        {
-          id: 58,
-          question:
-            "내 파트너는 확실하지 않은 일이어도 흥미가 생기면 한번 해보고 싶어하는 편이다.",
-          category: "동기 구조 및 자기조절",
-          subCategory: "안정지향 ↔ 도전지향",
-          type: "rating",
-        },
-        {
-          id: 59,
-          question:
-            "내 파트너는 새로운 변화가 오면 불편함보다는 재미를 느끼는 쪽이다.",
-          category: "동기 구조 및 자기조절",
-          subCategory: "안정지향 ↔ 도전지향",
-          type: "rating",
-        },
-        {
-          id: 60,
-          question:
-            "내 파트너는 낯선 환경에 적응해 가는 그 과정을 꽤 잘 즐기는 편이다.",
-          category: "동기 구조 및 자기조절",
-          subCategory: "안정지향 ↔ 도전지향",
-          type: "rating",
+          weight: 1.2,
+          direction: "forward",
         },
         {
           id: 61,
-          question:
-            "내 파트너는 처음 해보는 일도 배우면서 시도해보는 걸 좋아한다.",
+          question: "내 파트너는 변화에 설렘보다 불편함을 먼저 느낀다.",
           category: "동기 구조 및 자기조절",
           subCategory: "안정지향 ↔ 도전지향",
           type: "rating",
+          weight: 1,
+          direction: "reverse",
+        },
+        {
+          id: 62,
+          question: "내 파트너는 큰 성과보다 안정적인 결과를 택한다.",
+          category: "동기 구조 및 자기조절",
+          subCategory: "안정지향 ↔ 도전지향",
+          type: "rating",
+          weight: 1.2,
+          direction: "reverse",
+        },
+        {
+          id: 63,
+          question: "내 파트너는 불확실해도 흥미 있으면 도전하고 싶어 한다.",
+          category: "동기 구조 및 자기조절",
+          subCategory: "안정지향 ↔ 도전지향",
+          type: "rating",
+          weight: 1.2,
+          direction: "forward",
+        },
+        {
+          id: 64,
+          question: "내 파트너는 새로운 환경에 적응하는 과정이 즐겁다.",
+          category: "동기 구조 및 자기조절",
+          subCategory: "안정지향 ↔ 도전지향",
+          type: "rating",
+          weight: 1,
+          direction: "forward",
           image: {
             male: "/images/woman/W2_4.png",
             female: "/images/man/M2_4.png",
           },
         },
         {
-          id: 62,
-          question:
-            "내 파트너는 누군가의 칭찬이나 인정보다 스스로 만족할 때 더 뿌듯해한다.",
-          category: "동기 구조 및 자기조절",
-          subCategory: "외적동기 ↔ 내적동기",
-          type: "rating",
-        },
-        {
-          id: 63,
-          question:
-            "내 파트너는 결과보다 자신이 의미 있다고 느끼는 과정을 더 중시한다.",
-          category: "동기 구조 및 자기조절",
-          subCategory: "외적동기 ↔ 내적동기",
-          type: "rating",
-        },
-        {
-          id: 64,
-          question:
-            "내 파트너는 일을 할 때 외부 평가보다 스스로 세운 목표 달성을 더 중요하게 본다.",
-          category: "동기 구조 및 자기조절",
-          subCategory: "외적동기 ↔ 내적동기",
-          type: "rating",
-        },
-        {
           id: 65,
-          question: "내 파트너는 자신이 하는 일에 의미가 있어야 열정이 생긴다.",
+          question: "내 파트너는 일의 의미보다 현실적인 보상을 더 중시한다.",
           category: "동기 구조 및 자기조절",
           subCategory: "외적동기 ↔ 내적동기",
           type: "rating",
+          weight: 1.2,
+          direction: "reverse",
         },
         {
           id: 66,
           question:
-            "내 파트너는 계획을 세울 때 주변의 의견보다 자신의 판단을 우선한다.",
+            "내 파트너는 혼자 만족하기보다 남의 인정을 더 가치 있게 본다.",
+          category: "동기 구조 및 자기조절",
+          subCategory: "외적동기 ↔ 내적동기",
+          type: "rating",
+          weight: 1,
+          direction: "reverse",
+        },
+        {
+          id: 67,
+          question:
+            "내 파트너는 외부 평가보다 스스로 세운 목표 달성을 중시한다.",
+          category: "동기 구조 및 자기조절",
+          subCategory: "외적동기 ↔ 내적동기",
+          type: "rating",
+          weight: 1.2,
+          direction: "forward",
+        },
+        {
+          id: 68,
+          question:
+            "내 파트너는 결과보다 의미 있다고 느끼는 과정을 더 중요하게 여긴다.",
+          category: "동기 구조 및 자기조절",
+          subCategory: "외적동기 ↔ 내적동기",
+          type: "rating",
+          weight: 1,
+          direction: "forward",
+        },
+        {
+          id: 69,
+          question: "내 파트너는 막연한 자유보다 명확한 지시가 있는 게 편하다.",
           category: "동기 구조 및 자기조절",
           subCategory: "목표실행 자율성 낮음 ↔ 높음",
           type: "rating",
+          weight: 1.2,
+          direction: "reverse",
           image: {
             male: "/images/woman/W2_9.png",
             female: "/images/man/M2_9.png",
           },
         },
         {
-          id: 67,
-          question:
-            "내 파트너는 누가 시켜서가 아니라 스스로 필요하다고 느껴야 움직인다.",
-          category: "동기 구조 및 자기조절",
-          subCategory: "목표실행 자율성 낮음 ↔ 높음",
-          type: "rating",
-        },
-        {
-          id: 68,
-          question:
-            "내 파트너는 결정을 내릴 때 자신의 의지와 판단을 중심에 둔다.",
-          category: "동기 구조 및 자기조절",
-          subCategory: "목표실행 자율성 낮음 ↔ 높음",
-          type: "rating",
-        },
-        {
-          id: 69,
-          question:
-            "내 파트너는 스스로 세운 목표라면 어려워도 끝까지 해보려 한다.",
-          category: "동기 구조 및 자기조절",
-          subCategory: "목표실행 자율성 낮음 ↔ 높음",
-          type: "rating",
-        },
-
-        // 외현적 행동 및 생활 방식 (70-81번) - 심화
-        {
           id: 70,
-          question:
-            "내 파트너는 새로운 사람들과의 만남에서 대화가 자연스럽게 이어지는 편이다.",
-          category: "외현적 행동 및 생활 방식",
-          subCategory: "내향 ↔ 외향",
+          question: "내 파트너는 혼자 결정하기보다 중간중간 피드백을 원한다.",
+          category: "동기 구조 및 자기조절",
+          subCategory: "목표실행 자율성 낮음 ↔ 높음",
           type: "rating",
+          weight: 1,
+          direction: "reverse",
         },
         {
           id: 71,
+          question: "내 파트너는 시켜서가 아니라 필요하다고 느껴야 움직인다.",
+          category: "동기 구조 및 자기조절",
+          subCategory: "목표실행 자율성 낮음 ↔ 높음",
+          type: "rating",
+          weight: 1.2,
+          direction: "forward",
+        },
+        {
+          id: 72,
           question:
-            "내 파트너는 말하는 내용을 다른 사람들이 잘 이해할 수 있도록 명확하게 표현한다.",
+            "내 파트너는 계획할 때 주변 의견보다 자신의 판단을 우선한다.",
+          category: "동기 구조 및 자기조절",
+          subCategory: "목표실행 자율성 낮음 ↔ 높음",
+          type: "rating",
+          weight: 1,
+          direction: "forward",
+        },
+        {
+          id: 73,
+          question:
+            "내 파트너는 사람들과 있어도 일정 시간이 지나면 혼자 쉬고 싶어진다.",
           category: "외현적 행동 및 생활 방식",
           subCategory: "내향 ↔ 외향",
           type: "rating",
+          weight: 1,
+          direction: "reverse",
+        },
+        {
+          id: 74,
+          question: "내 파트너에게 진짜 휴식은 혼자 집에 있는 시간이다.",
+          category: "외현적 행동 및 생활 방식",
+          subCategory: "내향 ↔ 외향",
+          type: "rating",
+          weight: 1.2,
+          direction: "reverse",
           image: {
             male: "/images/woman/W3_2.png",
             female: "/images/man/M3_2.png",
           },
         },
         {
-          id: 72,
-          question:
-            "내 파트너는 사람들과의 대화를 통해 서로 다른 의견을 조율하는 데 능숙하다.",
-          category: "외현적 행동 및 생활 방식",
-          subCategory: "내향 ↔ 외향",
-          type: "rating",
-        },
-        {
-          id: 73,
-          question:
-            "내 파트너는 주말에는 혼자 있기보다 사람을 만나며 시간을 보내고 싶어 한다.",
-          category: "외현적 행동 및 생활 방식",
-          subCategory: "내향 ↔ 외향",
-          type: "rating",
-        },
-        {
-          id: 74,
-          question:
-            "내 파트너는 일정이 틀어지거나 예상대로 되지 않아도 여유롭게 받아들이는 편이다.",
-          category: "외현적 행동 및 생활 방식",
-          subCategory: "유연 ↔ 계획",
-          type: "rating",
-        },
-        {
           id: 75,
-          question:
-            "내 파트너는 갑작스러운 변화가 생겨도 오히려 재미있다고 느낄 때가 있다.",
+          question: "내 파트너는 주말에 혼자보다 사람을 만나고 싶어 한다.",
           category: "외현적 행동 및 생활 방식",
-          subCategory: "유연 ↔ 계획",
+          subCategory: "내향 ↔ 외향",
           type: "rating",
+          weight: 1,
+          direction: "forward",
         },
         {
           id: 76,
+          question: "내 파트너는 사람을 만나면 오히려 에너지를 얻는다.",
+          category: "외현적 행동 및 생활 방식",
+          subCategory: "내향 ↔ 외향",
+          type: "rating",
+          weight: 1.2,
+          direction: "forward",
+        },
+        {
+          id: 77,
           question:
-            "내 파트너는 미리 정한 일정보다 그날의 흐름에 따라 움직이는 편이다.",
+            "내 파트너는 더 좋은 선택지가 생길까 봐 결정을 미루는 편이다.",
           category: "외현적 행동 및 생활 방식",
           subCategory: "유연 ↔ 계획",
           type: "rating",
+          weight: 1,
+          direction: "reverse",
+        },
+        {
+          id: 78,
+          question: "내 파트너는 정해진 일정보다 그날의 흐름을 따른다.",
+          category: "외현적 행동 및 생활 방식",
+          subCategory: "유연 ↔ 계획",
+          type: "rating",
+          weight: 1.2,
+          direction: "reverse",
+        },
+        {
+          id: 79,
+          question:
+            "내 파트너는 미룰 수 있어도 결정을 미리 내려두는 걸 좋아한다.",
+          category: "외현적 행동 및 생활 방식",
+          subCategory: "유연 ↔ 계획",
+          type: "rating",
+          weight: 1,
+          direction: "forward",
           image: {
             male: "/images/woman/W3_7.png",
             female: "/images/man/M3_7.png",
           },
         },
         {
-          id: 77,
-          question:
-            "내 파트너는 선택을 미룰 수 있는 상황에서도 미리 결정을 내려두는 걸 좋아한다.",
+          id: 80,
+          question: "내 파트너는 하루 계획이 대략 정리돼 있어야 마음이 편하다.",
           category: "외현적 행동 및 생활 방식",
           subCategory: "유연 ↔ 계획",
           type: "rating",
-        },
-        {
-          id: 78,
-          question:
-            "내 파트너는 불편한 일이 있어도 분위기를 깨지 않으려 참는 편이다.",
-          category: "외현적 행동 및 생활 방식",
-          subCategory: "자기표현 ↔ 적응배려형",
-          type: "rating",
-        },
-        {
-          id: 79,
-          question:
-            "내 파트너는 상대가 기분 나빠할까 봐 말을 돌려서 표현하는 편이다.",
-          category: "외현적 행동 및 생활 방식",
-          subCategory: "자기표현 ↔ 적응배려형",
-          type: "rating",
-        },
-        {
-          id: 80,
-          question:
-            "내 파트너는 감정이 생기면 그때그때 솔직하게 드러내는 편이다.",
-          category: "외현적 행동 및 생활 방식",
-          subCategory: "자기표현 ↔ 적응배려형",
-          type: "rating",
+          weight: 1.2,
+          direction: "forward",
         },
         {
           id: 81,
-          question:
-            "내 파트너는 사람들과 이야기할 때 자신의 의견보다는 분위기를 먼저 살핀다.",
+          question: "내 파트너는 감정을 그때그때 솔직하게 표현한다.",
           category: "외현적 행동 및 생활 방식",
           subCategory: "자기표현 ↔ 적응배려형",
           type: "rating",
+          weight: 1,
+          direction: "reverse",
+        },
+        {
+          id: 82,
+          question: "내 파트너는 남에게 맞추기보다 자신의 감정에 집중한다.",
+          category: "외현적 행동 및 생활 방식",
+          subCategory: "자기표현 ↔ 적응배려형",
+          type: "rating",
+          weight: 1.2,
+          direction: "reverse",
+        },
+        {
+          id: 83,
+          question: "내 파트너는 불편해도 분위기를 깨지 않으려 참는다.",
+          category: "외현적 행동 및 생활 방식",
+          subCategory: "자기표현 ↔ 적응배려형",
+          type: "rating",
+          weight: 1,
+          direction: "forward",
+        },
+        {
+          id: 84,
+          question: "내 파트너는 갈등보다 원만한 타협을 선택한다.",
+          category: "외현적 행동 및 생활 방식",
+          subCategory: "자기표현 ↔ 적응배려형",
+          type: "rating",
+          weight: 1.2,
+          direction: "forward",
           image: {
             male: "/images/woman/W3_12.png",
             female: "/images/man/M3_12.png",
           },
         },
-
-        // MMPI 기반 보조 지표 (82-90번) - 심화
-        {
-          id: 82,
-          question:
-            "내 파트너는 기분이 가라앉는 날에는 다른 일에 집중하기 어려워하는 편이다.",
-          category: "MMPI 기반 보조 지표",
-          subCategory: "정서 안정성 (침체적 ↔ 안정적)",
-          type: "rating",
-        },
-        {
-          id: 83,
-          question:
-            "내 파트너는 기분이 잠시 가라앉아도 금방 다시 회복하는 편이다.",
-          category: "MMPI 기반 보조 지표",
-          subCategory: "정서 안정성 (침체적 ↔ 안정적)",
-          type: "rating",
-        },
-        {
-          id: 84,
-          question:
-            "내 파트너는 스스로 한 일에 만족하거나 성취감을 느끼는 일이 자주 있다.",
-          category: "MMPI 기반 보조 지표",
-          subCategory: "정서 안정성 (침체적 ↔ 안정적)",
-          type: "rating",
-        },
         {
           id: 85,
-          question:
-            "내 파트너는 새로운 사람을 만났을 때 쉽게 믿기보다 시간을 두고 천천히 알아가는 편이다.",
+          question: "내 파트너는 기분이 가라앉는 날엔 집중이 어렵다.",
           category: "MMPI 기반 보조 지표",
-          subCategory: "신뢰 경향 (경계적 ↔ 수용적)",
+          subCategory: "정서 안정성 (침체적 ↔ 안정적)",
           type: "rating",
+          weight: 1,
+          direction: "reverse",
         },
         {
           id: 86,
           question:
-            "내 파트너는 가까운 사이여도 속마음을 다 드러내는 건 조심스러워하는 편이다.",
+            "내 파트너는 기분 나쁜 일이 생기면 감정에 깊이 빠지는 편이다.",
+          category: "MMPI 기반 보조 지표",
+          subCategory: "정서 안정성 (침체적 ↔ 안정적)",
+          type: "rating",
+          weight: 1.2,
+          direction: "reverse",
+        },
+        {
+          id: 87,
+          question: "내 파트너는 감정 기복이 크지 않고 전반적으로 차분하다.",
+          category: "MMPI 기반 보조 지표",
+          subCategory: "정서 안정성 (침체적 ↔ 안정적)",
+          type: "rating",
+          weight: 1.2,
+          direction: "forward",
+        },
+        {
+          id: 88,
+          question: "내 파트너는 나쁜 기분을 오래 끌지 않고 빨리 털어낸다.",
+          category: "MMPI 기반 보조 지표",
+          subCategory: "정서 안정성 (침체적 ↔ 안정적)",
+          type: "rating",
+          weight: 1,
+          direction: "forward",
+        },
+        {
+          id: 89,
+          question: "내 파트너는 사람을 쉽게 믿기보다 시간을 두고 본다.",
           category: "MMPI 기반 보조 지표",
           subCategory: "신뢰 경향 (경계적 ↔ 수용적)",
           type: "rating",
+          weight: 1,
+          direction: "reverse",
           image: {
             male: "/images/woman/W6_5.png",
             female: "/images/man/M6_5.png",
           },
         },
         {
-          id: 87,
-          question:
-            "내 파트너는 다른 사람을 의심하기보다 일단 믿고 보는 편이다.",
+          id: 90,
+          question: "내 파트너는 가까운 사이여도 모든 걸 드러내진 않는다.",
           category: "MMPI 기반 보조 지표",
           subCategory: "신뢰 경향 (경계적 ↔ 수용적)",
           type: "rating",
+          weight: 1.2,
+          direction: "reverse",
         },
         {
-          id: 88,
-          question:
-            "내 파트너는 실수했을 때보다, 그걸 남이 어떻게 볼까 걱정하는 쪽에 더 마음을 쓴다.",
+          id: 91,
+          question: "내 파트너는 타인의 말을 의심하기보다 먼저 믿는 편이다.",
+          category: "MMPI 기반 보조 지표",
+          subCategory: "신뢰 경향 (경계적 ↔ 수용적)",
+          type: "rating",
+          weight: 1,
+          direction: "forward",
+        },
+        {
+          id: 92,
+          question: "내 파트너는 대부분의 사람은 선의가 있다고 믿는다.",
+          category: "MMPI 기반 보조 지표",
+          subCategory: "신뢰 경향 (경계적 ↔ 수용적)",
+          type: "rating",
+          weight: 1.2,
+          direction: "forward",
+        },
+        {
+          id: 93,
+          question: "내 파트너는 실수보다 타인의 평가를 더 두려워한다.",
           category: "MMPI 기반 보조 지표",
           subCategory: "불안·완벽주의 (불안·통제형 ↔ 여유·수용형)",
           type: "rating",
+          weight: 1.2,
+          direction: "reverse",
         },
         {
-          id: 89,
-          question:
-            "내 파트너는 무언가를 시작할 때 '잘 해내야 한다'는 부담을 스스로에게 많이 주는 편이다.",
+          id: 94,
+          question: "내 파트너는 완벽해야 한다는 압박에 부담을 느낄 때가 있다.",
           category: "MMPI 기반 보조 지표",
           subCategory: "불안·완벽주의 (불안·통제형 ↔ 여유·수용형)",
           type: "rating",
+          weight: 1,
+          direction: "reverse",
         },
         {
-          id: 90,
-          question:
-            "내 파트너는 한가지에 집중하면, 피곤해도 쉬는 걸 뒤로 미루는 편이다.",
+          id: 95,
+          question: "내 파트너는 완벽보다 일단 끝내는 걸 선호한다.",
           category: "MMPI 기반 보조 지표",
           subCategory: "불안·완벽주의 (불안·통제형 ↔ 여유·수용형)",
           type: "rating",
+          weight: 1,
+          direction: "forward",
+        },
+        {
+          id: 96,
+          question: "내 파트너는 계획이 틀어져도 대수롭지 않게 넘긴다.",
+          category: "MMPI 기반 보조 지표",
+          subCategory: "불안·완벽주의 (불안·통제형 ↔ 여유·수용형)",
+          type: "rating",
+          weight: 1.2,
+          direction: "forward",
         },
       ],
     },
     {
       partNumber: 3,
-      title: "Part 3: 관계 및 생활 영역",
-      description: "연애 생활의 영역, 결혼 생활의 영역",
+      title: "Part 3: 라이프스타일",
+      description: "관계성·소통방식, 경제관·소비가치, 가치관·습관",
       totalQuestions: 18,
-      totalPages: 5,
+      totalPages: 4,
       questions: [
-        // 연애 생활의 영역 (91-99번)
         {
-          id: 91,
+          id: 97,
           question:
             "파트너와 자주 대화하는 것보다, 필요할 때 깊이 있게 대화하는 편이 더 중요하다고 생각한다.",
-          category: "연애 생활의 영역",
-          subCategory: "생활 리듬 / 시간 조율",
+          category: "라이프스타일",
+          subCategory: "관계성·소통방식",
           type: "rating",
           image: {
             male: "/images/man/M5_1.png",
@@ -824,43 +1024,43 @@ export const detailedSurveyData: SurveyData = {
           },
         },
         {
-          id: 92,
+          id: 98,
           question:
-            "상대가 약속 시간을 자주 바꾼다면, 나는 금세 불편해질 것 같다.",
-          category: "연애 생활의 영역",
-          subCategory: "생활 리듬 / 시간 조율",
+            "큰 구매(10만원 이상) 전에는 반드시 상대방과 상의해야 한다고 생각한다.",
+          category: "라이프스타일",
+          subCategory: "경제관·소비가치",
           type: "rating",
         },
         {
-          id: 93,
+          id: 99,
           question:
-            "한 사람이 피곤하거나 바쁠 땐, 다른 사람이 가사 일을 더 부담하는 게 맞다고 생각한다.",
-          category: "연애 생활의 영역",
-          subCategory: "생활 리듬 / 시간 조율",
+            "용돈이나 개인 지출 한도를 정해놓고 지키는 것이 중요하다고 본다.",
+          category: "라이프스타일",
+          subCategory: "경제관·소비가치",
           type: "rating",
         },
         {
-          id: 94,
+          id: 100,
           question:
             "연애 기간이 길어질수록, 함께 있어도 각자 휴대폰만 보게 될까 봐 걱정이 된다.",
-          category: "연애 생활의 영역",
-          subCategory: "재정·소비 태도",
+          category: "라이프스타일",
+          subCategory: "관계성·소통방식",
           type: "rating",
         },
         {
-          id: 95,
+          id: 101,
           question:
             "나는 파트너에게 말하지 않는 내 생각이나 감정을 종종 마음속에만 담아두는 편이다.",
-          category: "연애 생활의 영역",
-          subCategory: "재정·소비 태도",
+          category: "라이프스타일",
+          subCategory: "관계성·소통방식",
           type: "rating",
         },
         {
-          id: 96,
+          id: 102,
           question:
             "여유 자금이 생기면 저축보다는 투자처를 먼저 고민할 것이다.",
-          category: "연애 생활의 영역",
-          subCategory: "재정·소비 태도",
+          category: "라이프스타일",
+          subCategory: "경제관·소비가치",
           type: "rating",
           image: {
             male: "/images/man/M5_6.png",
@@ -868,43 +1068,41 @@ export const detailedSurveyData: SurveyData = {
           },
         },
         {
-          id: 97,
+          id: 103,
           question: "충동적으로 사고 싶을 때, 스스로 잘 제어하는 편이다.",
-          category: "연애 생활의 영역",
-          subCategory: "재정·소비 태도",
+          category: "라이프스타일",
+          subCategory: "경제관·소비가치",
           type: "rating",
         },
         {
-          id: 98,
+          id: 104,
           question:
             "양가 부모님을 대할 때 '예의'보다 '편안한 관계'가 더 중요하다고 느낀다.",
-          category: "연애 생활의 영역",
-          subCategory: "가족 인식 / 거리감",
+          category: "라이프스타일",
+          subCategory: "관계성·소통방식",
           type: "rating",
         },
         {
-          id: 99,
+          id: 105,
           question:
             "나는 부모님이 사소한 생활 방식까지 간섭한다면, 단호하게 선을 그을 수 있다.",
-          category: "연애 생활의 영역",
-          subCategory: "가족 인식 / 거리감",
+          category: "라이프스타일",
+          subCategory: "관계성·소통방식",
           type: "rating",
         },
-
-        // 결혼 생활의 영역 (100-108번)
         {
-          id: 100,
+          id: 106,
           question:
             "나는 아침에 알람이 울려도 한 번에 일어나기보다는 몇 번이고 미루는 편이다.",
-          category: "결혼 생활의 영역",
-          subCategory: "가사·생활 분담",
+          category: "라이프스타일",
+          subCategory: "가치관·습관",
           type: "rating",
         },
         {
-          id: 101,
+          id: 107,
           question: "식사 후에는 그때그때 바로 정리해야 마음이 편하다.",
-          category: "결혼 생활의 영역",
-          subCategory: "가사·생활 분담",
+          category: "라이프스타일",
+          subCategory: "가치관·습관",
           type: "rating",
           image: {
             male: "/images/man/M4_2.png",
@@ -912,42 +1110,42 @@ export const detailedSurveyData: SurveyData = {
           },
         },
         {
-          id: 102,
+          id: 108,
           question:
             "함께 있는 시간도 중요하지만, 각자 시간을 보내는 것도 중요하다.",
-          category: "결혼 생활의 영역",
-          subCategory: "가사·생활 분담",
+          category: "라이프스타일",
+          subCategory: "가치관·습관",
           type: "rating",
         },
         {
-          id: 103,
+          id: 109,
           question:
             "나는 자는 동안에도 주변 소리(시계 소리, 문 여닫는 소리 등)에 쉽게 깨는 편이다.",
-          category: "결혼 생활의 영역",
-          subCategory: "재정·경제 태도",
+          category: "라이프스타일",
+          subCategory: "가치관·습관",
           type: "rating",
         },
         {
-          id: 104,
+          id: 110,
           question: "예상치 못한 지출이 생기면 스트레스를 크게 받는 편이다.",
-          category: "결혼 생활의 영역",
-          subCategory: "재정·경제 태도",
+          category: "라이프스타일",
+          subCategory: "경제관·소비가치",
           type: "rating",
         },
         {
-          id: 105,
+          id: 111,
           question:
             "함께 살 사람이 반려동물을 좋아한다면, 나도 키우는 걸 긍정적으로 생각할 수 있다.",
-          category: "결혼 생활의 영역",
-          subCategory: "재정·경제 태도",
+          category: "라이프스타일",
+          subCategory: "가치관·습관",
           type: "rating",
         },
         {
-          id: 106,
+          id: 112,
           question:
             "나는 양가 부모님 생신이나 명절이라도 상황에 따라 꼭 직접 찾아뵙지 않아도 괜찮다고 생각한다.",
-          category: "결혼 생활의 영역",
-          subCategory: "양가 관계·경계",
+          category: "라이프스타일",
+          subCategory: "관계성·소통방식",
           type: "rating",
           image: {
             male: "/images/man/M4_7.png",
@@ -955,19 +1153,19 @@ export const detailedSurveyData: SurveyData = {
           },
         },
         {
-          id: 107,
+          id: 113,
           question:
             "삶은 즐겁고 편안해야 하며, 무리해서 목표를 쫓는 것은 피하고 싶다.",
-          category: "결혼 생활의 영역",
-          subCategory: "양가 관계·경계",
+          category: "라이프스타일",
+          subCategory: "가치관·습관",
           type: "rating",
         },
         {
-          id: 108,
+          id: 114,
           question:
             "사회적 인정(성공, 평판, 타인의 평가 등)은 나에게 꽤 중요한 기준이다.",
-          category: "결혼 생활의 영역",
-          subCategory: "양가 관계·경계",
+          category: "라이프스타일",
+          subCategory: "가치관·습관",
           type: "rating",
         },
       ],
@@ -976,15 +1174,39 @@ export const detailedSurveyData: SurveyData = {
       partNumber: 4,
       title: "Part 4: 주관식 질문",
       description: "자유롭게 답변할 수 있는 주관식 질문들",
-      totalQuestions: 12,
-      totalPages: 4,
+      totalQuestions: 6,
+      totalPages: 3,
       questions: [
         {
-          id: 109,
+          id: 115,
+          question:
+            "당신이 집이라는 공간에서 가장 중요하게 여기는 요소는 무엇인가요?",
+          category: "라이프스타일",
+          subCategory: "가치관·습관",
+          type: "text",
+        },
+        {
+          id: 116,
+          question:
+            "커플 사이에 지출이 생길 때, 보통 어떤 방식으로 나누는 게 가장 편하다고 느끼나요?",
+          category: "라이프스타일",
+          subCategory: "경제관·소비가치",
+          type: "text",
+        },
+        {
+          id: 117,
+          question:
+            '파트너가 "이건 그냥 대충 써도 돼"라며 고장 난 것을 잘 안 고치려는 스타일이라면, 그럴 때 당신은 어떻게 반응할 것 같나요?',
+          category: "라이프스타일",
+          subCategory: "가치관·습관",
+          type: "text",
+        },
+        {
+          id: 118,
           question:
             '세탁기 안에서 빨래를 꺼내 널어야 하는데, 일을 맡은 상대가 "나중에 할게"라며 일을 미루는 스타일이라면, 당신은 어떤 반응을 보일 것 같나요?',
-          category: "주관식",
-          subCategory: "가사·생활 분담",
+          category: "라이프스타일",
+          subCategory: "가치관·습관",
           type: "text",
           image: {
             male: "/images/man/M7_1.png",
@@ -992,35 +1214,11 @@ export const detailedSurveyData: SurveyData = {
           },
         },
         {
-          id: 110,
-          question:
-            "당신이 돈을 아끼지 않고 쓰고 싶은 분야가 있다면 무엇인가요? 그리고 그 분야에 그렇게 쓰는 이유는 무엇인가요?",
-          category: "주관식",
-          subCategory: "양가 관계·경계",
-          type: "text",
-        },
-        {
-          id: 111,
-          question:
-            "통장 잔고가 바닥을 보인다면, 당신이 가장 먼저 줄이게 될 지출 품목은 무엇인가요?",
-          category: "주관식",
-          subCategory: "재정·경제 태도",
-          type: "text",
-        },
-        {
-          id: 112,
-          question:
-            '"요즘 이게 있어서 하루하루 살아갈 힘이 난다"라고 느끼는 건 무엇인가요? (사람, 일, 취미, 목표 등 무엇이든)',
-          category: "주관식",
-          subCategory: "인생 우선순위",
-          type: "text",
-        },
-        {
-          id: 113,
+          id: 119,
           question:
             "파트너가 당신에게 가장 크게 소홀해졌다고 느끼는 순간은 언제인가요?",
-          category: "주관식",
-          subCategory: "인생 우선순위",
+          category: "라이프스타일",
+          subCategory: "관계성·소통방식",
           type: "text",
           image: {
             male: "/images/man/M7_5.png",
@@ -1028,62 +1226,11 @@ export const detailedSurveyData: SurveyData = {
           },
         },
         {
-          id: 114,
-          question:
-            '파트너가 "이건 그냥 대충 써도 돼"라며 고장 난 것을 잘 안 고치려는 스타일이라면, 그럴 때 당신은 어떻게 반응할 것 같나요?',
-          category: "주관식",
-          subCategory: "행복·정서 인식",
-          type: "text",
-        },
-        {
-          id: 115,
-          question:
-            "'이런 건 기대도 안 했는데!' 파트너에게 가장 심쿵했던, 의외의 '사랑 표현' 순간은 언제인가요?",
-          category: "주관식",
-          subCategory: "자기인식·정서조절",
-          type: "text",
-        },
-        {
-          id: 116,
-          question:
-            "당신이 집이라는 공간에서 가장 중요하게 여기는 요소는 무엇인가요?",
-          category: "주관식",
-          subCategory: "회복력·성장 태도",
-          type: "text",
-        },
-        {
-          id: 117,
-          question:
-            "'결혼'이 게임이라면, 당신이 파트너와 함께 클리어하고 싶은 가장 어려운 최종 보스는 무엇일까요?",
-          category: "주관식",
-          subCategory: "결혼의 의미·비전",
-          type: "text",
-          image: {
-            male: "/images/man/M7_9.png",
-            female: "/images/woman/W7_9.png",
-          },
-        },
-        {
-          id: 118,
-          question:
-            "커플 사이에 지출이 생길 때, 보통 어떤 방식으로 나누는 게 가장 편하다고 느끼나요? (예: 정확히 반반, 상황 따라 유동적, 한 사람이 통합 관리 등)",
-          category: "주관식",
-          subCategory: "결혼의 의미·비전",
-          type: "text",
-        },
-        {
-          id: 119,
-          question: "꼭 한번 배우거나 해보고 싶은 취미가 있다면 무엇인가요?",
-          category: "주관식",
-          subCategory: "종합 인식",
-          type: "text",
-        },
-        {
           id: 120,
           question:
-            "매달 고정 지출(월세, 대출, 보험, 통신비 등)을 제외하고 남은 돈이 있을 때, 당신이 가장 먼저 투자하거나 쓰고 싶은 곳은 어디인가요?",
-          category: "주관식",
-          subCategory: "종합 인식",
+            "파트너에게 가장 심쿵했던, 의외의 '사랑 표현' 순간은 언제인가요?",
+          category: "라이프스타일",
+          subCategory: "관계성·소통방식",
           type: "text",
         },
       ],
