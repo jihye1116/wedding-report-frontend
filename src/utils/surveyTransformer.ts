@@ -190,11 +190,13 @@ export function transformSurveyAnswersToApi(
 
     return {
       question_id: generateQuestionId(section, dimension, counter),
+      question_text: questionData.question,
+      answer: answer.answer,
       section,
       dimension,
-      question_text: questionData.question,
       part: getPartType(partNumber),
-      answer: answer.answer,
+      weight: questionData.weight,
+      direction: questionData.direction,
     };
   });
 }
