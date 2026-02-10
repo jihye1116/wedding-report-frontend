@@ -16,7 +16,7 @@ export default function Part1Intro() {
         <div className="rounded-2xl border-2 border-[#6DD4BD] bg-white p-5">
           <h2 className="mb-5 text-xl font-bold text-[#111111]">
             1. 내가 보는 나
-            <span className="text-base font-medium">(45문항)</span>
+            <span className="text-base font-medium">(48문항)</span>
           </h2>
           <p className="mb-3 text-sm leading-relaxed text-[#111111]">
             평소 나를 움직이게 하는 생각, 감정, 행동의 순간들을 떠올려보세요.
@@ -30,7 +30,7 @@ export default function Part1Intro() {
         <div className="rounded-2xl border border-[#AAAAAA] bg-white p-5">
           <h2 className="text-lg font-bold text-[#AAAAAA]">
             2. 내가 보는 파트너
-            <span className="text-base font-medium">(45문항)</span>
+            <span className="text-base font-medium">(48문항)</span>
           </h2>
         </div>
 
@@ -44,7 +44,7 @@ export default function Part1Intro() {
         <div className="rounded-2xl border border-[#AAAAAA] bg-white p-5">
           <h2 className="text-lg font-bold text-[#AAAAAA]">
             4. 삶의 가치관
-            <span className="text-base font-medium">(주관식 12문항)</span>
+            <span className="text-base font-medium">(주관식 6문항)</span>
           </h2>
         </div>
       </section>
