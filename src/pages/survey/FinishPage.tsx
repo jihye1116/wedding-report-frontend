@@ -44,8 +44,11 @@ export default function FinishPage() {
         throw new Error("설문 답변이 없습니다.");
       }
 
-      // 답변 데이터를 API 형식으로 변환
-      const apiAnswers = transformSurveyAnswersToApi(answers);
+      // 답변 데이터를 ID 순서로 정렬한 후 API 형식으로 변환
+      const sortedAnswers = [...answers].sort(
+        (a, b) => a.questionId - b.questionId,
+      );
+      const apiAnswers = transformSurveyAnswersToApi(sortedAnswers);
 
       // API 요청 데이터 구성
       const requestData = {
