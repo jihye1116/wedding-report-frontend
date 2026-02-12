@@ -1018,6 +1018,8 @@ export const detailedSurveyData: SurveyData = {
           category: "라이프스타일",
           subCategory: "관계성·소통방식",
           type: "rating",
+          weight: 1,
+          direction: "forward",
           image: {
             male: "/images/man/M5_1.png",
             female: "/images/woman/W5_1.png",
@@ -1030,6 +1032,8 @@ export const detailedSurveyData: SurveyData = {
           category: "라이프스타일",
           subCategory: "경제관·소비가치",
           type: "rating",
+          weight: 1,
+          direction: "forward",
         },
         {
           id: 99,
@@ -1037,6 +1041,8 @@ export const detailedSurveyData: SurveyData = {
             "용돈이나 개인 지출 한도를 정해놓고 지키는 것이 중요하다고 본다.",
           category: "라이프스타일",
           subCategory: "경제관·소비가치",
+          weight: 1,
+          direction: "forward",
           type: "rating",
         },
         {
@@ -1045,6 +1051,8 @@ export const detailedSurveyData: SurveyData = {
             "연애 기간이 길어질수록, 함께 있어도 각자 휴대폰만 보게 될까 봐 걱정이 된다.",
           category: "라이프스타일",
           subCategory: "관계성·소통방식",
+          weight: 1,
+          direction: "forward",
           type: "rating",
         },
         {
@@ -1053,6 +1061,8 @@ export const detailedSurveyData: SurveyData = {
             "나는 파트너에게 말하지 않는 내 생각이나 감정을 종종 마음속에만 담아두는 편이다.",
           category: "라이프스타일",
           subCategory: "관계성·소통방식",
+          weight: 1,
+          direction: "forward",
           type: "rating",
         },
         {
@@ -1061,6 +1071,8 @@ export const detailedSurveyData: SurveyData = {
             "여유 자금이 생기면 저축보다는 투자처를 먼저 고민할 것이다.",
           category: "라이프스타일",
           subCategory: "경제관·소비가치",
+          weight: 1,
+          direction: "forward",
           type: "rating",
           image: {
             male: "/images/man/M5_6.png",
@@ -1072,6 +1084,8 @@ export const detailedSurveyData: SurveyData = {
           question: "충동적으로 사고 싶을 때, 스스로 잘 제어하는 편이다.",
           category: "라이프스타일",
           subCategory: "경제관·소비가치",
+          weight: 1,
+          direction: "forward",
           type: "rating",
         },
         {
@@ -1080,6 +1094,8 @@ export const detailedSurveyData: SurveyData = {
             "양가 부모님을 대할 때 '예의'보다 '편안한 관계'가 더 중요하다고 느낀다.",
           category: "라이프스타일",
           subCategory: "관계성·소통방식",
+          weight: 1,
+          direction: "forward",
           type: "rating",
         },
         {
@@ -1088,6 +1104,8 @@ export const detailedSurveyData: SurveyData = {
             "나는 부모님이 사소한 생활 방식까지 간섭한다면, 단호하게 선을 그을 수 있다.",
           category: "라이프스타일",
           subCategory: "관계성·소통방식",
+          weight: 1,
+          direction: "forward",
           type: "rating",
         },
         {
@@ -1096,6 +1114,8 @@ export const detailedSurveyData: SurveyData = {
             "나는 아침에 알람이 울려도 한 번에 일어나기보다는 몇 번이고 미루는 편이다.",
           category: "라이프스타일",
           subCategory: "가치관·습관",
+          weight: 1,
+          direction: "forward",
           type: "rating",
         },
         {
@@ -1103,6 +1123,8 @@ export const detailedSurveyData: SurveyData = {
           question: "식사 후에는 그때그때 바로 정리해야 마음이 편하다.",
           category: "라이프스타일",
           subCategory: "가치관·습관",
+          weight: 1,
+          direction: "forward",
           type: "rating",
           image: {
             male: "/images/man/M4_2.png",
@@ -1115,6 +1137,8 @@ export const detailedSurveyData: SurveyData = {
             "함께 있는 시간도 중요하지만, 각자 시간을 보내는 것도 중요하다.",
           category: "라이프스타일",
           subCategory: "가치관·습관",
+          weight: 1,
+          direction: "forward",
           type: "rating",
         },
         {
@@ -1123,6 +1147,8 @@ export const detailedSurveyData: SurveyData = {
             "나는 자는 동안에도 주변 소리(시계 소리, 문 여닫는 소리 등)에 쉽게 깨는 편이다.",
           category: "라이프스타일",
           subCategory: "가치관·습관",
+          weight: 1,
+          direction: "forward",
           type: "rating",
         },
         {
@@ -1130,6 +1156,8 @@ export const detailedSurveyData: SurveyData = {
           question: "예상치 못한 지출이 생기면 스트레스를 크게 받는 편이다.",
           category: "라이프스타일",
           subCategory: "경제관·소비가치",
+          weight: 1,
+          direction: "forward",
           type: "rating",
         },
         {
@@ -1138,6 +1166,8 @@ export const detailedSurveyData: SurveyData = {
             "함께 살 사람이 반려동물을 좋아한다면, 나도 키우는 걸 긍정적으로 생각할 수 있다.",
           category: "라이프스타일",
           subCategory: "가치관·습관",
+          weight: 1,
+          direction: "forward",
           type: "rating",
         },
         {
@@ -1146,6 +1176,8 @@ export const detailedSurveyData: SurveyData = {
             "나는 양가 부모님 생신이나 명절이라도 상황에 따라 꼭 직접 찾아뵙지 않아도 괜찮다고 생각한다.",
           category: "라이프스타일",
           subCategory: "관계성·소통방식",
+          weight: 1,
+          direction: "forward",
           type: "rating",
           image: {
             male: "/images/man/M4_7.png",
@@ -1158,6 +1190,8 @@ export const detailedSurveyData: SurveyData = {
             "삶은 즐겁고 편안해야 하며, 무리해서 목표를 쫓는 것은 피하고 싶다.",
           category: "라이프스타일",
           subCategory: "가치관·습관",
+          weight: 1,
+          direction: "forward",
           type: "rating",
         },
         {
@@ -1166,6 +1200,8 @@ export const detailedSurveyData: SurveyData = {
             "사회적 인정(성공, 평판, 타인의 평가 등)은 나에게 꽤 중요한 기준이다.",
           category: "라이프스타일",
           subCategory: "가치관·습관",
+          weight: 1,
+          direction: "forward",
           type: "rating",
         },
       ],
@@ -1183,6 +1219,8 @@ export const detailedSurveyData: SurveyData = {
             "당신이 집이라는 공간에서 가장 중요하게 여기는 요소는 무엇인가요?",
           category: "라이프스타일",
           subCategory: "가치관·습관",
+          weight: 1,
+          direction: "forward",
           type: "text",
         },
         {
@@ -1191,6 +1229,8 @@ export const detailedSurveyData: SurveyData = {
             "커플 사이에 지출이 생길 때, 보통 어떤 방식으로 나누는 게 가장 편하다고 느끼나요?",
           category: "라이프스타일",
           subCategory: "경제관·소비가치",
+          weight: 1,
+          direction: "forward",
           type: "text",
         },
         {
@@ -1199,6 +1239,8 @@ export const detailedSurveyData: SurveyData = {
             '파트너가 "이건 그냥 대충 써도 돼"라며 고장 난 것을 잘 안 고치려는 스타일이라면, 그럴 때 당신은 어떻게 반응할 것 같나요?',
           category: "라이프스타일",
           subCategory: "가치관·습관",
+          weight: 1,
+          direction: "forward",
           type: "text",
         },
         {
@@ -1207,6 +1249,8 @@ export const detailedSurveyData: SurveyData = {
             '세탁기 안에서 빨래를 꺼내 널어야 하는데, 일을 맡은 상대가 "나중에 할게"라며 일을 미루는 스타일이라면, 당신은 어떤 반응을 보일 것 같나요?',
           category: "라이프스타일",
           subCategory: "가치관·습관",
+          weight: 1,
+          direction: "forward",
           type: "text",
           image: {
             male: "/images/man/M7_1.png",
@@ -1219,6 +1263,8 @@ export const detailedSurveyData: SurveyData = {
             "파트너가 당신에게 가장 크게 소홀해졌다고 느끼는 순간은 언제인가요?",
           category: "라이프스타일",
           subCategory: "관계성·소통방식",
+          weight: 1,
+          direction: "forward",
           type: "text",
           image: {
             male: "/images/man/M7_5.png",
@@ -1231,6 +1277,8 @@ export const detailedSurveyData: SurveyData = {
             "파트너에게 가장 심쿵했던, 의외의 '사랑 표현' 순간은 언제인가요?",
           category: "라이프스타일",
           subCategory: "관계성·소통방식",
+          weight: 1,
+          direction: "forward",
           type: "text",
         },
       ],

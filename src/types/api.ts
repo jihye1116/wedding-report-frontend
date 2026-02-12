@@ -7,8 +7,8 @@ export interface ApiAnswer {
   section: string;
   dimension: string;
   part: string;
-  weight?: number;
-  direction?: "reverse" | "forward";
+  weight: number;
+  direction: "reverse" | "forward";
 }
 
 export interface SubmitSurveyRequest {
