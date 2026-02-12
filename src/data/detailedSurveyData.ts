@@ -1009,7 +1009,7 @@ export const detailedSurveyData: SurveyData = {
       title: "Part 3: 라이프스타일",
       description: "관계성·소통방식, 경제관·소비가치, 가치관·습관",
       totalQuestions: 18,
-      totalPages: 5,
+      totalPages: 4,
       questions: [
         {
           id: 97,
