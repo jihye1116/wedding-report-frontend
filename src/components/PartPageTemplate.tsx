@@ -120,15 +120,15 @@ export const PartPageTemplate = ({
 
     const result: SurveyQuestion[] = [];
     const totalQuestionPages = Math.ceil(
-      part.questions.length / (questionsPerPage || 5),
+      part.questions.length / questionsPerPage,
     );
     let normalQuestionIdx = 0;
 
     for (let pageIdx = 0; pageIdx < totalQuestionPages; pageIdx++) {
       const imageQuestion = shuffledWithImages[pageIdx];
       const normalQuestionsCount = imageQuestion
-        ? (questionsPerPage || 5) - 1
-        : questionsPerPage || 5;
+        ? questionsPerPage - 1
+        : questionsPerPage;
       const normalQuestions = shuffledWithoutImages.slice(
         normalQuestionIdx,
         normalQuestionIdx + normalQuestionsCount,
@@ -150,8 +150,8 @@ export const PartPageTemplate = ({
   const currentQuestions = useMemo(() => {
     if (isIntroPage) return [];
     const questionPageIndex = currentPage - 1;
-    const startIndex = questionPageIndex * (questionsPerPage || 5);
-    const endIndex = startIndex + (questionsPerPage || 5);
+    const startIndex = questionPageIndex * questionsPerPage;
+    const endIndex = startIndex + questionsPerPage;
     return reorganizedQuestions.slice(startIndex, endIndex);
   }, [reorganizedQuestions, currentPage, isIntroPage, questionsPerPage]);
 

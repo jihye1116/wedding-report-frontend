@@ -7,7 +7,7 @@ import { useSurvey } from "@/hooks/useSurvey";
 
 import Part3Intro from "./intro";
 
-const QUESTIONS_PER_PAGE = 6;
+const QUESTIONS_PER_PAGE = 5;
 
 interface Part3PageProps {
   onNext?: () => void;
