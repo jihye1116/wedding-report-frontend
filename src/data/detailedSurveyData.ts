@@ -1211,7 +1211,7 @@ export const detailedSurveyData: SurveyData = {
       title: "Part 4: 주관식 질문",
       description: "자유롭게 답변할 수 있는 주관식 질문들",
       totalQuestions: 6,
-      totalPages: 4,
+      totalPages: 3,
       questions: [
         {
           id: 115,
