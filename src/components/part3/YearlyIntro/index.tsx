@@ -14,11 +14,11 @@ export default function YearlyIntro({ data }: YearlyIntroProps) {
       </h1>
       <article className="wrapper flex flex-col gap-7.5 py-5 leading-snug text-[#7E7E7E]">
         <div className="flex flex-col items-center gap-2.5">
-          <div className="rounded-full bg-[#B3E5DA] px-10 py-2.5 font-bold text-white">
+          <div className="rounded-full bg-[#FF9080] px-10 py-2.5 font-bold text-white">
             {data.year}년 차
           </div>
           <p
-            className="border-t border-[#B3E5DA] pt-5"
+            className="border-t border-[#FF9080] pt-5"
             dangerouslySetInnerHTML={{ __html: data.description }}
           />
         </div>

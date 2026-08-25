@@ -78,7 +78,7 @@ export default function MonthlySimulation({ data }: MonthlySimulationProps) {
     return `<p class=\"leading-relaxed\">${para}<\/p>`;
   };
   return (
-    <article className="flex flex-col gap-5 py-5">
+    <article className="wrapper flex flex-col gap-5 py-5">
       <section className="flex flex-col gap-3">
         <h2 className="text-center text-lg font-semibold text-[#111111]">
           {data.month}
