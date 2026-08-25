@@ -182,12 +182,7 @@ body {
 }
 
 .result-gradient {
-  background: linear-gradient(
-    to left,
-    #edffdb4d 0%,
-    /* 4d = alpha 0.3 (70% 투명) */ #b3e5da4d 50%,
-    #edffdb4d 100%
-  );
+  background: linear-gradient(172deg, rgba(255, 119, 140, 0.7) 0%, rgba(230, 203, 164, 0.7) 93%);
 }
 
 span {

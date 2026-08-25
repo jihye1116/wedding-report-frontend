@@ -49,6 +49,11 @@ export async function submitSurvey(
  * 설문 결과 리포트를 가져옵니다.
  */
 export async function getReportData(surveyId: string): Promise<ReportData> {
+  if (surveyId === "DESIGN") {
+    const { mockReportData } = await import("@/data/mockReportData");
+    return mockReportData;
+  }
+
   try {
     // 환경변수 또는 하드코딩된 URL 사용
     const baseUrl =

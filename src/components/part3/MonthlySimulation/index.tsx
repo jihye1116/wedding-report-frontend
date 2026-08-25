@@ -78,36 +78,35 @@ export default function MonthlySimulation({ data }: MonthlySimulationProps) {
     return `<p class=\"leading-relaxed\">${para}<\/p>`;
   };
   return (
-    <article className="wrapper flex flex-col gap-7.5 py-5 leading-snug">
-      <section className="flex flex-col gap-5">
-        <h2 className="px-10 pt-5 text-center text-lg font-bold text-[#111111] xl:pt-10">
+    <article className="flex flex-col gap-5 py-5">
+      <section className="flex flex-col gap-3">
+        <h2 className="text-center text-lg font-semibold text-[#111111]">
           {data.month}
         </h2>
-        <div className="result-gradient flex flex-col items-center gap-2.5 rounded-[20px] px-2.5 py-5">
-          <span className="text-center leading-snug font-medium text-[#111111]">
+        <div className="result-gradient flex flex-col items-center justify-center rounded-[21px] px-5 py-2.5">
+          <span className="text-center text-[18px] font-bold leading-snug text-[#111111]">
             {data.title}
           </span>
         </div>
       </section>
 
-      <section className="flex flex-col gap-5">
-        <h3 className="text-lg text-[#111111]">🪴 상황 요약</h3>
-        <p className="whitespace-pre-wrap">{data.situation}</p>
-      </section>
-      <section className="flex flex-col gap-5">
-        <div className="rounded-xl bg-[#F8F8F8] p-5">
-          <div className="">
-            <div className="border-l-4 border-brand/50 pl-2.5">
-              <div
-                className="prose prose-sm max-w-none"
-                dangerouslySetInnerHTML={{
-                  __html: renderConversationInline(data.conversation),
-                }}
-              />
-            </div>
-          </div>
+      <section className="flex flex-col gap-5 rounded-xl bg-[#F8F8F8] p-5">
+        <h3 className="text-lg font-medium text-[#111111]">
+          <span className="font-bold">🪴</span> 상황 요약
+        </h3>
+        <p className="whitespace-pre-wrap text-[16px] leading-[1.4] text-[#333333]">
+          {data.situation}
+        </p>
+        <div className="whitespace-pre-wrap text-[16px] leading-[1.7] text-[#333333]">
+          <div
+            dangerouslySetInnerHTML={{
+              __html: renderConversationInline(data.conversation),
+            }}
+          />
         </div>
-        <p className="leading-relaxed whitespace-pre-wrap">{data.analysis}</p>
+        <p className="whitespace-pre-wrap text-[16px] leading-[1.4] text-[#333333]">
+          {data.analysis}
+        </p>
       </section>
     </article>
   );
