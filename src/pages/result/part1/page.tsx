@@ -362,7 +362,12 @@ const SliderSection = ({
       </div>
       <div className="mt-5 flex flex-col gap-8">
         <div className="flex items-end justify-end gap-3">
-          <span className="font-medium">{genderName} 님</span>
+          <span
+            className="font-medium"
+            style={{ color: gender === "female" ? "#FF9080" : "#4FBFA0" }}
+          >
+            {genderName} 님
+          </span>
           <Image src={genderIcon} alt={gender} width={40} height={40} />
         </div>
 

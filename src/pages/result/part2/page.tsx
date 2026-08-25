@@ -218,7 +218,7 @@ const ResultPage = ({ data, index }: ResultPageProps) => (
       <div>
         <p className="text-lg font-semibold">✳️ 주요 특징 3가지</p>
       </div>
-      <div className="flex flex-col gap-2.5 rounded-xl border border-[#9AD8CA] p-5">
+      <div className="flex flex-col gap-2.5 rounded-xl border border-[#FF9080] p-5">
         {data.features.map((feature, index) => (
           <div key={index}>
             <p className="mb-1 font-bold">{feature.title}</p>
