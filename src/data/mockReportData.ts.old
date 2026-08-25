@@ -129,10 +129,10 @@ export const mockReportData: ReportData = {
         selected_topic: '주제',
         title: '시나리오 제목',
         introduction: '도입',
-        dialogue: `>도현: 이거 어때? 벽돌 무늬로 바꾸면 좀 세련될 것 같은데요.
+        dialogue: '>도현: 이거 어때? 벽돌 무늬로 바꾸면 좀 세련될 것 같은데요.
 >현서: 그건 좀 차가워 보여요. 지금처럼 따뜻한 게 좋아요.
 >도현: 그냥 이걸로 가죠.
->현서: 그럼 다음 주에 다시 봐요.`,
+>현서: 그럼 다음 주에 다시 봐요.',
         analysis: '분석',
         reason: '이유',
         available_topics: ['주제1'],
@@ -146,10 +146,10 @@ export const mockReportData: ReportData = {
         selected_topic: '주제',
         title: '시나리오 제목',
         introduction: '도입',
-        dialogue: `>도현: 이거 어때? 벽돌 무늬로 바꾸면 좀 세련될 것 같은데요.
+        dialogue: '>도현: 이거 어때? 벽돌 무늬로 바꾸면 좀 세련될 것 같은데요.
 >현서: 그건 좀 차가워 보여요. 지금처럼 따뜻한 게 좋아요.
 >도현: 그냥 이걸로 가죠.
->현서: 그럼 다음 주에 다시 봐요.`,
+>현서: 그럼 다음 주에 다시 봐요.',
         analysis: '분석',
         reason: '이유',
         available_topics: ['주제1'],
@@ -163,10 +163,10 @@ export const mockReportData: ReportData = {
         selected_topic: '주제',
         title: '시나리오 제목',
         introduction: '도입',
-        dialogue: `>도현: 이거 어때? 벽돌 무늬로 바꾸면 좀 세련될 것 같은데요.
+        dialogue: '>도현: 이거 어때? 벽돌 무늬로 바꾸면 좀 세련될 것 같은데요.
 >현서: 그건 좀 차가워 보여요. 지금처럼 따뜻한 게 좋아요.
 >도현: 그냥 이걸로 가죠.
->현서: 그럼 다음 주에 다시 봐요.`,
+>현서: 그럼 다음 주에 다시 봐요.',
         analysis: '분석',
         reason: '이유',
         available_topics: ['주제1'],
@@ -180,10 +180,10 @@ export const mockReportData: ReportData = {
         selected_topic: '주제',
         title: '시나리오 제목',
         introduction: '도입',
-        dialogue: `>도현: 이거 어때? 벽돌 무늬로 바꾸면 좀 세련될 것 같은데요.
+        dialogue: '>도현: 이거 어때? 벽돌 무늬로 바꾸면 좀 세련될 것 같은데요.
 >현서: 그건 좀 차가워 보여요. 지금처럼 따뜻한 게 좋아요.
 >도현: 그냥 이걸로 가죠.
->현서: 그럼 다음 주에 다시 봐요.`,
+>현서: 그럼 다음 주에 다시 봐요.',
         analysis: '분석',
         reason: '이유',
         available_topics: ['주제1'],
@@ -197,10 +197,10 @@ export const mockReportData: ReportData = {
         selected_topic: '주제',
         title: '시나리오 제목',
         introduction: '도입',
-        dialogue: `>도현: 이거 어때? 벽돌 무늬로 바꾸면 좀 세련될 것 같은데요.
+        dialogue: '>도현: 이거 어때? 벽돌 무늬로 바꾸면 좀 세련될 것 같은데요.
 >현서: 그건 좀 차가워 보여요. 지금처럼 따뜻한 게 좋아요.
 >도현: 그냥 이걸로 가죠.
->현서: 그럼 다음 주에 다시 봐요.`,
+>현서: 그럼 다음 주에 다시 봐요.',
         analysis: '분석',
         reason: '이유',
         available_topics: ['주제1'],
@@ -214,10 +214,10 @@ export const mockReportData: ReportData = {
         selected_topic: '주제',
         title: '시나리오 제목',
         introduction: '도입',
-        dialogue: `>도현: 이거 어때? 벽돌 무늬로 바꾸면 좀 세련될 것 같은데요.
+        dialogue: '>도현: 이거 어때? 벽돌 무늬로 바꾸면 좀 세련될 것 같은데요.
 >현서: 그건 좀 차가워 보여요. 지금처럼 따뜻한 게 좋아요.
 >도현: 그냥 이걸로 가죠.
->현서: 그럼 다음 주에 다시 봐요.`,
+>현서: 그럼 다음 주에 다시 봐요.',
         analysis: '분석',
         reason: '이유',
         available_topics: ['주제1'],
@@ -231,10 +231,10 @@ export const mockReportData: ReportData = {
         selected_topic: '주제',
         title: '시나리오 제목',
         introduction: '도입',
-        dialogue: `>도현: 이거 어때? 벽돌 무늬로 바꾸면 좀 세련될 것 같은데요.
+        dialogue: '>도현: 이거 어때? 벽돌 무늬로 바꾸면 좀 세련될 것 같은데요.
 >현서: 그건 좀 차가워 보여요. 지금처럼 따뜻한 게 좋아요.
 >도현: 그냥 이걸로 가죠.
->현서: 그럼 다음 주에 다시 봐요.`,
+>현서: 그럼 다음 주에 다시 봐요.',
         analysis: '분석',
         reason: '이유',
         available_topics: ['주제1'],
@@ -248,10 +248,10 @@ export const mockReportData: ReportData = {
         selected_topic: '주제',
         title: '시나리오 제목',
         introduction: '도입',
-        dialogue: `>도현: 이거 어때? 벽돌 무늬로 바꾸면 좀 세련될 것 같은데요.
+        dialogue: '>도현: 이거 어때? 벽돌 무늬로 바꾸면 좀 세련될 것 같은데요.
 >현서: 그건 좀 차가워 보여요. 지금처럼 따뜻한 게 좋아요.
 >도현: 그냥 이걸로 가죠.
->현서: 그럼 다음 주에 다시 봐요.`,
+>현서: 그럼 다음 주에 다시 봐요.',
         analysis: '분석',
         reason: '이유',
         available_topics: ['주제1'],
@@ -265,10 +265,10 @@ export const mockReportData: ReportData = {
         selected_topic: '주제',
         title: '시나리오 제목',
         introduction: '도입',
-        dialogue: `>도현: 이거 어때? 벽돌 무늬로 바꾸면 좀 세련될 것 같은데요.
+        dialogue: '>도현: 이거 어때? 벽돌 무늬로 바꾸면 좀 세련될 것 같은데요.
 >현서: 그건 좀 차가워 보여요. 지금처럼 따뜻한 게 좋아요.
 >도현: 그냥 이걸로 가죠.
->현서: 그럼 다음 주에 다시 봐요.`,
+>현서: 그럼 다음 주에 다시 봐요.',
         analysis: '분석',
         reason: '이유',
         available_topics: ['주제1'],
@@ -282,10 +282,10 @@ export const mockReportData: ReportData = {
         selected_topic: '주제',
         title: '시나리오 제목',
         introduction: '도입',
-        dialogue: `>도현: 이거 어때? 벽돌 무늬로 바꾸면 좀 세련될 것 같은데요.
+        dialogue: '>도현: 이거 어때? 벽돌 무늬로 바꾸면 좀 세련될 것 같은데요.
 >현서: 그건 좀 차가워 보여요. 지금처럼 따뜻한 게 좋아요.
 >도현: 그냥 이걸로 가죠.
->현서: 그럼 다음 주에 다시 봐요.`,
+>현서: 그럼 다음 주에 다시 봐요.',
         analysis: '분석',
         reason: '이유',
         available_topics: ['주제1'],
@@ -299,10 +299,10 @@ export const mockReportData: ReportData = {
         selected_topic: '주제',
         title: '시나리오 제목',
         introduction: '도입',
-        dialogue: `>도현: 이거 어때? 벽돌 무늬로 바꾸면 좀 세련될 것 같은데요.
+        dialogue: '>도현: 이거 어때? 벽돌 무늬로 바꾸면 좀 세련될 것 같은데요.
 >현서: 그건 좀 차가워 보여요. 지금처럼 따뜻한 게 좋아요.
 >도현: 그냥 이걸로 가죠.
->현서: 그럼 다음 주에 다시 봐요.`,
+>현서: 그럼 다음 주에 다시 봐요.',
         analysis: '분석',
         reason: '이유',
         available_topics: ['주제1'],
@@ -316,14 +316,17 @@ export const mockReportData: ReportData = {
         selected_topic: '주제',
         title: '시나리오 제목',
         introduction: '도입',
-        dialogue: `>도현: 이거 어때? 벽돌 무늬로 바꾸면 좀 세련될 것 같은데요.
+        dialogue: '>도현: 이거 어때? 벽돌 무늬로 바꾸면 좀 세련될 것 같은데요.
 >현서: 그건 좀 차가워 보여요. 지금처럼 따뜻한 게 좋아요.
 >도현: 그냥 이걸로 가죠.
->현서: 그럼 다음 주에 다시 봐요.`,
+>현서: 그럼 다음 주에 다시 봐요.',
         analysis: '분석',
         reason: '이유',
         available_topics: ['주제1'],
         decision_dimensions: ['EI']
+      }
+    ],
+        decision_dimensions: ["EI"]
       }
     ],
     summary: {
