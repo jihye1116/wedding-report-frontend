@@ -62,14 +62,13 @@ export default function Intro2Page({ onNext }: Intro2PageProps) {
               </div>
             </div>
 
-            <div className="relative mt-15 flex justify-end">
-              <div className="result-gradient absolute bottom-0 left-0 h-25 w-full rounded-sm" />
+            <div className="relative mt-15 h-25 w-full rounded-sm result-gradient">
               <Image
                 src="/images/cover_image.png"
-                alt="커플 일러스트"
+                alt="식장 사진"
                 width={224}
                 height={229}
-                className="relative z-10"
+                className="absolute right-0 bottom-0 z-10"
                 priority
               />
             </div>

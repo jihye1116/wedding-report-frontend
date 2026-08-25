@@ -1,9 +1,9 @@
 import { useAtom } from "jotai";
 import Image from "next/image";
 
-import Female from "@/assets/images/female.svg";
+import Female from "@/assets/images/female.png";
 import Graph from "@/assets/images/graph.png";
-import Male from "@/assets/images/male.svg";
+import Male from "@/assets/images/male.png";
 import { ReportHeader } from "@/components/ReportHeader";
 import { SliderComponent } from "@/components/SliderComponent";
 import { SummaryBox } from "@/components/SummaryBox";

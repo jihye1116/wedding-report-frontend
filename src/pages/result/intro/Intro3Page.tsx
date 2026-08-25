@@ -18,18 +18,18 @@ export default function Intro3Page({ onNext, onBack }: Intro3PageProps) {
   return (
     <main className="font-pretendard flex h-dvh flex-col justify-between">
       <ReportHeader />
-      <article className="wrapper flex flex-col gap-9 text-[#111111]">
+      <article className="wrapper flex flex-col gap-9 px-10 text-[#111111] pt-10">
         <div className="flex items-center gap-2">
-          <p className="font-gangwon text-3xl leading-snug font-bold whitespace-nowrap">
+          <p className="font-gangwon text-3xl font-bold leading-snug whitespace-nowrap">
             목차
           </p>
-          <hr className="ml-4 h-0.5 flex-1 border-t border-[#9AD8CA]" />
+          <hr className="ml-4 h-[2px] flex-1 border-none bg-brand" />
         </div>
         <div className="flex flex-col gap-5 py-15">
           {tocItems.map((item) => (
             <div key={item.id}>
-              <p className="flex items-center leading-snug font-medium whitespace-nowrap">
-                <span className="mr-5 text-[#4BB7A0]">{item.id}</span>
+              <p className="flex items-center text-[16px] font-medium leading-snug whitespace-nowrap text-[#111111]">
+                <span className="mr-5 text-brand">{item.id}</span>
                 {item.title}
               </p>
             </div>

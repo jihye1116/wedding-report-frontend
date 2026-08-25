@@ -2,8 +2,8 @@ import { useAtom } from "jotai";
 import Image from "next/image";
 import { Fragment } from "react";
 
-import Female from "@/assets/images/female.svg";
-import Male from "@/assets/images/male.svg";
+import Female from "@/assets/images/female.png";
+import Male from "@/assets/images/male.png";
 import { ReportHeader } from "@/components/ReportHeader";
 import { Tag } from "@/components/Tag";
 import { reportDataAtom } from "@/store/surveyStore";
