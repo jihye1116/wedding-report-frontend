@@ -200,6 +200,7 @@ const generateSimulationData = (reportData: ReportData | null) => {
   let year2StepIndex = 10;
   for (let i = 4; i < 8; i++) {
     const stage = stages[i];
+    if (!stage) continue;
     const period = stage.period;
     const title = stage.title.replace("### ", "");
 
@@ -312,6 +313,7 @@ const generateSimulationData = (reportData: ReportData | null) => {
   let year3StepIndex = 17;
   for (let i = 8; i < stages.length; i++) {
     const stage = stages[i];
+    if (!stage) continue;
     const period = stage.period;
     const title = stage.title.replace("### ", "");
 

@@ -57,7 +57,13 @@ const transformInteractionZone = (zone: InteractionZoneType) => {
   };
 
   const mapping =
-    zoneTypeMapping[zone.zoneType as keyof typeof zoneTypeMapping];
+    zoneTypeMapping[zone.zoneType as keyof typeof zoneTypeMapping] || {
+      badgeText: zone.zoneType,
+      badgeSubtitle: "Interaction Zone",
+      badgeColor: "#9E9E9E",
+      subtitle: ": 상호작용 특성",
+      mainParagraph: "해당 상호작용 영역에 대한 상세 설명입니다.",
+    };
 
   // characteristics를 features로 변환
   const features = zone.characteristics.map((char: string, index: number) => {
