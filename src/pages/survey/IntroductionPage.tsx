@@ -265,6 +265,14 @@ const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
                 text={authLoading ? "인증 중..." : "인증하기"}
               />
             </div>
+            {process.env.NODE_ENV === "development" && (
+              <button
+                onClick={handleNextStep}
+                className="text-sm text-gray-400 underline"
+              >
+                인증 건너뛰기 (개발용)
+              </button>
+            )}
           </main>
           <div className="wrapper flex h-full flex-col justify-end py-10">
             <div className="flex justify-end"></div>
@@ -276,7 +284,7 @@ const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
           <main className="wrapper flex flex-col gap-10 py-5">
             <div>
               <h1 className="text-center text-3xl font-medium text-[#111111]">
-                우리 커플의 꽃길은?
+                우리 커플의 여정은?
               </h1>
               <h2 className="mt-2 text-center font-medium text-[#111111]">
                 두 사람이 함께 걷는 길, 더 잘 이해하기
@@ -294,13 +302,13 @@ const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
               </p>
               {/* 아래에 사진과 동일한 부분 퍼블리싱.  */}
               <div className="mt-4 flex flex-col gap-3">
-                {/* 상단 민트색 점선 구분선*/}
+                {/* 상단 코랄색 점선 구분선*/}
                 <div
                   className="w-full"
                   style={{
                     height: 2,
                     backgroundImage:
-                      "repeating-linear-gradient(90deg, rgba(109,212,189,0.8) 0, rgba(109,212,189,0.8) 8px, transparent 8px, transparent 20px)",
+                      "repeating-linear-gradient(90deg, rgba(255,144,128,0.8) 0, rgba(255,144,128,0.8) 8px, transparent 8px, transparent 20px)",
                     backgroundRepeat: "repeat-x",
                     backgroundPosition: "left center",
                   }}
@@ -365,7 +373,7 @@ const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
                   style={{
                     height: 2,
                     backgroundImage:
-                      "repeating-linear-gradient(90deg, rgba(109,212,189,0.8) 0, rgba(109,212,189,0.8) 8px, transparent 8px, transparent 20px)",
+                      "repeating-linear-gradient(90deg, rgba(255,144,128,0.8) 0, rgba(255,144,128,0.8) 8px, transparent 8px, transparent 20px)",
                     backgroundRepeat: "repeat-x",
                     backgroundPosition: "left center",
                   }}
@@ -374,7 +382,7 @@ const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
                   <span
                     className="underline"
                     style={{
-                      textDecorationColor: "rgba(109,212,189,0.4)",
+                      textDecorationColor: "rgba(255,144,128,0.4)",
                       textDecorationThickness: "8px",
                       textUnderlineOffset: "-2px",
                     }}

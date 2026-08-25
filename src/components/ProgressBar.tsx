@@ -55,7 +55,7 @@ export function ProgressBar({ className }: ProgressBarProps) {
       )}
     >
       <div
-        className="absolute top-0 left-0 h-full rounded-full bg-linear-to-r from-[#6DD4BD]/10 to-[#6DD4BD] transition-all duration-300 ease-in-out"
+        className="absolute top-0 left-0 h-full rounded-full bg-linear-to-r from-brand/10 to-brand transition-all duration-300 ease-in-out"
         style={{ width: `${Math.min(100, Math.max(0, progress * 100))}%` }}
       />
     </div>

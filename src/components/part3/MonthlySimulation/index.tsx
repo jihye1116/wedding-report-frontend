@@ -38,7 +38,7 @@ export default function MonthlySimulation({ data }: MonthlySimulationProps) {
           .map((l) => l.replace(/^>\s?/, "").trim())
           .map((l) => renderInline(escapeHtml(l)))
           .join("<br />");
-        return `<blockquote class="border-l-4 border-[#6DD4BD]/50 pl-2.5 text-gray-700">${inner}<\/blockquote>`;
+        return `<blockquote class="border-l-4 border-brand/50 pl-2.5 text-gray-700">${inner}<\/blockquote>`;
       }
       // unordered list
       if (lines.every((l) => /^[-*]\s+/.test(l))) {
@@ -97,7 +97,7 @@ export default function MonthlySimulation({ data }: MonthlySimulationProps) {
       <section className="flex flex-col gap-5">
         <div className="rounded-xl bg-[#F8F8F8] p-5">
           <div className="">
-            <div className="border-l-4 border-[#6DD4BD]/50 pl-2.5">
+            <div className="border-l-4 border-brand/50 pl-2.5">
               <div
                 className="prose prose-sm max-w-none"
                 dangerouslySetInnerHTML={{

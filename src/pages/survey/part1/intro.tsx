@@ -13,7 +13,7 @@ export default function Part1Intro() {
       />
 
       <section className="mt-5 flex flex-col gap-4 py-5">
-        <div className="rounded-2xl border-2 border-[#6DD4BD] bg-white p-5">
+        <div className="rounded-2xl border-2 border-brand bg-white p-5">
           <h2 className="mb-5 text-xl font-bold text-[#111111]">
             1. 내가 보는 나
             <span className="text-base font-medium">(48문항)</span>

@@ -160,7 +160,7 @@ export default function FinishPage() {
                 "_blank",
               )
             }
-            className="mt-4 flex w-full items-center justify-between gap-2 rounded-lg bg-[#6DD4BD] px-5 py-2.5 text-sm font-medium text-white xl:max-w-[500px]"
+            className="mt-4 flex w-full items-center justify-between gap-2 rounded-lg bg-brand px-5 py-2.5 text-sm font-medium text-white xl:max-w-[500px]"
           >
             <span className="text-left">
               기다리는 동안 심심하다면

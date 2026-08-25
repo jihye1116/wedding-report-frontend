@@ -1,5 +1,14 @@
 @import "tailwindcss";
 
+/* 우리둘 테스트 브랜드 컬러 (Figma: 결혼 시뮬레이션 프로젝트 / 설문 조사 - 모바일) */
+/* static: 인라인 style에서 var()로 직접 쓰므로 미사용 취급되어 잘리면 안 됨 */
+@theme static {
+  --color-brand: #ff9080;
+  --color-brand-soft: #ffd4bc;
+  --color-brand-sub: #4fbfa0;
+  --color-brand-sub-soft: #a7dfcf;
+}
+
 @font-face {
   font-family: "Pretendard";
   src: url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/woff2/Pretendard-Thin.woff2")

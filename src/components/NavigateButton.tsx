@@ -24,7 +24,7 @@ export const NavigateButton = ({
       onClick={onClick}
       className={cn(
         "cursor-pointer rounded-full p-2.5 outline-black",
-        isGreen ? "bg-[#6DD4BD]" : "bg-[#DCDCDC]",
+        isGreen ? "bg-brand" : "bg-[#DCDCDC]",
       )}
     >
       <Image
