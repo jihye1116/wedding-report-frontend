@@ -364,7 +364,7 @@ const SliderSection = ({
         <div className="flex items-end justify-end gap-3">
           <span
             className="font-medium"
-            style={{ color: gender === "female" ? "#FF9080" : "#4FBFA0" }}
+            style={{ color: gender === "female" ? "#FF9080" : "#111111" }}
           >
             {genderName} 님
           </span>

@@ -97,12 +97,15 @@ export default function MonthlySimulation({ data }: MonthlySimulationProps) {
         <p className="whitespace-pre-wrap text-[16px] leading-[1.4] text-[#333333]">
           {data.situation}
         </p>
-        <div className="whitespace-pre-wrap text-[16px] leading-[1.7] text-[#333333]">
-          <div
-            dangerouslySetInnerHTML={{
-              __html: renderConversationInline(data.conversation),
-            }}
-          />
+        <div className="flex gap-2.5">
+          <div className="w-1 shrink-0 rounded-full bg-[#FF9080]/50"></div>
+          <div className="whitespace-pre-wrap text-[16px] leading-[1.7] text-[#333333]">
+            <div
+              dangerouslySetInnerHTML={{
+                __html: renderConversationInline(data.conversation),
+              }}
+            />
+          </div>
         </div>
         <p className="whitespace-pre-wrap text-[16px] leading-[1.4] text-[#333333]">
           {data.analysis}

@@ -123,16 +123,209 @@ export const mockReportData: ReportData = {
     stages: [
       {
         stage_number: 1,
-        period: "연애 초기",
-        event_emoji: "💕",
-        outcome: "성공",
-        selected_topic: "주제",
-        title: "시나리오 제목",
-        introduction: "도입",
-        dialogue: "대화 내용",
-        analysis: "분석",
-        reason: "이유",
-        available_topics: ["주제1"],
+        period: '1~3M',
+        event_emoji: '💕',
+        outcome: '성공',
+        selected_topic: '주제',
+        title: '시나리오 제목',
+        introduction: '도입',
+        dialogue: '>도현: 이거 어때? 벽돌 무늬로 바꾸면 좀 세련될 것 같은데요.
+>현서: 그건 좀 차가워 보여요. 지금처럼 따뜻한 게 좋아요.
+>도현: 그냥 이걸로 가죠.
+>현서: 그럼 다음 주에 다시 봐요.',
+        analysis: '분석',
+        reason: '이유',
+        available_topics: ['주제1'],
+        decision_dimensions: ['EI']
+      },
+      {
+        stage_number: 2,
+        period: '4~6M',
+        event_emoji: '💕',
+        outcome: '성공',
+        selected_topic: '주제',
+        title: '시나리오 제목',
+        introduction: '도입',
+        dialogue: '>도현: 이거 어때? 벽돌 무늬로 바꾸면 좀 세련될 것 같은데요.
+>현서: 그건 좀 차가워 보여요. 지금처럼 따뜻한 게 좋아요.
+>도현: 그냥 이걸로 가죠.
+>현서: 그럼 다음 주에 다시 봐요.',
+        analysis: '분석',
+        reason: '이유',
+        available_topics: ['주제1'],
+        decision_dimensions: ['EI']
+      },
+      {
+        stage_number: 3,
+        period: '7~9M',
+        event_emoji: '💕',
+        outcome: '성공',
+        selected_topic: '주제',
+        title: '시나리오 제목',
+        introduction: '도입',
+        dialogue: '>도현: 이거 어때? 벽돌 무늬로 바꾸면 좀 세련될 것 같은데요.
+>현서: 그건 좀 차가워 보여요. 지금처럼 따뜻한 게 좋아요.
+>도현: 그냥 이걸로 가죠.
+>현서: 그럼 다음 주에 다시 봐요.',
+        analysis: '분석',
+        reason: '이유',
+        available_topics: ['주제1'],
+        decision_dimensions: ['EI']
+      },
+      {
+        stage_number: 4,
+        period: '10~12M',
+        event_emoji: '💕',
+        outcome: '성공',
+        selected_topic: '주제',
+        title: '시나리오 제목',
+        introduction: '도입',
+        dialogue: '>도현: 이거 어때? 벽돌 무늬로 바꾸면 좀 세련될 것 같은데요.
+>현서: 그건 좀 차가워 보여요. 지금처럼 따뜻한 게 좋아요.
+>도현: 그냥 이걸로 가죠.
+>현서: 그럼 다음 주에 다시 봐요.',
+        analysis: '분석',
+        reason: '이유',
+        available_topics: ['주제1'],
+        decision_dimensions: ['EI']
+      },
+      {
+        stage_number: 5,
+        period: '13~15M',
+        event_emoji: '💕',
+        outcome: '성공',
+        selected_topic: '주제',
+        title: '시나리오 제목',
+        introduction: '도입',
+        dialogue: '>도현: 이거 어때? 벽돌 무늬로 바꾸면 좀 세련될 것 같은데요.
+>현서: 그건 좀 차가워 보여요. 지금처럼 따뜻한 게 좋아요.
+>도현: 그냥 이걸로 가죠.
+>현서: 그럼 다음 주에 다시 봐요.',
+        analysis: '분석',
+        reason: '이유',
+        available_topics: ['주제1'],
+        decision_dimensions: ['EI']
+      },
+      {
+        stage_number: 6,
+        period: '16~18M',
+        event_emoji: '💕',
+        outcome: '성공',
+        selected_topic: '주제',
+        title: '시나리오 제목',
+        introduction: '도입',
+        dialogue: '>도현: 이거 어때? 벽돌 무늬로 바꾸면 좀 세련될 것 같은데요.
+>현서: 그건 좀 차가워 보여요. 지금처럼 따뜻한 게 좋아요.
+>도현: 그냥 이걸로 가죠.
+>현서: 그럼 다음 주에 다시 봐요.',
+        analysis: '분석',
+        reason: '이유',
+        available_topics: ['주제1'],
+        decision_dimensions: ['EI']
+      },
+      {
+        stage_number: 7,
+        period: '19~21M',
+        event_emoji: '💕',
+        outcome: '성공',
+        selected_topic: '주제',
+        title: '시나리오 제목',
+        introduction: '도입',
+        dialogue: '>도현: 이거 어때? 벽돌 무늬로 바꾸면 좀 세련될 것 같은데요.
+>현서: 그건 좀 차가워 보여요. 지금처럼 따뜻한 게 좋아요.
+>도현: 그냥 이걸로 가죠.
+>현서: 그럼 다음 주에 다시 봐요.',
+        analysis: '분석',
+        reason: '이유',
+        available_topics: ['주제1'],
+        decision_dimensions: ['EI']
+      },
+      {
+        stage_number: 8,
+        period: '22~24M',
+        event_emoji: '💕',
+        outcome: '성공',
+        selected_topic: '주제',
+        title: '시나리오 제목',
+        introduction: '도입',
+        dialogue: '>도현: 이거 어때? 벽돌 무늬로 바꾸면 좀 세련될 것 같은데요.
+>현서: 그건 좀 차가워 보여요. 지금처럼 따뜻한 게 좋아요.
+>도현: 그냥 이걸로 가죠.
+>현서: 그럼 다음 주에 다시 봐요.',
+        analysis: '분석',
+        reason: '이유',
+        available_topics: ['주제1'],
+        decision_dimensions: ['EI']
+      },
+      {
+        stage_number: 9,
+        period: '25~27M',
+        event_emoji: '💕',
+        outcome: '성공',
+        selected_topic: '주제',
+        title: '시나리오 제목',
+        introduction: '도입',
+        dialogue: '>도현: 이거 어때? 벽돌 무늬로 바꾸면 좀 세련될 것 같은데요.
+>현서: 그건 좀 차가워 보여요. 지금처럼 따뜻한 게 좋아요.
+>도현: 그냥 이걸로 가죠.
+>현서: 그럼 다음 주에 다시 봐요.',
+        analysis: '분석',
+        reason: '이유',
+        available_topics: ['주제1'],
+        decision_dimensions: ['EI']
+      },
+      {
+        stage_number: 10,
+        period: '28~30M',
+        event_emoji: '💕',
+        outcome: '성공',
+        selected_topic: '주제',
+        title: '시나리오 제목',
+        introduction: '도입',
+        dialogue: '>도현: 이거 어때? 벽돌 무늬로 바꾸면 좀 세련될 것 같은데요.
+>현서: 그건 좀 차가워 보여요. 지금처럼 따뜻한 게 좋아요.
+>도현: 그냥 이걸로 가죠.
+>현서: 그럼 다음 주에 다시 봐요.',
+        analysis: '분석',
+        reason: '이유',
+        available_topics: ['주제1'],
+        decision_dimensions: ['EI']
+      },
+      {
+        stage_number: 11,
+        period: '31~33M',
+        event_emoji: '💕',
+        outcome: '성공',
+        selected_topic: '주제',
+        title: '시나리오 제목',
+        introduction: '도입',
+        dialogue: '>도현: 이거 어때? 벽돌 무늬로 바꾸면 좀 세련될 것 같은데요.
+>현서: 그건 좀 차가워 보여요. 지금처럼 따뜻한 게 좋아요.
+>도현: 그냥 이걸로 가죠.
+>현서: 그럼 다음 주에 다시 봐요.',
+        analysis: '분석',
+        reason: '이유',
+        available_topics: ['주제1'],
+        decision_dimensions: ['EI']
+      },
+      {
+        stage_number: 12,
+        period: '34~36M',
+        event_emoji: '💕',
+        outcome: '성공',
+        selected_topic: '주제',
+        title: '시나리오 제목',
+        introduction: '도입',
+        dialogue: '>도현: 이거 어때? 벽돌 무늬로 바꾸면 좀 세련될 것 같은데요.
+>현서: 그건 좀 차가워 보여요. 지금처럼 따뜻한 게 좋아요.
+>도현: 그냥 이걸로 가죠.
+>현서: 그럼 다음 주에 다시 봐요.',
+        analysis: '분석',
+        reason: '이유',
+        available_topics: ['주제1'],
+        decision_dimensions: ['EI']
+      }
+    ],
         decision_dimensions: ["EI"]
       }
     ],
