@@ -1,5 +1,5 @@
 import { useAtom } from "jotai";
-import Image from "next/image";
+import Image, { type StaticImageData } from "next/image";
 
 import Female from "@/assets/images/female.png";
 import Graph from "@/assets/images/graph.png";
@@ -333,7 +333,7 @@ interface SliderSectionProps {
   title: string;
   reportData: ReportData | null | undefined;
   gender: "male" | "female";
-  genderIcon: string;
+  genderIcon: StaticImageData;
   genderName: string;
   sliderConfig: SliderConfigType[];
   defaultSummaryKey: string;
