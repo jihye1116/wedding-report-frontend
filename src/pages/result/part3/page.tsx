@@ -22,17 +22,6 @@ const generateSimulationData = (reportData: ReportData | null) => {
   const stages = scenarioFlow.stages;
   // const summary = scenarioFlow.summary;
 
-  // indicator_type 기반 색상 매핑
-  const getBarColor = (
-    indicatorType?: string,
-    defaultColor: string = "#B3D4F5",
-  ) => {
-    if (indicatorType === "tension") return "#B3D4F5";
-    if (indicatorType === "connection") return "#67E4C8";
-    if (indicatorType === "resilience") return "#FFC0C1";
-    return defaultColor;
-  };
-
   // description을 문단 단위 배열로 변환
   const toParagraphs = (text?: string) =>
     text
@@ -146,7 +135,7 @@ const generateSimulationData = (reportData: ReportData | null) => {
     data: {
       year: 1,
       chartTitle: year1Indicator?.indicator_name || "긴장도",
-      barColor: getBarColor(year1Indicator?.indicator_type, "#B3D4F5"),
+      barColor: "#B3D4F5",
       quarterlyScores: year1Indicator?.quarterly_scores || [
         { quarter: "Q1", score: 7.2 },
         { quarter: "Q2", score: 7.2 },
@@ -257,7 +246,7 @@ const generateSimulationData = (reportData: ReportData | null) => {
     data: {
       year: 2,
       chartTitle: year2Indicator?.indicator_name || "정서 연결도",
-      barColor: getBarColor(year2Indicator?.indicator_type, "#67E4C8"),
+      barColor: "#A7DFCF",
       quarterlyScores: year2Indicator?.quarterly_scores || [
         { quarter: "Q1", score: 7.8 },
         { quarter: "Q2", score: 6.7 },
@@ -370,7 +359,7 @@ const generateSimulationData = (reportData: ReportData | null) => {
     data: {
       year: 3,
       chartTitle: year3Indicator?.indicator_name || "관계 회복 탄력성",
-      barColor: getBarColor(year3Indicator?.indicator_type, "#FFC0C1"),
+      barColor: "#FFC0C1",
       quarterlyScores: year3Indicator?.quarterly_scores || [
         { quarter: "Q1", score: 7.9 },
         { quarter: "Q2", score: 7.8 },

@@ -48,7 +48,7 @@ export default function Part4ResultPage({ step }: Part4ResultPageProps) {
           <h1 className="py-5 text-xl font-bold text-[#111111] xl:pt-15">
             01 관계 방향성 요약
           </h1>
-          <section className="my-5 rounded-xl border border-[#9AD8CA] p-5 xl:mt-10">
+          <section className="my-5 rounded-xl border border-[#FFC0C1] p-5 xl:mt-10">
             <p className="leading-snug whitespace-pre-wrap text-black">
               {relationshipPrediction?.relationship_direction ??
                 "관계 방향성 데이터를 불러오지 못했습니다."}
@@ -174,7 +174,7 @@ export default function Part4ResultPage({ step }: Part4ResultPageProps) {
           <h1 className="py-5 text-xl font-bold text-[#111111] xl:pt-15">
             04 핵심 꽃길 포인트
           </h1>
-          <section className="my-5 flex flex-col gap-7.5 rounded-xl border border-[#9AD8CA] p-5 xl:mt-10">
+          <section className="my-5 flex flex-col gap-7.5 rounded-xl border border-[#FFC0C1] p-5 xl:mt-10">
             {flowerPathPoints.length > 0 ? (
               flowerPathPoints.map((point, index) => (
                 <div

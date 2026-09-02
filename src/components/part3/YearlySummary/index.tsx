@@ -19,11 +19,11 @@ export default function YearlySummary({ data }: YearlySummaryProps) {
           />
         )}
         <section className="flex flex-col items-center justify-center gap-7.5 xl:flex-row xl:items-stretch">
-          <div className="lg:w:[360px] mx-auto flex w-full shrink-0 flex-col gap-2 xl:w-[340px]">
+          <div className="mx-auto flex w-full shrink-0 flex-col gap-2 xl:w-[340px]">
             <BarChart
               values={
                 data.quarterlyScores?.map((score) => score.score) || [
-                  10, 10, 10, 10,
+                  100, 100, 100, 100,
                 ]
               }
               barColor={data.barColor}
@@ -52,7 +52,7 @@ export default function YearlySummary({ data }: YearlySummaryProps) {
         ))}
       </section>
       <section className="result-gradient flex flex-col gap-5 p-5">
-        <h3 className="text-center leading-snug font-semibold text-[#3EA38D]">
+        <h3 className="text-center leading-snug font-semibold text-[#111111]">
           🧭 {data.year}년 차 부부를 위한 질문
         </h3>
         <div className="space-y-1 text-center">
