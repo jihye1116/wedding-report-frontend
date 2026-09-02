@@ -135,7 +135,7 @@ const generateSimulationData = (reportData: ReportData | null) => {
     data: {
       year: 1,
       chartTitle: year1Indicator?.indicator_name || "긴장도",
-      barColor: "#B3D4F5",
+      barColor: "#FFC0C1",
       quarterlyScores: year1Indicator?.quarterly_scores || [
         { quarter: "Q1", score: 7.2 },
         { quarter: "Q2", score: 7.2 },
@@ -246,7 +246,7 @@ const generateSimulationData = (reportData: ReportData | null) => {
     data: {
       year: 2,
       chartTitle: year2Indicator?.indicator_name || "정서 연결도",
-      barColor: "#A7DFCF",
+      barColor: "#FFC0C1",
       quarterlyScores: year2Indicator?.quarterly_scores || [
         { quarter: "Q1", score: 7.8 },
         { quarter: "Q2", score: 6.7 },
