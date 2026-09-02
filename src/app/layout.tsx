@@ -1,5 +1,6 @@
 import "./globals.css";
 
+import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
 import { Toaster } from "react-hot-toast";
 
@@ -22,6 +23,7 @@ export default function RootLayout({
           {children}
           <Toaster position="bottom-center" toastOptions={{ duration: 3000 }} />
         </Providers>
+        <Analytics />
       </body>
     </html>
   );
