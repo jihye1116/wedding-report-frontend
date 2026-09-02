@@ -9,6 +9,7 @@ import PalmPathImage from "@/assets/images/palmpath.png";
 import { LoadingSpinner } from "@/components/LoadingSpinner";
 import { answersAtom, introDataAtom } from "@/store/surveyStore";
 import { submitSurvey } from "@/utils/api";
+import { track } from "@/utils/ga";
 import { transformSurveyAnswersToApi } from "@/utils/surveyTransformer";
 
 export default function FinishPage() {
@@ -77,6 +78,7 @@ export default function FinishPage() {
       });
       setIsSubmitted(true);
       setIsSubmitting(false);
+      track("survey_submit");
     } catch (err) {
       setError(err instanceof Error ? err.message : "제출에 실패했습니다.");
       setIsSubmitting(false);
