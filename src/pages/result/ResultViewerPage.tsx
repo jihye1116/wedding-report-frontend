@@ -16,6 +16,7 @@ import {
   part4ResultStepAtom,
   reportDataAtom,
 } from "@/store/surveyStore";
+import { useScreen } from "@/utils/ga";
 
 type ResultPartStep =
   | "part1"
@@ -40,6 +41,18 @@ export default function ResultViewerPage({
     part1: 0,
     part2: 0,
   });
+
+  useScreen(
+    currentStep === "part1"
+      ? `/report/part1/${partPages.part1}`
+      : currentStep === "part2"
+        ? `/report/part2/${partPages.part2}`
+        : currentStep === "part3"
+          ? `/report/part3/${part3Step}`
+          : currentStep === "part4"
+            ? `/report/part4/${part4Step}`
+            : `/report/${currentStep}`,
+  );
 
   const steps: ResultPartStep[] = [
     "part1",

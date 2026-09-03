@@ -14,7 +14,7 @@ import Part2Page from "@/pages/survey/part2/page";
 import Part3Page from "@/pages/survey/part3/page";
 import Part4Page from "@/pages/survey/part4/page";
 import { answersAtom } from "@/store/surveyStore";
-import { track } from "@/utils/ga";
+import { track, useScreen } from "@/utils/ga";
 
 type PageStep =
   | "intro"
@@ -43,6 +43,13 @@ function SurveyPage() {
     question3: 0,
     question4: 0,
   });
+
+  // 리포트 화면은 ReportIntroductionPage, intro/finish는 각 페이지가 직접 추적한다.
+  useScreen(
+    resultId || currentStep === "intro" || currentStep === "finish"
+      ? null
+      : `/survey/${currentStep}/${partPages[currentStep]}`,
+  );
 
   const handleNext = () => {
     const steps: PageStep[] = [

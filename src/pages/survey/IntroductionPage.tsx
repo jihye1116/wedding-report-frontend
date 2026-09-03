@@ -18,6 +18,7 @@ import { SelectionCircle } from "@/components/SelectionCircle";
 import { StartButton } from "@/components/StartButton";
 import { useIntroduction } from "@/hooks/useIntroduction";
 import { verifyAccessCode } from "@/utils/api";
+import { track, useScreen } from "@/utils/ga";
 
 interface IntroductionPageProps {
   onNext: () => void;
@@ -31,6 +32,9 @@ const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
   const [partnerGender, setPartnerGender] = useState<string>("");
 
   const authCodeRef = useRef<HTMLInputElement>(null);
+
+  const INTRO_SCREENS = ["auth", "welcome", "form"];
+  useScreen(`/survey/intro/${INTRO_SCREENS[step] ?? step}`);
 
   // 인증 코드는 5자리 (예: LOVE1)
 
@@ -91,6 +95,7 @@ const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
       const { success, message } = await verifyAccessCode(authCode);
       if (!success) {
         setIsError(true);
+        track("auth_code_invalid");
         toast.error(message || "인증 코드가 유효하지 않습니다.");
         return;
       }
