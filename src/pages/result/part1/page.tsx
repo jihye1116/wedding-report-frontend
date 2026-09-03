@@ -1,9 +1,9 @@
 import { useAtom } from "jotai";
-import Image from "next/image";
+import Image, { type StaticImageData } from "next/image";
 
-import Female from "@/assets/images/female.svg";
+import Female from "@/assets/images/female.png";
 import Graph from "@/assets/images/graph.png";
-import Male from "@/assets/images/male.svg";
+import Male from "@/assets/images/male.png";
 import { ReportHeader } from "@/components/ReportHeader";
 import { SliderComponent } from "@/components/SliderComponent";
 import { SummaryBox } from "@/components/SummaryBox";
@@ -333,7 +333,7 @@ interface SliderSectionProps {
   title: string;
   reportData: ReportData | null | undefined;
   gender: "male" | "female";
-  genderIcon: string;
+  genderIcon: StaticImageData;
   genderName: string;
   sliderConfig: SliderConfigType[];
   defaultSummaryKey: string;
@@ -362,7 +362,12 @@ const SliderSection = ({
       </div>
       <div className="mt-5 flex flex-col gap-8">
         <div className="flex items-end justify-end gap-3">
-          <span className="font-medium">{genderName} 님</span>
+          <span className="font-medium text-[#111111]">
+            <span style={{ color: gender === "female" ? "#FF9080" : "#4FBFA0" }}>
+              {genderName}
+            </span>{" "}
+            님
+          </span>
           <Image src={genderIcon} alt={gender} width={40} height={40} />
         </div>
 

@@ -9,6 +9,7 @@ import PalmPathImage from "@/assets/images/palmpath.png";
 import { LoadingSpinner } from "@/components/LoadingSpinner";
 import { answersAtom, introDataAtom } from "@/store/surveyStore";
 import { submitSurvey } from "@/utils/api";
+import { track, useScreen } from "@/utils/ga";
 import { transformSurveyAnswersToApi } from "@/utils/surveyTransformer";
 
 export default function FinishPage() {
@@ -22,6 +23,14 @@ export default function FinishPage() {
     is_complete: boolean;
     message: string;
   } | null>(null);
+
+  useScreen(
+    isSubmitting
+      ? "/survey/finish/submitting"
+      : error
+        ? "/survey/finish/error"
+        : "/survey/finish",
+  );
 
   const handleSubmit = async () => {
     try {
@@ -77,9 +86,13 @@ export default function FinishPage() {
       });
       setIsSubmitted(true);
       setIsSubmitting(false);
+      track("survey_submit");
     } catch (err) {
-      setError(err instanceof Error ? err.message : "제출에 실패했습니다.");
+      const message =
+        err instanceof Error ? err.message : "제출에 실패했습니다.";
+      setError(message);
       setIsSubmitting(false);
+      track("survey_submit_error", { message });
     }
   };
 
@@ -154,13 +167,14 @@ export default function FinishPage() {
           </div>
 
           <button
-            onClick={() =>
+            onClick={() => {
+              track("palmpath_cta_click", { from: "survey_finish" });
               window.open(
                 "https://apps.apple.com/kr/app/palmpath/id6740755393",
                 "_blank",
-              )
-            }
-            className="mt-4 flex w-full items-center justify-between gap-2 rounded-lg bg-[#6DD4BD] px-5 py-2.5 text-sm font-medium text-white xl:max-w-[500px]"
+              );
+            }}
+            className="bg-brand mt-4 flex w-full items-center justify-between gap-2 rounded-lg px-5 py-2.5 text-sm font-medium text-white xl:max-w-[500px]"
           >
             <span className="text-left">
               기다리는 동안 심심하다면

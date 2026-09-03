@@ -2,7 +2,7 @@
 
 import { useAtom } from "jotai";
 import { useSearchParams } from "next/navigation";
-import { Suspense, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 
 import { LoadingSpinner } from "@/components/LoadingSpinner";
 import { detailedSurveyData } from "@/data/detailedSurveyData";
@@ -14,6 +14,7 @@ import Part2Page from "@/pages/survey/part2/page";
 import Part3Page from "@/pages/survey/part3/page";
 import Part4Page from "@/pages/survey/part4/page";
 import { answersAtom } from "@/store/surveyStore";
+import { track, useScreen } from "@/utils/ga";
 
 type PageStep =
   | "intro"
@@ -31,6 +32,10 @@ function SurveyPage() {
     return searchParams?.get("id") || null;
   });
 
+  useEffect(() => {
+    if (resultId) track("report_view");
+  }, [resultId]);
+
   // 각 파트의 현재 페이지 상태를 관리
   const [partPages, setPartPages] = useState<Record<string, number>>({
     question1: 0,
@@ -38,6 +43,13 @@ function SurveyPage() {
     question3: 0,
     question4: 0,
   });
+
+  // 리포트 화면은 ReportIntroductionPage, intro/finish는 각 페이지가 직접 추적한다.
+  useScreen(
+    resultId || currentStep === "intro" || currentStep === "finish"
+      ? null
+      : `/survey/${currentStep}/${partPages[currentStep]}`,
+  );
 
   const handleNext = () => {
     const steps: PageStep[] = [
@@ -50,7 +62,9 @@ function SurveyPage() {
     ];
     const currentIndex = steps.indexOf(currentStep);
     if (currentIndex < steps.length - 1) {
-      setCurrentStep(steps[currentIndex + 1]);
+      const nextStep = steps[currentIndex + 1];
+      setCurrentStep(nextStep);
+      track("survey_step", { step: nextStep });
     }
   };
 

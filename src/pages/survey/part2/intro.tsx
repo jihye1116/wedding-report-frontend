@@ -20,7 +20,7 @@ export default function Part2Intro() {
           </h2>
         </div>
 
-        <div className="rounded-2xl border-2 border-[#6DD4BD] bg-white p-5">
+        <div className="rounded-2xl border-2 border-brand bg-white p-5">
           <h2 className="mb-5 text-xl font-bold text-[#111111]">
             2. 내가 보는 파트너
             <span className="text-base font-medium">(48문항)</span>

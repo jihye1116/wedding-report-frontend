@@ -20,7 +20,7 @@ export const ActionButton = ({
         "flex items-center gap-2 rounded-lg py-2.5 px-5 outline-black",
         disabled
           ? "bg-gray-300 cursor-not-allowed opacity-60"
-          : "bg-[#6DD4BD] cursor-pointer",
+          : "bg-brand cursor-pointer",
       )}
       onClick={onClick}
       disabled={disabled}

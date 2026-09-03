@@ -14,9 +14,11 @@ export function ReportHeader() {
       <div className="flex gap-2 pt-5 pb-1">
         <Image src={Logo} alt="Logo" height={25} />
       </div>
-      <p className="font-pretendard pb-5 text-sm font-medium text-[#7E7E7E]">
-        {maleName} · {femaleName} 님의 결과 보고서
-      </p>
+      <div className="flex items-center justify-end gap-1 pb-5 font-pretendard text-sm font-medium text-[#7E7E7E]">
+        <span>{maleName}</span>
+        <span className="text-base font-bold">💛</span>
+        <span>{femaleName}</span>
+      </div>
     </header>
   );
 }

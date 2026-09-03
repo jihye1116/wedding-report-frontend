@@ -18,7 +18,7 @@ export default function Part5ResultPage({}: Part5ResultPageProps) {
       </h1>
       <article className="wrapper flex flex-col gap-7.5 py-5 leading-snug text-[#111111]">
         <section className="flex flex-col gap-5">
-          <div className="rounded-r-full bg-[#EDFFDB]/60 py-2.5 text-center font-bold">
+          <div className="rounded-r-full bg-[#FFE8DB]/60 py-2.5 text-center font-bold">
             1. 걸어온 길
           </div>
           <p className="whitespace-pre-wrap">
@@ -26,7 +26,7 @@ export default function Part5ResultPage({}: Part5ResultPageProps) {
           </p>
         </section>
         <section className="flex flex-col gap-5">
-          <div className="rounded-r-full bg-linear-to-r from-[#EDFFDB]/60 to-[#B3E5DA]/60 py-2.5 text-center font-bold">
+          <div className="rounded-r-full bg-linear-to-r from-[#FFE8DB]/60 to-[#FFC0C1]/60 py-2.5 text-center font-bold">
             2. 지속적 실천 과제
           </div>
           <p className="whitespace-pre-wrap">
@@ -35,7 +35,7 @@ export default function Part5ResultPage({}: Part5ResultPageProps) {
           </p>
         </section>
         <section className="flex flex-col gap-5">
-          <div className="rounded-r-full bg-[#B3E5DA]/60 py-2.5 text-center font-bold">
+          <div className="rounded-r-full bg-[#FFC0C1]/60 py-2.5 text-center font-bold">
             3. 권장 실천 가이드
           </div>
           <p className="whitespace-pre-wrap">
@@ -43,7 +43,7 @@ export default function Part5ResultPage({}: Part5ResultPageProps) {
               "데이터를 불러오는 중입니다..."}
           </p>
         </section>
-        <section className="rounded-xl border border-[#9AD8CA] p-5">
+        <section className="rounded-xl border border-[#FFC0C1] p-5">
           <p className="leading-relaxed whitespace-pre-wrap text-black">
             {comprehensiveData?.summary || "데이터를 불러오는 중입니다..."}
           </p>

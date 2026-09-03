@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { LoadingSpinner } from "@/components/LoadingSpinner";
 import { reportDataAtom } from "@/store/surveyStore";
 import { getReportData } from "@/utils/api";
+import { track, useScreen } from "@/utils/ga";
 
 import Intro1Page from "./intro/Intro1Page";
 import Intro2Page from "./intro/Intro2Page";
@@ -40,17 +41,31 @@ export default function ReportIntroductionPage({
         setLoading(false);
       } catch (err) {
         console.error("Error loading report data:", err);
-        setError(
+        const message =
           err instanceof Error
             ? err.message
-            : "리포트 데이터를 불러오는데 실패했습니다.",
-        );
+            : "리포트 데이터를 불러오는데 실패했습니다.";
+        setError(message);
         setLoading(false);
+        track("report_load_error", { message });
       }
     };
 
     loadReportData();
   }, [resultId, setReportData]);
+
+  // viewing_results 화면은 ResultViewerPage가 파트별로 직접 추적한다.
+  useScreen(
+    loading
+      ? "/report/loading"
+      : error
+        ? "/report/error"
+        : !reportData
+          ? "/report/empty"
+          : currentStep === "viewing_results"
+            ? null
+            : `/report/${currentStep}`,
+  );
 
   const handleNext = () => {
     const steps: IntroStep[] = [

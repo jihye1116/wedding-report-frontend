@@ -15,8 +15,10 @@ export const AnswerButton = ({
   selected,
   onClick,
 }: AnswerButtonProps) => {
-  const blueColor = "#DBEEF2";
-  const greenColor = "#CEEBCC";
+  // blue = 여성/기본(코랄), green = 남성(민트)
+  const accent = color === "blue" ? "--color-brand" : "--color-brand-sub";
+  const badge =
+    color === "blue" ? "--color-brand-soft" : "--color-brand-sub-soft";
 
   return (
     <button
@@ -24,31 +26,19 @@ export const AnswerButton = ({
       onClick={onClick}
       className={cn(
         "flex w-fit items-center gap-3 rounded-xl bg-white px-4 py-2.5 outline-none focus:border-transparent focus:ring-0 focus:ring-offset-0 focus:outline-none focus-visible:outline-none active:outline-none",
-        selected
-          ? color === "blue"
-            ? `border-2 border-[${blueColor}] -m-px shadow-[#DBEEF2]`
-            : `border-2 border-[${greenColor}] -m-px shadow-[0_0_8px_rgba(206,235,204,0.8)]`
-          : "border border-[#DCDCDC]",
+        selected && "-m-px",
       )}
       style={{
         outline: "none",
-        border: selected
-          ? color === "blue"
-            ? `2px solid ${blueColor}`
-            : `2px solid ${greenColor}`
-          : "1px solid #DCDCDC",
+        border: selected ? `2px solid var(${accent})` : "1px solid #DCDCDC",
         boxShadow: selected
-          ? color === "blue"
-            ? "0 0 8px rgba(219,238,242,0.8)"
-            : "0 0 8px rgba(206,235,204,0.8)"
+          ? `0 0 8px color-mix(in oklab, var(${accent}) 50%, transparent)`
           : "none",
       }}
     >
       <div
         className="rounded px-2 py-1"
-        style={{
-          backgroundColor: color === "blue" ? blueColor : greenColor,
-        }}
+        style={{ backgroundColor: `var(${badge})` }}
       >
         <span className="leading-snug font-bold text-[#111111]">{label}</span>
       </div>

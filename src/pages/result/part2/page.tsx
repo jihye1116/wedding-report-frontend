@@ -1,9 +1,9 @@
 import { useAtom } from "jotai";
 import Image from "next/image";
 
-import Female from "@/assets/images/female.svg";
+import Female from "@/assets/images/female.png";
 import InteractionZone from "@/assets/images/interaction-zone.png";
-import Male from "@/assets/images/male.svg";
+import Male from "@/assets/images/male.png";
 import EmpathyQuadrant from "@/components/EmpathyQuadrant";
 import { ReportHeader } from "@/components/ReportHeader";
 import { reportDataAtom } from "@/store/surveyStore";
@@ -57,7 +57,13 @@ const transformInteractionZone = (zone: InteractionZoneType) => {
   };
 
   const mapping =
-    zoneTypeMapping[zone.zoneType as keyof typeof zoneTypeMapping];
+    zoneTypeMapping[zone.zoneType as keyof typeof zoneTypeMapping] || {
+      badgeText: zone.zoneType,
+      badgeSubtitle: "Interaction Zone",
+      badgeColor: "#9E9E9E",
+      subtitle: ": 상호작용 특성",
+      mainParagraph: "해당 상호작용 영역에 대한 상세 설명입니다.",
+    };
 
   // characteristics를 features로 변환
   const features = zone.characteristics.map((char: string, index: number) => {
@@ -212,7 +218,7 @@ const ResultPage = ({ data, index }: ResultPageProps) => (
       <div>
         <p className="text-lg font-semibold">✳️ 주요 특징 3가지</p>
       </div>
-      <div className="flex flex-col gap-2.5 rounded-xl border border-[#9AD8CA] p-5">
+      <div className="flex flex-col gap-2.5 rounded-xl border border-[#FF9080] p-5">
         {data.features.map((feature, index) => (
           <div key={index}>
             <p className="mb-1 font-bold">{feature.title}</p>

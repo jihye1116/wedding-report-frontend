@@ -27,7 +27,7 @@ export default function Part3Intro() {
           </h2>
         </div>
 
-        <div className="rounded-2xl border-2 border-[#6DD4BD] bg-white p-5">
+        <div className="rounded-2xl border-2 border-brand bg-white p-5">
           <h2 className="mb-5 text-xl font-bold text-[#111111]">
             3. 일상 생활 리듬
             <span className="text-base font-medium">(18문항)</span>

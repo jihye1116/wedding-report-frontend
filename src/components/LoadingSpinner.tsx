@@ -6,7 +6,7 @@ interface LoadingSpinnerProps {
 
 export const LoadingSpinner = ({
   size = 80,
-  color = "#6DD4BD",
+  color = "#FF9080",
   strokeWidth = 8,
 }: LoadingSpinnerProps) => {
   return (
