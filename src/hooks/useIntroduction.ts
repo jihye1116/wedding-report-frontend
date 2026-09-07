@@ -46,9 +46,11 @@ export const useIntroduction = () => {
   // 세션 스토리지에서 step 복원 (초기화 시에만)
   useEffect(() => {
     const savedStep = sessionStorage.getItem("intro-step");
-    if (savedStep && step === 0) {
+    // 랜딩에서 쿠폰을 이미 확인했으면 인증(step 0)을 건너뛴다.
+    const couponVerified = !!sessionStorage.getItem("accessCode");
+    if ((savedStep || couponVerified) && step === 0) {
       try {
-        const parsedStep = JSON.parse(savedStep);
+        const parsedStep = savedStep ? JSON.parse(savedStep) : 1;
         // 초기 로딩 시에만 복원하기 위해 setTimeout 사용
         setTimeout(() => {
           setStep(parsedStep);

@@ -207,3 +207,38 @@ export async function verifyAccessCode(code: string): Promise<{
     throw new Error("네트워크 오류가 발생했습니다.");
   }
 }
+
+export interface ReviewRequest {
+  survey_id: string;
+  rating: number; // 1~5
+  nps: number; // 0~10
+  best_parts: string[]; // "part1".."part5"
+  comment: string;
+  public_consent: boolean;
+  source: string | null;
+}
+
+/**
+ * 후기·만족도 제출. 409 = 이미 작성.
+ */
+export async function submitReview(data: ReviewRequest): Promise<void> {
+  const response = await fetch(`${API_BASE_URL}/survey/reviews`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "ngrok-skip-browser-warning": "true",
+    },
+    body: JSON.stringify(data),
+  });
+  if (response.ok) return;
+  let message = "후기 제출에 실패했습니다.";
+  try {
+    const err: ApiErrorResponse = await response.json();
+    if (typeof err.detail === "string") message = err.detail;
+  } catch {
+    // 본문 없음
+  }
+  const error = new Error(message) as Error & { status?: number };
+  error.status = response.status;
+  throw error;
+}

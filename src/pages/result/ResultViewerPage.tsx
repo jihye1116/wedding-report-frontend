@@ -1,6 +1,8 @@
 "use client";
 
 import { useAtom } from "jotai";
+import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 
 import { NavigateButton } from "@/components/NavigateButton";
@@ -16,7 +18,7 @@ import {
   part4ResultStepAtom,
   reportDataAtom,
 } from "@/store/surveyStore";
-import { useScreen } from "@/utils/ga";
+import { track, useScreen } from "@/utils/ga";
 
 type ResultPartStep =
   | "part1"
@@ -34,6 +36,7 @@ export default function ResultViewerPage({
   onBackToIntro,
 }: ResultViewerPageProps) {
   const [reportData] = useAtom(reportDataAtom);
+  const resultId = useSearchParams()?.get("id");
   const [part3Step, setPart3Step] = useAtom(part3ResultStepAtom);
   const [part4Step, setPart4Step] = useAtom(part4ResultStepAtom);
   const [currentStep, setCurrentStep] = useState<ResultPartStep>("part1");
@@ -309,6 +312,13 @@ export default function ResultViewerPage({
         <div className="flex-2" />
         <main className="wrapper w-full">
           <ReportCover />
+          <Link
+            href={`/review?id=${resultId ?? ""}`}
+            onClick={() => track("review_cta_click", { from: "report_finish" })}
+            className="bg-brand mt-8 block w-full rounded-lg py-3 text-center text-sm font-medium text-white"
+          >
+            1분 후기 남기고 5,000원 쿠폰 받기
+          </Link>
         </main>
         <div className="flex-1" />
         <footer className="wrapper flex w-full items-center justify-between p-10">
