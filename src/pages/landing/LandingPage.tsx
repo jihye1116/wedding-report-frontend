@@ -136,10 +136,10 @@ export default function LandingPage() {
           그리고 <b>핸드폰만</b> 있으면 끝!
         </p>
         <Image
-          src={`${IMG}/couple.jpg`}
+          src={`${IMG}/couple.webp`}
           alt="카페에서 함께 핸드폰을 보는 커플"
-          width={1000}
-          height={976}
+          width={1500}
+          height={1500}
           className="my-6 w-full rounded-xl"
         />
         <p>
@@ -190,10 +190,10 @@ export default function LandingPage() {
       {/* ⑥ 강점 3개 */}
       <section className="wrapper mt-6">
         <Image
-          src={`${IMG}/points.jpg`}
+          src={`${IMG}/points.webp`}
           alt="강점1 관계 분석에 특화된 심리테스트로 시작 · 강점2 성격 차이부터 현실 문제까지 생생한 시뮬레이션 · 강점3 갈등은 줄이고 연결은 끈끈하게 만드는 꽃길 로드맵"
-          width={796}
-          height={1000}
+          width={1278}
+          height={1644}
           className="w-full rounded-xl"
         />
       </section>
@@ -204,23 +204,32 @@ export default function LandingPage() {
         <p>안 하고 그냥 갈 수 있어요?</p>
         <p className="mt-8 text-xs text-gray-500">Step1. 개인성향 분석</p>
         <Image
-          src={`${IMG}/report-step1.jpg`}
+          src={`${IMG}/report-step1.webp`}
           alt="리포트 1장 개인 성향 분석 미리보기"
-          width={1000}
-          height={996}
+          width={1500}
+          height={1566}
           className="mt-2 w-full rounded-xl"
         />
         <p className="mt-6 text-xs text-gray-500">Step2. 상호작용분석</p>
         <Image
-          src={`${IMG}/report-step2.jpg`}
+          src={`${IMG}/report-step2.webp`}
           alt="리포트 2장 상호작용 4영역 분석 미리보기"
-          width={772}
-          height={1000}
+          width={1314}
+          height={1680}
+          className="mt-2 w-full rounded-xl"
+        />
+        <p className="mt-6 text-xs text-gray-500">
+          Step3. 36개월 신혼생활 시뮬레이션
+        </p>
+        <Image
+          src={`${IMG}/report-step3.webp`}
+          alt="리포트 3장 36개월 신혼생활 시뮬레이션 미리보기"
+          width={1500}
+          height={1509}
           className="mt-2 w-full rounded-xl"
         />
         <p className="mt-4 text-xs text-gray-400">
-          + 3장 36개월 신혼생활 시뮬레이션 · 4장 주요 관계 지표 예측 · 5장 종합
-          결론
+          + 4장 주요 관계 지표 예측 · 5장 종합 결론
         </p>
       </section>
 
