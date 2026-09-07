@@ -89,10 +89,10 @@ export default function LandingPage() {
       {/* ① HERO */}
       <section className="wrapper">
         <Image
-          src={`${IMG}/hero.jpg`}
+          src={`${IMG}/hero.webp`}
           alt='나만그래? "우리 자기는 다 좋은데…"'
-          width={1000}
-          height={773}
+          width={1080}
+          height={1266}
           priority
           className="w-full rounded-xl"
         />
@@ -119,11 +119,11 @@ export default function LandingPage() {
       {/* ③ 3단계 */}
       <section className="wrapper">
         <Image
-          src={`${IMG}/steps.jpg`}
+          src={`${IMG}/steps.webp`}
           alt="STEP1 사전설문 120문항 · STEP2 발송대기 · STEP3 리포트 열람 모바일 40페이지"
-          width={586}
-          height={1000}
-          className="mx-auto w-4/5"
+          width={1112}
+          height={2197}
+          className="w-full rounded-xl"
         />
       </section>
 
@@ -223,7 +223,7 @@ export default function LandingPage() {
       {/* ⑧ 후기 */}
       <section className="py-10">
         <h2 className="wrapper mb-4 text-lg font-bold">먼저 해본 커플들은요</h2>
-        <div className="flex snap-x gap-3 overflow-x-auto px-5 pb-2">
+        <div className="wrapper flex snap-x gap-3 overflow-x-auto pb-2">
           {REVIEWS.map((r) => (
             <div
               key={r.name}
