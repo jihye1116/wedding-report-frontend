@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-// PG 심사용 사업자 정보. 아임웹 푸터 문안 그대로.
+// PG 심사용 사업자 정보. 전 페이지 공통.
 export const SiteFooter = () => (
   <footer className="wrapper py-8 text-[11px] leading-relaxed text-gray-500">
     <p className="font-medium text-gray-700">꽃-길</p>
@@ -10,7 +10,7 @@ export const SiteFooter = () => (
     <p>
       사업자 등록번호 : 289-86-02172 | 통신판매신고번호 : 2025-경북영덕-0036
     </p>
-    <p>개인정보관리책임자 : 민진하 | 호스팅제공자 : (주)아임웹</p>
+    <p>개인정보관리책임자 : 민진하 | 호스팅제공자 : (주)후아</p>
     <p>문의 0507-1478-3654</p>
     <p className="mt-2">
       상호명: (주)후아 &nbsp; 대표자: 민진하 &nbsp; 사업장주소: 경북 영덕군
@@ -19,7 +19,7 @@ export const SiteFooter = () => (
     </p>
     <p className="mt-2">
       통신판매업신고번호: 2025-경북영덕-0036 &nbsp; 대표자 이메일:
-      hooaahmarketing@gmail.com &nbsp; 호스팅 제공자: (주)아임웹
+      hooaahmarketing@gmail.com &nbsp; 호스팅 제공자: (주)후아
     </p>
     <p className="mt-3 flex gap-3">
       <Link href="/terms" className="underline">
