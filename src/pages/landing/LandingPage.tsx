@@ -160,11 +160,15 @@ export default function LandingPage() {
         <p>
           <b>싸우고 있는 모습</b>을 보여주더라고요?
         </p>
-        <Image
-          src={`${IMG}/phone.jpg`}
-          alt="리포트 설문조사 화면"
-          width={630}
-          height={1000}
+        {/* gif 16MB짜리라 mp4로. 원본은 imweb CDN에 그대로 있음 */}
+        <video
+          src={`${IMG}/survey-demo.mp4`}
+          poster={`${IMG}/survey-demo-poster.jpg`}
+          autoPlay
+          loop
+          muted
+          playsInline
+          aria-label="리포트 설문조사를 작성하는 화면"
           className="mx-auto my-6 w-3/5 rounded-xl"
         />
         <p className="text-xs text-gray-400">리포트 설문조사</p>
