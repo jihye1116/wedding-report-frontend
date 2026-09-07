@@ -268,14 +268,17 @@ export default function LandingPage() {
               카드 결제하기 (준비 중)
             </button>
           </div>
-          <p className="mt-3 text-xs text-gray-500">
+          <p className="mt-3 text-xs leading-relaxed text-gray-500">
             카드 결제는 준비 중이에요. 쿠폰 문의는{" "}
             <a href={CONTACT_URL} className="underline">
               여기로
             </a>
-            ! · 설문 시작 전 전액 환불{" "}
+            !
+            <br />
+            설문 시작 전에는 전액 환불됩니다. 설문 응답을 시작하면 디지털콘텐츠
+            제공이 개시되어 청약철회가 제한됩니다.{" "}
             <Link href="/refund" className="underline">
-              환불 규정
+              취소·환불 정책
             </Link>
           </p>
         </div>
