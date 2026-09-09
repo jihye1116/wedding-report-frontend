@@ -67,17 +67,9 @@ export default function ReviewPage({ surveyId }: { surveyId: string | null }) {
 
   useScreen(done ? "/review/done" : "/review");
 
-  // id 없으면 랜딩으로. 이미 제출한 id면 완료 화면.
+  // id 없으면 랜딩으로. 같은 id로 여러 번 남길 수 있게 제출 이력은 막지 않는다.
   useEffect(() => {
-    if (!surveyId) {
-      router.replace("/");
-      return;
-    }
-    try {
-      if (localStorage.getItem(`reviewed_${surveyId}`)) setDone(true);
-    } catch {
-      // storage 차단 환경
-    }
+    if (!surveyId) router.replace("/");
   }, [surveyId, router]);
 
   const canSubmit =
@@ -105,27 +97,14 @@ export default function ReviewPage({ surveyId }: { surveyId: string | null }) {
         nps: nps!,
         source: source ?? "",
       });
-      finish();
+      setDone(true);
     } catch (e) {
-      if ((e as { status?: number }).status === 409) {
-        finish();
-        return;
-      }
       toast.error(
         e instanceof Error ? e.message : "잠시 후 다시 시도해 주세요",
       );
     } finally {
       setLoading(false);
     }
-  };
-
-  const finish = () => {
-    try {
-      localStorage.setItem(`reviewed_${surveyId}`, "1");
-    } catch {
-      // storage 차단 환경
-    }
-    setDone(true);
   };
 
   const share = async () => {
