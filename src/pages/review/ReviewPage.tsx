@@ -153,9 +153,7 @@ export default function ReviewPage({ surveyId }: { surveyId: string | null }) {
           <div>
             <h1 className="text-2xl font-medium">고마워요 🌸</h1>
             <p className="mt-3 text-sm leading-relaxed">
-              5,000원 쿠폰은 등록된 번호로
-              <br />
-              2일 안에 문자로 보내드려요
+              소중한 의견 덕분에 더 좋아질 거예요
             </p>
           </div>
           <button
@@ -184,7 +182,7 @@ export default function ReviewPage({ surveyId }: { surveyId: string | null }) {
         <div className="text-center">
           <h1 className="text-xl font-bold">리포트, 어땠어요?</h1>
           <p className="mt-2 text-sm text-gray-600">
-            1분이면 끝나요 · 5,000원 쿠폰 🎁
+            1분이면 끝나요 🎁
           </p>
         </div>
 

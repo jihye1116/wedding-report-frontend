@@ -1,5 +1,5 @@
 import { sendGAEvent } from "@next/third-parties/google";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 /**
  * NEXT_PUBLIC_GA_ID가 없는 환경(로컬·프리뷰)에서는 조용히 무시한다.
@@ -60,4 +60,30 @@ export function useSectionTracking(name: string) {
       .forEach((el) => io.observe(el));
     return () => io.disconnect();
   }, [name]);
+}
+
+/**
+ * 리포트처럼 장이 많은 화면의 진행률. 같은 지점은 되돌아와도 한 번만 보낸다.
+ * 장마다 page_view를 쏘면 세션당 페이지뷰·이탈률·평균 참여 시간이 전부
+ * 리포트 독자 쪽으로 왜곡되므로, 경로 대신 이벤트 파라미터로 깊이를 남긴다.
+ */
+export function useProgress(
+  name: string,
+  step: string | null,
+  page: number,
+  total: number,
+) {
+  const seen = useRef(new Set<string>());
+  useEffect(() => {
+    if (!step || total <= 0) return;
+    const key = `${step}/${page}`;
+    if (seen.current.has(key)) return;
+    seen.current.add(key);
+    track(name, {
+      step,
+      page,
+      percent: Math.round((page / total) * 100),
+      seconds: secondsOnPage(),
+    });
+  }, [name, step, page, total]);
 }

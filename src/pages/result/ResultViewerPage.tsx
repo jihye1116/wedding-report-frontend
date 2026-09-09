@@ -18,7 +18,7 @@ import {
   part4ResultStepAtom,
   reportDataAtom,
 } from "@/store/surveyStore";
-import { track, useScreen } from "@/utils/ga";
+import { track, useProgress } from "@/utils/ga";
 
 type ResultPartStep =
   | "part1"
@@ -44,18 +44,6 @@ export default function ResultViewerPage({
     part1: 0,
     part2: 0,
   });
-
-  useScreen(
-    currentStep === "part1"
-      ? `/report/part1/${partPages.part1}`
-      : currentStep === "part2"
-        ? `/report/part2/${partPages.part2}`
-        : currentStep === "part3"
-          ? `/report/part3/${part3Step}`
-          : currentStep === "part4"
-            ? `/report/part4/${part4Step}`
-            : `/report/${currentStep}`,
-  );
 
   const steps: ResultPartStep[] = [
     "part1",
@@ -110,6 +98,14 @@ export default function ResultViewerPage({
 
     return 1;
   };
+
+  // 장마다 page_view를 쏘던 것을 진행률 이벤트로 대체. percent로 이탈 지점을 본다.
+  useProgress(
+    "report_progress",
+    currentStep,
+    getCurrentGlobalPage(),
+    totalResultPages,
+  );
 
   const handlePartPageChange = (part: keyof typeof partPages, page: number) => {
     setPartPages((prev) => ({ ...prev, [part]: page }));
@@ -317,7 +313,7 @@ export default function ResultViewerPage({
             onClick={() => track("review_cta_click", { from: "report_finish" })}
             className="bg-brand mt-8 block w-full rounded-lg py-3 text-center text-sm font-medium text-white"
           >
-            1분 후기 남기고 5,000원 쿠폰 받기
+            1분 후기 남기기
           </Link>
         </main>
         <div className="flex-1" />
