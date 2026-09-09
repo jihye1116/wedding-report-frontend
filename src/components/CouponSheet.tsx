@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import toast from "react-hot-toast";
 
 import { verifyAccessCode } from "@/utils/api";
-import { track } from "@/utils/ga";
+import { secondsOnPage, track } from "@/utils/ga";
 
 export const CONTACT_URL =
   process.env.NEXT_PUBLIC_CONTACT_URL || "tel:0507-1478-3654";
@@ -51,7 +51,7 @@ export const CouponSheet = ({ open, onClose }: CouponSheetProps) => {
       const { success, message } = await verifyAccessCode(code);
       if (!success) throw new Error(message || "유효하지 않은 쿠폰이에요");
       sessionStorage.setItem("accessCode", code);
-      track("coupon_success");
+      track("coupon_success", { seconds: secondsOnPage() });
       toast.success("쿠폰이 확인됐어요");
       router.push("/survey");
     } catch (e) {

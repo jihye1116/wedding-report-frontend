@@ -7,7 +7,7 @@ import { useState } from "react";
 import Logo from "@/assets/icons/logo.svg";
 import { CONTACT_URL, CouponSheet } from "@/components/CouponSheet";
 import { SiteFooter } from "@/components/SiteFooter";
-import { track, useScreen } from "@/utils/ga";
+import { secondsOnPage, track, useSectionTracking } from "@/utils/ga";
 
 export const PRICE = 19000;
 export const PRODUCT_NAME = "커플 결혼시뮬레이션 - 우리둘 테스트";
@@ -63,7 +63,7 @@ const Cta = ({ from, onClick }: { from: string; onClick: () => void }) => (
   <button
     type="button"
     onClick={() => {
-      track("landing_cta_click", { section: from });
+      track("landing_cta_click", { section: from, seconds: secondsOnPage() });
       onClick();
     }}
     className="bg-brand w-full rounded-lg py-3 text-sm font-medium text-white"
@@ -74,7 +74,8 @@ const Cta = ({ from, onClick }: { from: string; onClick: () => void }) => (
 
 export default function LandingPage() {
   const [couponOpen, setCouponOpen] = useState(false);
-  useScreen("/landing");
+  // 랜딩은 실제 라우트가 "/"라 page_view는 GA4 자동 수집에 맡긴다.
+  useSectionTracking("landing_section_view");
   const openCoupon = () => setCouponOpen(true);
 
   return (
@@ -87,7 +88,7 @@ export default function LandingPage() {
       </header>
 
       {/* ① HERO */}
-      <section className="wrapper">
+      <section className="wrapper" data-ga-section="hero">
         <Image
           src={`${IMG}/hero.webp`}
           alt='나만그래? "우리 자기는 다 좋은데…"'
@@ -117,7 +118,7 @@ export default function LandingPage() {
       </section>
 
       {/* ③ 3단계 */}
-      <section className="wrapper">
+      <section className="wrapper" data-ga-section="steps">
         <Image
           src={`${IMG}/steps.webp`}
           alt="STEP1 사전설문 120문항 · STEP2 발송대기 · STEP3 리포트 열람 모바일 40페이지"
@@ -149,7 +150,10 @@ export default function LandingPage() {
       </section>
 
       {/* ⑤ 반전 */}
-      <section className="wrapper text-center text-sm leading-relaxed">
+      <section
+        className="wrapper text-center text-sm leading-relaxed"
+        data-ga-section="demo"
+      >
         <Divider />
         <p>
           <b>성격 테스트</b>인 줄 알았는데 정신 차리고 읽어보니
@@ -199,7 +203,10 @@ export default function LandingPage() {
       </section>
 
       {/* ⑦ 리포트 미리보기 */}
-      <section className="wrapper py-10 text-center text-sm leading-relaxed">
+      <section
+        className="wrapper py-10 text-center text-sm leading-relaxed"
+        data-ga-section="preview"
+      >
         <p>이렇게 알찬 구성의 리포트..</p>
         <p>안 하고 그냥 갈 수 있어요?</p>
         <p className="mt-8 text-xs text-gray-500">Step1. 개인성향 분석</p>
@@ -234,7 +241,7 @@ export default function LandingPage() {
       </section>
 
       {/* ⑧ 후기 */}
-      <section className="py-10">
+      <section className="py-10" data-ga-section="reviews">
         <h2 className="wrapper mb-4 text-lg font-bold">먼저 해본 커플들은요</h2>
         <div className="wrapper flex snap-x gap-3 overflow-x-auto pb-2">
           {REVIEWS.map((r) => (
@@ -256,7 +263,7 @@ export default function LandingPage() {
       </section>
 
       {/* ⑨ 구매 카드 */}
-      <section className="wrapper">
+      <section className="wrapper" data-ga-section="product">
         <div className="rounded-xl border border-gray-200 p-5">
           <span className="rounded bg-[#FF4D4D] px-1.5 py-0.5 text-[10px] font-bold text-white">
             SALE
@@ -298,7 +305,7 @@ export default function LandingPage() {
       </section>
 
       {/* ⑩ FAQ */}
-      <section className="wrapper py-10">
+      <section className="wrapper py-10" data-ga-section="faq">
         <h2 className="mb-2 text-lg font-bold">자주 묻는 질문</h2>
         {FAQ.map(([q, a]) => (
           <details key={q} className="border-b border-gray-200 py-3 text-sm">

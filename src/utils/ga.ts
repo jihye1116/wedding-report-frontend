@@ -13,6 +13,11 @@ export function track(
   sendGAEvent("event", name, params);
 }
 
+const pageStart = Date.now();
+
+/** 진입 후 경과 초. 전환까지 얼마나 읽었는지를 이벤트에 같이 실어 보낸다. */
+export const secondsOnPage = () => Math.round((Date.now() - pageStart) / 1000);
+
 /**
  * 라우트가 "/" 하나뿐인 SPA라 GA4 자동 page_view는 첫 진입 1회만 잡힌다.
  * 스텝이 바뀔 때마다 가상 경로로 page_view를 보내야 GA4 기본 리포트
@@ -22,9 +27,37 @@ export function track(
 export function useScreen(path: string | null) {
   useEffect(() => {
     if (!path) return;
+    // 실제 라우트와 같은 경로면 GA4 향상된 측정이 이미 보냈다. 두 번 세지 않는다.
+    if (path === window.location.pathname) return;
     track("page_view", {
       page_location: window.location.origin + path,
       page_title: path,
     });
   }, [path]);
+}
+
+/**
+ * data-ga-section이 붙은 요소가 처음 화면에 들어올 때 1회씩 이벤트를 보낸다.
+ * 섹션별 도달 수 / page_view 수 = 랜딩 체류율, seconds로 거기까지 걸린 시간.
+ * GA4 기본 scroll 이벤트는 90% 지점 1회뿐이라 이탈 지점을 못 잡는다.
+ */
+export function useSectionTracking(name: string) {
+  useEffect(() => {
+    const seen = new Set<string>();
+    // threshold 0 — 뷰포트보다 긴 섹션도 상단이 걸리는 순간 도달로 친다.
+    const io = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        const section = (entry.target as HTMLElement).dataset.gaSection;
+        if (!section || seen.has(section)) continue;
+        seen.add(section);
+        io.unobserve(entry.target);
+        track(name, { section, seconds: secondsOnPage() });
+      }
+    });
+    document
+      .querySelectorAll("[data-ga-section]")
+      .forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  }, [name]);
 }
