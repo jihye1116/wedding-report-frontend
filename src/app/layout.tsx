@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     title: "우리둘 테스트",
     description,
     url: "/",
-    siteName: "꽃-길",
+    siteName: "우리둘",
     locale: "ko_KR",
     type: "website",
   },
