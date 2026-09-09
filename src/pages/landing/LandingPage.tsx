@@ -287,11 +287,11 @@ export default function LandingPage() {
             className="h-20 w-20"
           />
         </div>
-        <div className="wrapper flex snap-x gap-3 overflow-x-auto pb-2">
+        <div className="wrapper flex gap-3 overflow-x-auto pb-2 [scrollbar-width:none]">
           {REVIEWS.map((r) => (
             <div
               key={r.name}
-              className="w-64 shrink-0 snap-start rounded-xl border border-[#FFC0C1] p-4 text-sm"
+              className="w-64 shrink-0 rounded-xl border border-[#FFC0C1] p-4 text-sm"
             >
               <p className="text-brand">
                 {"★".repeat(r.rating)}

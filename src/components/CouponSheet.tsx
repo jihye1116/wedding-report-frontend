@@ -8,7 +8,7 @@ import { verifyAccessCode } from "@/utils/api";
 import { secondsOnPage, track } from "@/utils/ga";
 
 export const CONTACT_URL =
-  process.env.NEXT_PUBLIC_CONTACT_URL || "tel:0507-1478-3654";
+  process.env.NEXT_PUBLIC_CONTACT_URL || "mailto:hooaahmarketing@gmail.com";
 
 interface CouponSheetProps {
   open: boolean;
