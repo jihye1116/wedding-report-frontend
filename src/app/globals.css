@@ -182,7 +182,11 @@ body {
 }
 
 .result-gradient {
-  background: linear-gradient(172deg, rgba(255, 119, 140, 0.7) 0%, rgba(230, 203, 164, 0.7) 93%);
+  background: linear-gradient(
+    172deg,
+    rgba(255, 119, 140, 0.7) 0%,
+    rgba(230, 203, 164, 0.7) 93%
+  );
 }
 
 span {
@@ -196,6 +200,11 @@ span {
 
 .wrapper {
   @apply px-10 xl:px-120;
+}
+
+/* 랜딩은 데스크탑에서 560px 고정이라 xl의 넓은 패딩을 되돌린다 */
+.landing .wrapper {
+  @apply px-10;
 }
 
 .responsive-break::after {

@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import Logo from "@/assets/icons/logo.svg";
 import { CONTACT_URL, CouponSheet } from "@/components/CouponSheet";
@@ -57,6 +57,42 @@ const FAQ = [
   ],
 ] as const;
 
+const PREVIEWS = [
+  ["Step1. 개인성향 분석", "report-step1.webp", 1500, 1566],
+  ["Step2. 상호작용분석", "report-step2.webp", 1314, 1680],
+  ["Step3. 36개월 신혼생활 시뮬레이션", "report-step3.webp", 1500, 1509],
+] as const;
+
+// 리포트 캡처 확대 보기. 배경 탭/ESC로 닫힘.
+const Lightbox = ({
+  src,
+  onClose,
+}: {
+  src: string | null;
+  onClose: () => void;
+}) => {
+  const ref = useRef<HTMLDialogElement>(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    if (src && !el.open) el.showModal();
+    if (!src && el.open) el.close();
+  }, [src]);
+  return (
+    <dialog
+      ref={ref}
+      onClose={onClose}
+      onClick={onClose}
+      className="m-auto max-h-none max-w-none bg-transparent p-4 backdrop:bg-black/80"
+    >
+      {src && (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img src={src} alt="" className="max-h-[90dvh] max-w-[90vw]" />
+      )}
+    </dialog>
+  );
+};
+
 const Divider = () => <div className="mx-auto my-8 h-6 w-px bg-gray-300" />;
 
 const Cta = ({ from, onClick }: { from: string; onClick: () => void }) => (
@@ -74,12 +110,14 @@ const Cta = ({ from, onClick }: { from: string; onClick: () => void }) => (
 
 export default function LandingPage() {
   const [couponOpen, setCouponOpen] = useState(false);
+  const [zoom, setZoom] = useState<string | null>(null);
   // 랜딩은 실제 라우트가 "/"라 page_view는 GA4 자동 수집에 맡긴다.
   useSectionTracking("landing_section_view");
   const openCoupon = () => setCouponOpen(true);
 
+  // 데스크탑에선 560px 고정. .landing .wrapper 패딩 오버라이드는 globals.css
   return (
-    <div className="pb-20 text-[#111111]">
+    <div className="landing mx-auto max-w-[560px] pb-20 text-[#111111]">
       <header className="wrapper flex items-center justify-between py-4">
         <Image src={Logo} alt="우리둘" height={36} />
         <a href={CONTACT_URL} className="text-sm text-gray-500">
@@ -209,32 +247,29 @@ export default function LandingPage() {
       >
         <p>이렇게 알찬 구성의 리포트..</p>
         <p>안 하고 그냥 갈 수 있어요?</p>
-        <p className="mt-8 text-xs text-gray-500">Step1. 개인성향 분석</p>
-        <Image
-          src={`${IMG}/report-step1.webp`}
-          alt="리포트 1장 개인 성향 분석 미리보기"
-          width={1500}
-          height={1566}
-          className="mt-2 w-full rounded-xl"
-        />
-        <p className="mt-6 text-xs text-gray-500">Step2. 상호작용분석</p>
-        <Image
-          src={`${IMG}/report-step2.webp`}
-          alt="리포트 2장 상호작용 4영역 분석 미리보기"
-          width={1314}
-          height={1680}
-          className="mt-2 w-full rounded-xl"
-        />
-        <p className="mt-6 text-xs text-gray-500">
-          Step3. 36개월 신혼생활 시뮬레이션
+        {PREVIEWS.map(([label, file, w, h], i) => (
+          <div key={file}>
+            <p className={`${i ? "mt-6" : "mt-8"} text-xs text-gray-500`}>
+              {label}
+            </p>
+            <button
+              type="button"
+              onClick={() => setZoom(`${IMG}/${file}`)}
+              className="mt-2 w-full"
+            >
+              <Image
+                src={`${IMG}/${file}`}
+                alt={`리포트 ${label} 미리보기`}
+                width={w}
+                height={h}
+                className="w-full rounded-xl"
+              />
+            </button>
+          </div>
+        ))}
+        <p className="mt-3 text-[11px] text-gray-400">
+          캡처를 누르면 크게 볼 수 있어요
         </p>
-        <Image
-          src={`${IMG}/report-step3.webp`}
-          alt="리포트 3장 36개월 신혼생활 시뮬레이션 미리보기"
-          width={1500}
-          height={1509}
-          className="mt-2 w-full rounded-xl"
-        />
         <p className="mt-4 text-xs text-gray-400">
           + 4장 주요 관계 지표 예측 · 5장 종합 결론
         </p>
@@ -242,7 +277,16 @@ export default function LandingPage() {
 
       {/* ⑧ 후기 */}
       <section className="py-10" data-ga-section="reviews">
-        <h2 className="wrapper mb-4 text-lg font-bold">먼저 해본 커플들은요</h2>
+        <div className="wrapper mb-4 flex items-center justify-between">
+          <h2 className="text-lg font-bold">먼저 해본 커플들은요</h2>
+          <Image
+            src={`${IMG}/review-character.png`}
+            alt=""
+            width={400}
+            height={400}
+            className="h-20 w-20"
+          />
+        </div>
         <div className="wrapper flex snap-x gap-3 overflow-x-auto pb-2">
           {REVIEWS.map((r) => (
             <div
@@ -320,18 +364,19 @@ export default function LandingPage() {
 
       {/* 하단 고정 바 (아임웹 "총 상품금액 / 구매하기" 바 대체) */}
       <div className="fixed inset-x-0 bottom-0 border-t border-gray-200 bg-white">
-        <div className="wrapper flex items-center justify-between gap-3 py-3">
+        <div className="mx-auto flex max-w-3xl items-center justify-between gap-3 px-10 py-3">
           <p className="text-sm">
             <span className="text-gray-500">총 상품금액 </span>
             <b className="text-base">{PRICE.toLocaleString()}원</b>
           </p>
-          <div className="w-40">
+          <div className="w-40 sm:w-64">
             <Cta from="sticky" onClick={openCoupon} />
           </div>
         </div>
       </div>
 
       <CouponSheet open={couponOpen} onClose={() => setCouponOpen(false)} />
+      <Lightbox src={zoom} onClose={() => setZoom(null)} />
     </div>
   );
 }

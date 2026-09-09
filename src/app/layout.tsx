@@ -28,7 +28,6 @@ export const metadata: Metadata = {
     siteName: "꽃-길",
     locale: "ko_KR",
     type: "website",
-    images: ["/images/landing/hero.jpg"],
   },
 };
 
