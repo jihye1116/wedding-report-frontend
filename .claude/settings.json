@@ -3,7 +3,8 @@
     "allow": [
       "Bash(git add *)",
       "Bash(pkill -f \"next dev\")",
-      "Bash(git push *)"
+      "Bash(git push *)",
+      "Bash(python3 -)"
     ]
   }
 }
