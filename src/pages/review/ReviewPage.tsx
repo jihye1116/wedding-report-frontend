@@ -122,7 +122,6 @@ export default function ReviewPage({ surveyId }: { surveyId: string | null }) {
         rating: rating!,
         nps: nps!,
         purchase_intent: purchase!,
-        best_parts: [],
         comment: good.trim().slice(0, 200),
         bad_comment: bad.trim().slice(0, 200),
         public_consent: consent,
