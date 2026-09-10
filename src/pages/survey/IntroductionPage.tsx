@@ -600,7 +600,7 @@ const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
                   <p className="text-sm">(필수) 개인정보 처리방침 동의</p>
                 </div>
                 <div className="flex flex-col gap-3 text-sm whitespace-pre-wrap">
-                  <p>(주)후아는 다음과 같이 개인정보를 수집·이용합니다.</p>
+                  <p>꽃-길은 다음과 같이 개인정보를 수집·이용합니다.</p>
                   <div>
                     <p>1. 수집하는 개인정보 항목</p>
                     <ul className="mt-1 list-disc space-y-0.5 pl-5">
@@ -660,7 +660,7 @@ const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
                   <p className="text-sm">(선택) 마케팅 정보 수신 동의</p>
                 </div>
                 <p className="text-sm">
-                  (주)후아의 서비스, 이벤트, 프로모션 등 마케팅 정보 발송
+                  꽃-길의 서비스, 이벤트, 프로모션 등 마케팅 정보 발송
                 </p>
               </div>
             </section>
