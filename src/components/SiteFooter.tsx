@@ -12,7 +12,7 @@ export const SiteFooter = () => (
       사업장주소: 부산광역시 동래구 반송로 352, 2층 202-34D호 (명장동)
     </p>
     <p>
-      연락처: 0507-1478-3654 &nbsp; 이메일: hooaahmarketing@gmail.com
+      연락처: 010-6700-1307 &nbsp; 이메일: kkotgilservice@gmail.com
     </p>
     <p>개인정보관리책임자: 김수지 &nbsp; 호스팅 제공자: 꽃-길</p>
     <p className="mt-3 flex gap-3">

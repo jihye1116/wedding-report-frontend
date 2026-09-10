@@ -69,8 +69,8 @@ export default function Privacy() {
 
 10. 개인정보 보호책임자 및 문의처
 · 개인정보 보호책임자: 김수지
-· 이메일: hooaahmarketing@gmail.com
-· 전화: 0507-1478-3654
+· 이메일: kkotgilservice@gmail.com
+· 전화: 010-6700-1307
 · 주소: 부산광역시 동래구 반송로 352, 2층 202-34D호 (명장동)
 
 개인정보 침해에 대한 신고나 상담이 필요하신 경우 아래 기관에 문의하실 수 있습니다.

@@ -34,8 +34,8 @@ export default function Refund() {
 
 6. 문의처
 · 상호: 꽃-길
-· 전화: 0507-1478-3654
-· 이메일: hooaahmarketing@gmail.com
+· 전화: 010-6700-1307
+· 이메일: kkotgilservice@gmail.com
 · 주소: 부산광역시 동래구 반송로 352, 2층 202-34D호 (명장동)
 
 시행일: 2026년 9월 7일`}

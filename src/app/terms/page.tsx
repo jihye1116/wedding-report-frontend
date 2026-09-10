@@ -90,8 +90,8 @@ export default function Terms() {
 · 대표자: 김수지
 · 주소: 부산광역시 동래구 반송로 352, 2층 202-34D호 (명장동)
 · 사업자등록번호: 141-13-02880
-· 이메일: hooaahmarketing@gmail.com
-· 전화: 0507-1478-3654`}
+· 이메일: kkotgilservice@gmail.com
+· 전화: 010-6700-1307`}
     />
   );
 }
