@@ -86,15 +86,17 @@ export const CouponSheet = ({ open, onClose }: CouponSheetProps) => {
   const [fails, setFails] = useState(0);
   const [loading, setLoading] = useState(false);
   const [campaign, setCampaign] = useState<string | null>(null);
-  const [step, setStep] = useState<"intro" | "pre" | "issued" | "code">("code");
+  // 캠페인 판별 전엔 null. 코드 입력 화면이 한 프레임 번쩍이는 걸 막는다.
+  const [step, setStep] = useState<"intro" | "pre" | "issued" | "code" | null>(
+    null,
+  );
   const [pre, setPre] = useState<Record<string, string>>({});
-  const [agree, setAgree] = useState(false);
 
   // 행사 진입이면 안내 화면부터. sessionStorage를 읽으므로 마운트 후에.
   useEffect(() => {
     const c = getCampaign();
     setCampaign(c);
-    if (c) setStep("intro");
+    setStep(c ? "intro" : "code");
   }, []);
 
   useEffect(() => {
@@ -135,13 +137,11 @@ export const CouponSheet = ({ open, onClose }: CouponSheetProps) => {
   const submitPre = () => {
     const payload = {
       pre_survey: { ...pre, campaign: campaign ?? "" },
-      interview_agree: agree,
     };
     sessionStorage.setItem("event-pre-survey", JSON.stringify(payload));
     track("event_survey_submit", {
       ...pre,
       campaign: campaign ?? "",
-      interview_agree: String(agree),
     });
     setStep("issued");
   };
@@ -164,7 +164,7 @@ export const CouponSheet = ({ open, onClose }: CouponSheetProps) => {
             <div className="text-center">
               <h2 className="text-xl font-bold">🎟 오늘은 무료예요</h2>
               <p className="mt-2 text-sm text-gray-600">
-                대구광역시 가족정책과 행사 참여자 전용
+                두근두근 페스티벌 참여자 전용
                 <br />
                 질문 5개, 40초면 쿠폰을 받아요
               </p>
@@ -211,21 +211,6 @@ export const CouponSheet = ({ open, onClose }: CouponSheetProps) => {
                   </div>
                 </section>
               ))}
-              <label className="flex items-start gap-2 text-sm text-gray-700">
-                <input
-                  type="checkbox"
-                  checked={agree}
-                  onChange={(e) => setAgree(e.target.checked)}
-                  className="accent-brand mt-0.5"
-                />
-                <span>
-                  인터뷰(10분)에 참여할 수 있어요
-                  <span className="mt-1 block text-xs text-gray-500">
-                    동의 시 설문에 입력한 연락처로, 인터뷰를 위한 전화를 드릴 수
-                    있어요.
-                  </span>
-                </span>
-              </label>
             </div>
             <button
               type="button"

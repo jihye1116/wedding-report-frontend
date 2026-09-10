@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 
 import Logo from "@/assets/icons/logo.svg";
 import { CONTACT_URL, CouponSheet } from "@/components/CouponSheet";
@@ -96,7 +96,15 @@ const Lightbox = ({
 
 const Divider = () => <div className="mx-auto my-8 h-6 w-px bg-gray-300" />;
 
-const Cta = ({ from, onClick }: { from: string; onClick: () => void }) => (
+const Cta = ({
+  from,
+  onClick,
+  label,
+}: {
+  from: string;
+  onClick: () => void;
+  label: string;
+}) => (
   <button
     type="button"
     onClick={() => {
@@ -105,26 +113,25 @@ const Cta = ({ from, onClick }: { from: string; onClick: () => void }) => (
     }}
     className="bg-brand w-full rounded-lg py-3 text-sm font-medium text-white"
   >
-    쿠폰으로 시작하기
+    {label}
   </button>
 );
 
 export default function LandingPage() {
-  const [couponOpen, setCouponOpen] = useState(false);
+  // 랜딩 진입 즉시 쿠폰 시트를 띄운다. 닫으면 CTA로만 다시 열림.
+  const [couponOpen, setCouponOpen] = useState(true);
   const [zoom, setZoom] = useState<string | null>(null);
+  // 행사 진입이면 쿠폰이 아니라 "무료"가 후크다. sessionStorage는 클라이언트 전용이라
+  // useSyncExternalStore로 읽어 하이드레이션 불일치를 피한다.
+  const isEvent = useSyncExternalStore(
+    () => () => {},
+    () => !!getCampaign(),
+    () => false,
+  );
+  const ctaLabel = isEvent ? "무료로 시작하기" : "쿠폰으로 시작하기";
   // 랜딩은 실제 라우트가 "/"라 page_view는 GA4 자동 수집에 맡긴다.
   useSectionTracking("landing_section_view");
   const openCoupon = () => setCouponOpen(true);
-
-  // 행사 QR 진입이면 쿠폰 시트를 세션당 1회 자동으로 띄운다. 닫으면 CTA로만 다시 열림.
-  useEffect(() => {
-    if (!getCampaign() || sessionStorage.getItem("coupon-auto-opened")) return;
-    const t = setTimeout(() => {
-      sessionStorage.setItem("coupon-auto-opened", "1");
-      setCouponOpen(true);
-    }, 600);
-    return () => clearTimeout(t);
-  }, []);
 
   // 데스크탑에선 560px 고정. .landing .wrapper 패딩 오버라이드는 globals.css
   return (
@@ -147,7 +154,7 @@ export default function LandingPage() {
           className="w-full rounded-xl"
         />
         <div className="mt-4">
-          <Cta from="hero" onClick={openCoupon} />
+          <Cta from="hero" onClick={openCoupon} label={ctaLabel} />
         </div>
       </section>
 
@@ -334,7 +341,7 @@ export default function LandingPage() {
             </span>
           </p>
           <div className="mt-4 flex flex-col gap-2">
-            <Cta from="product" onClick={openCoupon} />
+            <Cta from="product" onClick={openCoupon} label={ctaLabel} />
             <button
               type="button"
               disabled
@@ -381,7 +388,7 @@ export default function LandingPage() {
             <b className="text-base">{PRICE.toLocaleString()}원</b>
           </p>
           <div className="w-40 sm:w-64">
-            <Cta from="sticky" onClick={openCoupon} />
+            <Cta from="sticky" onClick={openCoupon} label={ctaLabel} />
           </div>
         </div>
       </div>
