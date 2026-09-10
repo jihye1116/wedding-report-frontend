@@ -59,8 +59,13 @@ export default function FinishPage() {
       );
       const apiAnswers = transformSurveyAnswersToApi(sortedAnswers);
 
+      // 행사 사전 설문(있으면). BE에 컬럼이 없으면 무시되고 GA4 쪽만 남는다.
+      const stored = sessionStorage.getItem("event-pre-survey");
+      const eventFields = stored ? JSON.parse(stored) : {};
+
       // API 요청 데이터 구성
       const requestData = {
+        ...eventFields,
         my_name: introData.name,
         my_phone: introData.phoneNumber,
         my_gender: introData.gender,

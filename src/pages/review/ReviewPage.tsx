@@ -7,20 +7,11 @@ import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
 import Logo from "@/assets/icons/logo.svg";
-import { RatingSelector } from "@/components/RatingSelector";
-import { SelectionCircle } from "@/components/SelectionCircle";
 import { TextAreaField } from "@/components/TextAreaField";
 import { submitReview } from "@/utils/api";
 import { cn } from "@/utils/cn";
 import { track, useScreen } from "@/utils/ga";
-
-const PARTS = [
-  ["part1", "개인 성향"],
-  ["part2", "상호작용 4영역"],
-  ["part3", "36개월 시뮬레이션"],
-  ["part4", "관계 지표"],
-  ["part5", "종합 결론"],
-] as const;
+import { getCampaign } from "@/utils/utm";
 
 const SOURCES = [
   ["instagram", "인스타"],
@@ -29,6 +20,42 @@ const SOURCES = [
   ["event", "행사장"],
   ["etc", "기타"],
 ] as const;
+
+const Stars = ({
+  value,
+  onChange,
+  low,
+  high,
+}: {
+  value: number | null;
+  onChange: (v: number) => void;
+  low: string;
+  high: string;
+}) => (
+  <div className="flex flex-col gap-1">
+    <div className="flex gap-1">
+      {[1, 2, 3, 4, 5].map((n) => (
+        <button
+          key={n}
+          type="button"
+          onClick={() => onChange(n)}
+          aria-label={`${n}점`}
+          aria-pressed={value === n}
+          className={cn(
+            "text-3xl leading-none transition-colors",
+            value !== null && n <= value ? "text-[#FFB400]" : "text-gray-300",
+          )}
+        >
+          ★
+        </button>
+      ))}
+    </div>
+    <div className="flex justify-between text-xs text-gray-500">
+      <span>{low}</span>
+      <span>{high}</span>
+    </div>
+  </div>
+);
 
 const Chip = ({
   selected,
@@ -58,8 +85,9 @@ export default function ReviewPage({ surveyId }: { surveyId: string | null }) {
   const router = useRouter();
   const [rating, setRating] = useState<number | null>(null);
   const [nps, setNps] = useState<number | null>(null);
-  const [parts, setParts] = useState<string[]>([]);
-  const [comment, setComment] = useState("");
+  const [purchase, setPurchase] = useState<number | null>(null);
+  const [good, setGood] = useState("");
+  const [bad, setBad] = useState("");
   const [consent, setConsent] = useState(false);
   const [source, setSource] = useState<string | null>(null);
   const [done, setDone] = useState(false);
@@ -72,11 +100,17 @@ export default function ReviewPage({ surveyId }: { surveyId: string | null }) {
     if (!surveyId) router.replace("/");
   }, [surveyId, router]);
 
+  // 행사 유입이면 유입경로 기본값 행사장. 문자 링크로 새 세션이면 utm이 없어 안 잡힌다.
+  useEffect(() => {
+    if (getCampaign()) setSource("event");
+  }, []);
+
   const canSubmit =
     rating !== null &&
     nps !== null &&
-    parts.length > 0 &&
-    comment.trim().length > 0 &&
+    purchase !== null &&
+    good.trim().length > 0 &&
+    bad.trim().length > 0 &&
     !loading;
 
   const submit = async () => {
@@ -87,14 +121,17 @@ export default function ReviewPage({ surveyId }: { surveyId: string | null }) {
         survey_id: surveyId,
         rating: rating!,
         nps: nps!,
-        best_parts: parts,
-        comment: comment.trim().slice(0, 200),
+        purchase_intent: purchase!,
+        best_parts: [],
+        comment: good.trim().slice(0, 200),
+        bad_comment: bad.trim().slice(0, 200),
         public_consent: consent,
         source,
       });
       track("review_submit", {
         rating: rating!,
         nps: nps!,
+        purchase_intent: purchase!,
         source: source ?? "",
       });
       setDone(true);
@@ -160,67 +197,60 @@ export default function ReviewPage({ surveyId }: { surveyId: string | null }) {
       <main className="wrapper flex flex-col gap-8 pb-10">
         <div className="text-center">
           <h1 className="text-xl font-bold">리포트, 어땠어요?</h1>
-          <p className="mt-2 text-sm text-gray-600">
-            1분이면 끝나요 🎁
-          </p>
+          <p className="mt-2 text-sm text-gray-600">1분이면 끝나요 🎁</p>
         </div>
 
         <section className="flex flex-col gap-3">
-          <h2 className="text-sm font-bold">Q1. 리포트 전체 만족도</h2>
-          <RatingSelector
+          <h2 className="text-sm font-bold">Q1. 리포트 만족도</h2>
+          <Stars
             value={rating}
             onChange={setRating}
-            labels={{ 1: "별로예요", 2: "", 3: "", 4: "", 5: "최고예요" }}
+            low="별로예요"
+            high="최고예요"
+          />
+        </section>
+
+        <section className="flex flex-col gap-3">
+          <h2 className="text-sm font-bold">Q2. 주위에 추천하고 싶은 정도</h2>
+          <Stars
+            value={nps}
+            onChange={setNps}
+            low="추천 안 해요"
+            high="꼭 추천해요"
           />
         </section>
 
         <section className="flex flex-col gap-3">
           <h2 className="text-sm font-bold">
-            Q2. 친구·연인에게 추천할 의향은요? (0~10)
+            Q3. 돈 내고도 해볼 만한 정도 (19,000원)
           </h2>
-          <div className="flex flex-wrap justify-between gap-y-2">
-            {Array.from({ length: 11 }, (_, i) => (
-              <div key={i} className="flex flex-col items-center gap-1">
-                <span className="text-xs text-gray-600">{i}</span>
-                <SelectionCircle
-                  size="sm"
-                  selected={nps === i}
-                  onClick={() => setNps(i)}
-                />
-              </div>
-            ))}
-          </div>
+          <Stars
+            value={purchase}
+            onChange={setPurchase}
+            low="안 살 것 같아요"
+            high="살 것 같아요"
+          />
         </section>
 
         <section className="flex flex-col gap-3">
-          <h2 className="text-sm font-bold">
-            Q3. 가장 좋았던 파트 (여러 개 가능)
-          </h2>
-          <div className="flex flex-wrap gap-2">
-            {PARTS.map(([id, label]) => (
-              <Chip
-                key={id}
-                selected={parts.includes(id)}
-                onClick={() =>
-                  setParts((p) =>
-                    p.includes(id) ? p.filter((x) => x !== id) : [...p, id],
-                  )
-                }
-              >
-                {label}
-              </Chip>
-            ))}
-          </div>
-        </section>
-
-        <section className="flex flex-col gap-3">
-          <h2 className="text-sm font-bold">Q4. 한 줄 후기</h2>
+          <h2 className="text-sm font-bold">Q4. 가장 좋았던 점 한 줄</h2>
           <TextAreaField
-            name="comment"
-            value={comment}
-            onChange={(_, v) => setComment(v.slice(0, 200))}
-            placeholder="솔직하게 적어주세요 (200자)"
-            rows={3}
+            name="good"
+            value={good}
+            onChange={(_, v) => setGood(v.slice(0, 200))}
+            placeholder="예: 36개월 시뮬레이션이 소름 돋았어요"
+            rows={2}
+          />
+        </section>
+
+        <section className="flex flex-col gap-3">
+          <h2 className="text-sm font-bold">Q5. 별로였던 점 한 줄</h2>
+          <TextAreaField
+            name="bad"
+            value={bad}
+            onChange={(_, v) => setBad(v.slice(0, 200))}
+            placeholder="솔직하게 적어주세요. 고치는 데 씁니다"
+            rows={2}
           />
           <label className="flex items-start gap-2 text-sm text-gray-700">
             <input
@@ -236,7 +266,7 @@ export default function ReviewPage({ surveyId }: { surveyId: string | null }) {
 
         <section className="flex flex-col gap-3">
           <h2 className="text-sm font-bold">
-            Q5. 우리둘을 어떻게 알게 됐나요?{" "}
+            Q6. 우리둘을 어떻게 알게 됐나요?{" "}
             <span className="font-normal text-gray-400">(선택)</span>
           </h2>
           <div className="flex flex-wrap gap-2">

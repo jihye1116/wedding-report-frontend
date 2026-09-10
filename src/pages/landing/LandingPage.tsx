@@ -8,6 +8,7 @@ import Logo from "@/assets/icons/logo.svg";
 import { CONTACT_URL, CouponSheet } from "@/components/CouponSheet";
 import { SiteFooter } from "@/components/SiteFooter";
 import { secondsOnPage, track, useSectionTracking } from "@/utils/ga";
+import { getCampaign } from "@/utils/utm";
 
 export const PRICE = 19000;
 export const PRODUCT_NAME = "커플 결혼시뮬레이션 - 우리둘 테스트";
@@ -114,6 +115,16 @@ export default function LandingPage() {
   // 랜딩은 실제 라우트가 "/"라 page_view는 GA4 자동 수집에 맡긴다.
   useSectionTracking("landing_section_view");
   const openCoupon = () => setCouponOpen(true);
+
+  // 행사 QR 진입이면 쿠폰 시트를 세션당 1회 자동으로 띄운다. 닫으면 CTA로만 다시 열림.
+  useEffect(() => {
+    if (!getCampaign() || sessionStorage.getItem("coupon-auto-opened")) return;
+    const t = setTimeout(() => {
+      sessionStorage.setItem("coupon-auto-opened", "1");
+      setCouponOpen(true);
+    }, 600);
+    return () => clearTimeout(t);
+  }, []);
 
   // 데스크탑에선 560px 고정. .landing .wrapper 패딩 오버라이드는 globals.css
   return (

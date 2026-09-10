@@ -210,10 +210,12 @@ export async function verifyAccessCode(code: string): Promise<{
 
 export interface ReviewRequest {
   survey_id: string;
-  rating: number; // 1~5
-  nps: number; // 0~10
-  best_parts: string[]; // "part1".."part5"
-  comment: string;
+  rating: number; // 만족도 1~5
+  nps: number; // 추천 의사 1~5 (별 5개. 기존 0~10 NPS 아님)
+  purchase_intent: number; // 유료 구매 의사 1~5
+  best_parts: string[]; // ponytail: 질문은 없애고 []만 보낸다. BE가 required에서 풀면 삭제.
+  comment: string; // 좋았던 점 한 줄
+  bad_comment: string; // 별로였던 점 한 줄
   public_consent: boolean;
   source: string | null;
 }
