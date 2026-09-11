@@ -9,7 +9,6 @@ import {
   useEffect,
   useMemo,
   useRef,
-  useState,
 } from "react";
 
 import { Navigator } from "@/components/Navigator";
@@ -18,6 +17,10 @@ import { detailedSurveyData } from "@/data";
 import { usePartNavigation } from "@/hooks/usePartNavigation";
 import { currentPageAtom, currentPartAtom } from "@/store/surveyStore";
 import { SurveyAnswer, SurveyPart, SurveyQuestion } from "@/types/survey";
+
+// 파트 컴포넌트가 리마운트돼도(뒤로 갔다 오기) 문항 순서·번호가 유지되게 탭 단위로 고정.
+// 답변은 question.id로 저장되므로 새로고침으로 seed가 바뀌어도 매핑은 안 깨진다.
+const SHUFFLE_SEED = Math.random();
 
 interface PartPageTemplateProps {
   part: SurveyPart;
@@ -88,7 +91,7 @@ export const PartPageTemplate = ({
   const isIntroPage = currentPage === 0;
 
   // --- Shuffle Logic ---
-  const [shuffleSeed] = useState(() => Math.random());
+  const shuffleSeed = SHUFFLE_SEED;
 
   const seededRandom = (seed: number, index: number) => {
     const x = Math.sin(seed * 9999 + index) * 10000;

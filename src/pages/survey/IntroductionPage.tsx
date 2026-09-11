@@ -61,17 +61,19 @@ const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
     setIntroData({ ...introData, partnerPhoneNumber: numericValue });
   };
 
-  // 전화번호 유효성 검사 (11자리 숫자)
-  const isValidPhoneNumber = (phone: string) => {
-    return phone && phone.length === 11 && /^[0-9]{11}$/.test(phone);
-  };
+  // 휴대폰 번호 형식(01X + 7~8자리). 자리수만 보면 00000000000이 통과한다.
+  const isValidPhoneNumber = (phone: string) =>
+    /^01[016789]\d{7,8}$/.test(phone);
+  const isSamePhone =
+    !!phoneNumber && !!partnerPhoneNumber && phoneNumber === partnerPhoneNumber;
 
   const isAuthStepComplete = authCode.length === 5;
   const isStep2Complete = !!(
     name &&
     partnerName &&
     isValidPhoneNumber(phoneNumber) &&
-    isValidPhoneNumber(partnerPhoneNumber)
+    isValidPhoneNumber(partnerPhoneNumber) &&
+    !isSamePhone
   );
   const isStep3Complete = !!agreePrivacy;
   const isStep4Complete = !!(relationshipDuration && gender);
@@ -127,7 +129,9 @@ const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
       if (!phoneNumber) {
         toast.error("전화번호를 입력해주세요.");
       } else {
-        toast.error("전화번호를 11자리 숫자로 정확히 입력해주세요.");
+        toast.error(
+          "휴대폰 번호 형식(010으로 시작하는 11자리)으로 입력해주세요.",
+        );
       }
       return;
     }
@@ -136,8 +140,15 @@ const IntroductionPage = ({ onNext }: IntroductionPageProps) => {
       if (!partnerPhoneNumber) {
         toast.error("파트너 전화번호를 입력해주세요.");
       } else {
-        toast.error("파트너 전화번호를 11자리 숫자로 정확히 입력해주세요.");
+        toast.error(
+          "파트너 휴대폰 번호 형식(010으로 시작하는 11자리)으로 입력해주세요.",
+        );
       }
+      return;
+    }
+    if (isSamePhone) {
+      partnerPhoneNumberRef.current?.focus();
+      toast.error("본인과 파트너의 전화번호가 같아요.");
       return;
     }
     if (!gender) {

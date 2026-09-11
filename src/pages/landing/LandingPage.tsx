@@ -164,7 +164,7 @@ export default function LandingPage() {
           하... 진짜 답답해서 제가 <b>직접 만들었습니다.</b>
         </p>
         <p>
-          이름하여 <b className="text-brand">[꽃길리포트].</b>
+          이름하여 <b className="text-brand">[우리둘 테스트].</b>
         </p>
         <Divider />
         <p>복잡한 건 질색이라,</p>

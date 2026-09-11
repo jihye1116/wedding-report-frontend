@@ -1,20 +1,26 @@
 "use client";
 
-import { useAtom } from "jotai";
+import { useAtom, useSetAtom } from "jotai";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
 import Logo from "@/assets/icons/logo.svg";
 import PalmPathImage from "@/assets/images/palmpath.png";
 import { LoadingSpinner } from "@/components/LoadingSpinner";
-import { answersAtom, introDataAtom } from "@/store/surveyStore";
+import {
+  answersAtom,
+  INITIAL_INTRO_DATA,
+  introDataAtom,
+  introStepAtom,
+} from "@/store/surveyStore";
 import { submitSurvey } from "@/utils/api";
 import { track, useScreen } from "@/utils/ga";
 import { transformSurveyAnswersToApi } from "@/utils/surveyTransformer";
 
 export default function FinishPage() {
-  const [answers] = useAtom(answersAtom);
-  const [introData] = useAtom(introDataAtom);
+  const [answers, setAnswers] = useAtom(answersAtom);
+  const [introData, setIntroData] = useAtom(introDataAtom);
+  const setIntroStep = useSetAtom(introStepAtom);
   const [isSubmitting, setIsSubmitting] = useState(true);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -104,6 +110,18 @@ export default function FinishPage() {
   useEffect(() => {
     handleSubmit();
   }, []);
+
+  // 같은 기기에서 파트너가 이어서 하면 앞사람 이름·번호·답변이 남지 않게 비운다.
+  // accessCode는 남긴다(행사 코드는 커플 공용).
+  useEffect(() => {
+    if (!isSubmitted) return;
+    ["survey-answers", "intro-data", "intro-step", "event-pre-survey"].forEach(
+      (k) => sessionStorage.removeItem(k),
+    );
+    setAnswers([]);
+    setIntroData(INITIAL_INTRO_DATA);
+    setIntroStep(0);
+  }, [isSubmitted, setAnswers, setIntroData, setIntroStep]);
 
   if (isSubmitting) {
     return (

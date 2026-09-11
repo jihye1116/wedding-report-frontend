@@ -57,6 +57,7 @@ export function RatingQuestion({
             ?.answer as number) || null
         }
         onChange={(value) => addAnswer(question.id, value)}
+        ariaLabel={`${globalQuestionNumber}. ${question.question}`}
       />
       {idx < totalQuestionsInPage - 1 && (
         <hr className="mt-6 border-t border-gray-300" />

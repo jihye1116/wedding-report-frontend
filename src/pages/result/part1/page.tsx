@@ -157,7 +157,7 @@ const Page1 = () => (
 
     <div className="flex flex-1 flex-col gap-10 py-5 xl:py-10">
       <h3 className="text-center text-lg">
-        “ 함께 잘 살기 위한 첫걸음,<span className="responsive-break"></span>
+        “ 함께 잘 살기 위한 첫걸음, <span className="responsive-break"></span>
         나를 이해하는 것부터 ”
       </h3>
       <div className="flex flex-col gap-4">
@@ -363,7 +363,9 @@ const SliderSection = ({
       <div className="mt-5 flex flex-col gap-8">
         <div className="flex items-end justify-end gap-3">
           <span className="font-medium text-[#111111]">
-            <span style={{ color: gender === "female" ? "#FF9080" : "#4FBFA0" }}>
+            <span
+              style={{ color: gender === "female" ? "#FF9080" : "#4FBFA0" }}
+            >
               {genderName}
             </span>{" "}
             님

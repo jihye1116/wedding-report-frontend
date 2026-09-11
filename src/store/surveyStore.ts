@@ -12,7 +12,7 @@ export const currentPageAtom = atom<number>(0);
 
 // IntroductionPage 상태 전역 관리
 export const introStepAtom = atom<number>(0);
-export const introDataAtom = atom({
+export const INITIAL_INTRO_DATA = {
   agreeAll: false,
   agreePrivacy: false,
   event_promotion_agree: false,
@@ -22,7 +22,8 @@ export const introDataAtom = atom({
   partnerPhoneNumber: "",
   relationshipDuration: 0,
   gender: "",
-});
+};
+export const introDataAtom = atom(INITIAL_INTRO_DATA);
 
 // Part3 Result 페이지 step 상태 전역 관리
 export const part3ResultStepAtom = atom<number>(1);

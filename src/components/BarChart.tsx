@@ -8,12 +8,7 @@ interface BarChartProps {
   className?: string;
 }
 
-export function BarChart({
-  values,
-  barColor,
-  max,
-  className,
-}: BarChartProps) {
+export function BarChart({ values, barColor, max, className }: BarChartProps) {
   // 백엔드가 지표마다 0~10 또는 0~100으로 내려줘서 값 범위로 스케일을 판단한다
   const scaleMax = max ?? (Math.max(...values, 0) > 10 ? 100 : 10);
 
@@ -39,12 +34,16 @@ export function BarChart({
           {values.map((value, index) => (
             <div
               key={index}
-              className="w-[clamp(1rem,10vw,2.5rem)] rounded-t-[10px]"
+              className="relative w-[clamp(1rem,10vw,2.5rem)] rounded-t-[10px]"
               style={{
                 backgroundColor: barColor,
                 height: `${Math.min(100, Math.max(0, (value / scaleMax) * 100))}%`,
               }}
-            />
+            >
+              <span className="absolute -top-4 w-full text-center text-[11px] font-medium text-[#7E7E7E]">
+                {Math.round(value)}
+              </span>
+            </div>
           ))}
         </div>
       </div>

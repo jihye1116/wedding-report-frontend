@@ -24,7 +24,7 @@ export default function Intro1Page({ onNext }: Intro1PageProps) {
         />
         <main className="flex w-full flex-col gap-10 py-5">
           <h1 className="text-center text-2xl font-medium text-[#111111]">
-            꽃길 리포트가 <br /> 완성되었습니다!
+            우리둘 테스트 리포트가 <br /> 완성되었습니다!
           </h1>
           <article className="font-pretendard flex flex-col gap-4 leading-snug whitespace-pre-wrap text-[#111111]">
             <p>

@@ -337,6 +337,15 @@ export const SliderComponent: React.FC<SliderComponentProps> = ({
             </span>
           ))}
         </div>
+        <p className="text-xs text-gray-400">
+          {origin === "center"
+            ? `중립(0)에서 ${leftLabel} / ${rightLabel} 쪽으로 최대 ${maxValue}까지. 멀수록 그 성향이 뚜렷해요. 현재 ${
+                Math.abs(ariaNow) < 0.5
+                  ? "중립"
+                  : `${ariaNow > 0 ? rightLabel : leftLabel} 쪽 ${Math.round(Math.abs(ariaNow))}`
+              }`
+            : `0~${maxValue}, 높을수록 ${rightLabel}. 현재 ${Math.round(clamp(ariaNow, ariaMin, ariaMax))}`}
+        </p>
       </div>
 
       {/* Description */}
