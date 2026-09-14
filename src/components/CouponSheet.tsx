@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import toast from "react-hot-toast";
 
-import { verifyAccessCode } from "@/utils/api";
+import { submitPreSurvey, verifyAccessCode } from "@/utils/api";
 import { secondsOnPage, track } from "@/utils/ga";
 import { getCampaign } from "@/utils/utm";
 
@@ -143,6 +143,8 @@ export const CouponSheet = ({ open, onClose }: CouponSheetProps) => {
       ...pre,
       campaign: campaign ?? "",
     });
+    // GA4는 이탈자 파라미터를 뽑기 번거로워 DB에도 같이 남긴다. 실패해도 쿠폰은 준다.
+    submitPreSurvey({ campaign: campaign ?? "", answers: pre }).catch(() => {});
     setStep("issued");
   };
 

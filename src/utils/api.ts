@@ -243,3 +243,22 @@ export async function submitReview(data: ReviewRequest): Promise<void> {
   error.status = response.status;
   throw error;
 }
+
+/**
+ * 행사 사전(짧은) 설문 제출. 이탈자 응답도 남기려고 쿠폰 발급 전에 바로 보낸다.
+ * 실패해도 쿠폰 흐름은 막지 않는다 — 호출 쪽에서 catch.
+ */
+export async function submitPreSurvey(data: {
+  campaign: string;
+  answers: Record<string, string>;
+}): Promise<void> {
+  await fetch(`${API_BASE_URL}/survey/pre-surveys`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "ngrok-skip-browser-warning": "true",
+    },
+    body: JSON.stringify(data),
+    keepalive: true,
+  });
+}
