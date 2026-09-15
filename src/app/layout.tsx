@@ -4,6 +4,7 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
 import { Toaster } from "react-hot-toast";
+import Script from "next/script";
 
 import { Providers } from "@/components/Providers";
 
@@ -46,6 +47,7 @@ export default function RootLayout({
           <Toaster position="bottom-center" toastOptions={{ duration: 3000 }} />
         </Providers>
         <Analytics />
+        <Script src="https://pay.nicepay.co.kr/v1/js/" />
         {gaId && <GoogleAnalytics gaId={gaId} />}
       </body>
     </html>

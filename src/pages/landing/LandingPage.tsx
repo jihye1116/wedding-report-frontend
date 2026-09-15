@@ -132,7 +132,7 @@ const Cta = ({
 
 export default function LandingPage() {
   // 랜딩 진입 즉시 쿠폰 시트를 띄운다. 닫으면 CTA로만 다시 열림.
-  const [couponOpen, setCouponOpen] = useState(true);
+  const [couponOpen, setCouponOpen] = useState(false);
   const [zoom, setZoom] = useState<string | null>(null);
   // 행사 진입이면 쿠폰이 아니라 "무료"가 후크다. sessionStorage는 클라이언트 전용이라
   // useSyncExternalStore로 읽어 하이드레이션 불일치를 피한다.
@@ -145,6 +145,25 @@ export default function LandingPage() {
   // 랜딩은 실제 라우트가 "/"라 page_view는 GA4 자동 수집에 맡긴다.
   useSectionTracking("landing_section_view");
   const openCoupon = () => setCouponOpen(true);
+
+  const handlePayment = (productName: string) => {
+    if (!(window as any).AUTHNICE) {
+      alert("결제 모듈을 불러오는 중입니다. 잠시 후 다시 시도해주세요.");
+      return;
+    }
+    const orderId = 'order_' + new Date().getTime();
+    (window as any).AUTHNICE.requestPay({
+      clientId: 'S2_af4543a0be4d49a98122e01ec2059a56',
+      method: 'card',
+      orderId,
+      amount: PRICE,
+      goodsName: productName,
+      returnUrl: window.location.origin + '/api/nicepay-return',
+      fnError: function (result: any) {
+        alert(result.errorMsg || '결제 중 오류가 발생했습니다.');
+      }
+    });
+  };
 
   // 데스크탑에선 560px 고정. .landing .wrapper 패딩 오버라이드는 globals.css
   return (
@@ -361,19 +380,13 @@ export default function LandingPage() {
               <Cta from="product" onClick={openCoupon} label={ctaLabel} />
               <button
                 type="button"
-                disabled
-                className="w-full rounded-lg border border-gray-300 py-3 text-sm text-gray-400"
+                onClick={() => handlePayment(p.name)}
+                className="w-full rounded-lg border border-brand bg-brand py-3 text-sm font-bold text-white"
               >
-                카드 결제하기 (준비 중)
+                카드 결제하기
               </button>
             </div>
             <p className="mt-3 text-xs leading-relaxed text-gray-500">
-              카드 결제는 준비 중이에요. 쿠폰 문의는{" "}
-              <a href={CONTACT_URL} className="underline">
-                여기로
-              </a>
-              !
-              <br />
               설문 시작 전에는 전액 환불됩니다. 설문 응답을 시작하면
               디지털콘텐츠 제공이 개시되어 청약철회가 제한됩니다.{" "}
               <Link href="/refund" className="underline">
