@@ -12,6 +12,19 @@ import { getCampaign } from "@/utils/utm";
 
 export const PRICE = 19000;
 export const PRODUCT_NAME = "커플 결혼시뮬레이션 - 우리둘 테스트";
+// PG 심사용 "상품 2개 이상" — 선물용은 이행이 동일(쿠폰/결제 후 링크 전달)
+const PRODUCTS = [
+  {
+    name: PRODUCT_NAME,
+    desc: "2인 1세트 · 모바일 40페이지 · 재열람 무제한",
+    sale: true,
+  },
+  {
+    name: "우리둘 테스트 - 친구 커플에게 선물하기",
+    desc: "선물받는 커플 카톡으로 링크 전달 · 2인 1세트 · 재열람 무제한",
+    sale: false,
+  },
+];
 
 // 이미지는 아임웹 상품 페이지 캡처에서 크롭한 것. 원본 export 받으면 교체.
 const IMG = "/images/landing";
@@ -325,45 +338,50 @@ export default function LandingPage() {
       </section>
 
       {/* ⑨ 구매 카드 */}
-      <section className="wrapper" data-ga-section="product">
-        <div className="rounded-xl border border-gray-200 p-5">
-          <span className="rounded bg-[#FF4D4D] px-1.5 py-0.5 text-[10px] font-bold text-white">
-            SALE
-          </span>
-          <h2 className="mt-2 text-lg font-bold">{PRODUCT_NAME}</h2>
-          <p className="mt-1 text-sm text-gray-600">
-            2인 1세트 · 모바일 40페이지 · 재열람 무제한
-          </p>
-          <p className="mt-3 text-2xl font-bold">
-            {PRICE.toLocaleString()}원
-            <span className="ml-1 text-xs font-normal text-gray-500">
-              VAT 포함
-            </span>
-          </p>
-          <div className="mt-4 flex flex-col gap-2">
-            <Cta from="product" onClick={openCoupon} label={ctaLabel} />
-            <button
-              type="button"
-              disabled
-              className="w-full rounded-lg border border-gray-300 py-3 text-sm text-gray-400"
-            >
-              카드 결제하기 (준비 중)
-            </button>
+      <section
+        className="wrapper flex flex-col gap-4"
+        data-ga-section="product"
+      >
+        {PRODUCTS.map((p) => (
+          <div key={p.name} className="rounded-xl border border-gray-200 p-5">
+            {p.sale && (
+              <span className="rounded bg-[#FF4D4D] px-1.5 py-0.5 text-[10px] font-bold text-white">
+                SALE
+              </span>
+            )}
+            <h2 className="mt-2 text-lg font-bold">{p.name}</h2>
+            <p className="mt-1 text-sm text-gray-600">{p.desc}</p>
+            <p className="mt-3 text-2xl font-bold">
+              {PRICE.toLocaleString()}원
+              <span className="ml-1 text-xs font-normal text-gray-500">
+                VAT 포함
+              </span>
+            </p>
+            <div className="mt-4 flex flex-col gap-2">
+              <Cta from="product" onClick={openCoupon} label={ctaLabel} />
+              <button
+                type="button"
+                disabled
+                className="w-full rounded-lg border border-gray-300 py-3 text-sm text-gray-400"
+              >
+                카드 결제하기 (준비 중)
+              </button>
+            </div>
+            <p className="mt-3 text-xs leading-relaxed text-gray-500">
+              카드 결제는 준비 중이에요. 쿠폰 문의는{" "}
+              <a href={CONTACT_URL} className="underline">
+                여기로
+              </a>
+              !
+              <br />
+              설문 시작 전에는 전액 환불됩니다. 설문 응답을 시작하면
+              디지털콘텐츠 제공이 개시되어 청약철회가 제한됩니다.{" "}
+              <Link href="/refund" className="underline">
+                취소·환불 정책
+              </Link>
+            </p>
           </div>
-          <p className="mt-3 text-xs leading-relaxed text-gray-500">
-            카드 결제는 준비 중이에요. 쿠폰 문의는{" "}
-            <a href={CONTACT_URL} className="underline">
-              여기로
-            </a>
-            !
-            <br />
-            설문 시작 전에는 전액 환불됩니다. 설문 응답을 시작하면 디지털콘텐츠
-            제공이 개시되어 청약철회가 제한됩니다.{" "}
-            <Link href="/refund" className="underline">
-              취소·환불 정책
-            </Link>
-          </p>
-        </div>
+        ))}
       </section>
 
       {/* ⑩ FAQ */}
