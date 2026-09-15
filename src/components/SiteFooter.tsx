@@ -1,13 +1,13 @@
 import Link from "next/link";
 
 // PG 심사용 사업자 정보. 전 페이지 공통.
-// ponytail: 통신판매업신고번호는 신고 완료 후 추가.
 export const SiteFooter = () => (
   <footer className="wrapper py-8 text-[11px] leading-relaxed text-gray-500">
     <p className="font-medium text-gray-700">꽃-길</p>
     <p className="mt-2">
       상호명: 꽃-길 &nbsp; 대표자: 김수지 &nbsp; 사업자등록번호: 141-13-02880
     </p>
+    <p>통신판매업신고번호: 제2026-부산동래-0579호</p>
     <p>
       사업장주소: 부산광역시 동래구 반송로 352, 2층 202-34D호 (명장동)
     </p>
