@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
 
 /**
- * 나이스페이 결제창(Client 승인) returnUrl. 결과가 form POST로 온다.
- * 브라우저를 거친 값은 믿지 않고 백엔드가 tid로 재조회·검증한 뒤 쿠폰 코드를 발급한다.
+ * 나이스페이 결제창 returnUrl. 인증 결과가 form POST로 온다 (Server 승인 모델: authResultCode + tid).
+ * 여기선 아직 결제가 안 된 상태라, 백엔드가 tid로 승인 API를 호출해 결제를 확정하고 쿠폰 코드를 발급한다.
  * 본인용은 그 코드로 바로 설문 시작, 선물용은 코드가 담긴 링크를 상대 커플에게 전달.
  */
 const API = process.env.NEXT_PUBLIC_API_BASE_URL;
@@ -35,10 +35,23 @@ export async function POST(request: Request) {
     string,
     string
   >;
-  const { resultCode, resultMsg, tid, orderId, amount, goodsName = "" } = data;
+  // Server 승인 키는 authResultCode, Client 승인 키는 resultCode로 온다. 둘 다 받는다.
+  const resultCode = data.authResultCode ?? data.resultCode;
+  const resultMsg = data.authResultMsg ?? data.resultMsg;
+  const { tid, orderId, amount, goodsName = "" } = data;
+  // Vercel 로그에서 원인 추적용. 카드번호 같은 민감값은 returnUrl로 오지 않는다.
+  console.log("[nicepay-return]", {
+    resultCode,
+    resultMsg,
+    tid,
+    orderId,
+    amount,
+  });
 
   if (resultCode !== "0000" || !tid) {
-    return fail(resultMsg || "결제가 취소되었거나 승인되지 않았습니다.");
+    return fail(
+      `${resultMsg || "결제가 취소되었거나 인증되지 않았습니다."} [${resultCode ?? "-"} / ${orderId ?? "-"}]`,
+    );
   }
 
   let code: string;
