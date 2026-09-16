@@ -3,8 +3,8 @@ import "./globals.css";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
-import { Toaster } from "react-hot-toast";
 import Script from "next/script";
+import { Toaster } from "react-hot-toast";
 
 import { Providers } from "@/components/Providers";
 
