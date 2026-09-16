@@ -174,7 +174,7 @@ export default function LandingPage({
     window.AUTHNICE.requestPay({
       clientId:
         process.env.NEXT_PUBLIC_NICEPAY_CLIENT_ID ??
-        "R2_09bdb9d60a5f4a4d9b0eb53cf2fac598", // 꽃길 상점 키 (클라이언트승인·테스트)
+        "R2_09bdb9d60a5f4a4d9b0eb53cf2fac598", // 꽃길 운영상점 키 (클라이언트승인). 로컬 테스트는 .env에 테스트상점 S*_ 키
       method: "card",
       orderId,
       amount: PRICE,
