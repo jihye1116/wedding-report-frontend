@@ -69,6 +69,8 @@ const Chip = ({
 interface CouponSheetProps {
   open: boolean;
   onClose: () => void;
+  /** 결제 완료·선물 링크로 받은 코드. 있으면 행사 여부와 무관하게 입력 화면에 채워 둔다. */
+  initialCode?: string;
 }
 
 /**
@@ -78,10 +80,14 @@ interface CouponSheetProps {
  * 행사 QR(utm_campaign) 진입이면 안내 → 사전 설문 → 쿠폰 발급 순서로 열리고,
  * 코드 직접 입력은 "이미 쿠폰이 있어요"로 유지된다.
  */
-export const CouponSheet = ({ open, onClose }: CouponSheetProps) => {
+export const CouponSheet = ({
+  open,
+  onClose,
+  initialCode,
+}: CouponSheetProps) => {
   const router = useRouter();
   const ref = useRef<HTMLDialogElement>(null);
-  const [code, setCode] = useState("");
+  const [code, setCode] = useState(initialCode?.toUpperCase() ?? "");
   const [error, setError] = useState<string | null>(null);
   const [fails, setFails] = useState(0);
   const [loading, setLoading] = useState(false);
@@ -96,7 +102,8 @@ export const CouponSheet = ({ open, onClose }: CouponSheetProps) => {
   useEffect(() => {
     const c = getCampaign();
     setCampaign(c);
-    setStep(c ? "intro" : "code");
+    setStep(c && !initialCode ? "intro" : "code");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {

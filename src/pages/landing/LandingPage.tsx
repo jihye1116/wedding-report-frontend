@@ -10,19 +10,34 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { secondsOnPage, track, useSectionTracking } from "@/utils/ga";
 import { getCampaign } from "@/utils/utm";
 
+declare global {
+  interface Window {
+    // layout.tsx에서 로드하는 나이스페이 JS SDK
+    AUTHNICE?: {
+      requestPay(
+        params: Record<string, unknown> & {
+          fnError: (result: { errorMsg?: string }) => void;
+        },
+      ): void;
+    };
+  }
+}
+
 export const PRICE = 19000;
 export const PRODUCT_NAME = "커플 결혼시뮬레이션 - 우리둘 테스트";
-// PG 심사용 "상품 2개 이상" — 선물용은 이행이 동일(쿠폰/결제 후 링크 전달)
+// 결제 = 쿠폰(액세스 코드) 1개 발급. 본인용은 바로 쓰고, 선물용은 링크로 전달한다.
 const PRODUCTS = [
   {
     name: PRODUCT_NAME,
     desc: "2인 1세트 · 모바일 40페이지 · 재열람 무제한",
     sale: true,
+    gift: false,
   },
   {
     name: "우리둘 테스트 - 친구 커플에게 선물하기",
     desc: "선물받는 커플 카톡으로 링크 전달 · 2인 1세트 · 재열람 무제한",
     sale: false,
+    gift: true,
   },
 ];
 
@@ -130,9 +145,13 @@ const Cta = ({
   </button>
 );
 
-export default function LandingPage() {
-  // 랜딩 진입 즉시 쿠폰 시트를 띄운다. 닫으면 CTA로만 다시 열림.
-  const [couponOpen, setCouponOpen] = useState(false);
+// initialCoupon: 결제 완료 페이지·선물 링크(/?coupon=XXXXX)로 들어온 코드. 시트를 바로 띄운다.
+export default function LandingPage({
+  initialCoupon,
+}: {
+  initialCoupon?: string;
+}) {
+  const [couponOpen, setCouponOpen] = useState(!!initialCoupon);
   const [zoom, setZoom] = useState<string | null>(null);
   // 행사 진입이면 쿠폰이 아니라 "무료"가 후크다. sessionStorage는 클라이언트 전용이라
   // useSyncExternalStore로 읽어 하이드레이션 불일치를 피한다.
@@ -147,21 +166,23 @@ export default function LandingPage() {
   const openCoupon = () => setCouponOpen(true);
 
   const handlePayment = (productName: string) => {
-    if (!(window as any).AUTHNICE) {
+    if (!window.AUTHNICE) {
       alert("결제 모듈을 불러오는 중입니다. 잠시 후 다시 시도해주세요.");
       return;
     }
-    const orderId = 'order_' + new Date().getTime();
-    (window as any).AUTHNICE.requestPay({
-      clientId: 'S2_af4543a0be4d49a98122e01ec2059a56',
-      method: 'card',
+    const orderId = "order_" + new Date().getTime();
+    window.AUTHNICE.requestPay({
+      clientId:
+        process.env.NEXT_PUBLIC_NICEPAY_CLIENT_ID ??
+        "R2_09bdb9d60a5f4a4d9b0eb53cf2fac598", // 꽃길 상점 키 (클라이언트승인·테스트)
+      method: "card",
       orderId,
       amount: PRICE,
       goodsName: productName,
-      returnUrl: window.location.origin + '/api/nicepay-return',
-      fnError: function (result: any) {
-        alert(result.errorMsg || '결제 중 오류가 발생했습니다.');
-      }
+      returnUrl: window.location.origin + "/api/nicepay-return",
+      fnError: (result) => {
+        alert(result.errorMsg || "결제 중 오류가 발생했습니다.");
+      },
     });
   };
 
@@ -377,11 +398,13 @@ export default function LandingPage() {
               </span>
             </p>
             <div className="mt-4 flex flex-col gap-2">
-              <Cta from="product" onClick={openCoupon} label={ctaLabel} />
+              {!p.gift && (
+                <Cta from="product" onClick={openCoupon} label={ctaLabel} />
+              )}
               <button
                 type="button"
                 onClick={() => handlePayment(p.name)}
-                className="w-full rounded-lg border border-brand bg-brand py-3 text-sm font-bold text-white"
+                className="border-brand bg-brand w-full rounded-lg border py-3 text-sm font-bold text-white"
               >
                 카드 결제하기
               </button>
@@ -424,7 +447,11 @@ export default function LandingPage() {
         </div>
       </div>
 
-      <CouponSheet open={couponOpen} onClose={() => setCouponOpen(false)} />
+      <CouponSheet
+        open={couponOpen}
+        onClose={() => setCouponOpen(false)}
+        initialCode={initialCoupon}
+      />
       <Lightbox src={zoom} onClose={() => setZoom(null)} />
     </div>
   );
