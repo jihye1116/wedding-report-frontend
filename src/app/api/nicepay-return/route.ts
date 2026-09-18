@@ -38,7 +38,9 @@ export async function POST(request: Request) {
   // Server 승인 키는 authResultCode, Client 승인 키는 resultCode로 온다. 둘 다 받는다.
   const resultCode = data.authResultCode ?? data.resultCode;
   const resultMsg = data.authResultMsg ?? data.resultMsg;
-  const { tid, orderId, amount, goodsName = "" } = data;
+  const { tid, orderId, amount } = data;
+  // Server 승인 모델은 goodsName을 안 돌려준다. 결제창 호출 때 mallReserved에 실어 보낸 상품명을 쓴다
+  const goodsName = data.goodsName || data.mallReserved || "";
   // Vercel 로그에서 원인 추적용. 카드번호 같은 민감값은 returnUrl로 오지 않는다.
   console.log("[nicepay-return]", {
     resultCode,
@@ -84,6 +86,14 @@ export async function POST(request: Request) {
   } catch {
     return fail(
       `결제 확인 서버에 연결하지 못했습니다. (주문번호 ${esc(orderId)})`,
+    );
+  }
+
+  if (goodsName === "결제 테스트") {
+    return page(
+      "결제 테스트 성공",
+      `<h2>축하합니다! 🎉</h2><p>100원 결제가 승인됐어요. (주문번호 ${esc(orderId)})</p>
+<p style="font-size:13px;color:#666">나이스페이 관리자에서 이 건을 취소해 주세요.</p>`,
     );
   }
 

@@ -179,6 +179,8 @@ export default function LandingPage({
       orderId,
       amount: PRICE,
       goodsName: productName,
+      // Server 승인 모델은 returnUrl로 goodsName을 안 돌려준다. mallReserved는 그대로 돌아오니 여기 실어 보낸다
+      mallReserved: productName,
       returnUrl: window.location.origin + "/api/nicepay-return",
       fnError: (result) => {
         alert(result.errorMsg || "결제 중 오류가 발생했습니다.");
