@@ -29,13 +29,13 @@ export const PRODUCT_NAME = "커플 결혼시뮬레이션 - 우리둘 테스트"
 const PRODUCTS = [
   {
     name: PRODUCT_NAME,
-    desc: "2인 1세트 · 모바일 40페이지 · 재열람 무제한",
+    desc: "2인 1세트 · 모바일 40페이지 · 30일간 재열람",
     sale: true,
     gift: false,
   },
   {
     name: "우리둘 테스트 - 친구 커플에게 선물하기",
-    desc: "선물받는 커플 카톡으로 링크 전달 · 2인 1세트 · 재열람 무제한",
+    desc: "선물받는 커플 카톡으로 링크 전달 · 2인 1세트 · 30일간 재열람",
     sale: false,
     gift: true,
   },
